@@ -1,0 +1,10 @@
+version: 0.1.{build}
+image: Visual Studio 2017
+configuration: Release
+cache: Source\packages -> **\Source\repositories.config
+before_build:
+- cmd: nuget restore Source\nGratis.Cop.Core.sln
+build:
+  project: Source
+  parallel: true
+  verbosity: minimal
