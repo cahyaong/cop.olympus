@@ -1,0 +1,22 @@
+﻿<ResourceDictionary
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:core="http://schemas.ngratis.com/2014/core"
+  xmlns:oxy="http://oxyplot.org/wpf">
+  <ResourceDictionary.MergedDictionaries>
+    <core:SharedResourceDictionary Source="/nGratis.Cop.Core.Wpf;component/Cop.Converter.xaml" />
+  </ResourceDictionary.MergedDictionaries>
+
+  <Style x:Key="{x:Type core:AweChart}" TargetType="core:AweChart">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="core:AweChart">
+          <oxy:PlotView
+            Background="{DynamicResource Cop.Brush.App.Background}"
+            DefaultTrackerTemplate="{x:Null}"
+            Model="{Binding Configuration, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay, Converter={StaticResource Cop.Converter.ChartConfigurationToPlotModelConverter}}" />
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+</ResourceDictionary>

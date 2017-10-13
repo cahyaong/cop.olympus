@@ -1,0 +1,15 @@
+﻿<ResourceDictionary
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:local="clr-namespace:nGratis.Cop.Core.Wpf">
+  <local:AnyToTitleCaseCoverter x:Key="Cop.Converter.AnyToTitleCaseCoverter" />
+  <local:AnyToTypeNameConverter x:Key="Cop.Converter.AnyToTypeNameConverter" />
+  <local:AnyToUpperCaseConverter x:Key="Cop.Converter.AnyToUpperCaseConverter" />
+  <BooleanToVisibilityConverter x:Key="Cop.Converter.BooleanToVisibilityConverter" />
+  <local:BooleanToLogicalNotConverter x:Key="Cop.Converter.BooleanToLogicalNotConverter" />
+  <local:ChartConfigurationToPlotModelConverter x:Key="Cop.Converter.ChartConfigurationToPlotModelConverter" ThemeManager="{DynamicResource Cop.ThemeManager}" />
+  <local:ColorToSolidBrushConverter x:Key="Cop.Converter.ColorToSolidBrushConverter" />
+  <local:EnumerableToCountConverter x:Key="Cop.Converter.EnumerableToCountConverter" />
+  <local:EnumerationToPossibleValuesConverter x:Key="Cop.Converter.EnumerationToPossibleValuesConverter" />
+  <local:ModulesToLinkGroupsConverter x:Key="Cop.Converter.ModulesToLinkGroupsConverter" />
+</ResourceDictionary>

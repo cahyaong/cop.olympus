@@ -1,0 +1,13 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Color x:Key="Cop.Color.Shade0">#FFFFFFFF</Color>
+  <Color x:Key="Cop.Color.Shade1">#FFE0E0E0</Color>
+  <Color x:Key="Cop.Color.Shade2">#FFC0C0C0</Color>
+  <Color x:Key="Cop.Color.Shade3">#FFA0A0A0</Color>
+  <Color x:Key="Cop.Color.Shade4">#FF808080</Color>
+  <Color x:Key="Cop.Color.Shade5">#FF606060</Color>
+  <Color x:Key="Cop.Color.Shade6">#FF404040</Color>
+  <Color x:Key="Cop.Color.Shade7">#FF202020</Color>
+  <Color x:Key="Cop.Color.Shade8">#FF000000</Color>
+
+  <!--  TODO Update this resource dictionary to match up with the 'Dark' version.  -->
+</ResourceDictionary>

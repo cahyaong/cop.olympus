@@ -1,0 +1,30 @@
+﻿<Application
+  x:Class="nGratis.Cop.Core.Sdk.App"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:local="clr-namespace:nGratis.Cop.Core.Sdk"
+  xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+  xmlns:wpf="http://schemas.ngratis.com/2014/core"
+  StartupUri="AppView.xaml">
+  <Application.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary>
+          <wpf:CaliburnContentLoader x:Key="CaliburnContentLoader" />
+        </ResourceDictionary>
+        <ResourceDictionary>
+          <Style TargetType="mui:ModernWindow">
+            <Setter Property="ContentLoader" Value="{StaticResource CaliburnContentLoader}" />
+          </Style>
+          <Style TargetType="mui:ModernFrame">
+            <Setter Property="ContentLoader" Value="{StaticResource CaliburnContentLoader}" />
+          </Style>
+          <Style TargetType="mui:ModernTab">
+            <Setter Property="ContentLoader" Value="{StaticResource CaliburnContentLoader}" />
+          </Style>
+        </ResourceDictionary>
+        <wpf:SharedResourceDictionary Source="/nGratis.Cop.Core.Theme;component/Cop.Theme.Dark.xaml" />
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </Application.Resources>
+</Application>

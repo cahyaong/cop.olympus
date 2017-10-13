@@ -1,0 +1,45 @@
+﻿<ResourceDictionary
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:core="http://schemas.ngratis.com/2014/core">
+
+  <ResourceDictionary.MergedDictionaries>
+    <core:SharedResourceDictionary Source="/nGratis.Cop.Core.Theme;component/Cop.Icon.MaterialDesignIcon.xaml" />
+  </ResourceDictionary.MergedDictionaries>
+
+  <ControlTemplate x:Key="Cop.AweScrollBar.Template.Default" TargetType="{x:Type ScrollBar}">
+    <Grid>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="Auto" />
+      </Grid.ColumnDefinitions>
+      <core:AweButton
+        x:Name="PART_LeftButton"
+        Grid.Column="0"
+        AccentColor="{DynamicResource Cop.Color.Accent}"
+        Command="ScrollBar.PageLeftCommand"
+        IconGeometry="{StaticResource Cop.Icon.Chevron.Left}"
+        IsBorderHidden="True"
+        IsRepeated="True"
+        Measurement="S" />
+      <core:AweButton
+        x:Name="PART_RightButton"
+        Grid.Column="2"
+        AccentColor="{DynamicResource Cop.Color.Accent}"
+        Command="ScrollBar.PageRightCommand"
+        IconGeometry="{StaticResource Cop.Icon.Chevron.Right}"
+        IsBorderHidden="True"
+        IsRepeated="True"
+        Measurement="S" />
+    </Grid>
+  </ControlTemplate>
+
+  <Style
+    x:Key="{x:Type core:AweScrollBar}"
+    BasedOn="{StaticResource {x:Type ScrollBar}}"
+    TargetType="{x:Type ScrollBar}">
+    <Setter Property="Template" Value="{StaticResource Cop.AweScrollBar.Template.Default}" />
+  </Style>
+
+</ResourceDictionary>
