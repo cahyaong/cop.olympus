@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
+VisualStudioVersion = 15.0.27004.2002
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nGratis.Cop.Core", "Core\nGratis.Cop.Core.csproj", "{B90C4C38-A600-44BB-840E-2A7D4B46618A}"
 EndProject
@@ -28,6 +28,19 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nGratis.Cop.Core.Wpf", "Core.Wpf\nGratis.Cop.Core.Wpf.csproj", "{199487EB-64E4-4D48-9E9A-3AFDDDADF041}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{BDBE8B1D-A745-4FCA-8B65-BE1A7A0DCE04}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{9A82E807-F092-488D-AB1F-79D7ADE622E7}"
+	ProjectSection(SolutionItems) = preProject
+		..\Build\nGratis.Cop.BuildExecution.ps1 = ..\Build\nGratis.Cop.BuildExecution.ps1
+		..\Build\nGratis.Cop.Core.BuildDefinition.ps1 = ..\Build\nGratis.Cop.Core.BuildDefinition.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{B5BB0FE4-2E54-460E-8F49-825E2C312E02}"
+	ProjectSection(SolutionItems) = preProject
+		..\Build\NuGet\nGratis.Cop.Core.Testing.tt = ..\Build\NuGet\nGratis.Cop.Core.Testing.tt
+		..\Build\NuGet\nGratis.Cop.Core.tt = ..\Build\NuGet\nGratis.Cop.Core.tt
+		..\Build\NuGet\nGratis.Cop.Core.Wpf.tt = ..\Build\NuGet\nGratis.Cop.Core.Wpf.tt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -73,6 +86,7 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{F40704BC-4DFC-43C3-85E8-120D0B30B43B} = {BDBE8B1D-A745-4FCA-8B65-BE1A7A0DCE04}
+		{B5BB0FE4-2E54-460E-8F49-825E2C312E02} = {9A82E807-F092-488D-AB1F-79D7ADE622E7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1FBC21EC-FAB0-4D07-A4B3-358BC0536997}

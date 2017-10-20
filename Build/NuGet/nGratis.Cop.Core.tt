@@ -1,0 +1,45 @@
+﻿<#@ template debug="true" hostSpecific="true" language="C#" #>
+<#@ output extension=".nuspec" encoding="utf-8" #>
+<#@ Assembly Name="System.Core" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Globalization" #>
+<#@ import namespace="System.Linq" #>
+<#
+    var Version = new Version(this.Host.ResolveParameterValue(string.Empty, string.Empty, "Version"));
+
+    var BuildTimestamp = DateTimeOffset.ParseExact(
+        this.Host.ResolveParameterValue(string.Empty, string.Empty, "BuildTimestamp"), 
+        "O",
+        CultureInfo.InvariantCulture, 
+        DateTimeStyles.AdjustToUniversal);
+#>
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
+  <metadata>
+    <id>nGratis.Cop.Core</id>
+    <title>nGratis: Community of Practice - Core</title>
+    <version><#= Version.Major #>.<#= Version.Minor #>.<#= Version.Build #></version>
+    <authors>Cahya Ong</authors>
+    <owners>Cahya Ong</owners>
+    <licenseUrl>https://github.com/cahyaong/cop.theia/blob/master/LICENSE.md</licenseUrl>
+    <projectUrl>https://github.com/cahyaong/cop.theia</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Cop.Core package contains common core funcationality used by other 'Community of Practice' projects.</description>
+    <language>en-US</language>
+    <copyright>Copyright © 2014 - <#= BuildTimestamp.Year #> Cahya Ong</copyright>
+    <dependencies>
+      <dependency id="JetBrains.Annotations" version="[10.4.0,)" />
+      <dependency id="Newtonsoft.Json" version="[10.0.2,)" />
+      <dependency id="NLog" version="[4.4.4,)" />
+      <dependency id="Rx-Main" version="[2.2.5,)" />
+      <dependency id="YamlDotNet" version="[4.1.0,)" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="nGratis.Cop.Core.dll" target="lib\net461\nGratis.Cop.Core.dll" />
+    <file src="nGratis.Cop.Core.pdb" target="lib\net461\nGratis.Cop.Core.pdb" />
+    <file src="nGratis.Cop.Core.Contract.dll" target="lib\net461\nGratis.Cop.Core.Contract.dll" />
+    <file src="nGratis.Cop.Core.Contract.pdb" target="lib\net461\nGratis.Cop.Core.Contract.pdb" />
+  </files>
+</package>

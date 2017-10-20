@@ -1,0 +1,41 @@
+﻿<#@ template debug="true" hostSpecific="true" language="C#" #>
+<#@ output extension=".nuspec" encoding="utf-8" #>
+<#@ Assembly Name="System.Core" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Globalization" #>
+<#@ import namespace="System.Linq" #>
+<#
+    var Version = new Version(this.Host.ResolveParameterValue(string.Empty, string.Empty, "Version"));
+
+    var BuildTimestamp = DateTimeOffset.ParseExact(
+        this.Host.ResolveParameterValue(string.Empty, string.Empty, "BuildTimestamp"), 
+        "O",
+        CultureInfo.InvariantCulture, 
+        DateTimeStyles.AdjustToUniversal);
+#>
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
+  <metadata>
+    <id>nGratis.Cop.Core.Testing</id>
+    <title>nGratis: Community of Practice - Core Testing</title>
+    <version><#= Version.Major #>.<#= Version.Minor #>.<#= Version.Build #></version>
+    <authors>Cahya Ong</authors>
+    <owners>Cahya Ong</owners>
+    <licenseUrl>https://github.com/cahyaong/cop.theia/blob/master/LICENSE.md</licenseUrl>
+    <projectUrl>https://github.com/cahyaong/cop.theia</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Cop.Core.Testing package contains common core testing funcationality used by other 'Community of Practice' projects.</description>
+    <language>en-US</language>
+    <copyright>Copyright © 2014 - <#= BuildTimestamp.Year #> Cahya Ong</copyright>
+    <dependencies>
+      <dependency id="JetBrains.Annotations" version="[10.4.0,)" />
+      <dependency id="Moq" version="[4.7.1,)" />
+      <dependency id="nGratis.Cop.Core" version="[<#= Version.Major #>.<#= Version.Minor #>.<#= Version.Build #>,)" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="nGratis.Cop.Core.Testing.dll" target="lib\net461\nGratis.Cop.Core.Testing.dll" />
+    <file src="nGratis.Cop.Core.Testing.pdb" target="lib\net461\nGratis.Cop.Core.Testing.pdb" />
+  </files>
+</package>
