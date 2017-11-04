@@ -83,11 +83,21 @@ namespace nGratis.Cop.Core.Wpf
 
             if (this.Mode == BrowsingMode.File)
             {
+                var initialPath = default(string);
+
+                if (!string.IsNullOrEmpty(this.SelectedPath) && File.Exists(this.SelectedPath))
+                {
+                    initialPath = Path.GetDirectoryName(this.SelectedPath);
+                }
+
+                if (string.IsNullOrEmpty(initialPath))
+                {
+                    initialPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+                }
+
                 var fileDialog = new OpenFileDialog
                 {
-                    InitialDirectory = File.Exists(this.SelectedPath)
-                        ? Path.GetDirectoryName(this.SelectedPath)
-                        : Environment.GetFolderPath(Environment.SpecialFolder.Personal)
+                    InitialDirectory = initialPath
                 };
 
                 isOkPressed = fileDialog.ShowDialog() ?? false;

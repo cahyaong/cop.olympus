@@ -59,9 +59,7 @@ namespace nGratis.Cop.Core.Wpf
 
         public object Convert(object value, Type type, object parameter, CultureInfo culture)
         {
-            var chartConfiguration = value as ChartConfiguration;
-
-            if (chartConfiguration == null)
+            if (!(value is ChartConfiguration chartConfiguration))
             {
                 return null;
             }

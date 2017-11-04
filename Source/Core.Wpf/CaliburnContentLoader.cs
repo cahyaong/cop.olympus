@@ -56,10 +56,7 @@ namespace nGratis.Cop.Core.Wpf
                 ViewModelBinder.Bind(vm, content as DependencyObject, null);
             }
 
-            var element = content as FrameworkElement;
-            var activatable = vm as IActivatable;
-
-            if (element != null && activatable != null)
+            if (content is FrameworkElement element && vm is IActivatable activatable)
             {
                 element.Loaded += (_, __) => activatable.Activate();
                 element.Unloaded += (_, __) => activatable.Deactivate();

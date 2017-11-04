@@ -48,7 +48,7 @@ namespace nGratis.Cop.Core
                 var loggingAttribute = stackFrames
                     .Select(frame => frame
                         .GetMethod()
-                        .DeclaringType
+                        .DeclaringType?
                         .GetCustomAttributes<LoggingAttribute>()
                         .SingleOrDefault())
                     .FirstOrDefault(attribute => attribute != null);

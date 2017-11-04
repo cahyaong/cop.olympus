@@ -78,9 +78,7 @@ namespace nGratis.Cop.Core.Wpf
 
         private static void OnOrientationChanged(DependencyObject container, DependencyPropertyChangedEventArgs args)
         {
-            var scrollViewer = container as AweScrollViewer;
-
-            if (scrollViewer == null)
+            if (!(container is AweScrollViewer scrollViewer))
             {
                 return;
             }
