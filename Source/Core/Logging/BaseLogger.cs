@@ -65,7 +65,7 @@ namespace nGratis.Cop.Core
 
         public abstract void LogWith(Verbosity verbosity, string message);
 
-        public abstract void LogWith(Verbosity verbosity, Exception exception, string message);
+        public abstract void LogWith(Verbosity verbosity, string message, Exception exception);
 
         public virtual IObservable<LogEntry> AsObservable()
         {

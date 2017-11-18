@@ -27,10 +27,12 @@
 
 namespace nGratis.Cop.Core.Vision.Imaging
 {
+    using nGratis.Cop.Core.Contract;
+
     public interface IImageProvider
     {
-        IImage LoadImage(IDataSpecification imageSpecification);
+        IImage LoadImage(IDataSpec imageSpec);
 
-        void SaveImage(IImage image, IDataSpecification dataSpecification);
+        void SaveImage(IImage image, IDataSpec dataSpec);
     }
 }

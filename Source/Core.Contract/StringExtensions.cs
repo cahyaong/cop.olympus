@@ -43,6 +43,7 @@ namespace System
                 : string.Format(provider, format, args);
         }
 
+        [Obsolete("Use Interpolated Strings from C# 6 instead!", true)]
         [StringFormatMethod("format")]
         public static string Bake(this string format, params object[] args)
         {

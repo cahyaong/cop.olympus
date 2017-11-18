@@ -30,8 +30,7 @@ namespace nGratis.Cop.Core
 {
     using System;
     using System.ComponentModel;
-    using System.Globalization;
-    using JetBrains.Annotations;
+    using System.Linq;
     using nGratis.Cop.Core.Contract;
 
     public static class LoggerExtensions
@@ -43,27 +42,11 @@ namespace nGratis.Cop.Core
             logger.LogWith(Verbosity.Trace, message);
         }
 
-        [StringFormatMethod("format")]
-        public static void LogAsTrace(this ILogger logger, string format, params object[] args)
-        {
-            Guard.Require.IsNotNull(logger);
-
-            logger.LogWith(Verbosity.Trace, string.Format(CultureInfo.CurrentUICulture, format, args));
-        }
-
         public static void LogAsDebug(this ILogger logger, [Localizable(false)] string message)
         {
             Guard.Require.IsNotNull(logger);
 
             logger.LogWith(Verbosity.Debug, message);
-        }
-
-        [StringFormatMethod("format")]
-        public static void LogAsDebug(this ILogger logger, [Localizable(false)] string format, params object[] args)
-        {
-            Guard.Require.IsNotNull(logger);
-
-            logger.LogWith(Verbosity.Debug, string.Format(CultureInfo.CurrentUICulture, format, args));
         }
 
         public static void LogAsInformation(this ILogger logger, string message)
@@ -73,27 +56,11 @@ namespace nGratis.Cop.Core
             logger.LogWith(Verbosity.Information, message);
         }
 
-        [StringFormatMethod("format")]
-        public static void LogAsInformation(this ILogger logger, string format, params object[] args)
-        {
-            Guard.Require.IsNotNull(logger);
-
-            logger.LogWith(Verbosity.Information, string.Format(CultureInfo.CurrentUICulture, format, args));
-        }
-
         public static void LogAsWarning(this ILogger logger, string message)
         {
             Guard.Require.IsNotNull(logger);
 
             logger.LogWith(Verbosity.Warning, message);
-        }
-
-        [StringFormatMethod("format")]
-        public static void LogAsWarning(this ILogger logger, string format, params object[] args)
-        {
-            Guard.Require.IsNotNull(logger);
-
-            logger.LogWith(Verbosity.Warning, string.Format(CultureInfo.CurrentUICulture, format, args));
         }
 
         public static void LogAsError(this ILogger logger, string message)
@@ -103,27 +70,11 @@ namespace nGratis.Cop.Core
             logger.LogWith(Verbosity.Error, message);
         }
 
-        [StringFormatMethod("format")]
-        public static void LogAsError(this ILogger logger, string format, params object[] args)
-        {
-            Guard.Require.IsNotNull(logger);
-
-            logger.LogWith(Verbosity.Error, string.Format(CultureInfo.CurrentUICulture, format, args));
-        }
-
         public static void LogAsFatal(this ILogger logger, Exception exception, string message)
         {
             Guard.Require.IsNotNull(logger);
 
-            logger.LogWith(Verbosity.Fatal, exception, message);
-        }
-
-        [StringFormatMethod("format")]
-        public static void LogAsFatal(this ILogger logger, Exception exception, string format, params object[] args)
-        {
-            Guard.Require.IsNotNull(logger);
-
-            logger.LogWith(Verbosity.Fatal, exception, string.Format(CultureInfo.CurrentUICulture, format, args));
+            logger.LogWith(Verbosity.Fatal, message, exception);
         }
     }
 }

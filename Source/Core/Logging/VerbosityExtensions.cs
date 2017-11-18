@@ -66,7 +66,7 @@ namespace nGratis.Cop.Core
             return LogLevel.Off;
         }
 
-        public static string ToConsoleString(this Verbosity verbosity)
+        public static string ToConsoleText(this Verbosity verbosity)
         {
             Guard.Require.IsNotDefault(verbosity);
 

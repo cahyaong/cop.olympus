@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ILogger.cs" company="nGratis">
+// <copyright file="IStorageProvider.cs" company="nGratis">
 //  The MIT License (MIT)
 //
 //  Copyright (c) 2014 - 2015 Cahya Ong
@@ -23,24 +23,20 @@
 //  SOFTWARE.
 // </copyright>
 // <author>Cahya Ong - cahya.ong@gmail.com</author>
-// <creation_timestamp>Saturday, 25 April 2015 11:33:09 AM UTC</creation_timestamp>
+// <creation_timestamp>Sunday, 29 March 2015 7:01:18 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace nGratis.Cop.Core.Contract
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
 
-    public interface ILogger : IDisposable
+    public interface IStorageProvider
     {
-        string Id { get; }
+        Stream LoadData(IDataSpec dataSpec);
 
-        IEnumerable<string> Components { get; }
-
-        void LogWith(Verbosity verbosity, string message);
-
-        void LogWith(Verbosity verbosity, string message, Exception exception);
-
-        IObservable<LogEntry> AsObservable();
+        void SaveData(IDataSpec dataSpec, Stream dataStream);
     }
 }

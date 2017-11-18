@@ -29,7 +29,9 @@
 namespace nGratis.Cop.Core
 {
     using System;
+    using System.Collections.Generic;
     using System.IO;
+    using System.Linq;
     using System.Text;
     using nGratis.Cop.Core.Contract;
 
@@ -48,26 +50,26 @@ namespace nGratis.Cop.Core
 
         public Uri RootUri { get; }
 
-        public Stream LoadData(IDataSpecification dataSpecification)
+        public Stream LoadData(IDataSpec dataSpec)
         {
-            Guard.Require.IsNotNull(dataSpecification);
+            Guard.Require.IsNotNull(dataSpec);
 
             return File.Open(
-                Path.Combine(this.RootUri.LocalPath, dataSpecification.FullName),
+                Path.Combine(this.RootUri.LocalPath, dataSpec.GetFileName()),
                 FileMode.Open);
         }
 
-        public void SaveData(IDataSpecification dataSpecification, Stream dataStream)
+        public void SaveData(IDataSpec dataSpec, Stream dataStream)
         {
-            Guard.Require.IsNotNull(dataSpecification);
+            Guard.Require.IsNotNull(dataSpec);
             Guard.Require.IsNotNull(dataStream);
 
-            var filePath = Path.Combine(this.RootUri.LocalPath, dataSpecification.FullName);
+            var filePath = Path.Combine(this.RootUri.LocalPath, dataSpec.GetFileName());
             Guard.Require.IsFileNotExist(filePath);
 
             dataStream.Position = 0;
 
-            if (dataSpecification.ContentMime.IsTextDocument())
+            if (dataSpec.ContentMime.IsTextDocument())
             {
                 using (var reader = new StreamReader(dataStream))
                 using (var writer = new StreamWriter(File.OpenWrite(filePath), Encoding.UTF8))

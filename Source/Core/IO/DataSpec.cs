@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="DataSpecification.cs" company="nGratis">
+// <copyright file="DataSpec.cs" company="nGratis">
 //  The MIT License (MIT)
 //
 //  Copyright (c) 2014 - 2015 Cahya Ong
@@ -29,46 +29,25 @@
 namespace nGratis.Cop.Core
 {
     using System;
-    using System.IO;
+    using System.Collections.Generic;
     using System.Linq;
     using nGratis.Cop.Core.Contract;
 
-    public class DataSpecification : IDataSpecification
+    public class DataSpec : IDataSpec
     {
-        public DataSpecification(string name, Mime contentMime)
-            : this(VoidStorageProvider.Default, name, contentMime)
+        public DataSpec(string name, Mime contentMime)
         {
-        }
-
-        public DataSpecification(IStorageProvider storageProvider, string name, Mime contentMime)
-        {
-            Guard.Require.IsNotNull(storageProvider);
             Guard.Require.IsNotEmpty(name);
             Guard.Require.IsNotNull(contentMime);
             Guard.Require.IsNotEqualTo(contentMime, Mime.Unknown);
 
             this.ContentMime = contentMime;
             this.Name = name;
-            this.StorageProvider = storageProvider;
         }
 
         public Mime ContentMime { get; }
 
         public string Name { get; }
-
-        public string FullName => $"{this.Name}.{this.ContentMime.Names.First()}";
-
-        public IStorageProvider StorageProvider { get; }
-
-        public Stream LoadData()
-        {
-            return this.StorageProvider.LoadData(this);
-        }
-
-        public void SaveData(Stream dataStream)
-        {
-            this.StorageProvider.SaveData(this, dataStream);
-        }
 
         public override string ToString()
         {

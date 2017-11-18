@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IStorageProvider.cs" company="nGratis">
+// <copyright file="IDataSpec.cs" company="nGratis">
 //  The MIT License (MIT)
 //
 //  Copyright (c) 2014 - 2015 Cahya Ong
@@ -23,17 +23,19 @@
 //  SOFTWARE.
 // </copyright>
 // <author>Cahya Ong - cahya.ong@gmail.com</author>
-// <creation_timestamp>Sunday, 29 March 2015 7:01:18 AM UTC</creation_timestamp>
+// <creation_timestamp>Friday, 3 April 2015 12:00:28 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Core
+namespace nGratis.Cop.Core.Contract
 {
-    using System.IO;
+    using System.Linq;
+    using System.Collections.Generic;
+    using System;
 
-    public interface IStorageProvider
+    public interface IDataSpec
     {
-        Stream LoadData(IDataSpecification dataSpecification);
+        string Name { get; }
 
-        void SaveData(IDataSpecification dataSpecification, Stream dataStream);
+        Mime ContentMime { get; }
     }
 }

@@ -1,8 +1,8 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IDataSpecification.cs" company="nGratis">
+// <copyright file="IDataEntity.cs" company="nGratis">
 //  The MIT License (MIT)
 //
-//  Copyright (c) 2014 - 2015 Cahya Ong
+//  Copyright (c) 2014 - 2017 Cahya Ong
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -23,25 +23,20 @@
 //  SOFTWARE.
 // </copyright>
 // <author>Cahya Ong - cahya.ong@gmail.com</author>
-// <creation_timestamp>Friday, 3 April 2015 12:00:28 AM UTC</creation_timestamp>
+// <creation_timestamp>Saturday, 18 November 2017 4:57:28 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Core
+namespace nGratis.Cop.Core.Contract
 {
+    using System;
+    using System.Collections.Generic;
     using System.IO;
+    using System.Linq;
 
-    public interface IDataSpecification
+    public interface IDataEntity
     {
-        Mime ContentMime { get; }
+        IDataSpec DataSpec { get; }
 
-        string Name { get; }
-
-        string FullName { get; }
-
-        IStorageProvider StorageProvider { get; }
-
-        Stream LoadData();
-
-        void SaveData(Stream dataStream);
+        Stream ContentStream { get; }
     }
 }

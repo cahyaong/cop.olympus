@@ -1,8 +1,8 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ILogger.cs" company="nGratis">
+// <copyright file="DataSpecExtensions.cs" company="nGratis">
 //  The MIT License (MIT)
 //
-//  Copyright (c) 2014 - 2015 Cahya Ong
+//  Copyright (c) 2014 - 2017 Cahya Ong
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -23,24 +23,24 @@
 //  SOFTWARE.
 // </copyright>
 // <author>Cahya Ong - cahya.ong@gmail.com</author>
-// <creation_timestamp>Saturday, 25 April 2015 11:33:09 AM UTC</creation_timestamp>
+// <creation_timestamp>Friday, 17 November 2017 11:04:03 PM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Core.Contract
+namespace nGratis.Cop.Core
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
+    using nGratis.Cop.Core.Contract;
 
-    public interface ILogger : IDisposable
+    public static class DataSpecExtensions
     {
-        string Id { get; }
+        public static string GetFileName(this IDataSpec dataSpec)
+        {
+            Guard.Require.IsNotNull(dataSpec);
+            Guard.Require.IsNotEmpty(dataSpec.ContentMime.Names);
 
-        IEnumerable<string> Components { get; }
-
-        void LogWith(Verbosity verbosity, string message);
-
-        void LogWith(Verbosity verbosity, string message, Exception exception);
-
-        IObservable<LogEntry> AsObservable();
+            return $"{dataSpec.Name}.{dataSpec.ContentMime.Names.First()}";
+        }
     }
 }

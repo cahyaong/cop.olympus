@@ -26,13 +26,12 @@
 // <creation_timestamp>Sunday, 29 March 2015 7:10:38 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Core
+namespace nGratis.Cop.Core.Contract
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Reflection;
-    using nGratis.Cop.Core.Contract;
 
     public sealed class Mime
     {
@@ -58,9 +57,9 @@ namespace nGratis.Cop.Core
 
         public static Mime Xml { get; } = new Mime("text/xml", 3023, 0, "xml");
 
-        private static readonly IDictionary<string, Mime> UniqueIdToMimeMapping;
+        private static readonly IDictionary<string, Mime> UniqueIdLookup;
 
-        private static readonly IDictionary<string, Mime> NameToMimeMapping;
+        private static readonly IDictionary<string, Mime> NameLookup;
 
         [SuppressMessage("Microsoft.Performance", "CA1810:InitializeReferenceTypeStaticFieldsInline")]
         static Mime()
@@ -71,10 +70,10 @@ namespace nGratis.Cop.Core
                 .OfType<Mime>()
                 .ToList();
 
-            Mime.UniqueIdToMimeMapping = mimes
+            Mime.UniqueIdLookup = mimes
                 .ToDictionary(mime => mime.UniqueId, mime => mime);
 
-            Mime.NameToMimeMapping = mimes
+            Mime.NameLookup = mimes
                 .SelectMany(mime => mime
                     .Names
                     .Where(name => !string.IsNullOrEmpty(name))
@@ -104,9 +103,9 @@ namespace nGratis.Cop.Core
         public static Mime ParseByUniqueId(string uniqueId)
         {
             Guard.Require.IsNotEmpty(uniqueId);
-            Guard.Require.IsTrue(Mime.UniqueIdToMimeMapping.ContainsKey(uniqueId));
+            Guard.Require.IsTrue(Mime.UniqueIdLookup.ContainsKey(uniqueId));
 
-            return Mime.UniqueIdToMimeMapping[uniqueId];
+            return Mime.UniqueIdLookup[uniqueId];
         }
 
         public static Mime ParseByName(string name)
@@ -114,9 +113,9 @@ namespace nGratis.Cop.Core
             Guard.Require.IsNotEmpty(name);
 
             name = name.Replace(".", string.Empty);
-            Guard.Require.IsTrue(Mime.NameToMimeMapping.ContainsKey(name));
+            Guard.Require.IsTrue(Mime.NameLookup.ContainsKey(name));
 
-            return Mime.NameToMimeMapping[name];
+            return Mime.NameLookup[name];
         }
 
         public bool IsTextDocument()

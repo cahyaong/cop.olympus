@@ -82,13 +82,18 @@
     <Compile Include="Guard.Require.cs">
       <DependentUpon>Guard.cs</DependentUpon>
     </Compile>
+    <Compile Include="IO\IDataEntity.cs" />
+    <Compile Include="IO\IDataInfo.cs" />
+    <Compile Include="IO\IDataSpec.cs" />
     <Compile Include="Infrastructure\IIdentityProvider.cs" />
     <Compile Include="Infrastructure\IInfrastructureManager.cs" />
     <Compile Include="Infrastructure\ILogger.cs" />
     <Compile Include="Infrastructure\ILoggingProvider.cs" />
+    <Compile Include="IO\IStorageProvider.cs" />
     <Compile Include="Infrastructure\ITemporalProvider.cs" />
     <Compile Include="Infrastructure\LogEntry.cs" />
     <Compile Include="Infrastructure\Verbosity.cs" />
+    <Compile Include="Mime.cs" />
     <Compile Include="StringExtensions.cs" />
     <Compile Include="Fire.cs" />
     <Compile Include="Wpf\IActivatable.cs" />

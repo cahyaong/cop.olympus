@@ -111,12 +111,12 @@ namespace nGratis.Cop.Core
                 .ForEach(logger => logger.LogWith(verbosity, message));
         }
 
-        public override void LogWith(Verbosity verbosity, Exception exception, string message)
+        public override void LogWith(Verbosity verbosity, string message, Exception exception)
         {
             this
                 .loggerLookup
                 .Values
-                .ForEach(logger => logger.LogWith(verbosity, exception, message));
+                .ForEach(logger => logger.LogWith(verbosity, message, exception));
         }
 
         public override IObservable<LogEntry> AsObservable()

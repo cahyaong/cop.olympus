@@ -124,9 +124,18 @@ namespace System.Collections.Generic
             }
         }
 
-        public static IList<T> PutInList<T>(this T item)
+        public static T[] AsArray<T>(this T instance)
         {
-            return new List<T> { item };
+            Guard.Require.IsNotNull(instance);
+
+            return new[] { instance };
+        }
+
+        public static IList<T> AsList<T>(this T instance)
+        {
+            Guard.Require.IsNotNull(instance);
+
+            return new List<T> { instance };
         }
     }
 }

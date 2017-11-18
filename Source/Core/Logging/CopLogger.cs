@@ -40,7 +40,7 @@ namespace nGratis.Cop.Core
         private bool isDisposed;
 
         public CopLogger(string id, string component)
-            : base(id, component.PutInList())
+            : base(id, component.AsArray())
         {
             this.loggingSubject = new ReplaySubject<LogEntry>();
         }
@@ -57,7 +57,7 @@ namespace nGratis.Cop.Core
             this.loggingSubject.OnNext(logEntry);
         }
 
-        public override void LogWith(Verbosity verbosity, Exception exception, string message)
+        public override void LogWith(Verbosity verbosity, string message, Exception exception)
         {
             var logEntry = new LogEntry
             {

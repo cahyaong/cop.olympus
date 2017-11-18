@@ -52,11 +52,11 @@ namespace nGratis.Cop.Core.Wpf
 
             Guard.Require.IsNotNull(context);
 
-            var key = "Cop.AweField.{0}.{1}".Bake(
-                context.Mode,
-                context.Type == FieldType.Auto
-                    ? context.ValueType.IsEnum ? "Enumeration" : context.ValueType.GetGenericName()
-                    : context.Type.ToString());
+            var typeName = context.Type == FieldType.Auto
+                ? context.ValueType.IsEnum ? "Enumeration" : context.ValueType.GetGenericName()
+                : context.Type.ToString();
+
+            var key = $"Cop.AweField.{context.Mode}.{typeName}";
 
             if (this.templateLookup.ContainsKey(key))
             {

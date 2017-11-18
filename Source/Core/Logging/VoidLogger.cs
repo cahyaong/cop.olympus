@@ -45,7 +45,7 @@ namespace nGratis.Cop.Core
         {
         }
 
-        public override void LogWith(Verbosity verbosity, Exception exception, string message)
+        public override void LogWith(Verbosity verbosity, string message, Exception exception)
         {
         }
     }

@@ -30,40 +30,31 @@ namespace nGratis.Cop.Core
 {
     using System;
     using System.Collections.Generic;
-    using System.Globalization;
-    using System.Text;
+    using System.ComponentModel;
+    using System.Diagnostics.CodeAnalysis;
     using nGratis.Cop.Core.Contract;
 
     public class ConsoleLogger : BaseLogger
     {
         public ConsoleLogger(string id, string component)
-            : base(id, component.PutInList())
+            : base(id, component.AsArray())
         {
         }
 
-        public override void LogWith(Verbosity verbosity, string message)
+        [SuppressMessage("Microsoft.Globalization", "CA1303:Do not pass literals as localized parameters")]
+        public override void LogWith(Verbosity verbosity, [Localizable(false)] string message)
         {
-            var line = "{0} | {1} | {2}".Bake(
-                DateTimeOffset.Now.ToString("yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture),
-                verbosity.ToConsoleString(),
-                message);
+            var line = $"{DateTimeOffset.Now:s} | {verbosity.ToConsoleText()} | {message}";
 
             Console.WriteLine(line);
         }
 
-        public override void LogWith(Verbosity verbosity, Exception exception, string message)
+        [SuppressMessage("Microsoft.Globalization", "CA1303:Do not pass literals as localized parameters")]
+        public override void LogWith(Verbosity verbosity, [Localizable(false)] string message, Exception exception)
         {
-            var lineBuilder = new StringBuilder();
+            var line = $"{DateTimeOffset.Now:s} | {verbosity.ToConsoleText()} | {message} {exception.Message}";
 
-            lineBuilder.AppendFormat(
-                CultureInfo.InvariantCulture,
-                "{0} | {1} | {2} {3}",
-                DateTimeOffset.Now.ToString("yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture),
-                verbosity.ToConsoleString(),
-                message,
-                exception.Message);
-
-            Console.WriteLine(lineBuilder.ToString());
+            Console.WriteLine(line);
         }
     }
 }

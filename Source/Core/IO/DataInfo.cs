@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ILogger.cs" company="nGratis">
+// <copyright file="DataInfo.cs" company="nGratis">
 //  The MIT License (MIT)
 //
 //  Copyright (c) 2014 - 2015 Cahya Ong
@@ -23,24 +23,23 @@
 //  SOFTWARE.
 // </copyright>
 // <author>Cahya Ong - cahya.ong@gmail.com</author>
-// <creation_timestamp>Saturday, 25 April 2015 11:33:09 AM UTC</creation_timestamp>
+// <creation_timestamp>Sunday, 29 March 2015 7:07:28 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Core.Contract
+namespace nGratis.Cop.Core
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
+    using nGratis.Cop.Core.Contract;
 
-    public interface ILogger : IDisposable
+    public class DataInfo : DataSpec, IDataInfo
     {
-        string Id { get; }
+        public DataInfo(string name, Mime contentMime)
+            : base(name, contentMime)
+        {
+        }
 
-        IEnumerable<string> Components { get; }
-
-        void LogWith(Verbosity verbosity, string message);
-
-        void LogWith(Verbosity verbosity, string message, Exception exception);
-
-        IObservable<LogEntry> AsObservable();
+        public DateTimeOffset CreatedTimestamp { get; set; }
     }
 }

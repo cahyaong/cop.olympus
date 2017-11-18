@@ -29,7 +29,10 @@
 namespace nGratis.Cop.Core
 {
     using System;
+    using System.Collections.Generic;
     using System.IO;
+    using System.Linq;
+    using nGratis.Cop.Core.Contract;
 
     public class VoidStorageProvider : IStorageProvider
     {
@@ -39,12 +42,12 @@ namespace nGratis.Cop.Core
 
         public static VoidStorageProvider Default { get; } = new VoidStorageProvider();
 
-        public Stream LoadData(IDataSpecification dataSpecification)
+        public Stream LoadData(IDataSpec dataSpec)
         {
             throw new NotSupportedException();
         }
 
-        public void SaveData(IDataSpecification dataSpecification, Stream dataStream)
+        public void SaveData(IDataSpec dataSpec, Stream dataStream)
         {
             throw new NotSupportedException();
         }

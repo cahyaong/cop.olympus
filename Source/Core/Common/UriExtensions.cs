@@ -35,17 +35,16 @@ namespace System
 
     public static class UriExtensions
     {
-        public static IDataSpecification ToDataSpecification(this Uri uri)
+        public static IDataSpec ToDataSpecification(this Uri uri)
         {
             Guard.Require.IsNotNull(uri);
 
             if (uri.IsFile)
             {
-                var storageProvider = new FileBasedStorageProvider(uri);
                 var name = Path.GetFileNameWithoutExtension(uri.AbsoluteUri);
                 var contentMime = Mime.ParseByName(Path.GetExtension(uri.AbsoluteUri));
 
-                return new DataSpecification(storageProvider, name, contentMime);
+                return new DataSpec(name, contentMime);
             }
 
             throw new NotSupportedException();

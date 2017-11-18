@@ -61,7 +61,7 @@ namespace nGratis.Cop.Core
 
             var logger = this
                 .loggerLookup
-                .GetOrAdd("TYP.{0}".Bake(type.FullName), key => this.CreateLogger(key));
+                .GetOrAdd($"TYP.{type.FullName}", key => this.CreateLogger(key));
 
             this.aggregatingLogger.RegisterLoggers(logger);
 
@@ -79,7 +79,7 @@ namespace nGratis.Cop.Core
 
             var logger = this
                 .loggerLookup
-                .GetOrAdd("COM.{0}".Bake(component), key => this.CreateLogger(key, component));
+                .GetOrAdd($"COM.{component}", key => this.CreateLogger(key, component));
 
             this.aggregatingLogger.RegisterLoggers(logger);
 

@@ -30,6 +30,7 @@ namespace nGratis.Cop.Core
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using nGratis.Cop.Core.Contract;
     using NLog;
 
@@ -38,7 +39,7 @@ namespace nGratis.Cop.Core
         private readonly Logger logger;
 
         public NLogger(string id, string component)
-            : base(id, component.PutInList())
+            : base(id, component.AsArray())
         {
             this.logger = LogManager.GetLogger(id);
         }
@@ -48,7 +49,7 @@ namespace nGratis.Cop.Core
             this.logger.Log(verbosity.ToLogLevel(), message);
         }
 
-        public override void LogWith(Verbosity verbosity, Exception exception, string message)
+        public override void LogWith(Verbosity verbosity, string message, Exception exception)
         {
             this.logger.Log(verbosity.ToLogLevel(), exception, message);
         }

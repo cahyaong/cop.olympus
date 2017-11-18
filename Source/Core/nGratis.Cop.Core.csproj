@@ -94,14 +94,13 @@
     <Compile Include="Common\StreamExtensions.cs" />
     <Compile Include="Common\TypeExtensions.cs" />
     <Compile Include="Common\UriExtensions.cs" />
-    <Compile Include="Infrastructure\DataInformation.cs" />
-    <Compile Include="Infrastructure\DataSpecification.cs" />
-    <Compile Include="Infrastructure\FileBasedStorageProvider.cs" />
-    <Compile Include="Infrastructure\IDataInformation.cs" />
-    <Compile Include="Infrastructure\IDataSpecification.cs" />
+    <Compile Include="IO\DataEntity.cs" />
+    <Compile Include="IO\DataInfo.cs" />
+    <Compile Include="IO\DataSpecExtensions.cs" />
+    <Compile Include="IO\DataSpec.cs" />
+    <Compile Include="IO\FileBasedStorageProvider.cs" />
     <Compile Include="Infrastructure\IdentityProvider.cs" />
     <Compile Include="Infrastructure\InfrastructureManager.cs" />
-    <Compile Include="Infrastructure\IStorageProvider.cs" />
     <Compile Include="Infrastructure\LoggingProviderExtensions.cs" />
     <Compile Include="Logging\BaseLogger.cs" />
     <Compile Include="Logging\CompositeLogger.cs" />
@@ -109,7 +108,6 @@
     <Compile Include="Logging\CopLogger.cs" />
     <Compile Include="Logging\LoggerExtensions.cs" />
     <Compile Include="Infrastructure\LoggingProvider.cs" />
-    <Compile Include="Infrastructure\Mime.cs" />
     <Compile Include="Logging\LoggingModes.cs" />
     <Compile Include="Logging\LoggingAttribute.cs" />
     <Compile Include="Logging\NLogger.cs" />

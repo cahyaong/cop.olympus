@@ -28,16 +28,24 @@
 namespace nGratis.Cop.Core.Vision.Imaging
 {
     using System;
-    using nGratis.Cop.Core;
     using nGratis.Cop.Core.Contract;
 
     public class ImageProvider : IImageProvider
     {
-        public IImage LoadImage(IDataSpecification imageSpecification)
-        {
-            Guard.Require.IsNotNull(imageSpecification);
+        private readonly IStorageProvider storageProvider;
 
-            using (var imageStream = imageSpecification.LoadData())
+        public ImageProvider(IStorageProvider storageProvider)
+        {
+            Guard.Require.IsNotNull(storageProvider);
+
+            this.storageProvider = storageProvider;
+        }
+
+        public IImage LoadImage(IDataSpec imageSpec)
+        {
+            Guard.Require.IsNotNull(imageSpec);
+
+            using (var imageStream = this.storageProvider.LoadData(imageSpec))
             {
                 var writeableImage = new WriteableImage();
                 writeableImage.LoadData(imageStream);
@@ -46,7 +54,7 @@ namespace nGratis.Cop.Core.Vision.Imaging
             }
         }
 
-        public void SaveImage(IImage image, IDataSpecification dataSpecification)
+        public void SaveImage(IImage image, IDataSpec dataSpec)
         {
             throw new NotImplementedException();
         }
