@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="AnyToTitleCaseCoverter.cs" company="nGratis">
+// <copyright file="AnyToTitleCaseConverter.cs" company="nGratis">
 //  The MIT License (MIT)
 //
 //  Copyright (c) 2014 - 2015 Cahya Ong
@@ -34,7 +34,7 @@ namespace nGratis.Cop.Core.Wpf
     using Humanizer;
 
     [ValueConversion(typeof(string), typeof(string))]
-    public class AnyToTitleCaseCoverter : IValueConverter
+    public class AnyToTitleCaseConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
