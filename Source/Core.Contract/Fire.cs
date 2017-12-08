@@ -63,14 +63,14 @@ namespace nGratis.Cop.Core.Contract
         [ContractAnnotation(" => halt")]
         internal static void PreconditionException([Localizable(false)] string message)
         {
-            throw new CopPreconditionException(message.Coalesce(Constants.Values.Empty));
+            throw new CopPreConditionException(message.Coalesce(Constants.Values.Empty));
         }
 
         [DebuggerStepThrough]
         [ContractAnnotation(" => halt")]
         internal static void PostconditionException([Localizable(false)] string message)
         {
-            throw new CopPostconditionException(message.Coalesce(Constants.Values.Empty));
+            throw new CopPostConditionException(message.Coalesce(Constants.Values.Empty));
         }
     }
 }

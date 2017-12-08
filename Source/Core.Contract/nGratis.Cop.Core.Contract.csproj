@@ -70,8 +70,8 @@
     </Compile>
     <Compile Include="Guard.cs" />
     <Compile Include="CopException.cs" />
-    <Compile Include="CopPostconditionException.cs" />
-    <Compile Include="CopPreconditionException.cs" />
+    <Compile Include="CopPostConditionException.cs" />
+    <Compile Include="CopPreConditionException.cs" />
     <Compile Include="Freezable\BaseFreezable.cs" />
     <Compile Include="Freezable\IFreezable.cs" />
     <Compile Include="Guard.Ensure.Optional.cs">

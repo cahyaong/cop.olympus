@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="CopPostconditionException.cs" company="nGratis">
+// <copyright file="CopPostConditionException.cs" company="nGratis">
 //  The MIT License (MIT)
 //
 //  Copyright (c) 2014 - 2016 Cahya Ong
@@ -34,23 +34,23 @@ namespace nGratis.Cop.Core.Contract
     using System.Runtime.Serialization;
 
     [Serializable]
-    public sealed class CopPostconditionException : CopException
+    public sealed class CopPostConditionException : CopException
     {
-        public CopPostconditionException()
+        public CopPostConditionException()
         {
         }
 
-        public CopPostconditionException(string message)
+        public CopPostConditionException(string message)
             : base(message)
         {
         }
 
-        public CopPostconditionException(string message, Exception exception)
+        public CopPostConditionException(string message, Exception exception)
             : base(message, exception)
         {
         }
 
-        private CopPostconditionException(SerializationInfo info, StreamingContext context)
+        private CopPostConditionException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
         }
