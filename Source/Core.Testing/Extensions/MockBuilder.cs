@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="MockExtensions.cs" company="nGratis">
+// <copyright file="MockBuilder.cs" company="nGratis">
 //  The MIT License (MIT)
 //
 //  Copyright (c) 2014 - 2015 Cahya Ong
@@ -30,12 +30,20 @@ namespace nGratis.Cop.Core.Testing
 {
     using Moq;
 
-    public static class MockExtensions
+    public static class MockBuilder
     {
         public static Mock<T> New<T>()
             where T : class
         {
             return new Mock<T>();
+        }
+
+        public static Mock<T> AsStub<T>(this Mock<T> mock)
+            where T : class
+        {
+            mock.CallBase = true;
+
+            return mock;
         }
     }
 }
