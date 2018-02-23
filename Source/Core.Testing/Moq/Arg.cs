@@ -1,8 +1,8 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IDataSpec.cs" company="nGratis">
+// <copyright file="Arg.cs" company="nGratis">
 //  The MIT License (MIT)
 //
-//  Copyright (c) 2014 - 2015 Cahya Ong
+//  Copyright (c) 2014 - 2018 Cahya Ong
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -23,19 +23,51 @@
 //  SOFTWARE.
 // </copyright>
 // <author>Cahya Ong - cahya.ong@gmail.com</author>
-// <creation_timestamp>Friday, 3 April 2015 12:00:28 AM UTC</creation_timestamp>
+// <creation_timestamp>Wednesday, 14 February 2018 11:13:08 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Core.Contract
+// ReSharper disable once CheckNamespace
+
+namespace Moq
 {
-    using System.Linq;
-    using System.Collections.Generic;
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text.RegularExpressions;
+    using Contract = nGratis.Cop.Core.Contract;
+    using IO = System.IO;
 
-    public interface IDataSpec
+    public static class Arg
     {
-        string Name { get; }
+        public static TValue IsAny<TValue>()
+        {
+            return It.IsAny<TValue>();
+        }
 
-        Mime ContentMime { get; }
+        public static class DataSpec
+        {
+            public static Contract.DataSpec IsHtml()
+            {
+                return Match.Create<Contract.DataSpec>(spec => spec.ContentMime == Contract.Mime.Html);
+            }
+        }
+
+        public static class Stream
+        {
+            public static IO.Stream IsHtml()
+            {
+                return Match.Create<IO.Stream>(stream =>
+                {
+                    stream.Position = 0;
+
+                    var reader = new IO.StreamReader(stream);
+                    var content = reader.ReadToEnd();
+
+                    stream.Position = 0;
+
+                    return Regex.IsMatch(content.Trim(), @".*?<html>.*?</html>", RegexOptions.Singleline);
+                });
+            }
+        }
     }
 }
