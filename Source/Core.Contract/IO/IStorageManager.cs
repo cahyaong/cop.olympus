@@ -1,8 +1,8 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IDataEntity.cs" company="nGratis">
+// <copyright file="IStorageManager.cs" company="nGratis">
 //  The MIT License (MIT)
 //
-//  Copyright (c) 2014 - 2017 Cahya Ong
+//  Copyright (c) 2014 - 2015 Cahya Ong
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,7 @@
 //  SOFTWARE.
 // </copyright>
 // <author>Cahya Ong - cahya.ong@gmail.com</author>
-// <creation_timestamp>Saturday, 18 November 2017 4:57:28 AM UTC</creation_timestamp>
+// <creation_timestamp>Sunday, 29 March 2015 7:01:18 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace nGratis.Cop.Core.Contract
@@ -33,10 +33,16 @@ namespace nGratis.Cop.Core.Contract
     using System.IO;
     using System.Linq;
 
-    public interface IDataEntity
+    public interface IStorageManager
     {
-        IDataSpec DataSpec { get; }
+        bool IsAvailable { get; }
 
-        Stream ContentStream { get; }
+        IEnumerable<DataInfo> FindEntries(string pattern, Mime mime);
+
+        bool HasEntry(DataSpec dataSpec);
+
+        Stream LoadEntry(DataSpec dataSpec);
+
+        void SaveEntry(DataSpec dataSpec, Stream dataStream);
     }
 }

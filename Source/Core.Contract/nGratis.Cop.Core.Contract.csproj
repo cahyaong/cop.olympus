@@ -11,10 +11,14 @@
     <AssemblyName>nGratis.Cop.Core.Contract</AssemblyName>
     <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -82,14 +86,14 @@
     <Compile Include="Guard.Require.cs">
       <DependentUpon>Guard.cs</DependentUpon>
     </Compile>
-    <Compile Include="IO\IDataEntity.cs" />
-    <Compile Include="IO\IDataInfo.cs" />
-    <Compile Include="IO\IDataSpec.cs" />
     <Compile Include="Infrastructure\IIdentityProvider.cs" />
     <Compile Include="Infrastructure\IInfrastructureManager.cs" />
     <Compile Include="Infrastructure\ILogger.cs" />
     <Compile Include="Infrastructure\ILoggingProvider.cs" />
-    <Compile Include="IO\IStorageProvider.cs" />
+    <Compile Include="IO\DataEntity.cs" />
+    <Compile Include="IO\DataInfo.cs" />
+    <Compile Include="IO\DataSpec.cs" />
+    <Compile Include="IO\IStorageManager.cs" />
     <Compile Include="Infrastructure\ITemporalProvider.cs" />
     <Compile Include="Infrastructure\LogEntry.cs" />
     <Compile Include="Infrastructure\Verbosity.cs" />

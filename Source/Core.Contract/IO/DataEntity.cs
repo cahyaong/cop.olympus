@@ -1,8 +1,8 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="DataSpec.cs" company="nGratis">
+// <copyright file="DataEntity.cs" company="nGratis">
 //  The MIT License (MIT)
 //
-//  Copyright (c) 2014 - 2015 Cahya Ong
+//  Copyright (c) 2014 - 2017 Cahya Ong
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -23,35 +23,29 @@
 //  SOFTWARE.
 // </copyright>
 // <author>Cahya Ong - cahya.ong@gmail.com</author>
-// <creation_timestamp>Friday, 3 April 2015 12:03:14 AM UTC</creation_timestamp>
+// <creation_timestamp>Friday, 17 November 2017 1:55:33 PM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Core
+namespace nGratis.Cop.Core.Contract
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
-    using nGratis.Cop.Core.Contract;
 
-    public class DataSpec : IDataSpec
+    public class DataEntity
     {
-        public DataSpec(string name, Mime contentMime)
+        public DataEntity(DataSpec dataSpec, Stream contentStream)
         {
-            Guard.Require.IsNotEmpty(name);
-            Guard.Require.IsNotNull(contentMime);
-            Guard.Require.IsNotEqualTo(contentMime, Mime.Unknown);
+            Guard.Require.IsNotNull(dataSpec);
+            Guard.Require.IsNotNull(contentStream);
 
-            this.ContentMime = contentMime;
-            this.Name = name;
+            this.DataSpec = dataSpec;
+            this.ContentStream = contentStream;
         }
 
-        public Mime ContentMime { get; }
+        public DataSpec DataSpec { get; }
 
-        public string Name { get; }
-
-        public override string ToString()
-        {
-            return $"ngds://./{this.Name}{this.ContentMime.Names.First()}";
-        }
+        public Stream ContentStream { get; }
     }
 }

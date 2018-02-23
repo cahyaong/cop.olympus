@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="VoidStorageProvider.cs" company="nGratis">
+// <copyright file="VoidStorageManager.cs" company="nGratis">
 //  The MIT License (MIT)
 //
 //  Copyright (c) 2014 - 2015 Cahya Ong
@@ -34,22 +34,33 @@ namespace nGratis.Cop.Core
     using System.Linq;
     using nGratis.Cop.Core.Contract;
 
-    public class VoidStorageProvider : IStorageProvider
+    public class VoidStorageManager : IStorageManager
     {
-        private VoidStorageProvider()
+        private VoidStorageManager()
         {
         }
 
-        public static VoidStorageProvider Default { get; } = new VoidStorageProvider();
+        public static VoidStorageManager Default { get; } = new VoidStorageManager();
 
-        public Stream LoadData(IDataSpec dataSpec)
+        public bool IsAvailable { get; } = false;
+
+        public IEnumerable<DataInfo> FindEntries(string pattern, Mime mime)
         {
-            throw new NotSupportedException();
+            return Enumerable.Empty<DataInfo>();
         }
 
-        public void SaveData(IDataSpec dataSpec, Stream dataStream)
+        public bool HasEntry(DataSpec dataSpec)
         {
-            throw new NotSupportedException();
+            return false;
+        }
+
+        public Stream LoadEntry(DataSpec dataSpec)
+        {
+            return new MemoryStream();
+        }
+
+        public void SaveEntry(DataSpec dataSpec, Stream dataStream)
+        {
         }
     }
 }

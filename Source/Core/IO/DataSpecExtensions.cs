@@ -35,7 +35,7 @@ namespace nGratis.Cop.Core
 
     public static class DataSpecExtensions
     {
-        public static string GetFileName(this IDataSpec dataSpec)
+        public static string GetFileName(this DataSpec dataSpec)
         {
             Guard.Require.IsNotNull(dataSpec);
             Guard.Require.IsNotEmpty(dataSpec.ContentMime.Names);

@@ -196,6 +196,20 @@ namespace nGratis.Cop.Core.Contract
             }
 
             [DebuggerStepThrough]
+            public static void IsFolder(Uri uri)
+            {
+                if (uri == null)
+                {
+                    Fire.PreconditionException($"Value cannot be {Constants.Values.Null}.");
+                }
+
+                if (!uri.IsFile && Path.GetDirectoryName(uri.LocalPath) != uri.LocalPath)
+                {
+                    Fire.PreconditionException($"URI must be a folder. Path: [{uri}].");
+                }
+            }
+
+            [DebuggerStepThrough]
             public static void IsFile(Uri uri)
             {
                 if (uri == null)

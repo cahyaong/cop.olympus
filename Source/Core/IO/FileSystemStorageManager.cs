@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FileBasedStorageProvider.cs" company="nGratis">
+// <copyright file="FileSystemStorageManager.cs" company="nGratis">
 //  The MIT License (MIT)
 //
 //  Copyright (c) 2014 - 2015 Cahya Ong
@@ -35,36 +35,68 @@ namespace nGratis.Cop.Core
     using System.Text;
     using nGratis.Cop.Core.Contract;
 
-    public class FileBasedStorageProvider : IStorageProvider
+    public class FileSystemStorageManager : IStorageManager
     {
-        public FileBasedStorageProvider(Uri rootFolderUri)
+        public FileSystemStorageManager(Uri rootFolderUri)
         {
             Guard.Require.IsNotNull(rootFolderUri);
-            Guard.Require.IsFile(rootFolderUri);
+            Guard.Require.IsFolder(rootFolderUri);
 
-            var rootFolderPath = Path.GetDirectoryName(rootFolderUri.AbsolutePath);
-            Guard.Ensure.IsNotNull(rootFolderPath);
+            this.RootFolderUri = rootFolderUri;
 
-            this.RootUri = new Uri(rootFolderPath, UriKind.Absolute);
+            if (!Directory.Exists(rootFolderUri.LocalPath))
+            {
+                Directory.CreateDirectory(rootFolderUri.LocalPath);
+            }
         }
 
-        public Uri RootUri { get; }
+        public Uri RootFolderUri { get; }
 
-        public Stream LoadData(IDataSpec dataSpec)
+        public bool IsAvailable => Directory.Exists(this.RootFolderUri.LocalPath);
+
+        public IEnumerable<DataInfo> FindEntries(string pattern, Mime mime)
+        {
+            if (string.IsNullOrEmpty(pattern))
+            {
+                pattern = "*";
+            }
+
+            return Directory
+                .GetFiles(
+                    this.RootFolderUri.LocalPath,
+                    $"{pattern}{mime.ToFileExtension()}",
+                    SearchOption.TopDirectoryOnly)
+                .Select(path => new FileInfo(path))
+                .Select(info => new DataInfo(Path.GetFileNameWithoutExtension(info.Name), mime)
+                {
+                    CreatedTimestamp = new DateTimeOffset(info.CreationTimeUtc, TimeSpan.Zero)
+                });
+        }
+
+        public bool HasEntry(DataSpec dataSpec)
+        {
+            Guard.Require.IsNotNull(dataSpec);
+
+            var filePath = Path.Combine(this.RootFolderUri.LocalPath, dataSpec.GetFileName());
+
+            return File.Exists(filePath);
+        }
+
+        public Stream LoadEntry(DataSpec dataSpec)
         {
             Guard.Require.IsNotNull(dataSpec);
 
             return File.Open(
-                Path.Combine(this.RootUri.LocalPath, dataSpec.GetFileName()),
+                Path.Combine(this.RootFolderUri.LocalPath, dataSpec.GetFileName()),
                 FileMode.Open);
         }
 
-        public void SaveData(IDataSpec dataSpec, Stream dataStream)
+        public void SaveEntry(DataSpec dataSpec, Stream dataStream)
         {
             Guard.Require.IsNotNull(dataSpec);
             Guard.Require.IsNotNull(dataStream);
 
-            var filePath = Path.Combine(this.RootUri.LocalPath, dataSpec.GetFileName());
+            var filePath = Path.Combine(this.RootFolderUri.LocalPath, dataSpec.GetFileName());
             Guard.Require.IsFileNotExist(filePath);
 
             dataStream.Position = 0;

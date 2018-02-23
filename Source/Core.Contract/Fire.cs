@@ -34,7 +34,7 @@ namespace nGratis.Cop.Core.Contract
     using System.Diagnostics.CodeAnalysis;
     using JetBrains.Annotations;
 
-    [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
+    [PublicAPI]
     public static class Fire
     {
         [DebuggerStepThrough]
@@ -49,7 +49,7 @@ namespace nGratis.Cop.Core.Contract
         [ContractAnnotation(" => halt")]
         public static void EnumerationNotSupportedException(object value)
         {
-            throw new NotSupportedException($"Enumeration value [{ value }] is not supported.");
+            throw new NotSupportedException($"Enumeration value [{value}] is not supported.");
         }
 
         [DebuggerStepThrough]
@@ -57,6 +57,13 @@ namespace nGratis.Cop.Core.Contract
         public static void NotSupportedException()
         {
             throw new NotSupportedException();
+        }
+
+        [DebuggerStepThrough]
+        [ContractAnnotation(" => halt")]
+        public static void NotDisposedException()
+        {
+            throw new InvalidOperationException("Potential memory leak due incorrect disposal.");
         }
 
         [DebuggerStepThrough]

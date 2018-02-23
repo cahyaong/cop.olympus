@@ -1,6 +1,6 @@
 ﻿<#@ template debug="false" hostspecific="false" language="C#" #>
 <#@ assembly name="System.Core" #>
-<#@ assembly name="$(SolutionDir)\packages\JetBrains.Annotations.10.4.0\lib\net\JetBrains.Annotations.dll" #>
+<#@ assembly name="$(SolutionDir)\packages\JetBrains.Annotations.11.0.0\lib\net20\JetBrains.Annotations.dll" #>
 <#@ assembly name="$(TargetDir)nGratis.Cop.Core.Contract.dll" #>
 <#@ import namespace="System" #>
 <#@ import namespace="System.Linq" #>
@@ -102,7 +102,7 @@ namespace nGratis.Cop.Core.Contract
 
                     if (isEnumerableType)
                     {
-                        typeName = $"IEnumerable<T>";
+                        typeName = "IEnumerable<T>";
                     }
                     else if (!typeLookup.TryGetValue(parameter.ParameterType, out typeName))
                     {
@@ -179,9 +179,6 @@ namespace nGratis.Cop.Core.Contract
                 case SuppressMessageAttribute suppressionAttribute:
                     arguments.Add(suppressionAttribute.Category);
                     arguments.Add(suppressionAttribute.CheckId);
-                    break;
-
-                default:
                     break;
             }
 

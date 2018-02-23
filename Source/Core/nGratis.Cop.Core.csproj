@@ -12,10 +12,14 @@
     <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -94,11 +98,8 @@
     <Compile Include="Common\StreamExtensions.cs" />
     <Compile Include="Common\TypeExtensions.cs" />
     <Compile Include="Common\UriExtensions.cs" />
-    <Compile Include="IO\DataEntity.cs" />
-    <Compile Include="IO\DataInfo.cs" />
     <Compile Include="IO\DataSpecExtensions.cs" />
-    <Compile Include="IO\DataSpec.cs" />
-    <Compile Include="IO\FileBasedStorageProvider.cs" />
+    <Compile Include="IO\FileSystemStorageManager.cs" />
     <Compile Include="Infrastructure\IdentityProvider.cs" />
     <Compile Include="Infrastructure\InfrastructureManager.cs" />
     <Compile Include="Infrastructure\LoggingProviderExtensions.cs" />
@@ -113,7 +114,7 @@
     <Compile Include="Logging\NLogger.cs" />
     <Compile Include="Infrastructure\TemporalProvider.cs" />
     <Compile Include="Logging\VerbosityExtensions.cs" />
-    <Compile Include="Infrastructure\VoidStorageProvider.cs" />
+    <Compile Include="IO\VoidStorageManager.cs" />
     <Compile Include="Logging\VoidLogger.cs" />
     <Compile Include="NotifyingObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

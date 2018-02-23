@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IDataInfo.cs" company="nGratis">
+// <copyright file="DataSpec.cs" company="nGratis">
 //  The MIT License (MIT)
 //
 //  Copyright (c) 2014 - 2015 Cahya Ong
@@ -23,15 +23,34 @@
 //  SOFTWARE.
 // </copyright>
 // <author>Cahya Ong - cahya.ong@gmail.com</author>
-// <creation_timestamp>Friday, 3 April 2015 12:57:32 AM UTC</creation_timestamp>
+// <creation_timestamp>Friday, 3 April 2015 12:03:14 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace nGratis.Cop.Core.Contract
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
 
-    public interface IDataInfo : IDataSpec
+    public class DataSpec
     {
-        DateTimeOffset CreatedTimestamp { get; }
+        public DataSpec(string name, Mime contentMime)
+        {
+            Guard.Require.IsNotEmpty(name);
+            Guard.Require.IsNotNull(contentMime);
+            Guard.Require.IsNotEqualTo(contentMime, Mime.Unknown);
+
+            this.ContentMime = contentMime;
+            this.Name = name;
+        }
+
+        public Mime ContentMime { get; }
+
+        public string Name { get; }
+
+        public override string ToString()
+        {
+            return $"ngds://./{this.Name}{this.ContentMime.Names.First()}";
+        }
     }
 }

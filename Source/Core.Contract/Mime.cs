@@ -35,7 +35,7 @@ namespace nGratis.Cop.Core.Contract
 
     public sealed class Mime
     {
-        public static Mime Unknown { get; } = new Mime("unknown", 0, 0, string.Empty);
+        public static Mime Unknown { get; } = new Mime("unknown", 0, 0, "*");
 
         public static Mime Csv { get; } = new Mime("text/csv", 4180, 0, "csv");
 
@@ -116,6 +116,11 @@ namespace nGratis.Cop.Core.Contract
             Guard.Require.IsTrue(Mime.NameLookup.ContainsKey(name));
 
             return Mime.NameLookup[name];
+        }
+
+        public string ToFileExtension()
+        {
+            return $".{this.Names.First()}";
         }
 
         public bool IsTextDocument()
