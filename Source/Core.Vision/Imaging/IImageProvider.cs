@@ -31,8 +31,8 @@ namespace nGratis.Cop.Core.Vision.Imaging
 
     public interface IImageProvider
     {
-        IImage LoadImage(IDataSpec imageSpec);
+        IImage LoadImage(DataSpec imageSpec);
 
-        void SaveImage(IImage image, IDataSpec dataSpec);
+        void SaveImage(IImage image, DataSpec imageSpec);
     }
 }

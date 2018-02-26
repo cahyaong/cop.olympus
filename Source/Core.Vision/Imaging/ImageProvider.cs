@@ -32,20 +32,20 @@ namespace nGratis.Cop.Core.Vision.Imaging
 
     public class ImageProvider : IImageProvider
     {
-        private readonly IStorageProvider storageProvider;
+        private readonly IStorageManager storageManager;
 
-        public ImageProvider(IStorageProvider storageProvider)
+        public ImageProvider(IStorageManager storageManager)
         {
-            Guard.Require.IsNotNull(storageProvider);
+            Guard.Require.IsNotNull(storageManager);
 
-            this.storageProvider = storageProvider;
+            this.storageManager = storageManager;
         }
 
-        public IImage LoadImage(IDataSpec imageSpec)
+        public IImage LoadImage(DataSpec imageSpec)
         {
             Guard.Require.IsNotNull(imageSpec);
 
-            using (var imageStream = this.storageProvider.LoadData(imageSpec))
+            using (var imageStream = this.storageManager.LoadEntry(imageSpec))
             {
                 var writeableImage = new WriteableImage();
                 writeableImage.LoadData(imageStream);
@@ -54,7 +54,7 @@ namespace nGratis.Cop.Core.Vision.Imaging
             }
         }
 
-        public void SaveImage(IImage image, IDataSpec dataSpec)
+        public void SaveImage(IImage image, DataSpec imageSpec)
         {
             throw new NotImplementedException();
         }
