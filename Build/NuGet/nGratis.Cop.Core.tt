@@ -1,14 +1,11 @@
 ﻿<#@ template debug="true" hostSpecific="true" language="C#" #>
 <#@ output extension=".nuspec" encoding="utf-8" #>
 <#@ Assembly Name="System.Core" #>
-<#@ import namespace="System" #>
-<#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="System.Globalization" #>
-<#@ import namespace="System.Linq" #>
 <#
-    var Version = new Version(this.Host.ResolveParameterValue(string.Empty, string.Empty, "Version"));
+    var version = new Version(this.Host.ResolveParameterValue(string.Empty, string.Empty, "Version"));
 
-    var BuildTimestamp = DateTimeOffset.ParseExact(
+    var buildTimestamp = DateTimeOffset.ParseExact(
         this.Host.ResolveParameterValue(string.Empty, string.Empty, "BuildTimestamp"), 
         "O",
         CultureInfo.InvariantCulture, 
@@ -19,7 +16,7 @@
   <metadata>
     <id>nGratis.Cop.Core</id>
     <title>nGratis: Community of Practice - Core</title>
-    <version><#= Version.Major #>.<#= Version.Minor #>.<#= Version.Build #></version>
+    <version><#=version.Major#>.<#=version.Minor#>.<#=version.Build#></version>
     <authors>Cahya Ong</authors>
     <owners>Cahya Ong</owners>
     <licenseUrl>https://github.com/cahyaong/cop.theia/blob/master/LICENSE.md</licenseUrl>
@@ -27,7 +24,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Cop.Core package contains common core funcationality used by other 'Community of Practice' projects.</description>
     <language>en-US</language>
-    <copyright>Copyright © 2014 - <#= BuildTimestamp.Year #> Cahya Ong</copyright>
+    <copyright>Copyright © 2014 - <#=buildTimestamp.Year#> Cahya Ong</copyright>
     <dependencies>
       <dependency id="JetBrains.Annotations" version="[10.4.0,)" />
       <dependency id="Newtonsoft.Json" version="[10.0.2,)" />
