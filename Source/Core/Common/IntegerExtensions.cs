@@ -28,16 +28,15 @@
 
 namespace nGratis.Cop.Core
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using nGratis.Cop.Core.Contract;
 
     public static class IntegerExtensions
     {
         public static int Clamp(this int value, int min, int max)
         {
-            Guard.Require.IsTrue(min < max);
+            Guard
+                .Require(min, nameof(min))
+                .Is.LessThan(max);
 
             if (value < min)
             {

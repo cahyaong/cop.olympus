@@ -37,22 +37,23 @@ namespace nGratis.Cop.Core
 
     public class FileSystemStorageManager : IStorageManager
     {
-        public FileSystemStorageManager(Uri rootFolderUri)
+        public FileSystemStorageManager(Uri rootUri)
         {
-            Guard.Require.IsNotNull(rootFolderUri);
-            Guard.Require.IsFolder(rootFolderUri);
+            Guard
+                .Require(rootUri, nameof(rootUri))
+                .Is.Folder();
 
-            this.RootFolderUri = rootFolderUri;
+            this.RootUri = rootUri;
 
-            if (!Directory.Exists(rootFolderUri.LocalPath))
+            if (!Directory.Exists(rootUri.LocalPath))
             {
-                Directory.CreateDirectory(rootFolderUri.LocalPath);
+                Directory.CreateDirectory(rootUri.LocalPath);
             }
         }
 
-        public Uri RootFolderUri { get; }
+        public Uri RootUri { get; }
 
-        public bool IsAvailable => Directory.Exists(this.RootFolderUri.LocalPath);
+        public bool IsAvailable => Directory.Exists(this.RootUri.LocalPath);
 
         public IEnumerable<DataInfo> FindEntries(string pattern, Mime mime)
         {
@@ -63,7 +64,7 @@ namespace nGratis.Cop.Core
 
             return Directory
                 .GetFiles(
-                    this.RootFolderUri.LocalPath,
+                    this.RootUri.LocalPath,
                     $"{pattern}{mime.ToFileExtension()}",
                     SearchOption.TopDirectoryOnly)
                 .Select(path => new FileInfo(path))
@@ -75,36 +76,48 @@ namespace nGratis.Cop.Core
 
         public bool HasEntry(DataSpec dataSpec)
         {
-            Guard.Require.IsNotNull(dataSpec);
+            Guard
+                .Require(dataSpec, nameof(dataSpec))
+                .Is.Not.Null();
 
-            var filePath = Path.Combine(this.RootFolderUri.LocalPath, dataSpec.GetFileName());
+            var filePath = Path.Combine(this.RootUri.LocalPath, dataSpec.GetFileName());
 
             return File.Exists(filePath);
         }
 
         public Stream LoadEntry(DataSpec dataSpec)
         {
-            Guard.Require.IsNotNull(dataSpec);
+            Guard
+                .Require(dataSpec, nameof(dataSpec))
+                .Is.Not.Null();
 
             return File.Open(
-                Path.Combine(this.RootFolderUri.LocalPath, dataSpec.GetFileName()),
+                Path.Combine(this.RootUri.LocalPath, dataSpec.GetFileName()),
                 FileMode.Open);
         }
 
         public void SaveEntry(DataSpec dataSpec, Stream dataStream)
         {
-            Guard.Require.IsNotNull(dataSpec);
-            Guard.Require.IsNotNull(dataStream);
+            Guard
+                .Require(dataSpec, nameof(dataSpec))
+                .Is.Not.Null();
 
-            var filePath = Path.Combine(this.RootFolderUri.LocalPath, dataSpec.GetFileName());
-            Guard.Require.IsFileNotExist(filePath);
+            Guard
+                .Require(dataStream, nameof(dataStream))
+                .Is.Not.Null();
+
+            var fileUri = new Uri(Path.Combine(this.RootUri.LocalPath, dataSpec.GetFileName()));
+
+            Guard
+                .Require(fileUri, nameof(fileUri))
+                .Is.Not.Exist();
 
             dataStream.Position = 0;
 
             if (dataSpec.ContentMime.IsTextDocument())
             {
                 using (var reader = new StreamReader(dataStream))
-                using (var writer = new StreamWriter(File.OpenWrite(filePath), Encoding.UTF8))
+                using (var writer = new StreamWriter(File.OpenWrite(fileUri.LocalPath), Encoding.UTF8))
                 {
                     writer.Write(reader.ReadToEnd());
                     writer.Flush();
@@ -112,7 +125,7 @@ namespace nGratis.Cop.Core
             }
             else
             {
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                using (var fileStream = new FileStream(fileUri.LocalPath, FileMode.Create))
                 {
                     dataStream.CopyTo(fileStream);
                     dataStream.Flush();

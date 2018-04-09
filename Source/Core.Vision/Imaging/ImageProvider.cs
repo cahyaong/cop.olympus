@@ -36,14 +36,18 @@ namespace nGratis.Cop.Core.Vision.Imaging
 
         public ImageProvider(IStorageManager storageManager)
         {
-            Guard.Require.IsNotNull(storageManager);
+            Guard
+                .Require(storageManager, nameof(storageManager))
+                .Is.Not.Null();
 
             this.storageManager = storageManager;
         }
 
         public IImage LoadImage(DataSpec imageSpec)
         {
-            Guard.Require.IsNotNull(imageSpec);
+            Guard
+                .Require(imageSpec, nameof(imageSpec))
+                .Is.Not.Null();
 
             using (var imageStream = this.storageManager.LoadEntry(imageSpec))
             {

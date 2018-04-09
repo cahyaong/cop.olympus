@@ -27,31 +27,13 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 // ReSharper disable once CheckNamespace
+
 namespace System
 {
-    using System.Globalization;
     using System.Linq;
-    using JetBrains.Annotations;
 
     public static class StringExtensions
     {
-        [StringFormatMethod("format")]
-        public static string Bake(this string format, IFormatProvider provider, params object[] args)
-        {
-            return string.IsNullOrWhiteSpace(format)
-                ? format
-                : string.Format(provider, format, args);
-        }
-
-        [Obsolete("Use Interpolated Strings from C# 6 instead!", true)]
-        [StringFormatMethod("format")]
-        public static string Bake(this string format, params object[] args)
-        {
-            return string.IsNullOrWhiteSpace(format)
-                ? format
-                : string.Format(CultureInfo.InvariantCulture, format, args);
-        }
-
         public static string Coalesce(this string value, params string[] alternatives)
         {
             return string.IsNullOrWhiteSpace(value)

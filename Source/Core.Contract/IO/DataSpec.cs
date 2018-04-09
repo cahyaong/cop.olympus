@@ -28,17 +28,22 @@
 
 namespace nGratis.Cop.Core.Contract
 {
-    using System;
-    using System.Collections.Generic;
     using System.Linq;
 
     public class DataSpec
     {
         public DataSpec(string name, Mime contentMime)
         {
-            Guard.Require.IsNotEmpty(name);
-            Guard.Require.IsNotNull(contentMime);
-            Guard.Require.IsNotEqualTo(contentMime, Mime.Unknown);
+            Guard
+                .Require(name, nameof(name))
+                .Is.Not.Empty();
+
+            Guard
+                .Require(contentMime, nameof(contentMime))
+                .Is.Not.Null();
+
+            Guard.Require(contentMime, nameof(contentMime))
+                .Is.Not.EqualTo(Mime.Unknown);
 
             this.ContentMime = contentMime;
             this.Name = name;

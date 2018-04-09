@@ -30,7 +30,6 @@ namespace nGratis.Cop.Core
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using nGratis.Cop.Core.Contract;
     using NLog;
 
@@ -39,10 +38,17 @@ namespace nGratis.Cop.Core
         private readonly Logger logger;
 
         public NLogger(string id, string component)
-            : base(id, component.AsArray())
+            : base(id)
         {
+            Guard
+                .Require(component, nameof(component))
+                .Is.Not.Empty();
+
             this.logger = LogManager.GetLogger(id);
+            this.Components = new[] { component };
         }
+
+        public override IEnumerable<string> Components { get; }
 
         public override void LogWith(Verbosity verbosity, string message)
         {

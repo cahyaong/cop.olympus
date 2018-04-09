@@ -57,9 +57,9 @@ namespace nGratis.Cop.Core.Contract
 
         public static Mime Xml { get; } = new Mime("text/xml", 3023, 0, "xml");
 
-        private static readonly IDictionary<string, Mime> UniqueIdLookup;
+        private static readonly Dictionary<string, Mime> UniqueIdLookup;
 
-        private static readonly IDictionary<string, Mime> NameLookup;
+        private static readonly Dictionary<string, Mime> NameLookup;
 
         [SuppressMessage("Microsoft.Performance", "CA1810:InitializeReferenceTypeStaticFieldsInline")]
         static Mime()
@@ -83,8 +83,14 @@ namespace nGratis.Cop.Core.Contract
 
         private Mime(string uniqueId, int rfcId, int isoId, params string[] names)
         {
-            Guard.Require.IsNotEmpty(uniqueId);
-            Guard.Require.IsNotEmpty(names);
+            Guard
+                .Require(uniqueId, nameof(uniqueId))
+                .Is.Not.Empty();
+
+            Guard
+                .Require(names, nameof(names))
+                .Is.Not.Null()
+                .Is.Not.Empty();
 
             this.UniqueId = uniqueId;
             this.RfcId = rfcId;
@@ -102,18 +108,28 @@ namespace nGratis.Cop.Core.Contract
 
         public static Mime ParseByUniqueId(string uniqueId)
         {
-            Guard.Require.IsNotEmpty(uniqueId);
-            Guard.Require.IsTrue(Mime.UniqueIdLookup.ContainsKey(uniqueId));
+            Guard
+                .Require(uniqueId, nameof(uniqueId))
+                .Is.Not.Empty();
+
+            Guard
+                .Require(Mime.UniqueIdLookup, nameof(Mime.UniqueIdLookup))
+                .Has.Key(uniqueId);
 
             return Mime.UniqueIdLookup[uniqueId];
         }
 
         public static Mime ParseByName(string name)
         {
-            Guard.Require.IsNotEmpty(name);
+            Guard
+                .Require(name, nameof(name))
+                .Is.Not.Empty();
 
             name = name.Replace(".", string.Empty);
-            Guard.Require.IsTrue(Mime.NameLookup.ContainsKey(name));
+
+            Guard
+                .Require(Mime.NameLookup, nameof(Mime.NameLookup))
+                .Has.Key(name);
 
             return Mime.NameLookup[name];
         }

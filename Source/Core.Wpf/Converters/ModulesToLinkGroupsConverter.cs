@@ -40,7 +40,13 @@ namespace nGratis.Cop.Core.Wpf
     {
         public object Convert(object value, Type type, object parameter, CultureInfo culture)
         {
-            Guard.Require.IsTypeOf<IEnumerable<IModule>>(value);
+            Guard
+                .Require(value, nameof(value))
+                .Is.OfType(typeof(IEnumerable<IModule>));
+
+            Guard
+                .Require(type, nameof(type))
+                .Is.EqualTo(typeof(LinkGroupCollection));
 
             var modules = (IEnumerable<IModule>)value;
             var linkGroups = new LinkGroupCollection();

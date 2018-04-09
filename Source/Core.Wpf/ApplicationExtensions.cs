@@ -36,7 +36,9 @@ namespace nGratis.Cop.Core.Wpf
     {
         public static void AdjustAccentColor(this Application application, Color accentColor)
         {
-            Guard.Require.IsNotNull(application);
+            Guard
+                .Require(application, nameof(application))
+                .Is.Not.Null();
 
             application.Resources["Cop.Color.Accent"] = accentColor;
         }

@@ -70,10 +70,21 @@ namespace nGratis.Cop.Core.Wpf
             PropertyInfo targetProperty,
             bool isCallbackInvokedBothWays = true)
         {
-            Guard.Require.IsNotNull(source);
-            Guard.Require.IsNotNull(sourceProperty);
-            Guard.Require.IsNotNull(target);
-            Guard.Require.IsNotNull(targetProperty);
+            Guard
+                .Require(source, nameof(source))
+                .Is.Not.Null();
+
+            Guard
+                .Require(sourceProperty, nameof(sourceProperty))
+                .Is.Not.Null();
+
+            Guard
+                .Require(target, nameof(target))
+                .Is.Not.Null();
+
+            Guard
+                .Require(targetProperty, nameof(targetProperty))
+                .Is.Not.Null();
 
             this.source = source;
             this.target = target;

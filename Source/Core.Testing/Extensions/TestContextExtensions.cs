@@ -56,12 +56,17 @@ namespace nGratis.Cop.Core.Testing
 
         public static TValue FindScenarioVariableAs<TValue>(this TestContext context, string name)
         {
-            Guard.Require.IsNotNull(context);
+            Guard
+                .Require(context, nameof(context))
+                .Is.Not.Null();
 
-            var isFound = TestContextExtensions.ParsingMethodLookup.TryGetValue(typeof(TValue), out MethodInfo method);
-            Guard.Require.IsTrue(isFound);
+            var isFound = TestContextExtensions.ParsingMethodLookup.TryGetValue(typeof(TValue), out var method);
 
-            return (TValue)method.Invoke(null, new object[] { context.DataRow, name });
+            Guard
+                .Require(isFound, nameof(isFound))
+                .Is.True();
+
+            return (TValue)method?.Invoke(null, new object[] { context.DataRow, name });
         }
     }
 }

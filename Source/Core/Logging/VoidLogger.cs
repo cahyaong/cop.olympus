@@ -30,16 +30,19 @@ namespace nGratis.Cop.Core
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using nGratis.Cop.Core.Contract;
 
     public sealed class VoidLogger : BaseLogger
     {
         private VoidLogger()
-            : base("<void>", new List<string>())
+            : base(Text.Void)
         {
         }
 
         public static ILogger Instance { get; } = new VoidLogger();
+
+        public override IEnumerable<string> Components => Enumerable.Empty<string>();
 
         public override void LogWith(Verbosity verbosity, string message)
         {

@@ -29,15 +29,20 @@
 namespace nGratis.Cop.Core.Wpf
 {
     using System.Collections.Generic;
-    using System.Linq;
     using nGratis.Cop.Core.Contract;
 
     public class ChartConfiguration : NotifyingObject
     {
-        public ChartConfiguration(string title, ICollection<SeriesConfiguration> seriesConfigurations)
+        public ChartConfiguration(string title, IEnumerable<SeriesConfiguration> seriesConfigurations)
         {
-            Guard.Require.IsNotEmpty(title);
-            Guard.Require.IsNotEmpty(seriesConfigurations);
+            Guard
+                .Require(title, nameof(title))
+                .Is.Not.Empty();
+
+            Guard
+                .Require(seriesConfigurations, nameof(seriesConfigurations))
+                .Is.Not.Null()
+                .Is.Not.Empty();
 
             this.Title = title;
             this.SeriesConfigurations = seriesConfigurations;

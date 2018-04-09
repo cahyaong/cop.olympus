@@ -40,9 +40,17 @@ namespace nGratis.Cop.Core.Wpf
 
         public AsFieldAttribute(FieldMode mode, FieldType type, string label)
         {
-            Guard.Require.IsNotDefault(mode);
-            Guard.Require.IsNotDefault(type);
-            Guard.Require.IsNotEmpty(label);
+            Guard
+                .Require(mode, nameof(mode))
+                .Is.Not.EqualTo(FieldMode.Unknown);
+
+            Guard
+                .Require(type, nameof(type))
+                .Is.Not.EqualTo(FieldType.Unknown);
+
+            Guard
+                .Require(label, nameof(label))
+                .Is.Not.Empty();
 
             this.Mode = mode;
             this.Type = type;

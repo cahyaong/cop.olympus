@@ -35,8 +35,13 @@ namespace nGratis.Cop.Core.Contract
     {
         public XmlNamespaceAttribute(string prefix, string uri)
         {
-            Guard.Require.IsNotEmpty(prefix);
-            Guard.Require.IsNotNull(uri);
+            Guard
+                .Require(prefix, nameof(prefix))
+                .Is.Not.Empty();
+
+            Guard
+                .Require(uri, nameof(uri))
+                .Is.Not.Null();
 
             this.Prefix = prefix;
             this.Uri = uri;

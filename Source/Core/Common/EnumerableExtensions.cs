@@ -26,6 +26,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 // ReSharper disable once CheckNamespace
+
 namespace System.Collections.Generic
 {
     using System;
@@ -37,8 +38,13 @@ namespace System.Collections.Generic
     {
         public static IEnumerable<T> Append<T>(this IEnumerable<T> lefts, IEnumerable<T> rights)
         {
-            Guard.Require.IsNotNull(lefts);
-            Guard.Require.IsNotNull(rights);
+            Guard
+                .Require(lefts, nameof(lefts))
+                .Is.Not.Null();
+
+            Guard
+                .Require(rights, nameof(rights))
+                .Is.Not.Null();
 
             foreach (var left in lefts)
             {
@@ -53,8 +59,13 @@ namespace System.Collections.Generic
 
         public static IEnumerable<T> Prepend<T>(this IEnumerable<T> lefts, IEnumerable<T> rights)
         {
-            Guard.Require.IsNotNull(lefts);
-            Guard.Require.IsNotNull(rights);
+            Guard
+                .Require(lefts, nameof(lefts))
+                .Is.Not.Null();
+
+            Guard
+                .Require(rights, nameof(rights))
+                .Is.Not.Null();
 
             foreach (var right in rights)
             {
@@ -69,7 +80,9 @@ namespace System.Collections.Generic
 
         public static IEnumerable<T> Append<T>(this IEnumerable<T> lefts, T right)
         {
-            Guard.Require.IsNotNull(lefts);
+            Guard
+                .Require(lefts, nameof(lefts))
+                .Is.Not.Null();
 
             foreach (var left in lefts)
             {
@@ -81,7 +94,9 @@ namespace System.Collections.Generic
 
         public static IEnumerable<T> Prepend<T>(this IEnumerable<T> lefts, T right)
         {
-            Guard.Require.IsNotNull(lefts);
+            Guard
+                .Require(lefts, nameof(lefts))
+                .Is.Not.Null();
 
             yield return right;
 
@@ -93,17 +108,30 @@ namespace System.Collections.Generic
 
         public static IEnumerable<T> Except<T>(this IEnumerable<T> lefts, IEnumerable<T> rights, Func<T, T, bool> isEqual)
         {
-            Guard.Require.IsNotNull(lefts);
-            Guard.Require.IsNotNull(rights);
-            Guard.Require.IsNotNull(isEqual);
+            Guard
+                .Require(lefts, nameof(lefts))
+                .Is.Not.Null();
+
+            Guard
+                .Require(rights, nameof(rights))
+                .Is.Not.Null();
+
+            Guard
+                .Require(isEqual, nameof(isEqual))
+                .Is.Not.Null();
 
             return lefts.Except(rights, new DelegateEqualityComparer<T>(isEqual));
         }
 
         public static void ForEach<T>(this IEnumerable<T> items, Action<T> perform)
         {
-            Guard.Require.IsNotNull(items);
-            Guard.Require.IsNotNull(perform);
+            Guard
+                .Require(items, nameof(items))
+                .Is.Not.Null();
+
+            Guard
+                .Require(perform, nameof(perform))
+                .Is.Not.Null();
 
             foreach (var item in items)
             {
@@ -113,8 +141,13 @@ namespace System.Collections.Generic
 
         public static void ForEach<T>(this IEnumerable<T> items, Action<T, int> apply)
         {
-            Guard.Require.IsNotNull(items);
-            Guard.Require.IsNotNull(apply);
+            Guard
+                .Require(items, nameof(items))
+                .Is.Not.Null();
+
+            Guard
+                .Require(apply, nameof(apply))
+                .Is.Not.Null();
 
             var index = 0;
 
@@ -122,20 +155,6 @@ namespace System.Collections.Generic
             {
                 apply(item, index++);
             }
-        }
-
-        public static T[] AsArray<T>(this T instance)
-        {
-            Guard.Require.IsNotNull(instance);
-
-            return new[] { instance };
-        }
-
-        public static IList<T> AsList<T>(this T instance)
-        {
-            Guard.Require.IsNotNull(instance);
-
-            return new List<T> { instance };
         }
     }
 }

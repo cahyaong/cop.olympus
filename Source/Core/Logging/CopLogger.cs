@@ -40,10 +40,17 @@ namespace nGratis.Cop.Core
         private bool isDisposed;
 
         public CopLogger(string id, string component)
-            : base(id, component.AsArray())
+            : base(id)
         {
+            Guard
+                .Require(component, nameof(component))
+                .Is.Not.Empty();
+
             this.loggingSubject = new ReplaySubject<LogEntry>();
+            this.Components = new[] { component };
         }
+
+        public override IEnumerable<string> Components { get; }
 
         public override void LogWith(Verbosity verbosity, string message)
         {

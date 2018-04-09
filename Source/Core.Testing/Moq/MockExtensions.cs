@@ -1,8 +1,8 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="CopPreConditionException.cs" company="nGratis">
+// <copyright file="MockExtensions.cs" company="nGratis">
 //  The MIT License (MIT)
 //
-//  Copyright (c) 2014 - 2016 Cahya Ong
+//  Copyright (c) 2014 - 2017 Cahya Ong
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -23,36 +23,14 @@
 //  SOFTWARE.
 // </copyright>
 // <author>Cahya Ong - cahya.ong@gmail.com</author>
-// <creation_timestamp>Saturday, 4 June 2016 11:59:24 AM UTC</creation_timestamp>
+// <creation_timestamp>Monday, 9 April 2018 9:56:54 PM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Core.Contract
+// ReSharper disable CheckNamespace
+
+namespace Moq
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Runtime.Serialization;
-
-    [Serializable]
-    public sealed class CopPreConditionException : CopException
+    public static partial class MockExtensions
     {
-        public CopPreConditionException()
-        {
-        }
-
-        public CopPreConditionException(string message)
-            : base(message)
-        {
-        }
-
-        public CopPreConditionException(string message, Exception exception)
-            : base(message, exception)
-        {
-        }
-
-        private CopPreConditionException(SerializationInfo info, StreamingContext context)
-            : base(info, context)
-        {
-        }
     }
 }

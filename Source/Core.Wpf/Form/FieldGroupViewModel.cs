@@ -43,8 +43,13 @@ namespace nGratis.Cop.Core.Wpf
 
         public FieldGroupViewModel(object instance, FieldMode mode)
         {
-            Guard.Require.IsTypeOf<INotifyPropertyChanged>(instance);
-            Guard.Require.IsNotDefault(mode);
+            Guard
+                .Require(instance, nameof(instance))
+                .Is.OfType(typeof(INotifyPropertyChanged));
+
+            Guard
+                .Require(mode, nameof(mode))
+                .Is.Not.EqualTo(FieldMode.Unknown);
 
             var notifyingInstance = (INotifyPropertyChanged)instance;
 

@@ -30,9 +30,6 @@
 
 namespace Moq
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using System.Text.RegularExpressions;
     using Contract = nGratis.Cop.Core.Contract;
     using IO = System.IO;

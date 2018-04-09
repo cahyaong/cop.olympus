@@ -50,7 +50,9 @@ namespace nGratis.Cop.Core.Wpf
 
         public Range(double minimumValue, double maximumValue, double interval)
         {
-            Guard.Require.IsLessThan(minimumValue, maximumValue);
+            Guard
+                .Require(minimumValue, nameof(minimumValue))
+                .Is.LessThan(maximumValue);
 
             this.MinimumValue = minimumValue;
             this.MaximumValue = maximumValue;

@@ -168,7 +168,7 @@
     <Compile Include="SharedResourceDictionary.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="app.config" />
     <None Include="packages.config" />
     <Page Include="Cop.Converter.xaml">
       <Generator>MSBuild:Compile</Generator>

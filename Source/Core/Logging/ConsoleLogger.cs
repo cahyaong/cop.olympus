@@ -37,9 +37,16 @@ namespace nGratis.Cop.Core
     public class ConsoleLogger : BaseLogger
     {
         public ConsoleLogger(string id, string component)
-            : base(id, component.AsArray())
+            : base(id)
         {
+            Guard
+                .Require(component, nameof(component))
+                .Is.Not.Empty();
+
+            this.Components = new[] { component };
         }
+
+        public override IEnumerable<string> Components { get; }
 
         [SuppressMessage("Microsoft.Globalization", "CA1303:Do not pass literals as localized parameters")]
         public override void LogWith(Verbosity verbosity, [Localizable(false)] string message)

@@ -1,8 +1,8 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Guard.cs" company="nGratis">
+// <copyright file="Text.cs" company="nGratis">
 //  The MIT License (MIT)
 //
-//  Copyright (c) 2014 - 2016 Cahya Ong
+//  Copyright (c) 2014 - 2017 Cahya Ong
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -23,12 +23,27 @@
 //  SOFTWARE.
 // </copyright>
 // <author>Cahya Ong - cahya.ong@gmail.com</author>
-// <creation_timestamp>Tuesday, 14 June 2016 9:35:08 AM UTC</creation_timestamp>
+// <creation_timestamp>Friday, 2 March 2018 11:09:54 PM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace nGratis.Cop.Core.Contract
 {
-    public static partial class Guard
+    public static class Text
     {
+        public const string Null = "<null>";
+
+        public const string Default = "<default>";
+
+        public const string Void = "<void>";
+
+        public const string Empty = "<empty>";
+
+        public const string Unknown = "<unknown>";
+
+        public const string Undefined = "<undefined>";
+
+        public const string True = "<true>";
+
+        public const string False = "<false>";
     }
 }

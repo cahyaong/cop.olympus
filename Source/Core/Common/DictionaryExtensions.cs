@@ -35,7 +35,9 @@ namespace nGratis.Cop.Core
     {
         public static void Upsert<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key, TValue value)
         {
-            Guard.Require.IsNotNull(dictionary);
+            Guard
+                .Require(dictionary, nameof(dictionary))
+                .Is.Not.Null();
 
             if (dictionary.ContainsKey(key))
             {

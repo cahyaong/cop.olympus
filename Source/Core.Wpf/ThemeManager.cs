@@ -55,7 +55,9 @@ namespace nGratis.Cop.Core.Wpf
 
         public TResource FindResource<TResource>(string key)
         {
-            Guard.Require.IsNotEmpty(key);
+            Guard
+                .Require(key, nameof(key))
+                .Is.Not.Empty();
 
             return (TResource)this
                 .ResourceDictionaries

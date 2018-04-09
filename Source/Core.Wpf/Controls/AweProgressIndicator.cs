@@ -95,9 +95,17 @@ namespace nGratis.Cop.Core.Wpf
             this.BusyBarPart = (FrameworkElement)this.Template.FindName("PART_BusyBar", this);
             this.MessagePart = (FrameworkElement)this.Template.FindName("PART_Message", this);
 
-            Guard.Ensure.IsNotNull(this.BusyRingPart);
-            Guard.Ensure.IsNotNull(this.BusyBarPart);
-            Guard.Ensure.IsNotNull(this.MessagePart);
+            Guard
+                .Require(this.BusyRingPart, nameof(this.BusyRingPart))
+                .Is.Not.Null();
+
+            Guard
+                .Require(this.BusyBarPart, nameof(this.BusyBarPart))
+                .Is.Not.Null();
+
+            Guard
+                .Require(this.MessagePart, nameof(this.MessagePart))
+                .Is.Not.Null();
 
             this.BusyRingPart.Visibility = Visibility.Collapsed;
             this.BusyBarPart.Visibility = Visibility.Collapsed;

@@ -65,7 +65,10 @@ namespace nGratis.Cop.Core.Wpf
             }
 
             var themeManager = this.ThemeManager;
-            Guard.Require.IsNotNull(themeManager);
+
+            Guard
+                .Require(themeManager, nameof(themeManager))
+                .Is.Not.Null();
 
             var subcharts = chartConfiguration
                 .SeriesConfigurations
@@ -73,7 +76,10 @@ namespace nGratis.Cop.Core.Wpf
                 .Distinct()
                 .ToList();
 
-            Guard.Ensure.IsNotEmpty(subcharts);
+            if (!subcharts.Any())
+            {
+                return new PlotModel();
+            }
 
             var subchart = subcharts.Single();
 

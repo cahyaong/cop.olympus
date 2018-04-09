@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="CopPostConditionException.cs" company="nGratis">
+// <copyright file="CopPreConditionException.cs" company="nGratis">
 //  The MIT License (MIT)
 //
 //  Copyright (c) 2014 - 2016 Cahya Ong
@@ -23,34 +23,32 @@
 //  SOFTWARE.
 // </copyright>
 // <author>Cahya Ong - cahya.ong@gmail.com</author>
-// <creation_timestamp>Saturday, 4 June 2016 12:09:46 PM UTC</creation_timestamp>
+// <creation_timestamp>Saturday, 4 June 2016 11:59:24 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace nGratis.Cop.Core.Contract
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using System.Runtime.Serialization;
 
     [Serializable]
-    public sealed class CopPostConditionException : CopException
+    public sealed class CopPreConditionException : CopException
     {
-        public CopPostConditionException()
+        public CopPreConditionException()
         {
         }
 
-        public CopPostConditionException(string message)
-            : base(message)
+        public CopPreConditionException(string message)
+            : base($"PRE-CONDITION: {message}")
         {
         }
 
-        public CopPostConditionException(string message, Exception exception)
-            : base(message, exception)
+        public CopPreConditionException(string message, Exception exception)
+            : base($"PRE-CONDITION: {message}", exception)
         {
         }
 
-        private CopPostConditionException(SerializationInfo info, StreamingContext context)
+        private CopPreConditionException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
         }

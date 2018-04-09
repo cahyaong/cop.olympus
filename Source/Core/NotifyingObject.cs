@@ -28,13 +28,9 @@
 
 namespace nGratis.Cop.Core
 {
-    using System;
-    using System.Collections.Generic;
     using System.ComponentModel;
     using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
     using System.Runtime.CompilerServices;
-    using nGratis.Cop.Core.Contract;
 
     public abstract class NotifyingObject : INotifyPropertyChanging, INotifyPropertyChanged
     {
@@ -49,14 +45,10 @@ namespace nGratis.Cop.Core
             TValue newValue,
             [CallerMemberName] string propertyName = null)
         {
-            Guard.Require.IsNotEmpty(propertyName);
-
             if (object.Equals(oldValue, newValue))
             {
                 return;
             }
-
-            Guard.Require.IsNotNull(propertyName);
 
             this.PropertyChanging?.Invoke(this, new PropertyChangingEventArgs(propertyName));
 

@@ -28,7 +28,6 @@
 
 namespace nGratis.Cop.Core
 {
-    using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
@@ -41,7 +40,9 @@ namespace nGratis.Cop.Core
     {
         public static Stream SerializeManyAsJson<T>(this IEnumerable<T> instances)
         {
-            Guard.Require.IsNotNull(instances);
+            Guard
+                .Require(instances, nameof(instances))
+                .Is.Not.Null();
 
             return instances
                 .ToArray()
@@ -52,7 +53,9 @@ namespace nGratis.Cop.Core
         public static Stream SerializeAsJson<T>(this T instance)
             where T : class
         {
-            Guard.Require.IsNotNull(instance);
+            Guard
+                .Require(instance, nameof(instance))
+                .Is.Not.Null();
 
             var serializer = new JsonSerializer();
             var stream = new MemoryStream();

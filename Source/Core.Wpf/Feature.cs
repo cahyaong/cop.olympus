@@ -50,7 +50,9 @@ namespace nGratis.Cop.Core.Wpf
 
         public Feature(string name, int order, IEnumerable<Page> pages)
         {
-            Guard.Require.IsNotEmpty(name);
+            Guard
+                .Require(name, nameof(name))
+                .Is.Not.Empty();
 
             this.Name = name;
             this.Order = order;

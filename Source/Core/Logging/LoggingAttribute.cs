@@ -36,7 +36,9 @@ namespace nGratis.Cop.Core
     {
         public LoggingAttribute(string category)
         {
-            Guard.Require.IsNotEmpty(category);
+            Guard
+                .Require(category, nameof(category))
+                .Is.Not.Empty();
 
             this.Category = category;
         }

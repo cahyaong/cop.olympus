@@ -27,6 +27,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 // ReSharper disable once CheckNamespace
+
 namespace System
 {
     using System.Windows;
@@ -53,9 +54,17 @@ namespace System
             where TInstance : class
             where TArgs : EventArgs
         {
-            Guard.Require.IsNotNull(instance);
-            Guard.Require.IsNotEmpty(eventName);
-            Guard.Require.IsNotNull(handler);
+            Guard
+                .Require(instance, nameof(instance))
+                .Is.Not.Null();
+
+            Guard
+                .Require(eventName, nameof(eventName))
+                .Is.Not.Empty();
+
+            Guard
+                .Require(handler, nameof(handler))
+                .Is.Not.Null();
 
             WeakEventManager<TInstance, TArgs>.AddHandler(instance, eventName, handler);
         }
@@ -67,9 +76,17 @@ namespace System
             where TInstance : class
             where TArgs : EventArgs
         {
-            Guard.Require.IsNotNull(instance);
-            Guard.Require.IsNotEmpty(eventName);
-            Guard.Require.IsNotNull(handler);
+            Guard
+                .Require(instance, nameof(instance))
+                .Is.Not.Null();
+
+            Guard
+                .Require(eventName, nameof(eventName))
+                .Is.Not.Empty();
+
+            Guard
+                .Require(handler, nameof(handler))
+                .Is.Not.Null();
 
             WeakEventManager<TInstance, TArgs>.RemoveHandler(instance, eventName, handler);
         }

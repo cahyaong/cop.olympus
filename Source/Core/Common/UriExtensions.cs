@@ -27,19 +27,19 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 // ReSharper disable once CheckNamespace
+
 namespace System
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using System.IO;
     using nGratis.Cop.Core.Contract;
 
     public static class UriExtensions
     {
-        public static DataSpec ToDataSpecification(this Uri uri)
+        public static DataSpec ToDataSpec(this Uri uri)
         {
-            Guard.Require.IsNotNull(uri);
+            Guard
+                .Require(uri, nameof(uri))
+                .Is.Not.Null();
 
             if (uri.IsFile)
             {

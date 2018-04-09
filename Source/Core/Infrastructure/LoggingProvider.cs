@@ -45,7 +45,9 @@ namespace nGratis.Cop.Core
 
         public LoggingProvider(LoggingModes loggingModes)
         {
-            Guard.Require.IsNotDefault(loggingModes);
+            Guard
+                .Require(loggingModes, nameof(loggingModes))
+                .Is.Not.EqualTo(LoggingModes.None);
 
             this.loggingModes = loggingModes;
         }
@@ -57,7 +59,9 @@ namespace nGratis.Cop.Core
 
         public ILogger GetLoggerFor(Type type)
         {
-            Guard.Require.IsNotNull(type);
+            Guard
+                .Require(type, nameof(type))
+                .Is.Not.Null();
 
             var logger = this
                 .loggerLookup
@@ -70,7 +74,9 @@ namespace nGratis.Cop.Core
 
         public ILogger GetLoggerFor(string component)
         {
-            Guard.Require.IsNotEmpty(component);
+            Guard
+                .Require(component, nameof(component))
+                .Is.Not.Empty();
 
             if (component == "*")
             {
@@ -92,7 +98,7 @@ namespace nGratis.Cop.Core
             GC.SuppressFinalize(this);
         }
 
-        private ILogger CreateLogger(string id, string component = "<undefined>")
+        private ILogger CreateLogger(string id, string component = Text.Undefined)
         {
             var logger = new CompositeLogger(id);
 

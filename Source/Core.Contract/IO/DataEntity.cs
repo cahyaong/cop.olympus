@@ -28,17 +28,19 @@
 
 namespace nGratis.Cop.Core.Contract
 {
-    using System;
-    using System.Collections.Generic;
     using System.IO;
-    using System.Linq;
 
     public class DataEntity
     {
         public DataEntity(DataSpec dataSpec, Stream contentStream)
         {
-            Guard.Require.IsNotNull(dataSpec);
-            Guard.Require.IsNotNull(contentStream);
+            Guard
+                .Require(dataSpec, nameof(dataSpec))
+                .Is.Not.Null();
+
+            Guard
+                .Require(contentStream, nameof(contentStream))
+                .Is.Not.Null();
 
             this.DataSpec = dataSpec;
             this.ContentStream = contentStream;

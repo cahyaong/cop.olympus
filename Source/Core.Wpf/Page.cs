@@ -34,8 +34,13 @@ namespace nGratis.Cop.Core.Wpf
     {
         public Page(string name, string source)
         {
-            Guard.Require.IsNotEmpty(name);
-            Guard.Require.IsNotEmpty(source);
+            Guard
+                .Require(name, nameof(name))
+                .Is.Not.Empty();
+
+            Guard
+                .Require(source, nameof(source))
+                .Is.Not.Empty();
 
             this.Name = name;
             this.SourceUri = new Uri(source, UriKind.Relative);

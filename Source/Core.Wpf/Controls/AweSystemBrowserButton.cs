@@ -76,7 +76,9 @@ namespace nGratis.Cop.Core.Wpf
 
         private void OnMouseClicked(object parameter)
         {
-            Guard.Ensure.IsNotEqualTo(this.Mode, BrowsingMode.Unknown);
+            Guard
+                .Ensure(this.Mode, nameof(this.Mode))
+                .Is.Not.EqualTo(BrowsingMode.Unknown);
 
             var isOkPressed = false;
             var selectedPath = string.Empty;

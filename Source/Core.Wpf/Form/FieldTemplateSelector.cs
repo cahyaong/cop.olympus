@@ -48,9 +48,15 @@ namespace nGratis.Cop.Core.Wpf
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
             var control = (FrameworkElement)container;
-            var context = item as FieldViewModel;
+            var context = (FieldViewModel)item;
 
-            Guard.Require.IsNotNull(context);
+            Guard
+                .Require(control, nameof(control))
+                .Is.Not.Null();
+
+            Guard
+                .Require(context, nameof(context))
+                .Is.Not.Null();
 
             var typeName = context.Type == FieldType.Auto
                 ? context.ValueType.IsEnum ? "Enumeration" : context.ValueType.GetGenericName()

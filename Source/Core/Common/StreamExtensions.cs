@@ -28,10 +28,7 @@
 
 namespace nGratis.Cop.Core
 {
-    using System;
-    using System.Collections.Generic;
     using System.IO;
-    using System.Linq;
     using System.Text;
     using nGratis.Cop.Core.Contract;
 
@@ -39,7 +36,9 @@ namespace nGratis.Cop.Core
     {
         public static string AsString(this Stream stream)
         {
-            Guard.Require.IsNotNull(stream);
+            Guard
+                .Require(stream, nameof(stream))
+                .Is.Not.Null();
 
             stream.Position = 0;
 

@@ -28,10 +28,8 @@
 
 namespace nGratis.Cop.Core.Contract
 {
-    using System;
     using System.Collections.Generic;
     using System.IO;
-    using System.Linq;
 
     public interface IStorageManager
     {

@@ -40,134 +40,121 @@ namespace nGratis.Cop.Core.Testing
     {
         public static Guid AsGuid(this DataRow row, string column)
         {
-            Guard.Require.IsNotNull(row);
+            Guard
+                .Require(row, nameof(row))
+                .Is.Not.Null();
 
-            var isValid = Guid.TryParse(row.AsString(column), out Guid value);
+            var isValid = Guid.TryParse(row.AsString(column), out var value);
 
-            Guard.Ensure.IsTrue(
-                isValid,
-                $"Variable [{ column }] in scenario [{ row.Table.TableName }] cannot be parsed to type " +
-                $"[{ typeof(Guid).FullName }].");
+            Guard
+                .Ensure(isValid, nameof(isValid))
+                .Is.True();
 
             return value;
         }
 
         public static short AsInt16(this DataRow row, string column)
         {
-            Guard.Require.IsNotNull(row);
+            Guard
+                .Require(row, nameof(row))
+                .Is.Not.Null();
 
             var isValid = short.TryParse(
                 row.AsString(column),
                 NumberStyles.Integer,
                 CultureInfo.InvariantCulture,
-                out short value);
+                out var value);
 
-            Guard.Ensure.IsTrue(
-                isValid,
-                $"Variable [{ column }] in scenario [{ row.Table.TableName }] cannot be parsed to type " +
-                $"[{ typeof(short).FullName }].");
+            Guard
+                .Ensure(isValid, nameof(isValid))
+                .Is.True();
 
             return value;
         }
 
         public static int AsInt32(this DataRow row, string column)
         {
-            Guard.Require.IsNotNull(row);
+            Guard
+                .Require(row, nameof(row))
+                .Is.Not.Null();
 
             var isValid = int.TryParse(
                 row.AsString(column),
                 NumberStyles.Integer,
                 CultureInfo.InvariantCulture,
-                out int value);
+                out var value);
 
-            Guard.Ensure.IsTrue(
-                isValid,
-                $"Variable [{ column }] in scenario [{ row.Table.TableName }] cannot be parsed to type " +
-                $"[{ typeof(int).FullName }].");
+            Guard
+                .Ensure(isValid, nameof(isValid))
+                .Is.True();
 
             return value;
         }
 
         public static DateTime AsDateTime(this DataRow row, string column)
         {
-            Guard.Require.IsNotNull(row);
+            Guard
+                .Require(row, nameof(row))
+                .Is.Not.Null();
 
             var isValid = DateTime.TryParseExact(
                 row.AsString(column),
                 "O",
                 CultureInfo.InvariantCulture,
                 DateTimeStyles.AssumeUniversal,
-                out DateTime value);
+                out var value);
 
-            Guard.Ensure.IsTrue(
-                isValid,
-                $"Variable [{ column }] in scenario [{ row.Table.TableName }] cannot be parsed to type " +
-                $"[{ typeof(DateTime).FullName }].");
+            Guard
+                .Ensure(isValid, nameof(isValid))
+                .Is.True();
 
             return value;
         }
 
         public static DateTimeOffset AsDateTimeOffset(this DataRow row, string column)
         {
-            Guard.Require.IsNotNull(row);
+            Guard
+                .Require(row, nameof(row))
+                .Is.Not.Null();
 
             var isValid = DateTimeOffset.TryParseExact(
                 row.AsString(column),
                 "O",
                 CultureInfo.InvariantCulture,
                 DateTimeStyles.AssumeUniversal,
-                out DateTimeOffset value);
+                out var value);
 
-            Guard.Ensure.IsTrue(
-                isValid,
-                $"Variable [{ column }] in scenario [{ row.Table.TableName }] cannot be parsed to type " +
-                $"[{ typeof(DateTimeOffset).FullName }].");
+            Guard
+                .Ensure(isValid, nameof(isValid))
+                .Is.True();
 
             return value;
         }
 
         public static Size AsSize(this DataRow row, string column)
         {
-            Guard.Require.IsNotNull(row);
+            Guard
+                .Require(row, nameof(row))
+                .Is.Not.Null();
 
-            var value = default(Size);
-
-            try
-            {
-                value = Size.Parse(row.AsString(column));
-            }
-            catch (Exception exception)
-            {
-                Fire.InvalidOperationException(
-                    $"Variable [{ column }] in scenario [{ row.Table.TableName }] cannot be parsed to type " +
-                    $"[{ typeof(Size).FullName }].",
-                    exception);
-            }
-
-            return value;
+            return Size.Parse(row.AsString(column));
         }
 
         public static string AsString(this DataRow row, string column)
         {
-            Guard.Require.IsNotNull(row);
-            Guard.Require.IsNotEmpty(column);
+            Guard
+                .Require(row, nameof(row))
+                .Is.Not.Null();
 
-            var value = string.Empty;
+            Guard
+                .Require(column, nameof(column))
+                .Is.Not.Empty();
 
-            try
-            {
-                value = row[column] as string;
+            var value = row[column] as string;
 
-                Guard.Ensure.IsNotNull(
-                    value,
-                    $"Variable [{ column }] in scenario [{ row.Table.TableName }] cannot be parsed to type " +
-                    $"[{ typeof(string).FullName }].");
-            }
-            catch (ArgumentException exception)
-            {
-                var message = $"Variable [{ column }] does not exist in scenario [{ row.Table.TableName }].";
-                Fire.InvalidOperationException(message, exception);
-            }
+            Guard
+                .Ensure(value, nameof(value))
+                .Is.Not.Empty();
 
             return value.Trim();
         }

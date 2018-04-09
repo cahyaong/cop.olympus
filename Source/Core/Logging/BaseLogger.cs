@@ -30,28 +30,18 @@ namespace nGratis.Cop.Core
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Reactive.Linq;
     using nGratis.Cop.Core.Contract;
 
     public abstract class BaseLogger : ILogger
     {
         protected BaseLogger(string id)
-            : this(id, Enumerable.Empty<string>())
         {
-        }
-
-        protected BaseLogger(string id, IEnumerable<string> components)
-        {
-            Guard.Require.IsNotEmpty(id);
+            Guard
+                .Require(id, nameof(id))
+                .Is.Not.Empty();
 
             this.Id = id;
-
-            var materializedComponents = components?.ToArray();
-
-            this.Components = materializedComponents?.Any() == true
-                ? materializedComponents
-                : new[] { "<undefined>" };
         }
 
         ~BaseLogger()
@@ -61,7 +51,7 @@ namespace nGratis.Cop.Core
 
         public string Id { get; }
 
-        public virtual IEnumerable<string> Components { get; }
+        public abstract IEnumerable<string> Components { get; }
 
         public abstract void LogWith(Verbosity verbosity, string message);
 

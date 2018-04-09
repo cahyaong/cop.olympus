@@ -28,8 +28,6 @@
 
 namespace nGratis.Cop.Core
 {
-    using System;
-    using System.Collections.Generic;
     using System.Linq;
     using nGratis.Cop.Core.Contract;
 
@@ -37,8 +35,13 @@ namespace nGratis.Cop.Core
     {
         public static string GetFileName(this DataSpec dataSpec)
         {
-            Guard.Require.IsNotNull(dataSpec);
-            Guard.Require.IsNotEmpty(dataSpec.ContentMime.Names);
+            Guard
+                .Require(dataSpec, nameof(dataSpec))
+                .Is.Not.Null();
+
+            Guard
+                .Require(dataSpec.ContentMime.Names, nameof(dataSpec))
+                .Is.Not.Empty();
 
             return $"{dataSpec.Name}.{dataSpec.ContentMime.Names.First()}";
         }

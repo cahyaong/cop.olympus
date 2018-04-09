@@ -30,49 +30,60 @@ namespace nGratis.Cop.Core
 {
     using System;
     using System.ComponentModel;
-    using System.Linq;
     using nGratis.Cop.Core.Contract;
 
     public static class LoggerExtensions
     {
         public static void LogAsTrace(this ILogger logger, string message)
         {
-            Guard.Require.IsNotNull(logger);
+            Guard
+                .Require(logger, nameof(logger))
+                .Is.Not.Null();
 
             logger.LogWith(Verbosity.Trace, message);
         }
 
         public static void LogAsDebug(this ILogger logger, [Localizable(false)] string message)
         {
-            Guard.Require.IsNotNull(logger);
+            Guard
+                .Require(logger, nameof(logger))
+                .Is.Not.Null();
 
             logger.LogWith(Verbosity.Debug, message);
         }
 
         public static void LogAsInformation(this ILogger logger, string message)
         {
-            Guard.Require.IsNotNull(logger);
+            Guard
+                .Require(logger, nameof(logger))
+                .Is.Not.Null();
 
             logger.LogWith(Verbosity.Information, message);
         }
 
         public static void LogAsWarning(this ILogger logger, string message)
         {
-            Guard.Require.IsNotNull(logger);
+            Guard
+                .Require(logger, nameof(logger))
+                .Is.Not.Null();
 
             logger.LogWith(Verbosity.Warning, message);
         }
 
         public static void LogAsError(this ILogger logger, string message)
         {
-            Guard.Require.IsNotNull(logger);
+            Guard
+                .Require(logger, nameof(logger))
+                .Is.Not.Null();
 
             logger.LogWith(Verbosity.Error, message);
         }
 
         public static void LogAsFatal(this ILogger logger, Exception exception, string message)
         {
-            Guard.Require.IsNotNull(logger);
+            Guard
+                .Require(logger, nameof(logger))
+                .Is.Not.Null();
 
             logger.LogWith(Verbosity.Fatal, message, exception);
         }

@@ -1,0 +1,161 @@
+﻿<#@ template debug="true" hostspecific="false" language="C#" #>
+<#@ assembly name="System" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="$(SolutionDir)Core.Contract\$(OutDir)nGratis.Cop.Core.Contract.dll" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="nGratis.Cop.Core.Contract" #>
+<#@ output extension=".cs" #>
+<#
+    var negationLookup = new Dictionary<string, string>
+    {
+        ["ClassValidator"] = "Not",
+        ["PropertyValidator"] = "No"
+    };
+
+    var validatorKinds = new[]
+    {
+        ValidatorKind.PreCondition,
+        ValidatorKind.PostCondition
+    };
+#>
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Guard.All.Numerical.cs" company="nGratis">
+//  The MIT License (MIT)
+//
+//  Copyright (c) 2014 - 2017 Cahya Ong
+//
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in all
+//  copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+//  SOFTWARE.
+// </copyright>
+// <author>Cahya Ong - cahya.ong@gmail.com</author>
+// <creation_timestamp>Saturday, 31 March 2018 5:14:34 AM UTC</creation_timestamp>
+// <remark>
+//
+//     _  _   _ _____ ___       ___ ___ _  _ ___ ___    _ _____ ___ ___    _____ _ _  
+//    /_\| | | |_   _/ _ \ ___ / __| __| \| | __| _ \  /_\_   _| __|   \  |_   _| | | 
+//   / _ \ |_| | | || (_) |___| (_ | _|| .` | _||   / / _ \| | | _|| |) |   | | |_  _|
+//  /_/ \_\___/  |_| \___/     \___|___|_|\_|___|_|_\/_/ \_\_| |___|___/    |_|   |_| 
+//
+// </remark>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace nGratis.Cop.Core.Contract.UnitTest
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using FluentAssertions;
+    using Xunit;
+
+<#
+    var negationIndex = 0;
+
+    foreach (var type in negationLookup.Keys)
+    {
+#>
+    public class <#=type#>Tests
+    {
+        public class <#=negationLookup[type]#>Property
+        {
+<#
+
+        var kindIndex = 0;
+
+        foreach (var validatorKind in validatorKinds)
+        {
+            var messagePrefix = validatorKind == ValidatorKind.PreCondition
+                ? "PRE-CONDITION"
+                : validatorKind == ValidatorKind.PostCondition ? "POST-CONDITION" : "<unknown>";
+
+#>
+            [Fact]
+            public void WhenGettingValid<#=validatorKind#>Value_ShouldNotThrowException()
+            {
+                // Arrange.
+
+                var validator = new <#=type#><string>(
+                    "[_MOCK_NAME_]",
+                    "[_MOCK_VALUE_]",
+                    <#=nameof(ValidatorKind)#>.<#=validatorKind#>);
+
+                validator = validator.<#=negationLookup[type]#>;
+
+                // Act.
+
+                var validate = new Action(() => validator.Validate(
+                    value => value == "[_MOCK_ANOTHER_VALUE_]",
+                    "[_MOCK_REASON_]"));
+
+                // Assert.
+
+                validate.ShouldNotThrow();
+            }
+
+            [Fact]
+            public void WhenGettingInvalid<#=validatorKind#>Value_ShouldThrowCop<#=validatorKind#>Exception()
+            {
+                // Arrange.
+
+                var validator = new <#=type#><string>(
+                    "[_MOCK_NAME_]",
+                    "[_MOCK_VALUE_]",
+                    <#=nameof(ValidatorKind)#>.<#=validatorKind#>);
+
+                validator = validator.<#=negationLookup[type]#>;
+
+                // Act.
+
+                var validate = new Action(() => validator.Validate(
+                    value => value == "[_MOCK_VALUE_]",
+                    "[_MOCK_REASON_]"));
+
+                // Assert.
+
+                validate
+                    .ShouldThrow<Cop<#=validatorKind#>Exception>()
+                    .WithMessage("<#=messagePrefix#>: Variable [[_MOCK_NAME_]] should NOT [_MOCK_REASON_]!");
+            }
+<#
+            if (kindIndex < validatorKinds.Length - 1)
+            {
+#>
+
+<#
+            }
+
+            kindIndex++;
+        }
+
+#>
+        }
+    }
+<#
+
+        if (negationIndex < negationLookup.Count - 1)
+        {
+#>
+
+<#
+        }
+
+        negationIndex++;
+    }
+#>
+}

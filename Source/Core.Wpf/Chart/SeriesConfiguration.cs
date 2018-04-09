@@ -35,10 +35,21 @@ namespace nGratis.Cop.Core.Wpf
     {
         public SeriesConfiguration(string title, ICollection points, string category, string value)
         {
-            Guard.Require.IsNotEmpty(title);
-            Guard.Require.IsNotNull(points);
-            Guard.Require.IsNotEmpty(category);
-            Guard.Require.IsNotEmpty(value);
+            Guard
+                .Require(title, nameof(title))
+                .Is.Not.Empty();
+
+            Guard
+                .Require(points, nameof(points))
+                .Is.Not.Null();
+
+            Guard
+                .Require(category, nameof(category))
+                .Is.Not.Empty();
+
+            Guard
+                .Require(value, nameof(value))
+                .Is.Not.Empty();
 
             this.Title = title;
             this.Points = points;

@@ -1,8 +1,8 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="MockBuilder.cs" company="nGratis">
+// <copyright file="Guard.Collection.cs" company="nGratis">
 //  The MIT License (MIT)
 //
-//  Copyright (c) 2014 - 2015 Cahya Ong
+//  Copyright (c) 2014 - 2017 Cahya Ong
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -23,27 +23,44 @@
 //  SOFTWARE.
 // </copyright>
 // <author>Cahya Ong - cahya.ong@gmail.com</author>
-// <creation_timestamp>Friday, 1 May 2015 1:41:24 PM UTC</creation_timestamp>
+// <creation_timestamp>Friday, 2 March 2018 10:01:54 PM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Core.Testing
+namespace nGratis.Cop.Core.Contract
 {
-    using Moq;
+    using System.Collections.Generic;
+    using System.Diagnostics;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
 
-    public static class MockBuilder
+    public static partial class Guard
     {
-        public static Mock<T> New<T>()
-            where T : class
+        [DebuggerStepThrough]
+        [SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures")]
+        public static ValidationContinuation<IEnumerable<T>> Empty<T>(this ClassValidator<IEnumerable<T>> validator)
         {
-            return new Mock<T>();
+            return validator.Validate(
+                actual => !actual.Any(),
+                "be empty");
         }
 
-        public static Mock<T> AsStub<T>(this Mock<T> mock)
-            where T : class
+        [DebuggerStepThrough]
+        public static ValidationContinuation<T[]> Empty<T>(this ClassValidator<T[]> validator)
         {
-            mock.CallBase = true;
+            return validator.Validate(
+                actual => actual.Length <= 0,
+                "be empty");
+        }
 
-            return mock;
+        [DebuggerStepThrough]
+        [SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures")]
+        public static ValidationContinuation<Dictionary<TKey, TValue>> Key<TKey, TValue>(
+            this PropertyValidator<Dictionary<TKey, TValue>> validator,
+            TKey key)
+        {
+            return validator.Validate(
+                actual => actual.ContainsKey(key),
+                $"have key [{key}]");
         }
     }
 }

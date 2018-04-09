@@ -60,9 +60,12 @@ namespace nGratis.Cop.Core
 
         public void RegisterLoggers(params ILogger[] loggers)
         {
-            Guard.Require.IsNotNull(loggers);
+            Guard
+                .Require(loggers, nameof(loggers))
+                .Is.Not.Null();
 
             loggers
+                .Where(logger => logger != null)
                 .Select(logger => new
                 {
                     Key = $"{logger.Id}.{logger.GetType().Name}",
@@ -82,10 +85,12 @@ namespace nGratis.Cop.Core
 
         public void UnregisterLoggers(params ILogger[] loggers)
         {
-            Guard.Require.IsNotNull(loggers);
-            Guard.Require.IsNotNull(loggers);
+            Guard
+                .Require(loggers, nameof(loggers))
+                .Is.Not.Null();
 
             loggers
+                .Where(logger => logger != null)
                 .Select(logger => new
                 {
                     Key = $"{logger.Id}.{logger.GetType().Name}",

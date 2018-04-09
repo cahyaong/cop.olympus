@@ -29,9 +29,7 @@
 namespace nGratis.Cop.Core.Vision.Imaging
 {
     using System;
-    using System.Collections.Generic;
     using System.Drawing;
-    using System.Linq;
     using AForge;
     using AForge.Imaging.Filters;
     using nGratis.Cop.Core.Contract;
@@ -40,7 +38,9 @@ namespace nGratis.Cop.Core.Vision.Imaging
     {
         public static ColorFiltering ToColorFiltering(this Color color, int threshold)
         {
-            Guard.Require.IsZeroOrPositive(threshold);
+            Guard
+                .Require(threshold, nameof(threshold))
+                .Is.ZeroOrPositive();
 
             var halfThreshold = (int)Math.Ceiling(threshold / 2.0);
 

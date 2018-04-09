@@ -31,7 +31,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <RunCodeAnalysis>true</RunCodeAnalysis>
-    <CodeAnalysisRuleSet>..\Core.Shared\nGratis.Cop.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>..\Core.Shared\nGratis.Cop.Contract.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -41,7 +41,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <RunCodeAnalysis>true</RunCodeAnalysis>
-    <CodeAnalysisRuleSet>..\Core.Shared\nGratis.Cop.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>..\Core.Shared\nGratis.Cop.Contract.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="JetBrains.Annotations, Version=11.0.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
@@ -63,29 +63,30 @@
     <Compile Include="..\Core.Shared\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Constants.cs" />
-    <Compile Include="Guard.All.Numerical.cs">
-      <DependentUpon>Guard.All.Numerical.tt</DependentUpon>
+    <Compile Include="Condition\ConditionValidator.cs" />
+    <Compile Include="Condition\Guard.Collection.cs">
+      <DependentUpon>Guard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Condition\Guard.Numerical.cs">
+      <DependentUpon>Guard.Numerical.tt</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
-    <Compile Include="Guard.Ensure.cs">
+    <Compile Include="Condition\Guard.String.cs">
       <DependentUpon>Guard.cs</DependentUpon>
     </Compile>
-    <Compile Include="Guard.cs" />
+    <Compile Include="Condition\Guard.System.cs">
+      <DependentUpon>Guard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CopMemoryLeakException.cs" />
+    <Compile Include="Text.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="Condition\Guard.cs" />
     <Compile Include="CopException.cs" />
-    <Compile Include="CopPostConditionException.cs" />
-    <Compile Include="CopPreConditionException.cs" />
+    <Compile Include="Condition\CopPostConditionException.cs" />
+    <Compile Include="Condition\CopPreConditionException.cs" />
     <Compile Include="Freezable\BaseFreezable.cs" />
     <Compile Include="Freezable\IFreezable.cs" />
-    <Compile Include="Guard.Ensure.Optional.cs">
-      <DependentUpon>Guard.Ensure.Optional.tt</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
-    <Compile Include="Guard.Require.cs">
-      <DependentUpon>Guard.cs</DependentUpon>
-    </Compile>
     <Compile Include="Infrastructure\IIdentityProvider.cs" />
     <Compile Include="Infrastructure\IInfrastructureManager.cs" />
     <Compile Include="Infrastructure\ILogger.cs" />
@@ -99,7 +100,6 @@
     <Compile Include="Infrastructure\Verbosity.cs" />
     <Compile Include="Mime.cs" />
     <Compile Include="StringExtensions.cs" />
-    <Compile Include="Fire.cs" />
     <Compile Include="UI\IActivatable.cs" />
     <Compile Include="UI\IFeature.cs" />
     <Compile Include="UI\IModule.cs" />
@@ -112,19 +112,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Guard.All.Numerical.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Guard.All.Numerical.cs</LastGenOutput>
-      <DependentUpon>Guard.cs</DependentUpon>
-    </Content>
-    <Content Include="Guard.Ensure.Optional.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Guard.Ensure.Optional.cs</LastGenOutput>
-      <DependentUpon>Guard.cs</DependentUpon>
-    </Content>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Content Include="Condition\Guard.Numerical.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Guard.Numerical.cs</LastGenOutput>
+      <DependentUpon>Guard.cs</DependentUpon>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

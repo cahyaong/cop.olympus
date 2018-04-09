@@ -51,16 +51,21 @@ namespace nGratis.Cop.Core.Wpf
 
         private bool hasError;
 
-        internal FieldViewModel(Type valueType, AsFieldAttribute asFieldAttribute)
+        internal FieldViewModel(Type valueType, AsFieldAttribute attribute)
         {
-            Guard.Require.IsNotNull(valueType);
-            Guard.Require.IsNotNull(asFieldAttribute);
+            Guard
+                .Require(valueType, nameof(valueType))
+                .Is.Not.Null();
+
+            Guard
+                .Require(attribute, nameof(attribute))
+                .Is.Not.Null();
 
             this.ValueType = valueType;
 
-            this.Mode = asFieldAttribute.Mode;
-            this.Type = asFieldAttribute.Type;
-            this.Label = asFieldAttribute.Label;
+            this.Mode = attribute.Mode;
+            this.Type = attribute.Type;
+            this.Label = attribute.Label;
         }
 
         public FieldType Type
