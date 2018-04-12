@@ -75,10 +75,10 @@
   </DataTemplate>
 
   <DataTemplate x:Key="Cop.AweField.Input.Enumeration" DataType="core:FieldViewModel">
-    <ComboBox ItemsSource="{Binding ValueType, Mode=OneWay, Converter={StaticResource Cop.Converter.EnumerationToPossibleValuesConverter}}" SelectedValue="{Binding UserValue, Mode=TwoWay}">
+    <ComboBox ItemsSource="{Binding ValueType, Mode=OneWay, Converter={StaticResource Cop.Converter.EnumToValuesConverter}}" SelectedValue="{Binding UserValue, Mode=TwoWay}">
       <ComboBox.ItemTemplate>
         <DataTemplate>
-          <TextBlock Text="{Binding Mode=OneWay, Converter={StaticResource Cop.Converter.AnyToTitleCaseCoverter}}" />
+          <TextBlock Text="{Binding Mode=OneWay, Converter={StaticResource Cop.Converter.AnyToTitleCaseConverter}}" />
         </DataTemplate>
       </ComboBox.ItemTemplate>
     </ComboBox>
@@ -96,8 +96,8 @@
     <Setter Property="Margin" Value="0,0,0,10" />
     <Setter Property="Template">
       <Setter.Value>
-        <ControlTemplate d:DataContext="{d:DesignInstance core:FieldViewModel}" TargetType="core:AweField">
-          <StackPanel Orientation="Vertical">
+        <ControlTemplate TargetType="core:AweField">
+          <StackPanel d:DataContext="{d:DesignInstance core:FieldViewModel}" Orientation="Vertical">
             <TextBlock
               Margin="0,0,0,5"
               Style="{StaticResource Cop.TextBlock.SmallSubheader}"

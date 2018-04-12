@@ -33,15 +33,21 @@ namespace nGratis.Cop.Core.Wpf
     using System.Globalization;
     using System.Linq;
     using System.Windows.Data;
+    using nGratis.Cop.Core.Contract;
 
     [ValueConversion(typeof(IEnumerable), typeof(int))]
     public class EnumerableToCountConverter : IValueConverter
     {
         public object Convert(object value, Type type, object parameter, CultureInfo culture)
         {
-            return (value as IEnumerable)?
+            Guard
+                .Require(value, nameof(value))
+                .Is.Not.Null()
+                .Is.OfType(typeof(IEnumerable));
+
+            return ((IEnumerable)value)
                 .Cast<object>()
-                .Count() ?? 0;
+                .Count();
         }
 
         public object ConvertBack(object value, Type type, object parameter, CultureInfo culture)

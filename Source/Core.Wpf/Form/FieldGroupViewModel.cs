@@ -67,31 +67,31 @@ namespace nGratis.Cop.Core.Wpf
                 .Where(anon => anon.FieldAttribute != null && anon.FieldAttribute.Mode == mode)
                 .ToList()
                 .ForEach(anon =>
-                    {
-                        var field = new FieldViewModel(anon.Property.PropertyType, anon.FieldAttribute);
-                        this.Fields.Add(field);
+                {
+                    var field = new FieldViewModel(anon.Property.PropertyType, anon.FieldAttribute);
+                    this.Fields.Add(field);
 
-                        var binder = new ObjectBinder(
-                            notifyingInstance,
-                            anon.Property,
-                            field,
-                            FieldViewModel.UserValueProperty);
+                    var binder = new ObjectBinder(
+                        notifyingInstance,
+                        anon.Property,
+                        field,
+                        FieldViewModel.UserValueProperty);
 
-                        binder.BindSourceCallback();
+                    binder.BindSourceCallback();
 
-                        binder.BindTargetCallback(
-                            () =>
-                                {
-                                    field.HasError = false;
-                                    field.IsValueUpdating = true;
-                                },
-                            () => field.IsValueUpdating = false,
-                            () =>
-                                {
-                                    field.HasError = true;
-                                    field.IsValueUpdating = false;
-                                });
-                    });
+                    binder.BindTargetCallback(
+                        () =>
+                        {
+                            field.HasError = false;
+                            field.IsValueUpdating = true;
+                        },
+                        () => field.IsValueUpdating = false,
+                        () =>
+                        {
+                            field.HasError = true;
+                            field.IsValueUpdating = false;
+                        });
+                });
         }
 
         public FieldMode Mode

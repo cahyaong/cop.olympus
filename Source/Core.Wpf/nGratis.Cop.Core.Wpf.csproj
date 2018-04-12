@@ -131,7 +131,7 @@
     <Compile Include="Controls\AweScrollViewer.cs" />
     <Compile Include="Converters\AnyToTitleCaseConverter.cs" />
     <Compile Include="Converters\ColorToSolidBrushConverter.cs" />
-    <Compile Include="Converters\EnumerationToPossibleValuesConverter.cs" />
+    <Compile Include="Converters\EnumToValuesConverter.cs" />
     <Compile Include="ValueUpdateException.cs" />
     <Compile Include="IThemeManager.cs" />
     <Compile Include="Chart\SeriesConfiguration.cs" />

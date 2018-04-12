@@ -2,9 +2,7 @@
 <#@ assembly name="System" #>
 <#@ assembly name="System.Core" #>
 <#@ assembly name="$(SolutionDir)Core.Contract\$(OutDir)nGratis.Cop.Core.Contract.dll" #>
-<#@ import namespace="System" #>
 <#@ import namespace="System.Collections.Generic" #>
-<#@ import namespace="System.Linq" #>
 <#@ import namespace="nGratis.Cop.Core.Contract" #>
 <#@ output extension=".cs" #>
 <#
@@ -59,8 +57,6 @@
 namespace nGratis.Cop.Core.Contract.UnitTest
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using FluentAssertions;
     using Xunit;
 

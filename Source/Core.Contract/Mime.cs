@@ -33,35 +33,36 @@ namespace nGratis.Cop.Core.Contract
     using System.Linq;
     using System.Reflection;
 
-    public sealed class Mime
+    public struct Mime
     {
-        public static Mime Unknown { get; } = new Mime("unknown", 0, 0, "*");
+        public static readonly Mime Unknown = new Mime("unknown", 0, 0, "*");
 
-        public static Mime Csv { get; } = new Mime("text/csv", 4180, 0, "csv");
+        public static readonly Mime Csv = new Mime("text/csv", 4180, 0, "csv");
 
-        public static Mime Html { get; } = new Mime("text/html", 2854, 0, "html");
+        public static readonly Mime Html = new Mime("text/html", 2854, 0, "html");
 
-        public static Mime Json { get; } = new Mime("application/json", 4627, 0, "json");
+        public static readonly Mime Json = new Mime("application/json", 4627, 0, "json");
 
-        public static Mime Jpeg { get; } = new Mime("image/jpeg", 1341, 10918, "jpeg", "jpg");
+        public static readonly Mime Jpeg = new Mime("image/jpeg", 1341, 10918, "jpeg", "jpg");
 
-        public static Mime Mpeg4 { get; } = new Mime("video/mp4", 4337, 0, "mp4");
+        public static readonly Mime Mpeg4 = new Mime("video/mp4", 4337, 0, "mp4");
 
-        public static Mime Saz { get; } = new Mime("application/x-fiddler-session-archive", 0, 0, "saz");
+        public static readonly Mime Saz = new Mime("application/x-fiddler-session-archive", 0, 0, "saz");
 
-        public static Mime Png { get; } = new Mime("image/png", 2083, 15948, "png");
+        public static readonly Mime Png = new Mime("image/png", 2083, 15948, "png");
 
-        public static Mime Warc { get; } = new Mime("application/warc", 0, 28500, "warc");
+        public static readonly Mime Warc = new Mime("application/warc", 0, 28500, "warc");
 
-        public static Mime WebForm { get; } = new Mime("application/x-www-form-urlencoded", 0, 0, string.Empty);
+        public static readonly Mime WebForm = new Mime("application/x-www-form-urlencoded", 0, 0, string.Empty);
 
-        public static Mime Xml { get; } = new Mime("text/xml", 3023, 0, "xml");
+        public static readonly Mime Xml = new Mime("text/xml", 3023, 0, "xml");
 
         private static readonly Dictionary<string, Mime> UniqueIdLookup;
 
         private static readonly Dictionary<string, Mime> NameLookup;
 
         [SuppressMessage("Microsoft.Performance", "CA1810:InitializeReferenceTypeStaticFieldsInline")]
+        [SuppressMessage("Microsoft.Usage", "CA2207:InitializeValueTypeStaticFieldsInline")]
         static Mime()
         {
             var mimes = typeof(Mime)
@@ -132,6 +133,34 @@ namespace nGratis.Cop.Core.Contract
                 .Has.Key(name);
 
             return Mime.NameLookup[name];
+        }
+
+        public static bool operator ==(Mime left, Mime right)
+        {
+            return
+                left.UniqueId == right.UniqueId &&
+                left.RfcId == right.RfcId &&
+                left.IsoId == right.IsoId;
+        }
+
+        public static bool operator !=(Mime left, Mime right)
+        {
+            return !(left == right);
+        }
+
+        public override bool Equals(object value)
+        {
+            return value is Mime mime && this == mime;
+        }
+
+        public override int GetHashCode()
+        {
+            var hash = 17;
+            hash = hash * 23 + this.UniqueId?.GetHashCode() ?? 0;
+            hash = hash * 23 + this.RfcId;
+            hash = hash * 23 + this.IsoId;
+
+            return hash;
         }
 
         public string ToFileExtension()

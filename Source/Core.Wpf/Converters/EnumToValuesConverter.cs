@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="EnumerationToPossibleValuesConverter.cs" company="nGratis">
+// <copyright file="EnumToValuesConverter.cs" company="nGratis">
 //  The MIT License (MIT)
 //
 //  Copyright (c) 2014 - 2015 Cahya Ong
@@ -33,19 +33,20 @@ namespace nGratis.Cop.Core.Wpf
     using System.Globalization;
     using System.Linq;
     using System.Windows.Data;
+    using nGratis.Cop.Core.Contract;
 
     [ValueConversion(typeof(Type), typeof(IEnumerable<object>))]
-    internal class EnumerationToPossibleValuesConverter : IValueConverter
+    internal class EnumToValuesConverter : IValueConverter
     {
         public object Convert(object value, Type type, object parameter, CultureInfo culture)
         {
-            if (type == null || !type.IsEnum)
-            {
-                return Enumerable.Empty<object>();
-            }
+            Guard
+                .Require(value, nameof(value))
+                .Is.Not.Null()
+                .Is.OfType(typeof(Type));
 
             return Enum
-                .GetValues(type)
+                .GetValues((Type)value)
                 .OfType<object>()
                 .Where(item => item.ToString() != "Unknown")
                 .ToList();

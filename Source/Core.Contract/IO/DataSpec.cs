@@ -38,10 +38,6 @@ namespace nGratis.Cop.Core.Contract
                 .Require(name, nameof(name))
                 .Is.Not.Empty();
 
-            Guard
-                .Require(contentMime, nameof(contentMime))
-                .Is.Not.Null();
-
             Guard.Require(contentMime, nameof(contentMime))
                 .Is.Not.EqualTo(Mime.Unknown);
 
