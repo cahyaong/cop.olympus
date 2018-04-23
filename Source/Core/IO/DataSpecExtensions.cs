@@ -40,10 +40,10 @@ namespace nGratis.Cop.Core
                 .Is.Not.Null();
 
             Guard
-                .Require(dataSpec.ContentMime.Names, nameof(dataSpec))
+                .Require(dataSpec.Mime.Names, nameof(dataSpec))
                 .Is.Not.Empty();
 
-            return $"{dataSpec.Name}.{dataSpec.ContentMime.Names.First()}";
+            return $"{dataSpec.Name}.{dataSpec.Mime.Names.First()}";
         }
     }
 }

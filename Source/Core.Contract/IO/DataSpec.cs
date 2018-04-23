@@ -32,26 +32,26 @@ namespace nGratis.Cop.Core.Contract
 
     public class DataSpec
     {
-        public DataSpec(string name, Mime contentMime)
+        public DataSpec(string name, Mime mime)
         {
             Guard
                 .Require(name, nameof(name))
                 .Is.Not.Empty();
 
-            Guard.Require(contentMime, nameof(contentMime))
+            Guard.Require(mime, nameof(mime))
                 .Is.Not.EqualTo(Mime.Unknown);
 
-            this.ContentMime = contentMime;
+            this.Mime = mime;
             this.Name = name;
         }
 
-        public Mime ContentMime { get; }
+        public Mime Mime { get; }
 
         public string Name { get; }
 
         public override string ToString()
         {
-            return $"ngds://./{this.Name}{this.ContentMime.Names.First()}";
+            return $"ngds://./{this.Name}{this.Mime.Names.First()}";
         }
     }
 }

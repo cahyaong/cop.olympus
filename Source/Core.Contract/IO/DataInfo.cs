@@ -32,8 +32,8 @@ namespace nGratis.Cop.Core.Contract
 
     public class DataInfo : DataSpec
     {
-        public DataInfo(string name, Mime contentMime)
-            : base(name, contentMime)
+        public DataInfo(string name, Mime mime)
+            : base(name, mime)
         {
         }
 

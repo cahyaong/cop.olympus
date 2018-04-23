@@ -52,9 +52,9 @@ namespace nGratis.Cop.Core
 
         public IIdentityProvider IdentityProvider { get; }
 
-        public ILoggingProvider LoggingProvider { get; }
-
         public ITemporalProvider TemporalProvider { get; }
+
+        public ILoggingProvider LoggingProvider { get; }
 
         public void Dispose()
         {

@@ -59,6 +59,7 @@ namespace nGratis.Cop.Core
                 .Is.Not.Empty();
 
             var md5 = MD5.Create();
+
             return new Guid(md5.ComputeHash(Encoding.UTF8.GetBytes(content)));
         }
 

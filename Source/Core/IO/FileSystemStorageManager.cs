@@ -114,7 +114,7 @@ namespace nGratis.Cop.Core
 
             dataStream.Position = 0;
 
-            if (dataSpec.ContentMime.IsTextDocument())
+            if (dataSpec.Mime.IsTextDocument())
             {
                 using (var reader = new StreamReader(dataStream))
                 using (var writer = new StreamWriter(File.OpenWrite(fileUri.LocalPath), Encoding.UTF8))

@@ -32,8 +32,8 @@ namespace nGratis.Cop.Core.Contract
     {
         IIdentityProvider IdentityProvider { get; }
 
-        ILoggingProvider LoggingProvider { get; }
-
         ITemporalProvider TemporalProvider { get; }
+
+        ILoggingProvider LoggingProvider { get; }
     }
 }

@@ -45,7 +45,7 @@ namespace Moq
         {
             public static Contract.DataSpec IsHtml()
             {
-                return Match.Create<Contract.DataSpec>(spec => spec.ContentMime == Contract.Mime.Html);
+                return Match.Create<Contract.DataSpec>(spec => spec.Mime == Contract.Mime.Html);
             }
         }
 

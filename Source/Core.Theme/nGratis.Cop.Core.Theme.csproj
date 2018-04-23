@@ -163,7 +163,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <None Include="App.config" />
+    <None Include="app.config" />
     <Page Include="Cop.Style.AweChart.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
