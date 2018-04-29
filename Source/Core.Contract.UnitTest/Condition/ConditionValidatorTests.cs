@@ -51,7 +51,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                validate.ShouldNotThrow();
+                validate.Should().NotThrow();
             }
 
             [Fact]
@@ -70,7 +70,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 validate
-                    .ShouldThrow<CopPreConditionException>()
+                    .Should().Throw<CopPreConditionException>()
                     .WithMessage("PRE-CONDITION: Variable [[_MOCK_NAME_]] should [_MOCK_REASON_]!");
             }
 
@@ -89,7 +89,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                validate.ShouldNotThrow();
+                validate.Should().NotThrow();
             }
 
             [Fact]
@@ -108,7 +108,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 validate
-                    .ShouldThrow<CopPostConditionException>()
+                    .Should().Throw<CopPostConditionException>()
                     .WithMessage("POST-CONDITION: Variable [[_MOCK_NAME_]] should [_MOCK_REASON_]!");
             }
 
@@ -128,7 +128,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 validate
-                    .ShouldThrow<NotSupportedException>()
+                    .Should().Throw<NotSupportedException>()
                     .WithMessage("Validator kind [Unknown] is not supported!");
             }
         }

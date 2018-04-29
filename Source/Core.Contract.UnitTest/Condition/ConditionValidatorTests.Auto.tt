@@ -101,7 +101,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                validate.ShouldNotThrow();
+                validate.Should().NotThrow();
             }
 
             [Fact]
@@ -125,7 +125,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 validate
-                    .ShouldThrow<Cop<#=validatorKind#>Exception>()
+                    .Should().Throw<Cop<#=validatorKind#>Exception>()
                     .WithMessage("<#=messagePrefix#>: Variable [[_MOCK_NAME_]] should NOT [_MOCK_REASON_]!");
             }
 <#

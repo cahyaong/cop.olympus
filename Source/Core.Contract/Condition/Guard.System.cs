@@ -74,7 +74,7 @@ namespace nGratis.Cop.Core.Contract
         [DebuggerStepThrough]
         public static ValidationContinuation<Uri> FileExtension(this PropertyValidator<Uri> validator, Mime mime)
         {
-            if (mime.Names?.Any() != true)
+            if (mime.Extensions?.Any() != true)
             {
                 return validator.Validate(
                     actual => string.IsNullOrEmpty(Path.GetExtension(actual.LocalPath)),
@@ -82,8 +82,8 @@ namespace nGratis.Cop.Core.Contract
             }
 
             return validator.Validate(
-                actual => mime.Names.Contains(Path.GetExtension(actual.LocalPath).Replace(".", string.Empty)),
-                $"have one of file extensions [{string.Join(", ", mime.Names.Select(name => $".{name}"))}]");
+                actual => mime.Extensions.Contains(Path.GetExtension(actual.LocalPath).Replace(".", string.Empty)),
+                $"have one of file extensions [{string.Join(", ", mime.Extensions.Select(name => $".{name}"))}]");
         }
 
         [DebuggerStepThrough]

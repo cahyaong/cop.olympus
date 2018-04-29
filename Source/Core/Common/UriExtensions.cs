@@ -44,7 +44,7 @@ namespace System
             if (uri.IsFile)
             {
                 var name = Path.GetFileNameWithoutExtension(uri.AbsoluteUri);
-                var contentMime = Mime.ParseByName(Path.GetExtension(uri.AbsoluteUri));
+                var contentMime = Mime.ParseByFileExtension(Path.GetExtension(uri.AbsoluteUri));
 
                 return new DataSpec(name, contentMime);
             }

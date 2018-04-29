@@ -62,7 +62,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -81,7 +81,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPreConditionException>()
+                    .Should().Throw<CopPreConditionException>()
                     .WithMessage("PRE-CONDITION: Variable [value] should be less than [0]!");
             }
 
@@ -100,7 +100,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -119,7 +119,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPostConditionException>()
+                    .Should().Throw<CopPostConditionException>()
                     .WithMessage("POST-CONDITION: Variable [value] should be less than [0]!");
             }
         }
@@ -141,7 +141,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -160,7 +160,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPreConditionException>()
+                    .Should().Throw<CopPreConditionException>()
                     .WithMessage("PRE-CONDITION: Variable [value] should be less than or equal to [0]!");
             }
 
@@ -179,7 +179,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -198,7 +198,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPostConditionException>()
+                    .Should().Throw<CopPostConditionException>()
                     .WithMessage("POST-CONDITION: Variable [value] should be less than or equal to [0]!");
             }
         }
@@ -220,7 +220,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -239,7 +239,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPreConditionException>()
+                    .Should().Throw<CopPreConditionException>()
                     .WithMessage("PRE-CONDITION: Variable [value] should be greater than [0]!");
             }
 
@@ -258,7 +258,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -277,7 +277,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPostConditionException>()
+                    .Should().Throw<CopPostConditionException>()
                     .WithMessage("POST-CONDITION: Variable [value] should be greater than [0]!");
             }
         }
@@ -299,7 +299,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -318,7 +318,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPreConditionException>()
+                    .Should().Throw<CopPreConditionException>()
                     .WithMessage("PRE-CONDITION: Variable [value] should be greater than or equal to [0]!");
             }
 
@@ -337,7 +337,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -356,7 +356,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPostConditionException>()
+                    .Should().Throw<CopPostConditionException>()
                     .WithMessage("POST-CONDITION: Variable [value] should be greater than or equal to [0]!");
             }
         }
@@ -378,7 +378,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -397,7 +397,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPreConditionException>()
+                    .Should().Throw<CopPreConditionException>()
                     .WithMessage("PRE-CONDITION: Variable [value] should be zero or a positive number!");
             }
 
@@ -416,7 +416,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -435,7 +435,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPostConditionException>()
+                    .Should().Throw<CopPostConditionException>()
                     .WithMessage("POST-CONDITION: Variable [value] should be zero or a positive number!");
             }
         }
@@ -457,7 +457,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -476,7 +476,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPreConditionException>()
+                    .Should().Throw<CopPreConditionException>()
                     .WithMessage("PRE-CONDITION: Variable [value] should be a positive number!");
             }
 
@@ -495,7 +495,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -514,7 +514,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPostConditionException>()
+                    .Should().Throw<CopPostConditionException>()
                     .WithMessage("POST-CONDITION: Variable [value] should be a positive number!");
             }
         }
@@ -536,7 +536,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -555,7 +555,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPreConditionException>()
+                    .Should().Throw<CopPreConditionException>()
                     .WithMessage("PRE-CONDITION: Variable [value] should be zero or a negative number!");
             }
 
@@ -574,7 +574,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -593,7 +593,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPostConditionException>()
+                    .Should().Throw<CopPostConditionException>()
                     .WithMessage("POST-CONDITION: Variable [value] should be zero or a negative number!");
             }
         }
@@ -615,7 +615,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -634,7 +634,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPreConditionException>()
+                    .Should().Throw<CopPreConditionException>()
                     .WithMessage("PRE-CONDITION: Variable [value] should be a negative number!");
             }
 
@@ -653,7 +653,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -672,7 +672,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPostConditionException>()
+                    .Should().Throw<CopPostConditionException>()
                     .WithMessage("POST-CONDITION: Variable [value] should be a negative number!");
             }
         }
@@ -694,7 +694,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -713,7 +713,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPreConditionException>()
+                    .Should().Throw<CopPreConditionException>()
                     .WithMessage("PRE-CONDITION: Variable [value] should be zero!");
             }
 
@@ -732,7 +732,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -751,7 +751,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPostConditionException>()
+                    .Should().Throw<CopPostConditionException>()
                     .WithMessage("POST-CONDITION: Variable [value] should be zero!");
             }
         }
@@ -773,7 +773,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -792,7 +792,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPreConditionException>()
+                    .Should().Throw<CopPreConditionException>()
                     .WithMessage("PRE-CONDITION: Variable [value] should be equal to [0]!");
             }
 
@@ -811,7 +811,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -830,7 +830,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPostConditionException>()
+                    .Should().Throw<CopPostConditionException>()
                     .WithMessage("POST-CONDITION: Variable [value] should be equal to [0]!");
             }
         }
@@ -852,7 +852,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -871,7 +871,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPreConditionException>()
+                    .Should().Throw<CopPreConditionException>()
                     .WithMessage("PRE-CONDITION: Variable [value] should be less than [0]!");
             }
 
@@ -890,7 +890,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -909,7 +909,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPostConditionException>()
+                    .Should().Throw<CopPostConditionException>()
                     .WithMessage("POST-CONDITION: Variable [value] should be less than [0]!");
             }
         }
@@ -931,7 +931,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -950,7 +950,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPreConditionException>()
+                    .Should().Throw<CopPreConditionException>()
                     .WithMessage("PRE-CONDITION: Variable [value] should be less than or equal to [0]!");
             }
 
@@ -969,7 +969,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -988,7 +988,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPostConditionException>()
+                    .Should().Throw<CopPostConditionException>()
                     .WithMessage("POST-CONDITION: Variable [value] should be less than or equal to [0]!");
             }
         }
@@ -1010,7 +1010,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -1029,7 +1029,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPreConditionException>()
+                    .Should().Throw<CopPreConditionException>()
                     .WithMessage("PRE-CONDITION: Variable [value] should be greater than [0]!");
             }
 
@@ -1048,7 +1048,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -1067,7 +1067,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPostConditionException>()
+                    .Should().Throw<CopPostConditionException>()
                     .WithMessage("POST-CONDITION: Variable [value] should be greater than [0]!");
             }
         }
@@ -1089,7 +1089,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -1108,7 +1108,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPreConditionException>()
+                    .Should().Throw<CopPreConditionException>()
                     .WithMessage("PRE-CONDITION: Variable [value] should be greater than or equal to [0]!");
             }
 
@@ -1127,7 +1127,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -1146,7 +1146,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPostConditionException>()
+                    .Should().Throw<CopPostConditionException>()
                     .WithMessage("POST-CONDITION: Variable [value] should be greater than or equal to [0]!");
             }
         }
@@ -1168,7 +1168,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -1187,7 +1187,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPreConditionException>()
+                    .Should().Throw<CopPreConditionException>()
                     .WithMessage("PRE-CONDITION: Variable [value] should be zero or a positive number!");
             }
 
@@ -1206,7 +1206,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -1225,7 +1225,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPostConditionException>()
+                    .Should().Throw<CopPostConditionException>()
                     .WithMessage("POST-CONDITION: Variable [value] should be zero or a positive number!");
             }
         }
@@ -1247,7 +1247,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -1266,7 +1266,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPreConditionException>()
+                    .Should().Throw<CopPreConditionException>()
                     .WithMessage("PRE-CONDITION: Variable [value] should be a positive number!");
             }
 
@@ -1285,7 +1285,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -1304,7 +1304,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPostConditionException>()
+                    .Should().Throw<CopPostConditionException>()
                     .WithMessage("POST-CONDITION: Variable [value] should be a positive number!");
             }
         }
@@ -1326,7 +1326,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -1345,7 +1345,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPreConditionException>()
+                    .Should().Throw<CopPreConditionException>()
                     .WithMessage("PRE-CONDITION: Variable [value] should be zero or a negative number!");
             }
 
@@ -1364,7 +1364,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -1383,7 +1383,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPostConditionException>()
+                    .Should().Throw<CopPostConditionException>()
                     .WithMessage("POST-CONDITION: Variable [value] should be zero or a negative number!");
             }
         }
@@ -1405,7 +1405,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -1424,7 +1424,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPreConditionException>()
+                    .Should().Throw<CopPreConditionException>()
                     .WithMessage("PRE-CONDITION: Variable [value] should be a negative number!");
             }
 
@@ -1443,7 +1443,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -1462,7 +1462,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPostConditionException>()
+                    .Should().Throw<CopPostConditionException>()
                     .WithMessage("POST-CONDITION: Variable [value] should be a negative number!");
             }
         }
@@ -1484,7 +1484,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -1503,7 +1503,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPreConditionException>()
+                    .Should().Throw<CopPreConditionException>()
                     .WithMessage("PRE-CONDITION: Variable [value] should be zero!");
             }
 
@@ -1522,7 +1522,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -1541,7 +1541,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPostConditionException>()
+                    .Should().Throw<CopPostConditionException>()
                     .WithMessage("POST-CONDITION: Variable [value] should be zero!");
             }
         }
@@ -1563,7 +1563,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -1582,7 +1582,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPreConditionException>()
+                    .Should().Throw<CopPreConditionException>()
                     .WithMessage("PRE-CONDITION: Variable [value] should be equal to [0]!");
             }
 
@@ -1601,7 +1601,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -1620,7 +1620,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPostConditionException>()
+                    .Should().Throw<CopPostConditionException>()
                     .WithMessage("POST-CONDITION: Variable [value] should be equal to [0]!");
             }
         }
@@ -1642,7 +1642,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -1661,7 +1661,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPreConditionException>()
+                    .Should().Throw<CopPreConditionException>()
                     .WithMessage("PRE-CONDITION: Variable [value] should be less than [0]!");
             }
 
@@ -1680,7 +1680,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -1699,7 +1699,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPostConditionException>()
+                    .Should().Throw<CopPostConditionException>()
                     .WithMessage("POST-CONDITION: Variable [value] should be less than [0]!");
             }
         }
@@ -1721,7 +1721,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -1740,7 +1740,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPreConditionException>()
+                    .Should().Throw<CopPreConditionException>()
                     .WithMessage("PRE-CONDITION: Variable [value] should be less than or equal to [0]!");
             }
 
@@ -1759,7 +1759,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -1778,7 +1778,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPostConditionException>()
+                    .Should().Throw<CopPostConditionException>()
                     .WithMessage("POST-CONDITION: Variable [value] should be less than or equal to [0]!");
             }
         }
@@ -1800,7 +1800,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -1819,7 +1819,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPreConditionException>()
+                    .Should().Throw<CopPreConditionException>()
                     .WithMessage("PRE-CONDITION: Variable [value] should be greater than [0]!");
             }
 
@@ -1838,7 +1838,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -1857,7 +1857,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPostConditionException>()
+                    .Should().Throw<CopPostConditionException>()
                     .WithMessage("POST-CONDITION: Variable [value] should be greater than [0]!");
             }
         }
@@ -1879,7 +1879,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -1898,7 +1898,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPreConditionException>()
+                    .Should().Throw<CopPreConditionException>()
                     .WithMessage("PRE-CONDITION: Variable [value] should be greater than or equal to [0]!");
             }
 
@@ -1917,7 +1917,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -1936,7 +1936,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPostConditionException>()
+                    .Should().Throw<CopPostConditionException>()
                     .WithMessage("POST-CONDITION: Variable [value] should be greater than or equal to [0]!");
             }
         }
@@ -1958,7 +1958,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -1977,7 +1977,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPreConditionException>()
+                    .Should().Throw<CopPreConditionException>()
                     .WithMessage("PRE-CONDITION: Variable [value] should be zero or a positive number!");
             }
 
@@ -1996,7 +1996,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -2015,7 +2015,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPostConditionException>()
+                    .Should().Throw<CopPostConditionException>()
                     .WithMessage("POST-CONDITION: Variable [value] should be zero or a positive number!");
             }
         }
@@ -2037,7 +2037,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -2056,7 +2056,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPreConditionException>()
+                    .Should().Throw<CopPreConditionException>()
                     .WithMessage("PRE-CONDITION: Variable [value] should be a positive number!");
             }
 
@@ -2075,7 +2075,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -2094,7 +2094,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPostConditionException>()
+                    .Should().Throw<CopPostConditionException>()
                     .WithMessage("POST-CONDITION: Variable [value] should be a positive number!");
             }
         }
@@ -2116,7 +2116,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -2135,7 +2135,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPreConditionException>()
+                    .Should().Throw<CopPreConditionException>()
                     .WithMessage("PRE-CONDITION: Variable [value] should be zero or a negative number!");
             }
 
@@ -2154,7 +2154,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -2173,7 +2173,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPostConditionException>()
+                    .Should().Throw<CopPostConditionException>()
                     .WithMessage("POST-CONDITION: Variable [value] should be zero or a negative number!");
             }
         }
@@ -2195,7 +2195,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -2214,7 +2214,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPreConditionException>()
+                    .Should().Throw<CopPreConditionException>()
                     .WithMessage("PRE-CONDITION: Variable [value] should be a negative number!");
             }
 
@@ -2233,7 +2233,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -2252,7 +2252,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPostConditionException>()
+                    .Should().Throw<CopPostConditionException>()
                     .WithMessage("POST-CONDITION: Variable [value] should be a negative number!");
             }
         }
@@ -2274,7 +2274,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -2293,7 +2293,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPreConditionException>()
+                    .Should().Throw<CopPreConditionException>()
                     .WithMessage("PRE-CONDITION: Variable [value] should be zero!");
             }
 
@@ -2312,7 +2312,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -2331,7 +2331,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPostConditionException>()
+                    .Should().Throw<CopPostConditionException>()
                     .WithMessage("POST-CONDITION: Variable [value] should be zero!");
             }
         }
@@ -2353,7 +2353,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -2372,7 +2372,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPreConditionException>()
+                    .Should().Throw<CopPreConditionException>()
                     .WithMessage("PRE-CONDITION: Variable [value] should be equal to [0]!");
             }
 
@@ -2391,7 +2391,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -2410,7 +2410,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPostConditionException>()
+                    .Should().Throw<CopPostConditionException>()
                     .WithMessage("POST-CONDITION: Variable [value] should be equal to [0]!");
             }
         }
@@ -2432,7 +2432,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -2451,7 +2451,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPreConditionException>()
+                    .Should().Throw<CopPreConditionException>()
                     .WithMessage("PRE-CONDITION: Variable [value] should be less than [0]!");
             }
 
@@ -2470,7 +2470,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -2489,7 +2489,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPostConditionException>()
+                    .Should().Throw<CopPostConditionException>()
                     .WithMessage("POST-CONDITION: Variable [value] should be less than [0]!");
             }
         }
@@ -2511,7 +2511,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -2530,7 +2530,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPreConditionException>()
+                    .Should().Throw<CopPreConditionException>()
                     .WithMessage("PRE-CONDITION: Variable [value] should be less than or equal to [0]!");
             }
 
@@ -2549,7 +2549,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -2568,7 +2568,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPostConditionException>()
+                    .Should().Throw<CopPostConditionException>()
                     .WithMessage("POST-CONDITION: Variable [value] should be less than or equal to [0]!");
             }
         }
@@ -2590,7 +2590,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -2609,7 +2609,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPreConditionException>()
+                    .Should().Throw<CopPreConditionException>()
                     .WithMessage("PRE-CONDITION: Variable [value] should be greater than [0]!");
             }
 
@@ -2628,7 +2628,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -2647,7 +2647,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPostConditionException>()
+                    .Should().Throw<CopPostConditionException>()
                     .WithMessage("POST-CONDITION: Variable [value] should be greater than [0]!");
             }
         }
@@ -2669,7 +2669,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -2688,7 +2688,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPreConditionException>()
+                    .Should().Throw<CopPreConditionException>()
                     .WithMessage("PRE-CONDITION: Variable [value] should be greater than or equal to [0]!");
             }
 
@@ -2707,7 +2707,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -2726,7 +2726,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPostConditionException>()
+                    .Should().Throw<CopPostConditionException>()
                     .WithMessage("POST-CONDITION: Variable [value] should be greater than or equal to [0]!");
             }
         }
@@ -2748,7 +2748,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -2767,7 +2767,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPreConditionException>()
+                    .Should().Throw<CopPreConditionException>()
                     .WithMessage("PRE-CONDITION: Variable [value] should be zero or a positive number!");
             }
 
@@ -2786,7 +2786,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -2805,7 +2805,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPostConditionException>()
+                    .Should().Throw<CopPostConditionException>()
                     .WithMessage("POST-CONDITION: Variable [value] should be zero or a positive number!");
             }
         }
@@ -2827,7 +2827,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -2846,7 +2846,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPreConditionException>()
+                    .Should().Throw<CopPreConditionException>()
                     .WithMessage("PRE-CONDITION: Variable [value] should be a positive number!");
             }
 
@@ -2865,7 +2865,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -2884,7 +2884,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPostConditionException>()
+                    .Should().Throw<CopPostConditionException>()
                     .WithMessage("POST-CONDITION: Variable [value] should be a positive number!");
             }
         }
@@ -2906,7 +2906,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -2925,7 +2925,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPreConditionException>()
+                    .Should().Throw<CopPreConditionException>()
                     .WithMessage("PRE-CONDITION: Variable [value] should be zero or a negative number!");
             }
 
@@ -2944,7 +2944,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -2963,7 +2963,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPostConditionException>()
+                    .Should().Throw<CopPostConditionException>()
                     .WithMessage("POST-CONDITION: Variable [value] should be zero or a negative number!");
             }
         }
@@ -2985,7 +2985,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -3004,7 +3004,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPreConditionException>()
+                    .Should().Throw<CopPreConditionException>()
                     .WithMessage("PRE-CONDITION: Variable [value] should be a negative number!");
             }
 
@@ -3023,7 +3023,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -3042,7 +3042,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPostConditionException>()
+                    .Should().Throw<CopPostConditionException>()
                     .WithMessage("POST-CONDITION: Variable [value] should be a negative number!");
             }
         }
@@ -3064,7 +3064,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -3083,7 +3083,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPreConditionException>()
+                    .Should().Throw<CopPreConditionException>()
                     .WithMessage("PRE-CONDITION: Variable [value] should be zero!");
             }
 
@@ -3102,7 +3102,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -3121,7 +3121,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPostConditionException>()
+                    .Should().Throw<CopPostConditionException>()
                     .WithMessage("POST-CONDITION: Variable [value] should be zero!");
             }
         }
@@ -3143,7 +3143,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -3162,7 +3162,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPreConditionException>()
+                    .Should().Throw<CopPreConditionException>()
                     .WithMessage("PRE-CONDITION: Variable [value] should be equal to [0]!");
             }
 
@@ -3181,7 +3181,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -3200,7 +3200,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPostConditionException>()
+                    .Should().Throw<CopPostConditionException>()
                     .WithMessage("POST-CONDITION: Variable [value] should be equal to [0]!");
             }
         }

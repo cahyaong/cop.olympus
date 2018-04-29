@@ -33,9 +33,11 @@ namespace nGratis.Cop.Core.Contract
     using System.Linq;
     using System.Reflection;
 
-    public struct Mime
+    public class Mime
     {
         public static readonly Mime Unknown = new Mime("unknown", 0, 0, "*");
+
+        public static readonly Mime Text = new Mime("text/plain", 0, 0, "txt");
 
         public static readonly Mime Csv = new Mime("text/csv", 4180, 0, "csv");
 
@@ -76,27 +78,48 @@ namespace nGratis.Cop.Core.Contract
 
             Mime.NameLookup = mimes
                 .SelectMany(mime => mime
-                    .Names
+                    .Extensions
                     .Where(name => !string.IsNullOrEmpty(name))
                     .Select(name => new { Name = name, Mime = mime }))
                 .ToDictionary(anon => anon.Name, anon => anon.Mime);
         }
 
-        private Mime(string uniqueId, int rfcId, int isoId, params string[] names)
+        public Mime(string uniqueId, params string[] extensions)
         {
             Guard
                 .Require(uniqueId, nameof(uniqueId))
                 .Is.Not.Empty();
 
             Guard
-                .Require(names, nameof(names))
+                .Require(extensions, nameof(extensions))
+                .Is.Not.Null()
+                .Is.Not.Empty();
+
+            Guard
+                .Require(Mime.UniqueIdLookup, nameof(Mime.UniqueIdLookup))
+                .Has.No.Key(uniqueId);
+
+            this.UniqueId = uniqueId;
+            this.RfcId = int.MinValue;
+            this.IsoId = int.MinValue;
+            this.Extensions = extensions;
+        }
+
+        private Mime(string uniqueId, int rfcId, int isoId, params string[] extensions)
+        {
+            Guard
+                .Require(uniqueId, nameof(uniqueId))
+                .Is.Not.Empty();
+
+            Guard
+                .Require(extensions, nameof(extensions))
                 .Is.Not.Null()
                 .Is.Not.Empty();
 
             this.UniqueId = uniqueId;
             this.RfcId = rfcId;
             this.IsoId = isoId;
-            this.Names = names;
+            this.Extensions = extensions;
         }
 
         public string UniqueId { get; }
@@ -105,7 +128,11 @@ namespace nGratis.Cop.Core.Contract
 
         public int IsoId { get; }
 
-        public IEnumerable<string> Names { get; }
+        public IEnumerable<string> Extensions { get; }
+
+        public string FileExtension => $".{this.Extensions.First()}";
+
+        public bool IsText => this.UniqueId.Split('/').First() == "text";
 
         public static Mime ParseByUniqueId(string uniqueId)
         {
@@ -120,27 +147,26 @@ namespace nGratis.Cop.Core.Contract
             return Mime.UniqueIdLookup[uniqueId];
         }
 
-        public static Mime ParseByName(string name)
+        public static Mime ParseByFileExtension(string extension)
         {
             Guard
-                .Require(name, nameof(name))
+                .Require(extension, nameof(extension))
                 .Is.Not.Empty();
 
-            name = name.Replace(".", string.Empty);
+            extension = extension.Replace(".", string.Empty);
 
             Guard
                 .Require(Mime.NameLookup, nameof(Mime.NameLookup))
-                .Has.Key(name);
+                .Has.Key(extension);
 
-            return Mime.NameLookup[name];
+            return Mime.NameLookup[extension];
         }
 
         public static bool operator ==(Mime left, Mime right)
         {
             return
-                left.UniqueId == right.UniqueId &&
-                left.RfcId == right.RfcId &&
-                left.IsoId == right.IsoId;
+                !object.Equals(left, null) && !object.Equals(right, null) &&
+                left.UniqueId == right.UniqueId;
         }
 
         public static bool operator !=(Mime left, Mime right)
@@ -157,20 +183,8 @@ namespace nGratis.Cop.Core.Contract
         {
             var hash = 17;
             hash = hash * 23 + this.UniqueId?.GetHashCode() ?? 0;
-            hash = hash * 23 + this.RfcId;
-            hash = hash * 23 + this.IsoId;
 
             return hash;
-        }
-
-        public string ToFileExtension()
-        {
-            return $".{this.Names.First()}";
-        }
-
-        public bool IsTextDocument()
-        {
-            return this.UniqueId.Split('/').First() == "text";
         }
     }
 }

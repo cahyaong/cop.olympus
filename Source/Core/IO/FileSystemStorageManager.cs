@@ -63,10 +63,7 @@ namespace nGratis.Cop.Core
             }
 
             return Directory
-                .GetFiles(
-                    this.RootUri.LocalPath,
-                    $"{pattern}{mime.ToFileExtension()}",
-                    SearchOption.TopDirectoryOnly)
+                .GetFiles(this.RootUri.LocalPath, $"{pattern}{mime.FileExtension}", SearchOption.TopDirectoryOnly)
                 .Select(path => new FileInfo(path))
                 .Select(info => new DataInfo(Path.GetFileNameWithoutExtension(info.Name), mime)
                 {
@@ -114,7 +111,7 @@ namespace nGratis.Cop.Core
 
             dataStream.Position = 0;
 
-            if (dataSpec.Mime.IsTextDocument())
+            if (dataSpec.Mime.IsText)
             {
                 using (var reader = new StreamReader(dataStream))
                 using (var writer = new StreamWriter(File.OpenWrite(fileUri.LocalPath), Encoding.UTF8))

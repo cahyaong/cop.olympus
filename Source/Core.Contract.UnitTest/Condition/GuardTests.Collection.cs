@@ -55,7 +55,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -74,7 +74,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPreConditionException>()
+                    .Should().Throw<CopPreConditionException>()
                     .WithMessage("PRE-CONDITION: Variable [values] should be empty!");
             }
 
@@ -93,7 +93,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -112,7 +112,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPostConditionException>()
+                    .Should().Throw<CopPostConditionException>()
                     .WithMessage("POST-CONDITION: Variable [values] should be empty!");
             }
         }
@@ -134,7 +134,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -155,7 +155,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPreConditionException>()
+                    .Should().Throw<CopPreConditionException>()
                     .WithMessage("PRE-CONDITION: Variable [values] should be empty!");
             }
 
@@ -174,7 +174,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -195,7 +195,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPostConditionException>()
+                    .Should().Throw<CopPostConditionException>()
                     .WithMessage("POST-CONDITION: Variable [values] should be empty!");
             }
         }
@@ -220,7 +220,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -242,7 +242,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPreConditionException>()
+                    .Should().Throw<CopPreConditionException>()
                     .WithMessage("PRE-CONDITION: Variable [value] should have key [[_MOCK_ANOTHER_KEY_]]!");
             }
 
@@ -264,7 +264,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
             }
 
             [Fact]
@@ -286,7 +286,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                 // Assert.
 
                 action
-                    .ShouldThrow<CopPostConditionException>()
+                    .Should().Throw<CopPostConditionException>()
                     .WithMessage("POST-CONDITION: Variable [value] should have key [[_MOCK_ANOTHER_KEY_]]!");
             }
         }
