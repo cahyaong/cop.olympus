@@ -34,6 +34,8 @@ namespace nGratis.Cop.Core.Wpf
 
     public class SharedResourceDictionary : ResourceDictionary
     {
+        // TODO: Need to make this class thread-safe!
+
         private static readonly Dictionary<Uri, ResourceDictionary> SharedDictionaries =
             new Dictionary<Uri, ResourceDictionary>();
 

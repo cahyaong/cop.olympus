@@ -3,9 +3,9 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:core="http://schemas.ngratis.com/2014/core">
   <ResourceDictionary.MergedDictionaries>
-    <ResourceDictionary Source="/MahApps.Metro;component/Styles/Controls.xaml" />
-    <ResourceDictionary Source="/MahApps.Metro;component/Styles/Fonts.xaml" />
-    <ResourceDictionary Source="/MahApps.Metro;component/Styles/Colors.xaml" />
+    <core:SharedResourceDictionary Source="/MahApps.Metro;component/Styles/Controls.xaml" />
+    <core:SharedResourceDictionary Source="/MahApps.Metro;component/Styles/Fonts.xaml" />
+    <core:SharedResourceDictionary Source="/MahApps.Metro;component/Styles/Colors.xaml" />
     <core:SharedResourceDictionary Source="/nGratis.Cop.Core.Theme;component/Cop.Palette.Generic.xaml" />
     <core:SharedResourceDictionary Source="/nGratis.Cop.Core.Theme;component/Cop.Style.AweButton.xaml" />
     <core:SharedResourceDictionary Source="/nGratis.Cop.Core.Theme;component/Cop.Style.AweChart.xaml" />
