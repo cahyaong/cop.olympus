@@ -30,7 +30,7 @@
 
 namespace Moq
 {
-    public static class MockBuilder
+    public class MockBuilder
     {
         public static Mock<T> CreateMock<T>()
             where T : class

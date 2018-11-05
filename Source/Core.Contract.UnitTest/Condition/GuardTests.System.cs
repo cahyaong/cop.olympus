@@ -32,7 +32,6 @@
 namespace nGratis.Cop.Core.Contract.UnitTest
 {
     using System;
-    using System.Data;
     using System.IO;
     using FluentAssertions;
     using Moq;
@@ -409,93 +408,6 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                     .CreateMock<Stream>()
                     .WithContent("[_MOCK_CONTENT_]")
                     .Object;
-
-                // Act.
-
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.Empty());
-
-                // Assert.
-
-                action
-                    .Should().Throw<CopPostConditionException>()
-                    .WithMessage("POST-CONDITION: Variable [value] should be empty!");
-            }
-        }
-
-        public class EmptyMethod_DataTable
-        {
-            [Fact]
-            public void WhenGettingValidPreCondition_ShouldNotThrowException()
-            {
-                // Arrange.
-
-                var value = new DataTable();
-
-                // Act.
-
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.Empty());
-
-                // Assert.
-
-                action.Should().NotThrow();
-            }
-
-            [Fact]
-            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
-            {
-                // Arrange.
-
-                var value = new DataTable();
-
-                var column = value.Columns.Add("[_MOCK_COLUMN_]");
-                var row = value.NewRow();
-                row[column] = "[_MOCK_CELL_]";
-
-                // Act.
-
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.Empty());
-
-                // Assert.
-
-                action
-                    .Should().Throw<CopPreConditionException>()
-                    .WithMessage("PRE-CONDITION: Variable [value] should be empty!");
-            }
-
-            [Fact]
-            public void WhenGettingValidPostCondition_ShouldNotThrowException()
-            {
-                // Arrange.
-
-                var value = new DataTable();
-
-                // Act.
-
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.Empty());
-
-                // Assert.
-
-                action.Should().NotThrow();
-            }
-
-            [Fact]
-            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
-            {
-                // Arrange.
-
-                var value = new DataTable();
-
-                var column = value.Columns.Add("[_MOCK_COLUMN_]");
-                var row = value.NewRow();
-                row[column] = "[_MOCK_CELL_]";
 
                 // Act.
 

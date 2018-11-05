@@ -29,7 +29,6 @@
 namespace nGratis.Cop.Core.Contract
 {
     using System;
-    using System.Data;
     using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
@@ -110,13 +109,7 @@ namespace nGratis.Cop.Core.Contract
                 "be empty");
         }
 
-        [DebuggerStepThrough]
-        public static ValidationContinuation<DataTable> Empty(this ClassValidator<DataTable> validator)
-        {
-            return validator.Validate(
-                actual => actual.Columns.Count <= 0 && actual.Rows.Count <= 0,
-                "be empty");
-        }
+		// TODO: Add <DataTable> validation in a separate project!
 
         [DebuggerStepThrough]
         [SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures")]
