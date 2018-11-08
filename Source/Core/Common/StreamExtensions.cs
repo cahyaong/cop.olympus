@@ -38,13 +38,24 @@ namespace nGratis.Cop.Core
         {
             Guard
                 .Require(stream, nameof(stream))
-                .Is.Not.Null();
+                .Is.Not.Null()
+                .Is.Readable();
 
-            stream.Position = 0;
+            if (stream.CanSeek)
+            {
+                stream.Position = 0;
+            }
 
             using (var reader = new StreamReader(stream, Encoding.UTF8, true, 4096, false))
             {
-                return reader.ReadToEnd();
+                var content = reader.ReadToEnd();
+
+                if (stream.CanSeek)
+                {
+                    stream.Position = 0;
+                }
+
+                return content;
             }
         }
     }
