@@ -31,6 +31,7 @@ namespace System.Collections.Generic
 {
     using System;
     using System.Linq;
+    using JetBrains.Annotations;
     using nGratis.Cop.Core;
     using nGratis.Cop.Core.Contract;
 
@@ -123,23 +124,23 @@ namespace System.Collections.Generic
             return lefts.Except(rights, new DelegateEqualityComparer<T>(isEqual));
         }
 
-        public static void ForEach<T>(this IEnumerable<T> items, Action<T> perform)
+        public static void ForEach<T>(this IEnumerable<T> items, [InstantHandle] Action<T> apply)
         {
             Guard
                 .Require(items, nameof(items))
                 .Is.Not.Null();
 
             Guard
-                .Require(perform, nameof(perform))
+                .Require(apply, nameof(apply))
                 .Is.Not.Null();
 
             foreach (var item in items)
             {
-                perform(item);
+                apply(item);
             }
         }
 
-        public static void ForEach<T>(this IEnumerable<T> items, Action<T, int> apply)
+        public static void ForEach<T>(this IEnumerable<T> items, [InstantHandle] Action<T, int> apply)
         {
             Guard
                 .Require(items, nameof(items))
