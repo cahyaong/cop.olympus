@@ -58,7 +58,7 @@ namespace nGratis.Cop.Core
             return new MemoryStream();
         }
 
-        public void SaveEntry(DataSpec dataSpec, Stream dataStream)
+        public void SaveEntry(DataSpec dataSpec, Stream dataStream, bool canOverride)
         {
         }
     }

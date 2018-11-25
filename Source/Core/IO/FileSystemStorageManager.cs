@@ -104,7 +104,7 @@ namespace nGratis.Cop.Core
             return fileStream;
         }
 
-        public void SaveEntry(DataSpec dataSpec, Stream dataStream)
+        public void SaveEntry(DataSpec dataSpec, Stream dataStream, bool canOverride)
         {
             Guard
                 .Require(dataSpec, nameof(dataSpec))
@@ -117,9 +117,12 @@ namespace nGratis.Cop.Core
 
             var fileUri = new Uri(Path.Combine(this.RootUri.LocalPath, dataSpec.GetFileName()));
 
-            Guard
-                .Require(fileUri, nameof(fileUri))
-                .Is.Not.Exist();
+            if (!canOverride)
+            {
+                Guard
+                    .Require(fileUri, nameof(fileUri))
+                    .Is.Not.Exist();
+            }
 
             if (dataStream.CanSeek)
             {

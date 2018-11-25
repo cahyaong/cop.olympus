@@ -41,6 +41,6 @@ namespace nGratis.Cop.Core.Contract
 
         Stream LoadEntry(DataSpec dataSpec);
 
-        void SaveEntry(DataSpec dataSpec, Stream dataStream);
+        void SaveEntry(DataSpec dataSpec, Stream dataStream, bool canOverride);
     }
 }
