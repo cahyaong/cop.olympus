@@ -31,25 +31,41 @@
 namespace Moq
 {
     using System.Text.RegularExpressions;
+    using nGratis.Cop.Core.Contract;
     using Contract = nGratis.Cop.Core.Contract;
     using IO = System.IO;
 
-    public static class Arg
+    public class Arg
     {
         public static TValue IsAny<TValue>()
         {
             return It.IsAny<TValue>();
         }
 
-        public static class DataSpec
+        public class DataSpec
         {
+            public static Contract.DataSpec Is(string name, Mime mime)
+            {
+                Guard
+                    .Require(name, nameof(name))
+                    .Is.Not.Empty();
+
+                Guard
+                    .Require(mime, nameof(mime))
+                    .Is.Not.Null();
+
+                return Match.Create<Contract.DataSpec>(spec =>
+                    spec.Name == name &&
+                    spec.Mime == mime);
+            }
+
             public static Contract.DataSpec IsHtml()
             {
-                return Match.Create<Contract.DataSpec>(spec => spec.Mime == Contract.Mime.Html);
+                return Match.Create<Contract.DataSpec>(spec => spec.Mime == Mime.Html);
             }
         }
 
-        public static class Stream
+        public class Stream
         {
             public static IO.Stream IsHtml()
             {

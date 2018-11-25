@@ -51,7 +51,7 @@ namespace nGratis.Cop.Core.Contract
 
         public override string ToString()
         {
-            return $"ngds://./{this.Name}{this.Mime.Extensions.First()}";
+            return $"ngds://./{this.Name}.{this.Mime.Extensions.First()}";
         }
     }
 }

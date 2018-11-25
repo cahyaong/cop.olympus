@@ -57,6 +57,10 @@ namespace nGratis.Cop.Core
 
         public IEnumerable<DataInfo> FindEntries(string pattern, Mime mime)
         {
+            Guard
+                .Require(mime, nameof(mime))
+                .Is.Not.Null();
+
             if (string.IsNullOrEmpty(pattern))
             {
                 pattern = "*";
@@ -88,9 +92,16 @@ namespace nGratis.Cop.Core
                 .Require(dataSpec, nameof(dataSpec))
                 .Is.Not.Null();
 
-            return File.Open(
+            var fileStream = File.Open(
                 Path.Combine(this.RootUri.LocalPath, dataSpec.GetFileName()),
                 FileMode.Open);
+
+            if (fileStream.CanSeek)
+            {
+                fileStream.Position = 0;
+            }
+
+            return fileStream;
         }
 
         public void SaveEntry(DataSpec dataSpec, Stream dataStream)
@@ -101,7 +112,8 @@ namespace nGratis.Cop.Core
 
             Guard
                 .Require(dataStream, nameof(dataStream))
-                .Is.Not.Null();
+                .Is.Not.Null()
+                .Is.Readable();
 
             var fileUri = new Uri(Path.Combine(this.RootUri.LocalPath, dataSpec.GetFileName()));
 
@@ -109,7 +121,10 @@ namespace nGratis.Cop.Core
                 .Require(fileUri, nameof(fileUri))
                 .Is.Not.Exist();
 
-            dataStream.Position = 0;
+            if (dataStream.CanSeek)
+            {
+                dataStream.Position = 0;
+            }
 
             if (dataSpec.Mime.IsText)
             {
@@ -125,7 +140,7 @@ namespace nGratis.Cop.Core
                 using (var fileStream = new FileStream(fileUri.LocalPath, FileMode.Create))
                 {
                     dataStream.CopyTo(fileStream);
-                    dataStream.Flush();
+                    fileStream.Flush();
                 }
             }
         }
