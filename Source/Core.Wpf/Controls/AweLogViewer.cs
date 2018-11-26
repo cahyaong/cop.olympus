@@ -42,7 +42,7 @@ namespace nGratis.Cop.Core.Wpf
             "Logger",
             typeof(ILogger),
             typeof(AweLogViewer),
-            new PropertyMetadata(null, AweLogViewer.OnLoggerPropertyChanged));
+            new PropertyMetadata(null, AweLogViewer.OnLoggerChanged));
 
         public static readonly DependencyProperty LogEntriesProperty = DependencyProperty.Register(
             "LogEntries",
@@ -73,7 +73,7 @@ namespace nGratis.Cop.Core.Wpf
 
         public IList<LogEntry> LogEntries => (IList<LogEntry>)this.GetValue(AweLogViewer.LogEntriesProperty);
 
-        private static void OnLoggerPropertyChanged(
+        private static void OnLoggerChanged(
             DependencyObject container,
             DependencyPropertyChangedEventArgs args)
         {

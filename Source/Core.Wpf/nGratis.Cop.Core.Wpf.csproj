@@ -132,6 +132,7 @@
     <Compile Include="Controls\AweFileChooser.cs" />
     <Compile Include="Controls\AweScrollBar.cs" />
     <Compile Include="Controls\AweScrollViewer.cs" />
+    <Compile Include="Controls\AweTile.cs" />
     <Compile Include="Converters\AnyToTitleCaseConverter.cs" />
     <Compile Include="Converters\ColorToSolidBrushConverter.cs" />
     <Compile Include="Converters\EnumToValuesConverter.cs" />
