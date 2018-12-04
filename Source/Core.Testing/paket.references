@@ -1,0 +1,5 @@
+group Build
+    JetBrains.Annotations
+
+group Test
+    Moq

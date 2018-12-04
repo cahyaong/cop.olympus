@@ -49,13 +49,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(values, nameof(values))
-                    .Is.Empty());
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Require(values, nameof(values))
+                        .Is.Empty();
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -67,9 +71,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(values, nameof(values))
-                    .Is.Empty());
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Require(values, nameof(values))
+                        .Is.Empty();
+                });
 
                 // Assert.
 
@@ -87,13 +94,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(values, nameof(values))
-                    .Is.Empty());
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Ensure(values, nameof(values))
+                        .Is.Empty();
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -105,9 +116,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(values, nameof(values))
-                    .Is.Empty());
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Ensure(values, nameof(values))
+                        .Is.Empty();
+                });
 
                 // Assert.
 
@@ -128,13 +142,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(values, nameof(values))
-                    .Is.Empty());
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Require(values, nameof(values))
+                        .Is.Empty();
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -148,9 +166,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(values, nameof(values))
-                    .Is.Empty());
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Require(values, nameof(values))
+                        .Is.Empty();
+                });
 
                 // Assert.
 
@@ -168,13 +189,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(values, nameof(values))
-                    .Is.Empty());
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Ensure(values, nameof(values))
+                        .Is.Empty();
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -188,9 +213,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(values, nameof(values))
-                    .Is.Empty());
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Ensure(values, nameof(values))
+                        .Is.Empty();
+                });
 
                 // Assert.
 
@@ -214,13 +242,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Has.Key("[_MOCK_KEY_]"));
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Has.Key("[_MOCK_KEY_]");
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -235,9 +267,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Has.Key("[_MOCK_ANOTHER_KEY_]"));
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Has.Key("[_MOCK_ANOTHER_KEY_]");
+                });
 
                 // Assert.
 
@@ -258,13 +293,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Has.Key("[_MOCK_KEY_]"));
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Has.Key("[_MOCK_KEY_]");
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -279,9 +318,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Has.Key("[_MOCK_ANOTHER_KEY_]"));
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Has.Key("[_MOCK_ANOTHER_KEY_]");
+                });
 
                 // Assert.
 

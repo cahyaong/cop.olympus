@@ -1,0 +1,12 @@
+group Build
+    Humanizer.Core
+    JetBrains.Annotations
+
+group Build-UI
+    Caliburn.Micro
+    MahApps.Metro
+    ModernUI.WPF
+    OxyPlot.Wpf
+    ReactiveUI.WPF
+    System.Reactive
+    System.Reactive.Linq

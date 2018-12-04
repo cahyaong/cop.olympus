@@ -47,11 +47,15 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => { var mime = new Mime(Mime.Text.UniqueId, "[_MOCK_EXTENSION_]"); });
+                var action = new Action(() =>
+                {
+                    var mime = new Mime(Mime.Text.UniqueId, "[_MOCK_EXTENSION_]");
+                });
 
                 // Assert.
 
-                action.Should().Throw<CopPreConditionException>();
+                action
+                    .Should().Throw<CopPreConditionException>();
             }
         }
 
@@ -68,7 +72,8 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                mime.Should().Be(Mime.Text);
+                mime
+                    .Should().Be(Mime.Text);
             }
 
             [Fact]
@@ -78,11 +83,15 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => { var mime = Mime.ParseByUniqueId("[_MOCK_UNIQUE_ID_]"); });
+                var action = new Action(() =>
+                {
+                    var mime = Mime.ParseByUniqueId("[_MOCK_UNIQUE_ID_]");
+                });
 
                 // Assert.
 
-                action.Should().Throw<CopPreConditionException>();
+                action
+                    .Should().Throw<CopPreConditionException>();
             }
         }
 
@@ -99,7 +108,8 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                mime.Should().Be(Mime.Text);
+                mime
+                    .Should().Be(Mime.Text);
             }
 
             [Fact]
@@ -113,7 +123,8 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                mime.Should().Be(Mime.Jpeg);
+                mime
+                    .Should().Be(Mime.Jpeg);
             }
 
             [Fact]
@@ -123,11 +134,15 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => { var mime = Mime.ParseByFileExtension("[_MOCK_FILE_EXTENSION_]"); });
+                var action = new Action(() =>
+                {
+                    var mime = Mime.ParseByFileExtension("[_MOCK_FILE_EXTENSION_]");
+                });
 
                 // Assert.
 
-                action.Should().Throw<CopPreConditionException>();
+                action
+                    .Should().Throw<CopPreConditionException>();
             }
         }
 
@@ -146,7 +161,8 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                isEqual.Should().BeTrue();
+                isEqual
+                    .Should().BeTrue();
             }
 
             [Theory]
@@ -162,7 +178,8 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                isEqual.Should().BeFalse();
+                isEqual
+                    .Should().BeFalse();
             }
         }
 
@@ -182,7 +199,8 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                leftHash.Should().Be(rightHash);
+                leftHash
+                    .Should().Be(rightHash);
             }
 
             [Theory]
@@ -199,7 +217,8 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Assert.
 
-                leftHash.Should().NotBe(rightHash);
+                leftHash
+                    .Should().NotBe(rightHash);
             }
         }
 

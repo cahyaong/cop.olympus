@@ -45,13 +45,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.Empty());
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.Empty();
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -63,9 +67,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.Empty());
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.Empty();
+                });
 
                 // Assert.
 
@@ -83,13 +90,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.Empty());
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.Empty();
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -101,9 +112,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.Empty());
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.Empty();
+                });
 
                 // Assert.
 

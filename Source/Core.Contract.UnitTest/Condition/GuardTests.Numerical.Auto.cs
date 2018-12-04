@@ -56,13 +56,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.LessThan(0));
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.LessThan(0);
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -74,9 +78,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.LessThan(0));
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.LessThan(0);
+                });
 
                 // Assert.
 
@@ -94,13 +101,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.LessThan(0));
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.LessThan(0);
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -112,9 +123,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.LessThan(0));
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.LessThan(0);
+                });
 
                 // Assert.
 
@@ -135,13 +149,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.LessThanOrEqualTo(0));
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.LessThanOrEqualTo(0);
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -153,9 +171,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.LessThanOrEqualTo(0));
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.LessThanOrEqualTo(0);
+                });
 
                 // Assert.
 
@@ -173,13 +194,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.LessThanOrEqualTo(0));
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.LessThanOrEqualTo(0);
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -191,9 +216,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.LessThanOrEqualTo(0));
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.LessThanOrEqualTo(0);
+                });
 
                 // Assert.
 
@@ -214,13 +242,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.GreaterThan(0));
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.GreaterThan(0);
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -232,9 +264,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.GreaterThan(0));
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.GreaterThan(0);
+                });
 
                 // Assert.
 
@@ -252,13 +287,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.GreaterThan(0));
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.GreaterThan(0);
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -270,9 +309,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.GreaterThan(0));
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.GreaterThan(0);
+                });
 
                 // Assert.
 
@@ -293,13 +335,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.GreaterThanOrEqualTo(0));
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.GreaterThanOrEqualTo(0);
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -311,9 +357,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.GreaterThanOrEqualTo(0));
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.GreaterThanOrEqualTo(0);
+                });
 
                 // Assert.
 
@@ -331,13 +380,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.GreaterThanOrEqualTo(0));
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.GreaterThanOrEqualTo(0);
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -349,9 +402,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.GreaterThanOrEqualTo(0));
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.GreaterThanOrEqualTo(0);
+                });
 
                 // Assert.
 
@@ -372,13 +428,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.ZeroOrPositive());
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.ZeroOrPositive();
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -390,9 +450,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.ZeroOrPositive());
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.ZeroOrPositive();
+                });
 
                 // Assert.
 
@@ -410,13 +473,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.ZeroOrPositive());
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.ZeroOrPositive();
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -428,9 +495,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.ZeroOrPositive());
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.ZeroOrPositive();
+                });
 
                 // Assert.
 
@@ -451,13 +521,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.Positive());
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.Positive();
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -469,9 +543,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.Positive());
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.Positive();
+                });
 
                 // Assert.
 
@@ -489,13 +566,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.Positive());
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.Positive();
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -507,9 +588,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.Positive());
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.Positive();
+                });
 
                 // Assert.
 
@@ -530,13 +614,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.ZeroOrNegative());
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.ZeroOrNegative();
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -548,9 +636,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.ZeroOrNegative());
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.ZeroOrNegative();
+                });
 
                 // Assert.
 
@@ -568,13 +659,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.ZeroOrNegative());
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.ZeroOrNegative();
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -586,9 +681,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.ZeroOrNegative());
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.ZeroOrNegative();
+                });
 
                 // Assert.
 
@@ -609,13 +707,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.Negative());
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.Negative();
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -627,9 +729,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.Negative());
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.Negative();
+                });
 
                 // Assert.
 
@@ -647,13 +752,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.Negative());
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.Negative();
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -665,9 +774,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.Negative());
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.Negative();
+                });
 
                 // Assert.
 
@@ -688,13 +800,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.Zero());
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.Zero();
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -706,9 +822,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.Zero());
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.Zero();
+                });
 
                 // Assert.
 
@@ -726,13 +845,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.Zero());
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.Zero();
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -744,9 +867,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.Zero());
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.Zero();
+                });
 
                 // Assert.
 
@@ -767,13 +893,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.EqualTo(0));
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.EqualTo(0);
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -785,9 +915,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.EqualTo(0));
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.EqualTo(0);
+                });
 
                 // Assert.
 
@@ -805,13 +938,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.EqualTo(0));
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.EqualTo(0);
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -823,9 +960,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.EqualTo(0));
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.EqualTo(0);
+                });
 
                 // Assert.
 
@@ -846,13 +986,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.LessThan(0L));
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.LessThan(0L);
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -864,9 +1008,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.LessThan(0L));
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.LessThan(0L);
+                });
 
                 // Assert.
 
@@ -884,13 +1031,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.LessThan(0L));
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.LessThan(0L);
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -902,9 +1053,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.LessThan(0L));
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.LessThan(0L);
+                });
 
                 // Assert.
 
@@ -925,13 +1079,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.LessThanOrEqualTo(0L));
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.LessThanOrEqualTo(0L);
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -943,9 +1101,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.LessThanOrEqualTo(0L));
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.LessThanOrEqualTo(0L);
+                });
 
                 // Assert.
 
@@ -963,13 +1124,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.LessThanOrEqualTo(0L));
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.LessThanOrEqualTo(0L);
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -981,9 +1146,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.LessThanOrEqualTo(0L));
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.LessThanOrEqualTo(0L);
+                });
 
                 // Assert.
 
@@ -1004,13 +1172,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.GreaterThan(0L));
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.GreaterThan(0L);
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -1022,9 +1194,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.GreaterThan(0L));
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.GreaterThan(0L);
+                });
 
                 // Assert.
 
@@ -1042,13 +1217,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.GreaterThan(0L));
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.GreaterThan(0L);
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -1060,9 +1239,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.GreaterThan(0L));
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.GreaterThan(0L);
+                });
 
                 // Assert.
 
@@ -1083,13 +1265,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.GreaterThanOrEqualTo(0L));
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.GreaterThanOrEqualTo(0L);
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -1101,9 +1287,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.GreaterThanOrEqualTo(0L));
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.GreaterThanOrEqualTo(0L);
+                });
 
                 // Assert.
 
@@ -1121,13 +1310,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.GreaterThanOrEqualTo(0L));
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.GreaterThanOrEqualTo(0L);
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -1139,9 +1332,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.GreaterThanOrEqualTo(0L));
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.GreaterThanOrEqualTo(0L);
+                });
 
                 // Assert.
 
@@ -1162,13 +1358,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.ZeroOrPositive());
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.ZeroOrPositive();
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -1180,9 +1380,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.ZeroOrPositive());
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.ZeroOrPositive();
+                });
 
                 // Assert.
 
@@ -1200,13 +1403,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.ZeroOrPositive());
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.ZeroOrPositive();
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -1218,9 +1425,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.ZeroOrPositive());
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.ZeroOrPositive();
+                });
 
                 // Assert.
 
@@ -1241,13 +1451,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.Positive());
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.Positive();
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -1259,9 +1473,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.Positive());
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.Positive();
+                });
 
                 // Assert.
 
@@ -1279,13 +1496,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.Positive());
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.Positive();
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -1297,9 +1518,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.Positive());
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.Positive();
+                });
 
                 // Assert.
 
@@ -1320,13 +1544,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.ZeroOrNegative());
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.ZeroOrNegative();
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -1338,9 +1566,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.ZeroOrNegative());
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.ZeroOrNegative();
+                });
 
                 // Assert.
 
@@ -1358,13 +1589,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.ZeroOrNegative());
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.ZeroOrNegative();
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -1376,9 +1611,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.ZeroOrNegative());
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.ZeroOrNegative();
+                });
 
                 // Assert.
 
@@ -1399,13 +1637,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.Negative());
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.Negative();
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -1417,9 +1659,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.Negative());
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.Negative();
+                });
 
                 // Assert.
 
@@ -1437,13 +1682,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.Negative());
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.Negative();
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -1455,9 +1704,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.Negative());
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.Negative();
+                });
 
                 // Assert.
 
@@ -1478,13 +1730,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.Zero());
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.Zero();
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -1496,9 +1752,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.Zero());
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.Zero();
+                });
 
                 // Assert.
 
@@ -1516,13 +1775,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.Zero());
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.Zero();
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -1534,9 +1797,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.Zero());
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.Zero();
+                });
 
                 // Assert.
 
@@ -1557,13 +1823,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.EqualTo(0L));
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.EqualTo(0L);
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -1575,9 +1845,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.EqualTo(0L));
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.EqualTo(0L);
+                });
 
                 // Assert.
 
@@ -1595,13 +1868,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.EqualTo(0L));
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.EqualTo(0L);
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -1613,9 +1890,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.EqualTo(0L));
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.EqualTo(0L);
+                });
 
                 // Assert.
 
@@ -1636,13 +1916,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.LessThan(0.0F));
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.LessThan(0.0F);
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -1654,9 +1938,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.LessThan(0.0F));
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.LessThan(0.0F);
+                });
 
                 // Assert.
 
@@ -1674,13 +1961,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.LessThan(0.0F));
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.LessThan(0.0F);
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -1692,9 +1983,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.LessThan(0.0F));
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.LessThan(0.0F);
+                });
 
                 // Assert.
 
@@ -1715,13 +2009,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.LessThanOrEqualTo(0.0F));
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.LessThanOrEqualTo(0.0F);
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -1733,9 +2031,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.LessThanOrEqualTo(0.0F));
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.LessThanOrEqualTo(0.0F);
+                });
 
                 // Assert.
 
@@ -1753,13 +2054,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.LessThanOrEqualTo(0.0F));
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.LessThanOrEqualTo(0.0F);
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -1771,9 +2076,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.LessThanOrEqualTo(0.0F));
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.LessThanOrEqualTo(0.0F);
+                });
 
                 // Assert.
 
@@ -1794,13 +2102,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.GreaterThan(0.0F));
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.GreaterThan(0.0F);
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -1812,9 +2124,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.GreaterThan(0.0F));
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.GreaterThan(0.0F);
+                });
 
                 // Assert.
 
@@ -1832,13 +2147,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.GreaterThan(0.0F));
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.GreaterThan(0.0F);
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -1850,9 +2169,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.GreaterThan(0.0F));
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.GreaterThan(0.0F);
+                });
 
                 // Assert.
 
@@ -1873,13 +2195,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.GreaterThanOrEqualTo(0.0F));
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.GreaterThanOrEqualTo(0.0F);
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -1891,9 +2217,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.GreaterThanOrEqualTo(0.0F));
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.GreaterThanOrEqualTo(0.0F);
+                });
 
                 // Assert.
 
@@ -1911,13 +2240,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.GreaterThanOrEqualTo(0.0F));
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.GreaterThanOrEqualTo(0.0F);
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -1929,9 +2262,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.GreaterThanOrEqualTo(0.0F));
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.GreaterThanOrEqualTo(0.0F);
+                });
 
                 // Assert.
 
@@ -1952,13 +2288,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.ZeroOrPositive());
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.ZeroOrPositive();
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -1970,9 +2310,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.ZeroOrPositive());
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.ZeroOrPositive();
+                });
 
                 // Assert.
 
@@ -1990,13 +2333,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.ZeroOrPositive());
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.ZeroOrPositive();
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -2008,9 +2355,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.ZeroOrPositive());
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.ZeroOrPositive();
+                });
 
                 // Assert.
 
@@ -2031,13 +2381,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.Positive());
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.Positive();
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -2049,9 +2403,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.Positive());
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.Positive();
+                });
 
                 // Assert.
 
@@ -2069,13 +2426,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.Positive());
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.Positive();
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -2087,9 +2448,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.Positive());
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.Positive();
+                });
 
                 // Assert.
 
@@ -2110,13 +2474,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.ZeroOrNegative());
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.ZeroOrNegative();
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -2128,9 +2496,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.ZeroOrNegative());
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.ZeroOrNegative();
+                });
 
                 // Assert.
 
@@ -2148,13 +2519,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.ZeroOrNegative());
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.ZeroOrNegative();
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -2166,9 +2541,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.ZeroOrNegative());
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.ZeroOrNegative();
+                });
 
                 // Assert.
 
@@ -2189,13 +2567,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.Negative());
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.Negative();
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -2207,9 +2589,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.Negative());
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.Negative();
+                });
 
                 // Assert.
 
@@ -2227,13 +2612,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.Negative());
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.Negative();
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -2245,9 +2634,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.Negative());
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.Negative();
+                });
 
                 // Assert.
 
@@ -2268,13 +2660,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.Zero());
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.Zero();
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -2286,9 +2682,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.Zero());
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.Zero();
+                });
 
                 // Assert.
 
@@ -2306,13 +2705,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.Zero());
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.Zero();
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -2324,9 +2727,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.Zero());
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.Zero();
+                });
 
                 // Assert.
 
@@ -2347,13 +2753,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.EqualTo(0.0F));
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.EqualTo(0.0F);
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -2365,9 +2775,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.EqualTo(0.0F));
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.EqualTo(0.0F);
+                });
 
                 // Assert.
 
@@ -2385,13 +2798,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.EqualTo(0.0F));
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.EqualTo(0.0F);
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -2403,9 +2820,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.EqualTo(0.0F));
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.EqualTo(0.0F);
+                });
 
                 // Assert.
 
@@ -2426,13 +2846,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.LessThan(0.0));
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.LessThan(0.0);
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -2444,9 +2868,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.LessThan(0.0));
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.LessThan(0.0);
+                });
 
                 // Assert.
 
@@ -2464,13 +2891,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.LessThan(0.0));
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.LessThan(0.0);
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -2482,9 +2913,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.LessThan(0.0));
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.LessThan(0.0);
+                });
 
                 // Assert.
 
@@ -2505,13 +2939,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.LessThanOrEqualTo(0.0));
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.LessThanOrEqualTo(0.0);
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -2523,9 +2961,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.LessThanOrEqualTo(0.0));
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.LessThanOrEqualTo(0.0);
+                });
 
                 // Assert.
 
@@ -2543,13 +2984,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.LessThanOrEqualTo(0.0));
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.LessThanOrEqualTo(0.0);
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -2561,9 +3006,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.LessThanOrEqualTo(0.0));
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.LessThanOrEqualTo(0.0);
+                });
 
                 // Assert.
 
@@ -2584,13 +3032,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.GreaterThan(0.0));
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.GreaterThan(0.0);
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -2602,9 +3054,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.GreaterThan(0.0));
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.GreaterThan(0.0);
+                });
 
                 // Assert.
 
@@ -2622,13 +3077,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.GreaterThan(0.0));
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.GreaterThan(0.0);
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -2640,9 +3099,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.GreaterThan(0.0));
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.GreaterThan(0.0);
+                });
 
                 // Assert.
 
@@ -2663,13 +3125,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.GreaterThanOrEqualTo(0.0));
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.GreaterThanOrEqualTo(0.0);
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -2681,9 +3147,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.GreaterThanOrEqualTo(0.0));
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.GreaterThanOrEqualTo(0.0);
+                });
 
                 // Assert.
 
@@ -2701,13 +3170,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.GreaterThanOrEqualTo(0.0));
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.GreaterThanOrEqualTo(0.0);
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -2719,9 +3192,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.GreaterThanOrEqualTo(0.0));
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.GreaterThanOrEqualTo(0.0);
+                });
 
                 // Assert.
 
@@ -2742,13 +3218,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.ZeroOrPositive());
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.ZeroOrPositive();
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -2760,9 +3240,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.ZeroOrPositive());
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.ZeroOrPositive();
+                });
 
                 // Assert.
 
@@ -2780,13 +3263,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.ZeroOrPositive());
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.ZeroOrPositive();
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -2798,9 +3285,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.ZeroOrPositive());
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.ZeroOrPositive();
+                });
 
                 // Assert.
 
@@ -2821,13 +3311,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.Positive());
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.Positive();
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -2839,9 +3333,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.Positive());
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.Positive();
+                });
 
                 // Assert.
 
@@ -2859,13 +3356,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.Positive());
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.Positive();
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -2877,9 +3378,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.Positive());
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.Positive();
+                });
 
                 // Assert.
 
@@ -2900,13 +3404,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.ZeroOrNegative());
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.ZeroOrNegative();
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -2918,9 +3426,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.ZeroOrNegative());
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.ZeroOrNegative();
+                });
 
                 // Assert.
 
@@ -2938,13 +3449,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.ZeroOrNegative());
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.ZeroOrNegative();
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -2956,9 +3471,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.ZeroOrNegative());
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.ZeroOrNegative();
+                });
 
                 // Assert.
 
@@ -2979,13 +3497,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.Negative());
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.Negative();
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -2997,9 +3519,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.Negative());
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.Negative();
+                });
 
                 // Assert.
 
@@ -3017,13 +3542,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.Negative());
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.Negative();
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -3035,9 +3564,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.Negative());
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.Negative();
+                });
 
                 // Assert.
 
@@ -3058,13 +3590,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.Zero());
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.Zero();
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -3076,9 +3612,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.Zero());
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.Zero();
+                });
 
                 // Assert.
 
@@ -3096,13 +3635,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.Zero());
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.Zero();
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -3114,9 +3657,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.Zero());
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.Zero();
+                });
 
                 // Assert.
 
@@ -3137,13 +3683,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.EqualTo(0.0));
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.EqualTo(0.0);
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -3155,9 +3705,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Require(value, nameof(value))
-                    .Is.EqualTo(0.0));
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.EqualTo(0.0);
+                });
 
                 // Assert.
 
@@ -3175,13 +3728,17 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.EqualTo(0.0));
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.EqualTo(0.0);
+                });
 
                 // Assert.
 
-                action.Should().NotThrow();
+                action
+                    .Should().NotThrow();
             }
 
             [Fact]
@@ -3193,9 +3750,12 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 // Act.
 
-                var action = new Action(() => Guard
-                    .Ensure(value, nameof(value))
-                    .Is.EqualTo(0.0));
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.EqualTo(0.0);
+                });
 
                 // Assert.
 

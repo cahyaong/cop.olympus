@@ -3,7 +3,9 @@ image: Visual Studio 2017
 configuration: Release
 cache: Source\packages -> **\Source\repositories.config
 before_build:
-- cmd: nuget restore Source\nGratis.Cop.Core.sln
+- cmd: >-
+    cd Source
+    .\.paket\paket.exe restore
 build:
   project: Source
   parallel: true

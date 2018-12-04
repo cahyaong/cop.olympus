@@ -7,16 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nGratis.Cop.Core", "Core\nG
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nGratis.Cop.Core.Contract", "Core.Contract\nGratis.Cop.Core.Contract.csproj", "{E727CA53-5288-4E7E-828C-011803B0BEDD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nGratis.Cop.Core.Sdk", "Core.Sdk\nGratis.Cop.Core.Sdk.csproj", "{C2F58589-179C-4EA1-AC62-9F770DE0FAF7}"
-	ProjectSection(ProjectDependencies) = postProject
-		{B90C4C38-A600-44BB-840E-2A7D4B46618A} = {B90C4C38-A600-44BB-840E-2A7D4B46618A}
-		{E727CA53-5288-4E7E-828C-011803B0BEDD} = {E727CA53-5288-4E7E-828C-011803B0BEDD}
-		{B199217E-4103-44A9-AFB9-65287A52D06F} = {B199217E-4103-44A9-AFB9-65287A52D06F}
-		{2B8DE19C-BE3D-4516-AECB-01FC709F8ED8} = {2B8DE19C-BE3D-4516-AECB-01FC709F8ED8}
-		{199487EB-64E4-4D48-9E9A-3AFDDDADF041} = {199487EB-64E4-4D48-9E9A-3AFDDDADF041}
-		{5D4FFBFB-372E-4FBB-B7DC-FE3BB5A7E00F} = {5D4FFBFB-372E-4FBB-B7DC-FE3BB5A7E00F}
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nGratis.Cop.Core.Testing", "Core.Testing\nGratis.Cop.Core.Testing.csproj", "{B199217E-4103-44A9-AFB9-65287A52D06F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nGratis.Cop.Core.Theme", "Core.Theme\nGratis.Cop.Core.Theme.csproj", "{2B8DE19C-BE3D-4516-AECB-01FC709F8ED8}"
@@ -31,8 +21,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{BDBE8B1D-A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{9A82E807-F092-488D-AB1F-79D7ADE622E7}"
 	ProjectSection(SolutionItems) = preProject
+		..\appveyor.yml = ..\appveyor.yml
+		Core.Shared\GlobalAssemblyInfo.tt = Core.Shared\GlobalAssemblyInfo.tt
 		..\Build\nGratis.Cop.BuildExecution.ps1 = ..\Build\nGratis.Cop.BuildExecution.ps1
 		..\Build\nGratis.Cop.Core.BuildDefinition.ps1 = ..\Build\nGratis.Cop.Core.BuildDefinition.ps1
+		paket.dependencies = paket.dependencies
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{B5BB0FE4-2E54-460E-8F49-825E2C312E02}"
@@ -43,6 +36,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{B5BB0FE4
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nGratis.Cop.Core.Contract.UnitTest", "Core.Contract.UnitTest\nGratis.Cop.Core.Contract.UnitTest.csproj", "{54CA06A5-DA35-4529-B9AE-E40C619417A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nGratis.Cop.Core.Demo", "Core.Demo\nGratis.Cop.Core.Demo.csproj", "{C2F58589-179C-4EA1-AC62-9F770DE0FAF7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -58,10 +53,6 @@ Global
 		{E727CA53-5288-4E7E-828C-011803B0BEDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E727CA53-5288-4E7E-828C-011803B0BEDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E727CA53-5288-4E7E-828C-011803B0BEDD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C2F58589-179C-4EA1-AC62-9F770DE0FAF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C2F58589-179C-4EA1-AC62-9F770DE0FAF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C2F58589-179C-4EA1-AC62-9F770DE0FAF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C2F58589-179C-4EA1-AC62-9F770DE0FAF7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B199217E-4103-44A9-AFB9-65287A52D06F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B199217E-4103-44A9-AFB9-65287A52D06F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B199217E-4103-44A9-AFB9-65287A52D06F}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -77,7 +68,6 @@ Global
 		{F40704BC-4DFC-43C3-85E8-120D0B30B43B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F40704BC-4DFC-43C3-85E8-120D0B30B43B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F40704BC-4DFC-43C3-85E8-120D0B30B43B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F40704BC-4DFC-43C3-85E8-120D0B30B43B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{199487EB-64E4-4D48-9E9A-3AFDDDADF041}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{199487EB-64E4-4D48-9E9A-3AFDDDADF041}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{199487EB-64E4-4D48-9E9A-3AFDDDADF041}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -85,7 +75,10 @@ Global
 		{54CA06A5-DA35-4529-B9AE-E40C619417A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{54CA06A5-DA35-4529-B9AE-E40C619417A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54CA06A5-DA35-4529-B9AE-E40C619417A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{54CA06A5-DA35-4529-B9AE-E40C619417A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2F58589-179C-4EA1-AC62-9F770DE0FAF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2F58589-179C-4EA1-AC62-9F770DE0FAF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2F58589-179C-4EA1-AC62-9F770DE0FAF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2F58589-179C-4EA1-AC62-9F770DE0FAF7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
