@@ -41,6 +41,6 @@ namespace nGratis.Cop.Core.Contract
 
         void LogWith(Verbosity verbosity, string message, Exception exception);
 
-        IObservable<LogEntry> AsObservable();
+        IObservable<LogEntry> WhenLogEntryAdded();
     }
 }

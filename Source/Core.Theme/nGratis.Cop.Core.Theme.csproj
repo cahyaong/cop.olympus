@@ -84,6 +84,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Cop.Style.AweStatusBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Cop.Style.AweSystemBrowserButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

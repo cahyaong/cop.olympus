@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -53,6 +53,7 @@
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="ApplicationExtensions.cs" />
+    <Compile Include="CopBootstrapper.cs" />
     <Compile Include="BasePageViewModel.cs" />
     <Compile Include="BaseFormViewModel.cs" />
     <Compile Include="CaliburnContentLoader.cs" />
@@ -62,7 +63,9 @@
     <Compile Include="Controls\AweFileChooser.cs" />
     <Compile Include="Controls\AweScrollBar.cs" />
     <Compile Include="Controls\AweScrollViewer.cs" />
+    <Compile Include="Controls\AweStatusBar.cs" />
     <Compile Include="Controls\AweTile.cs" />
+    <Compile Include="Controls\AweWindow.cs" />
     <Compile Include="Converters\AnyToTitleCaseConverter.cs" />
     <Compile Include="Converters\ColorToSolidBrushConverter.cs" />
     <Compile Include="Converters\EnumToValuesConverter.cs" />

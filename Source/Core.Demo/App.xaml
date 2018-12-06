@@ -9,6 +9,7 @@
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary>
+          <wpf:CopBootstrapper x:Key="Bootstrapper" />
           <wpf:CaliburnContentLoader x:Key="CaliburnContentLoader" />
         </ResourceDictionary>
         <ResourceDictionary>

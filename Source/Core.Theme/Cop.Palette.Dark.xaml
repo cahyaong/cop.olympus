@@ -9,7 +9,7 @@
   <Color x:Key="Cop.Color.Shade7">#FFE0E0E0</Color>
   <Color x:Key="Cop.Color.Shade8">#FFFFFFFF</Color>
 
-  <Color x:Key="Cop.Color.App.Background">#FF252526</Color>
+  <Color x:Key="Cop.Color.Application.Background">#FF252526</Color>
 
   <Color x:Key="Cop.Color.Button.Border">#FF919191</Color>
   <Color x:Key="Cop.Color.Button.Border.OnHovered">#FFD1D1D1</Color>
@@ -38,7 +38,7 @@
   <SolidColorBrush x:Key="Cop.Brush.Shade7">#FFE0E0E0</SolidColorBrush>
   <SolidColorBrush x:Key="Cop.Brush.Shade8">#FFFFFFFF</SolidColorBrush>
 
-  <SolidColorBrush x:Key="Cop.Brush.App.Background">#FF252526</SolidColorBrush>
+  <SolidColorBrush x:Key="Cop.Brush.Application.Background">#FF252526</SolidColorBrush>
 
   <SolidColorBrush x:Key="Cop.Brush.AweChart.Border">#FF404040</SolidColorBrush>
   <SolidColorBrush x:Key="Cop.Brush.AweChart.Text">#FFD1D1D1</SolidColorBrush>

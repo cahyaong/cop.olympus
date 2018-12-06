@@ -37,14 +37,14 @@ namespace nGratis.Cop.Core
 
     public class CompositeLogger : BaseLogger
     {
-        private readonly ConcurrentDictionary<string, ILogger> loggerLookup =
-            new ConcurrentDictionary<string, ILogger>();
+        private readonly ConcurrentDictionary<string, ILogger> loggerLookup;
 
         private bool isDisposed;
 
         public CompositeLogger(string id)
             : base(id)
         {
+            this.loggerLookup = new ConcurrentDictionary<string, ILogger>();
         }
 
         public override IEnumerable<string> Components
@@ -111,25 +111,22 @@ namespace nGratis.Cop.Core
         public override void LogWith(Verbosity verbosity, string message)
         {
             this
-                .loggerLookup
-                .Values
+                .loggerLookup.Values
                 .ForEach(logger => logger.LogWith(verbosity, message));
         }
 
         public override void LogWith(Verbosity verbosity, string message, Exception exception)
         {
             this
-                .loggerLookup
-                .Values
+                .loggerLookup.Values
                 .ForEach(logger => logger.LogWith(verbosity, message, exception));
         }
 
-        public override IObservable<LogEntry> AsObservable()
+        public override IObservable<LogEntry> WhenLogEntryAdded()
         {
             return this
-                .loggerLookup
-                .Values
-                .Select(logger => logger.AsObservable())
+                .loggerLookup.Values
+                .Select(logger => logger.WhenLogEntryAdded())
                 .Merge();
         }
 
@@ -143,8 +140,7 @@ namespace nGratis.Cop.Core
             if (isDisposing)
             {
                 this
-                    .loggerLookup
-                    .Values
+                    .loggerLookup.Values
                     .ForEach(logger => logger.Dispose());
             }
 

@@ -28,41 +28,54 @@
 
 namespace nGratis.Cop.Core.Wpf
 {
-    using System.Collections.ObjectModel;
-    using System.Linq;
     using System.Windows;
     using System.Windows.Media;
     using nGratis.Cop.Core.Contract;
 
     public class ThemeManager : IThemeManager
     {
-        public ThemeManager()
+        private ThemeManager()
         {
-            this.ResourceDictionaries = new Collection<ResourceDictionary>();
+            this.AccentBrush = this.FindBrush("Cop.Brush.Accent");
+            this.ApplicationBackgroundBrush = this.FindBrush("Cop.Brush.Application.Background");
         }
 
-        public Collection<ResourceDictionary> ResourceDictionaries { get; set; }
+        public static IThemeManager Instance { get; } = new ThemeManager();
+
+        public Brush AccentBrush { get; }
+
+        public Brush ApplicationBackgroundBrush { get; }
 
         public Color FindColor(string key)
         {
-            return this.FindResource<Color>(key);
+            return this.FindResource(key, Default.Color);
         }
 
         public Brush FindBrush(string key)
         {
-            return this.FindResource<Brush>(key);
+            return this.FindResource(key, Default.Brush);
         }
 
-        public TResource FindResource<TResource>(string key)
+        public TValue FindResource<TValue>(string key, TValue defaultValue)
         {
             Guard
                 .Require(key, nameof(key))
                 .Is.Not.Empty();
 
-            return (TResource)this
-                .ResourceDictionaries
-                .Select(dictionary => dictionary[key])
-                .Single(resource => resource != null);
+            return (TValue)(Application.Current.Resources[key] ?? defaultValue);
+        }
+
+        public static class Default
+        {
+            public static readonly Color Color = Colors.HotPink;
+
+            public static readonly Brush Brush;
+
+            static Default()
+            {
+                Default.Brush = new SolidColorBrush(Colors.HotPink);
+                Default.Brush.Freeze();
+            }
         }
     }
 }

@@ -7,13 +7,5 @@
     <core:SharedResourceDictionary Source="/FirstFloor.ModernUI;component/Assets/ModernUI.Dark.xaml" />
     <core:SharedResourceDictionary Source="/nGratis.Cop.Core.Theme;component/Cop.Palette.Dark.xaml" />
     <core:SharedResourceDictionary Source="/nGratis.Cop.Core.Theme;component/Cop.Theme.Generic.xaml" />
-    <ResourceDictionary>
-      <core:ThemeManager x:Key="Cop.ThemeManager">
-        <core:ThemeManager.ResourceDictionaries>
-          <core:SharedResourceDictionary Source="/nGratis.Cop.Core.Theme;component/Cop.Palette.Generic.xaml" />
-          <core:SharedResourceDictionary Source="/nGratis.Cop.Core.Theme;component/Cop.Palette.Dark.xaml" />
-        </core:ThemeManager.ResourceDictionaries>
-      </core:ThemeManager>
-    </ResourceDictionary>
   </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

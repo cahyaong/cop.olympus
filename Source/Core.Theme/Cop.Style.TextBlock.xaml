@@ -2,7 +2,7 @@
   <Style
     x:Key="Cop.TextBlock.Base"
     BasedOn="{StaticResource {x:Type TextBlock}}"
-    TargetType="{x:Type TextBlock}">
+    TargetType="TextBlock">
     <Setter Property="VerticalAlignment" Value="Center" />
     <Setter Property="FontFamily" Value="Segoe UI Semilight" />
     <Setter Property="FontSize" Value="11pt" />
@@ -11,47 +11,47 @@
   <Style
     x:Key="Cop.TextBlock.Header"
     BasedOn="{StaticResource Cop.TextBlock.Base}"
-    TargetType="{x:Type TextBlock}">
+    TargetType="TextBlock">
     <Setter Property="FontFamily" Value="Segoe UI Light" />
     <Setter Property="FontSize" Value="42pt" />
   </Style>
   <Style
     x:Key="Cop.TextBlock.Subheader"
     BasedOn="{StaticResource Cop.TextBlock.Base}"
-    TargetType="{x:Type TextBlock}">
+    TargetType="TextBlock">
     <Setter Property="FontFamily" Value="Segoe UI Light" />
     <Setter Property="FontSize" Value="20pt" />
   </Style>
   <Style
     x:Key="Cop.TextBlock.SmallSubheader"
     BasedOn="{StaticResource Cop.TextBlock.Base}"
-    TargetType="{x:Type TextBlock}">
+    TargetType="TextBlock">
     <Setter Property="FontFamily" Value="Segoe UI Semibold" />
   </Style>
   <Style
     x:Key="Cop.TextBlock.SmallSecondary"
     BasedOn="{StaticResource Cop.TextBlock.Base}"
-    TargetType="{x:Type TextBlock}">
+    TargetType="TextBlock">
     <Setter Property="FontFamily" Value="Segoe UI Semibold" />
   </Style>
   <Style
     x:Key="Cop.TextBlock.Navigation"
     BasedOn="{StaticResource Cop.TextBlock.Base}"
-    TargetType="{x:Type TextBlock}">
+    TargetType="TextBlock">
     <Setter Property="FontFamily" Value="Segoe UI" />
   </Style>
   <Style
     x:Key="Cop.TextBlock.Body"
     BasedOn="{StaticResource Cop.TextBlock.Base}"
-    TargetType="{x:Type TextBlock}" />
+    TargetType="TextBlock" />
   <Style
     x:Key="Cop.TextBlock.Link"
     BasedOn="{StaticResource Cop.TextBlock.Base}"
-    TargetType="{x:Type TextBlock}" />
+    TargetType="TextBlock" />
   <Style
     x:Key="Cop.TextBlock.TertiaryInfo"
     BasedOn="{StaticResource Cop.TextBlock.Base}"
-    TargetType="{x:Type TextBlock}">
+    TargetType="TextBlock">
     <Setter Property="FontFamily" Value="Segoe UI" />
     <Setter Property="FontSize" Value="9pt" />
     <Setter Property="TextOptions.TextFormattingMode" Value="Display" />

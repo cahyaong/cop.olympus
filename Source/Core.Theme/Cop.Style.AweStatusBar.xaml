@@ -1,0 +1,37 @@
+﻿<ResourceDictionary
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:core="http://schemas.ngratis.com/2014/core"
+  xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+  xmlns:system="clr-namespace:System;assembly=mscorlib">
+  <ResourceDictionary.MergedDictionaries>
+    <core:SharedResourceDictionary Source="/FirstFloor.ModernUI;component/Assets/ModernProgressRingStyles.xaml" />
+  </ResourceDictionary.MergedDictionaries>
+
+  <system:Double x:Key="Cop.StatusBar.Height">24</system:Double>
+
+  <Style x:Key="{x:Type core:AweStatusBar}" TargetType="core:AweStatusBar">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="core:AweStatusBar">
+          <Border Height="{StaticResource Cop.StatusBar.Height}" Background="{DynamicResource Cop.Brush.Accent}">
+            <StackPanel Orientation="Horizontal">
+              <mui:ModernProgressRing
+                Width="{StaticResource Cop.StatusBar.Height}"
+                Height="{StaticResource Cop.StatusBar.Height}"
+                Margin="8,0"
+                HorizontalAlignment="Left"
+                Foreground="{DynamicResource Cop.Brush.Shade7}"
+                IsActive="{TemplateBinding IsBusy}"
+                Style="{StaticResource ThreeBounceProgressRingStyle}" />
+              <TextBlock
+                VerticalAlignment="Center"
+                Foreground="{DynamicResource Cop.Brush.Shade7}"
+                Text="{TemplateBinding Message}" />
+            </StackPanel>
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+</ResourceDictionary>

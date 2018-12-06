@@ -8,7 +8,7 @@
   <Style
     x:Key="Cop.TextBox.Normal"
     BasedOn="{StaticResource {x:Type TextBox}}"
-    TargetType="{x:Type TextBox}">
+    TargetType="TextBox">
     <Setter Property="VerticalAlignment" Value="Center" />
     <Setter Property="FontFamily" Value="Segoe UI Semilight" />
     <Setter Property="FontSize" Value="11pt" />

@@ -22,6 +22,7 @@ group Build-UI
     nuget MahApps.Metro
     nuget ModernUI.WPF
     nuget OxyPlot.Wpf
+    nuget ReactiveUI
     nuget ReactiveUI.WPF
     nuget System.Reactive
     nuget System.Reactive.Linq

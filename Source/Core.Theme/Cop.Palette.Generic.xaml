@@ -5,6 +5,7 @@
   <ResourceDictionary.MergedDictionaries>
     <core:SharedResourceDictionary Source="/FirstFloor.ModernUI;component/Assets/ModernUI.xaml" />
   </ResourceDictionary.MergedDictionaries>
+
   <Color x:Key="Cop.Color.Accent">#FF7F7F7F</Color>
   <SolidColorBrush x:Key="Cop.Brush.Accent" Color="{DynamicResource AccentColor}" />
   <SolidColorBrush x:Key="Cop.Brush.Error">#FF953734</SolidColorBrush>

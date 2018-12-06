@@ -12,7 +12,7 @@
   <Style
     x:Key="Cop.AweSystemBrowserButton.Normal"
     BasedOn="{StaticResource {x:Type core:AweSystemBrowserButton}}"
-    TargetType="{x:Type core:AweSystemBrowserButton}">
+    TargetType="core:AweSystemBrowserButton">
     <Setter Property="VerticalAlignment" Value="Center" />
     <Setter Property="HorizontalAlignment" Value="Center" />
     <Setter Property="FontFamily" Value="Segoe UI Semilight" />

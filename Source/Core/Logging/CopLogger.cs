@@ -35,7 +35,7 @@ namespace nGratis.Cop.Core
 
     public sealed class CopLogger : BaseLogger
     {
-        private readonly ReplaySubject<LogEntry> loggingSubject;
+        private readonly ReplaySubject<LogEntry> whenLogEntryBuffered;
 
         private bool isDisposed;
 
@@ -46,7 +46,7 @@ namespace nGratis.Cop.Core
                 .Require(component, nameof(component))
                 .Is.Not.Empty();
 
-            this.loggingSubject = new ReplaySubject<LogEntry>();
+            this.whenLogEntryBuffered = new ReplaySubject<LogEntry>();
             this.Components = new[] { component };
         }
 
@@ -61,7 +61,7 @@ namespace nGratis.Cop.Core
                 Message = message
             };
 
-            this.loggingSubject.OnNext(logEntry);
+            this.whenLogEntryBuffered.OnNext(logEntry);
         }
 
         public override void LogWith(Verbosity verbosity, string message, Exception exception)
@@ -74,12 +74,12 @@ namespace nGratis.Cop.Core
                 Message = message
             };
 
-            this.loggingSubject.OnNext(logEntry);
+            this.whenLogEntryBuffered.OnNext(logEntry);
         }
 
-        public override IObservable<LogEntry> AsObservable()
+        public override IObservable<LogEntry> WhenLogEntryAdded()
         {
-            return this.loggingSubject;
+            return this.whenLogEntryBuffered;
         }
 
         protected override void Dispose(bool isDisposing)
@@ -91,7 +91,7 @@ namespace nGratis.Cop.Core
 
             if (isDisposing)
             {
-                this.loggingSubject.Dispose();
+                this.whenLogEntryBuffered.Dispose();
             }
 
             base.Dispose(isDisposing);

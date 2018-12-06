@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="App.xaml.cs" company="nGratis">
+// <copyright file="CopBootstrapper.cs" company="nGratis">
 //  The MIT License (MIT)
 //
 //  Copyright (c) 2014 - 2018 Cahya Ong
@@ -23,20 +23,48 @@
 //  SOFTWARE.
 // </copyright>
 // <author>Cahya Ong - cahya.ong@gmail.com</author>
-// <creation_timestamp>Saturday, 14 October 2017 11:24:46 PM UTC</creation_timestamp>
+// <creation_timestamp>Thursday, 6 December 2018 8:41:48 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-﻿namespace nGratis.Cop.Core.Demo
+namespace nGratis.Cop.Core.Wpf
 {
+    using System;
+    using System.Reactive;
+    using Caliburn.Micro;
+    using FirstFloor.ModernUI.Windows.Controls;
     using nGratis.Cop.Core.Contract;
+    using ReactiveUI;
 
-    public partial class App
+    public class CopBootstrapper : BootstrapperBase
     {
-        static App()
+        static CopBootstrapper()
         {
-            App.Logger = new CopLogger("CORE.DEMO", "*");
+            AppDomain.CurrentDomain.UnhandledException += (_, args) => CopBootstrapper
+                .OnUnhandledExceptionReceived(ExceptionSource.Application, args.ExceptionObject as Exception);
+
+            RxApp.DefaultExceptionHandler = Observer.Create<Exception>(exception => CopBootstrapper
+                .OnUnhandledExceptionReceived(ExceptionSource.Reactive, exception));
         }
 
-        public static ILogger Logger { get; }
+        private static void OnUnhandledExceptionReceived(ExceptionSource exceptionSource, Exception exception)
+        {
+            var dialog = new ModernDialog
+            {
+                Title = $"Unhandled Exception ({exceptionSource})",
+                Content = exception?.ToString() ?? Text.Unknown,
+                MaxWidth = int.MaxValue,
+                MaxHeight = int.MaxValue
+            };
+
+            dialog.Buttons = new[] { dialog.OkButton };
+            dialog.ShowDialog();
+        }
+    }
+
+    public enum ExceptionSource
+    {
+        Unknown = 0,
+        Application,
+        Reactive
     }
 }

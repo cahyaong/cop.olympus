@@ -33,6 +33,9 @@ namespace nGratis.Cop.Core.Demo
         public AppView()
         {
             this.InitializeComponent();
+
+            this.Logger = App.Logger;
+            this.DataContext = new AweWindowViewModel(App.Logger);
         }
     }
 }

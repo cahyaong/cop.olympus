@@ -1,8 +1,8 @@
-// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IThemeManager.cs" company="nGratis">
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="AweWindowView.xaml.cs" company="nGratis">
 //  The MIT License (MIT)
 //
-//  Copyright (c) 2014 - 2015 Cahya Ong
+//  Copyright (c) 2014 - 2017 Cahya Ong
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -23,23 +23,16 @@
 //  SOFTWARE.
 // </copyright>
 // <author>Cahya Ong - cahya.ong@gmail.com</author>
-// <creation_timestamp>Friday, 19 February 2016 9:04:10 PM UTC</creation_timestamp>
+// <creation_timestamp>Friday, 30 November 2018 9:41:53 PM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Core.Wpf
+namespace nGratis.Cop.Core.Demo
 {
-    using System.Windows.Media;
-
-    public interface IThemeManager
+    public partial class AweWindowView
     {
-        Brush AccentBrush { get; }
-
-        Brush ApplicationBackgroundBrush { get; }
-
-        Color FindColor(string key);
-
-        Brush FindBrush(string key);
-
-        TValue FindResource<TValue>(string key, TValue defaultValue);
+        public AweWindowView()
+        {
+            this.InitializeComponent();
+        }
     }
 }

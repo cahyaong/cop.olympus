@@ -31,7 +31,6 @@ namespace nGratis.Cop.Core.Wpf
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
-    using System.Reactive.Linq;
     using System.Windows;
     using System.Windows.Controls;
     using nGratis.Cop.Core.Contract;
@@ -50,7 +49,7 @@ namespace nGratis.Cop.Core.Wpf
             typeof(AweLogViewer),
             new PropertyMetadata(new ObservableCollection<LogEntry>()));
 
-        private IDisposable loggingSubscription;
+        private IDisposable onLogEntryAdded;
 
         public ILogger Logger
         {
@@ -58,14 +57,12 @@ namespace nGratis.Cop.Core.Wpf
 
             set
             {
-                this.loggingSubscription?.Dispose();
-
+                this.onLogEntryAdded?.Dispose();
                 this.LogEntries.Clear();
 
-                this.loggingSubscription = value
-                    .AsObservable()
-                    .ObserveOn(Application.Current.Dispatcher)
-                    .Subscribe(entry => this.LogEntries.Add(entry));
+                this.onLogEntryAdded = value
+                    .WhenLogEntryAdded()
+                    .Subscribe(this.LogEntries.Add);
 
                 this.SetValue(AweLogViewer.LoggerProperty, value);
             }
@@ -73,9 +70,7 @@ namespace nGratis.Cop.Core.Wpf
 
         public IList<LogEntry> LogEntries => (IList<LogEntry>)this.GetValue(AweLogViewer.LogEntriesProperty);
 
-        private static void OnLoggerChanged(
-            DependencyObject container,
-            DependencyPropertyChangedEventArgs args)
+        private static void OnLoggerChanged(DependencyObject container, DependencyPropertyChangedEventArgs args)
         {
             if (container is AweLogViewer logViewer && args.NewValue != null)
             {

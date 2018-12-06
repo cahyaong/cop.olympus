@@ -1,12 +1,23 @@
-﻿<mui:ModernWindow
+﻿<core:AweWindow
   x:Class="nGratis.Cop.Core.Demo.AppView"
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:core="http://schemas.ngratis.com/2014/core"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:mui="http://firstfloorsoftware.com/ModernUI"
-  Title="COP: Core"
-  Width="854"
-  Height="480"
+  Title="COP.CORE"
+  Width="800"
+  Height="600"
   IsTitleVisible="True"
-  mc:Ignorable="d" />
+  mc:Ignorable="d">
+  <core:AweWindow.MenuLinkGroups>
+    <mui:LinkGroupCollection>
+      <mui:LinkGroup DisplayName="Control">
+        <mui:LinkGroup.Links>
+          <mui:Link DisplayName="Window" Source="/nGratis.Cop.Core.Demo;component/Page/AweWindowView.xaml" />
+        </mui:LinkGroup.Links>
+      </mui:LinkGroup>
+    </mui:LinkGroupCollection>
+  </core:AweWindow.MenuLinkGroups>
+</core:AweWindow>
