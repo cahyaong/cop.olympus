@@ -6,6 +6,7 @@
   xmlns:system="clr-namespace:System;assembly=mscorlib">
   <ResourceDictionary.MergedDictionaries>
     <core:SharedResourceDictionary Source="/FirstFloor.ModernUI;component/Assets/ModernProgressRingStyles.xaml" />
+    <core:SharedResourceDictionary Source="/nGratis.Cop.Core.Theme;component/Cop.Style.TextBlock.xaml" />
   </ResourceDictionary.MergedDictionaries>
 
   <system:Double x:Key="Cop.StatusBar.Height">24</system:Double>
@@ -15,20 +16,62 @@
       <Setter.Value>
         <ControlTemplate TargetType="core:AweStatusBar">
           <Border Height="{StaticResource Cop.StatusBar.Height}" Background="{DynamicResource Cop.Brush.Accent}">
-            <StackPanel Orientation="Horizontal">
-              <mui:ModernProgressRing
-                Width="{StaticResource Cop.StatusBar.Height}"
-                Height="{StaticResource Cop.StatusBar.Height}"
-                Margin="8,0"
-                HorizontalAlignment="Left"
-                Foreground="{DynamicResource Cop.Brush.Shade7}"
-                IsActive="{TemplateBinding IsBusy}"
-                Style="{StaticResource ThreeBounceProgressRingStyle}" />
-              <TextBlock
+            <Grid>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+              </Grid.ColumnDefinitions>
+              <StackPanel Grid.Column="0" Orientation="Horizontal">
+                <mui:ModernProgressRing
+                  Width="{StaticResource Cop.StatusBar.Height}"
+                  Height="{StaticResource Cop.StatusBar.Height}"
+                  Margin="8,0"
+                  HorizontalAlignment="Left"
+                  Foreground="{DynamicResource Cop.Brush.Shade7}"
+                  IsActive="{TemplateBinding IsBusy}"
+                  Style="{StaticResource ThreeBounceProgressRingStyle}" />
+                <TextBlock
+                  VerticalAlignment="Center"
+                  Foreground="{DynamicResource Cop.Brush.Shade7}"
+                  Text="{TemplateBinding Message}" />
+              </StackPanel>
+              <Grid
+                x:Name="PART_ResponsivenessIndicator"
+                Grid.Column="1"
+                Margin="0,0,25,0"
+                HorizontalAlignment="Right"
                 VerticalAlignment="Center"
-                Foreground="{DynamicResource Cop.Brush.Shade7}"
-                Text="{TemplateBinding Message}" />
-            </StackPanel>
+                SnapsToDevicePixels="True">
+                <Ellipse
+                  Width="20"
+                  Height="20"
+                  Fill="{DynamicResource Cop.Brush.Shade7}"
+                  Stroke="{DynamicResource Cop.Brush.Application.Background}"
+                  StrokeThickness="1">
+                  <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Loaded">
+                      <BeginStoryboard>
+                        <Storyboard>
+                          <DoubleAnimation
+                            AutoReverse="True"
+                            RepeatBehavior="Forever"
+                            Storyboard.TargetProperty="Fill.(SolidColorBrush.Opacity)"
+                            From="1.0"
+                            To="0.0"
+                            Duration="0:0:0.75" />
+                        </Storyboard>
+                      </BeginStoryboard>
+                    </EventTrigger>
+                  </Ellipse.Triggers>
+                </Ellipse>
+                <TextBlock
+                  HorizontalAlignment="Center"
+                  FontSize="11"
+                  Foreground="{DynamicResource Cop.Brush.Application.Background}"
+                  Style="{StaticResource Cop.TextBlock.Base}"
+                  Text="UI" />
+              </Grid>
+            </Grid>
           </Border>
         </ControlTemplate>
       </Setter.Value>

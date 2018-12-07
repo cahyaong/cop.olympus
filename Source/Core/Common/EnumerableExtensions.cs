@@ -30,6 +30,7 @@
 namespace System.Collections.Generic
 {
     using System;
+    using System.Diagnostics;
     using System.Linq;
     using JetBrains.Annotations;
     using nGratis.Cop.Core;
@@ -37,6 +38,7 @@ namespace System.Collections.Generic
 
     public static class EnumerableExtensions
     {
+        [DebuggerStepThrough]
         public static IEnumerable<T> Append<T>(this IEnumerable<T> lefts, IEnumerable<T> rights)
         {
             Guard
@@ -58,6 +60,7 @@ namespace System.Collections.Generic
             }
         }
 
+        [DebuggerStepThrough]
         public static IEnumerable<T> Prepend<T>(this IEnumerable<T> lefts, IEnumerable<T> rights)
         {
             Guard
@@ -79,6 +82,7 @@ namespace System.Collections.Generic
             }
         }
 
+        [DebuggerStepThrough]
         public static IEnumerable<T> Append<T>(this IEnumerable<T> lefts, T right)
         {
             Guard
@@ -93,6 +97,7 @@ namespace System.Collections.Generic
             yield return right;
         }
 
+        [DebuggerStepThrough]
         public static IEnumerable<T> Prepend<T>(this IEnumerable<T> lefts, T right)
         {
             Guard
@@ -107,6 +112,7 @@ namespace System.Collections.Generic
             }
         }
 
+        [DebuggerStepThrough]
         public static IEnumerable<T> Except<T>(this IEnumerable<T> lefts, IEnumerable<T> rights, Func<T, T, bool> isEqual)
         {
             Guard
@@ -124,6 +130,7 @@ namespace System.Collections.Generic
             return lefts.Except(rights, new DelegateEqualityComparer<T>(isEqual));
         }
 
+        [DebuggerStepThrough]
         public static void ForEach<T>(this IEnumerable<T> items, [InstantHandle] Action<T> apply)
         {
             Guard
@@ -140,6 +147,7 @@ namespace System.Collections.Generic
             }
         }
 
+        [DebuggerStepThrough]
         public static void ForEach<T>(this IEnumerable<T> items, [InstantHandle] Action<T, int> apply)
         {
             Guard

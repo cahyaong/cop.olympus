@@ -34,6 +34,7 @@ namespace nGratis.Cop.Core.Wpf
     using System.Windows.Controls;
     using nGratis.Cop.Core.Contract;
 
+    [TemplatePart(Name = "PART_ResponsivenessIndicator", Type = typeof(Grid))]
     public sealed class AweStatusBar : Control, IDisposable
     {
         public static readonly DependencyProperty LoggerProperty = DependencyProperty.Register(
@@ -79,6 +80,19 @@ namespace nGratis.Cop.Core.Wpf
         {
             get => (string)this.GetValue(AweStatusBar.MessageProperty);
             private set => this.SetValue(AweStatusBar.MessageProperty, value);
+        }
+
+        public override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+
+#if !DEBUG
+            if (this.GetTemplateChild("PART_ResponsivenessIndicator") is Grid responsivenessGrid)
+            {
+                responsivenessGrid.Children.Clear();
+                responsivenessGrid.Visibility = Visibility.Collapsed;
+            }
+#endif
         }
 
         private static void OnLoggerChanged(DependencyObject container, DependencyPropertyChangedEventArgs args)
