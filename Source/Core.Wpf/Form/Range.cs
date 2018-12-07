@@ -34,9 +34,9 @@ namespace nGratis.Cop.Core.Wpf
 
     public class Range : ReactiveObject
     {
-        private double currentValue;
+        private double _currentValue;
 
-        private double interval;
+        private double _interval;
 
         public Range()
             : this(0.0, 100.0, 1.0)
@@ -65,14 +65,14 @@ namespace nGratis.Cop.Core.Wpf
 
         public double CurrentValue
         {
-            get => this.currentValue;
-            set => this.RaiseAndSetIfChanged(ref this.currentValue, value);
+            get => this._currentValue;
+            set => this.RaiseAndSetIfChanged(ref this._currentValue, value);
         }
 
         public double Interval
         {
-            get => this.interval;
-            private set => this.RaiseAndSetIfChanged(ref this.interval, value);
+            get => this._interval;
+            private set => this.RaiseAndSetIfChanged(ref this._interval, value);
         }
     }
 }

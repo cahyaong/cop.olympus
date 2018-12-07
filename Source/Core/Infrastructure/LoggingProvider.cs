@@ -34,14 +34,13 @@ namespace nGratis.Cop.Core
 
     internal class LoggingProvider : ILoggingProvider
     {
-        private readonly LoggingModes loggingModes;
+        private readonly LoggingModes _loggingModes;
 
-        private readonly ConcurrentDictionary<string, ILogger> loggerLookup =
-            new ConcurrentDictionary<string, ILogger>();
+        private readonly ConcurrentDictionary<string, ILogger> _loggerLookup;
 
-        private readonly CompositeLogger aggregatingLogger = new CompositeLogger("*");
+        private readonly CompositeLogger _aggregatingLogger;
 
-        private bool isDisposed;
+        private bool _isDisposed;
 
         public LoggingProvider(LoggingModes loggingModes)
         {
@@ -49,7 +48,9 @@ namespace nGratis.Cop.Core
                 .Require(loggingModes, nameof(loggingModes))
                 .Is.Not.EqualTo(LoggingModes.None);
 
-            this.loggingModes = loggingModes;
+            this._loggingModes = loggingModes;
+            this._loggerLookup = new ConcurrentDictionary<string, ILogger>();
+            this._aggregatingLogger = new CompositeLogger("*");
         }
 
         ~LoggingProvider()
@@ -64,10 +65,10 @@ namespace nGratis.Cop.Core
                 .Is.Not.Null();
 
             var logger = this
-                .loggerLookup
+                ._loggerLookup
                 .GetOrAdd($"TYP.{type.FullName}", key => this.CreateLogger(key));
 
-            this.aggregatingLogger.RegisterLoggers(logger);
+            this._aggregatingLogger.RegisterLoggers(logger);
 
             return logger;
         }
@@ -80,14 +81,14 @@ namespace nGratis.Cop.Core
 
             if (component == "*")
             {
-                return this.aggregatingLogger;
+                return this._aggregatingLogger;
             }
 
             var logger = this
-                .loggerLookup
+                ._loggerLookup
                 .GetOrAdd($"COM.{component}", key => this.CreateLogger(key, component));
 
-            this.aggregatingLogger.RegisterLoggers(logger);
+            this._aggregatingLogger.RegisterLoggers(logger);
 
             return logger;
         }
@@ -102,17 +103,17 @@ namespace nGratis.Cop.Core
         {
             var logger = new CompositeLogger(id);
 
-            if (this.loggingModes.HasFlag(LoggingModes.CommunityOfPractice))
+            if (this._loggingModes.HasFlag(LoggingModes.CommunityOfPractice))
             {
                 logger.RegisterLoggers(new CopLogger(id, component));
             }
 
-            if (this.loggingModes.HasFlag(LoggingModes.NLogger))
+            if (this._loggingModes.HasFlag(LoggingModes.NLogger))
             {
                 logger.RegisterLoggers(new NLogger(id, component));
             }
 
-            if (this.loggingModes.HasFlag(LoggingModes.Console))
+            if (this._loggingModes.HasFlag(LoggingModes.Console))
             {
                 logger.RegisterLoggers(new ConsoleLogger(id, component));
             }
@@ -122,17 +123,17 @@ namespace nGratis.Cop.Core
 
         private void Dispose(bool isDisposing)
         {
-            if (this.isDisposed)
+            if (this._isDisposed)
             {
                 return;
             }
 
             if (isDisposing)
             {
-                this.aggregatingLogger.Dispose();
+                this._aggregatingLogger.Dispose();
             }
 
-            this.isDisposed = true;
+            this._isDisposed = true;
         }
     }
 }

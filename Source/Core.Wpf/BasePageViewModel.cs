@@ -32,12 +32,12 @@ namespace nGratis.Cop.Core.Wpf
 
     public abstract class BasePageViewModel : ReactiveObject, Contract.IActivatable
     {
-        private bool isActive;
+        private bool _isActive;
 
         public bool IsActive
         {
-            get => this.isActive;
-            protected set => this.RaiseAndSetIfChanged(ref this.isActive, value);
+            get => this._isActive;
+            protected set => this.RaiseAndSetIfChanged(ref this._isActive, value);
         }
 
         public void Activate()

@@ -99,12 +99,12 @@ namespace nGratis.Cop.Core.Wpf
             typeof(AweButton),
             new PropertyMetadata(false));
 
-        private readonly DispatcherTimer repeatingTimer = new DispatcherTimer();
+        private readonly DispatcherTimer _repeatingTimer = new DispatcherTimer();
 
         public AweButton()
         {
-            this.repeatingTimer.Tick += this.OnRepeatingTimerTicked;
-            this.repeatingTimer.Interval = this.RepeatingInterval;
+            this._repeatingTimer.Tick += this.OnRepeatingTimerTicked;
+            this._repeatingTimer.Interval = this.RepeatingInterval;
 
             this.UpdateMeasurement();
         }
@@ -178,7 +178,7 @@ namespace nGratis.Cop.Core.Wpf
                 this.Focus();
             }
 
-            this.repeatingTimer.Start();
+            this._repeatingTimer.Start();
         }
 
         protected override void OnMouseLeftButtonUp(MouseButtonEventArgs args)
@@ -190,7 +190,7 @@ namespace nGratis.Cop.Core.Wpf
                 return;
             }
 
-            this.repeatingTimer.Stop();
+            this._repeatingTimer.Stop();
             this.IsMousePressed = false;
         }
 
@@ -198,7 +198,7 @@ namespace nGratis.Cop.Core.Wpf
         {
             base.OnLostMouseCapture(args);
 
-            this.repeatingTimer.Stop();
+            this._repeatingTimer.Stop();
             this.IsMousePressed = false;
         }
 
@@ -214,7 +214,7 @@ namespace nGratis.Cop.Core.Wpf
                     this.Focus();
                 }
 
-                this.repeatingTimer.Start();
+                this._repeatingTimer.Start();
             }
         }
 
@@ -224,7 +224,7 @@ namespace nGratis.Cop.Core.Wpf
 
             if (this.IsRepeated && !this.IsMouseOver && this.ClickMode != ClickMode.Hover)
             {
-                this.repeatingTimer.Stop();
+                this._repeatingTimer.Stop();
                 this.IsMousePressed = false;
             }
         }
@@ -238,7 +238,7 @@ namespace nGratis.Cop.Core.Wpf
             }
             else
             {
-                this.repeatingTimer.Stop();
+                this._repeatingTimer.Stop();
                 this.IsMousePressed = false;
             }
         }
@@ -292,7 +292,7 @@ namespace nGratis.Cop.Core.Wpf
                 interval = TimeSpan.FromMilliseconds(50);
             }
 
-            this.repeatingTimer.Interval = interval;
+            this._repeatingTimer.Interval = interval;
         }
     }
 }

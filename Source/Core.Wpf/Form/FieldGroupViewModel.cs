@@ -37,9 +37,9 @@ namespace nGratis.Cop.Core.Wpf
 
     public class FieldGroupViewModel : ReactiveObject
     {
-        private FieldMode mode;
+        private FieldMode _mode;
 
-        private ICollection<FieldViewModel> fields;
+        private ICollection<FieldViewModel> _fields;
 
         public FieldGroupViewModel(object instance, FieldMode mode)
         {
@@ -96,14 +96,14 @@ namespace nGratis.Cop.Core.Wpf
 
         public FieldMode Mode
         {
-            get => this.mode;
-            private set => this.RaiseAndSetIfChanged(ref this.mode, value);
+            get => this._mode;
+            private set => this.RaiseAndSetIfChanged(ref this._mode, value);
         }
 
         public ICollection<FieldViewModel> Fields
         {
-            get => this.fields;
-            private set => this.RaiseAndSetIfChanged(ref this.fields, value);
+            get => this._fields;
+            private set => this.RaiseAndSetIfChanged(ref this._fields, value);
         }
     }
 }

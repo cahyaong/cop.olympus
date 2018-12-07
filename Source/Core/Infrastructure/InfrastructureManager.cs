@@ -34,7 +34,7 @@ namespace nGratis.Cop.Core
 
     public sealed class InfrastructureManager : IInfrastructureManager, IDisposable
     {
-        private bool isDisposed;
+        private bool _isDisposed;
 
         public InfrastructureManager(LoggingModes loggingModes)
         {
@@ -65,7 +65,7 @@ namespace nGratis.Cop.Core
         [SuppressMessage("Microsoft.Usage", "CA2213:DisposableFieldsShouldBeDisposed")]
         private void Dispose(bool isDisposing)
         {
-            if (this.isDisposed)
+            if (this._isDisposed)
             {
                 return;
             }
@@ -75,7 +75,7 @@ namespace nGratis.Cop.Core
                 this.LoggingProvider.Dispose();
             }
 
-            this.isDisposed = true;
+            this._isDisposed = true;
         }
     }
 }

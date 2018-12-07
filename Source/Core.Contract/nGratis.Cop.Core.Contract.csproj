@@ -61,7 +61,6 @@
     </Compile>
     <Compile Include="CopMemoryLeakException.cs" />
     <Compile Include="Text.cs" />
-    <Compile Include="Constants.cs" />
     <Compile Include="Condition\Guard.cs" />
     <Compile Include="CopException.cs" />
     <Compile Include="Condition\CopPostConditionException.cs" />

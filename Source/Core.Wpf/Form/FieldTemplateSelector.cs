@@ -38,11 +38,11 @@ namespace nGratis.Cop.Core.Wpf
     {
         private const string DefaultKey = "Cop.AweField.Default";
 
-        private readonly IDictionary<string, DataTemplate> templateLookup;
+        private readonly IDictionary<string, DataTemplate> _templateLookup;
 
         public FieldTemplateSelector()
         {
-            this.templateLookup = new Dictionary<string, DataTemplate>();
+            this._templateLookup = new Dictionary<string, DataTemplate>();
         }
 
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
@@ -64,16 +64,16 @@ namespace nGratis.Cop.Core.Wpf
 
             var key = $"Cop.AweField.{context.Mode}.{typeName}";
 
-            if (this.templateLookup.ContainsKey(key))
+            if (this._templateLookup.ContainsKey(key))
             {
-                return this.templateLookup[key];
+                return this._templateLookup[key];
             }
 
             var template =
                 (DataTemplate)control.TryFindResource(key) ??
                 (DataTemplate)control.TryFindResource(FieldTemplateSelector.DefaultKey);
 
-            this.templateLookup.Add(key, template);
+            this._templateLookup.Add(key, template);
 
             return template;
         }

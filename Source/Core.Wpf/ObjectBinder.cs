@@ -37,31 +37,31 @@ namespace nGratis.Cop.Core.Wpf
 
     public sealed class ObjectBinder
     {
-        private readonly INotifyPropertyChanged source;
+        private readonly INotifyPropertyChanged _source;
 
-        private readonly INotifyPropertyChanged target;
+        private readonly INotifyPropertyChanged _target;
 
-        private readonly PropertyInfo sourceProperty;
+        private readonly PropertyInfo _sourceProperty;
 
-        private readonly PropertyInfo targetProperty;
+        private readonly PropertyInfo _targetProperty;
 
-        private readonly bool isCallbackInvokedBothWays;
+        private readonly bool _isCallbackInvokedBothWays;
 
-        private MethodInfo sourceCallbackMethod;
+        private MethodInfo _sourceCallbackMethod;
 
-        private MethodInfo targetCallbackMethod;
+        private MethodInfo _targetCallbackMethod;
 
-        private Action onSourceValueUpdated;
+        private Action _onSourceValueUpdated;
 
-        private Action onSourceValueUpdating;
+        private Action _onSourceValueUpdating;
 
-        private Action onTargetValueUpdating;
+        private Action _onTargetValueUpdating;
 
-        private Action onTargetValueUpdated;
+        private Action _onTargetValueUpdated;
 
-        private Action onSourceErrorEncountered;
+        private Action _onSourceErrorEncountered;
 
-        private Action onTargetErrorEncountered;
+        private Action _onTargetErrorEncountered;
 
         public ObjectBinder(
             INotifyPropertyChanged source,
@@ -86,11 +86,11 @@ namespace nGratis.Cop.Core.Wpf
                 .Require(targetProperty, nameof(targetProperty))
                 .Is.Not.Null();
 
-            this.source = source;
-            this.target = target;
-            this.sourceProperty = sourceProperty;
-            this.targetProperty = targetProperty;
-            this.isCallbackInvokedBothWays = isCallbackInvokedBothWays;
+            this._source = source;
+            this._target = target;
+            this._sourceProperty = sourceProperty;
+            this._targetProperty = targetProperty;
+            this._isCallbackInvokedBothWays = isCallbackInvokedBothWays;
 
             source.PropertyChanged += async (_, args) => await this.OnSourcePropertyChangedAsync(args.PropertyName);
             target.PropertyChanged += async (_, args) => await this.OnTargetPropertyChangedAsync(args.PropertyName);
@@ -101,19 +101,19 @@ namespace nGratis.Cop.Core.Wpf
             Action onValueUpdated = null,
             Action onErrorEncountered = null)
         {
-            var methodName = $"On{this.sourceProperty.Name}Changed";
+            var methodName = $"On{this._sourceProperty.Name}Changed";
 
-            this.sourceCallbackMethod = this
-                .source
+            this._sourceCallbackMethod = this
+                ._source
                 .GetType()
                 .GetMethods(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
                 .SingleOrDefault(method =>
                     method.GetCustomAttribute<AsFieldCallbackAttribute>() != null &&
                     method.Name == methodName && !method.GetParameters().Any());
 
-            this.onSourceValueUpdating = onValueUpdating;
-            this.onSourceValueUpdated = onValueUpdated;
-            this.onSourceErrorEncountered = onErrorEncountered;
+            this._onSourceValueUpdating = onValueUpdating;
+            this._onSourceValueUpdated = onValueUpdated;
+            this._onSourceErrorEncountered = onErrorEncountered;
         }
 
         public void BindTargetCallback(
@@ -121,116 +121,116 @@ namespace nGratis.Cop.Core.Wpf
             Action onValueUpdated = null,
             Action onErrorEncountered = null)
         {
-            var methodName = $"On{this.sourceProperty.Name}Changed";
+            var methodName = $"On{this._sourceProperty.Name}Changed";
 
-            this.targetCallbackMethod = this
-                .target
+            this._targetCallbackMethod = this
+                ._target
                 .GetType()
                 .GetMethods(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
                 .SingleOrDefault(method =>
                     method.GetCustomAttribute<AsFieldCallbackAttribute>() != null &&
                     method.Name == methodName && !method.GetParameters().Any());
 
-            this.onTargetValueUpdating = onValueUpdating;
-            this.onTargetValueUpdated = onValueUpdated;
-            this.onTargetErrorEncountered = onErrorEncountered;
+            this._onTargetValueUpdating = onValueUpdating;
+            this._onTargetValueUpdated = onValueUpdated;
+            this._onTargetErrorEncountered = onErrorEncountered;
         }
 
         private async Task OnSourcePropertyChangedAsync(string propertyName)
         {
-            if (this.sourceProperty.Name != propertyName)
+            if (this._sourceProperty.Name != propertyName)
             {
                 return;
             }
 
             try
             {
-                var value = this.sourceProperty.GetValue(this.source);
-                this.targetProperty.SetValue(this.target, value);
+                var value = this._sourceProperty.GetValue(this._source);
+                this._targetProperty.SetValue(this._target, value);
 
-                this.onSourceValueUpdating?.Invoke();
+                this._onSourceValueUpdating?.Invoke();
 
-                if (this.targetCallbackMethod != null)
+                if (this._targetCallbackMethod != null)
                 {
-                    if (typeof(Task<CallbackResult>).IsAssignableFrom(this.targetCallbackMethod.ReturnType))
+                    if (typeof(Task<CallbackResult>).IsAssignableFrom(this._targetCallbackMethod.ReturnType))
                     {
-                        var result = await (Task<CallbackResult>)this.targetCallbackMethod.Invoke(this.target, null);
+                        var result = await (Task<CallbackResult>)this._targetCallbackMethod.Invoke(this._target, null);
 
                         if (result.HasError)
                         {
-                            this.onSourceErrorEncountered?.Invoke();
+                            this._onSourceErrorEncountered?.Invoke();
                             return;
                         }
                     }
-                    else if (typeof(Task).IsAssignableFrom(this.targetCallbackMethod.ReturnType))
+                    else if (typeof(Task).IsAssignableFrom(this._targetCallbackMethod.ReturnType))
                     {
-                        await (Task)this.targetCallbackMethod.Invoke(this.target, null);
+                        await (Task)this._targetCallbackMethod.Invoke(this._target, null);
                     }
                     else
                     {
-                        this.targetCallbackMethod.Invoke(this.target, null);
+                        this._targetCallbackMethod.Invoke(this._target, null);
                     }
                 }
 
-                this.onSourceValueUpdated?.Invoke();
+                this._onSourceValueUpdated?.Invoke();
 
-                if (this.isCallbackInvokedBothWays)
+                if (this._isCallbackInvokedBothWays)
                 {
                     await this.OnTargetPropertyChangedAsync(propertyName);
                 }
             }
             catch (ValueUpdateException)
             {
-                this.onSourceErrorEncountered?.Invoke();
+                this._onSourceErrorEncountered?.Invoke();
             }
         }
 
         private async Task OnTargetPropertyChangedAsync(string propertyName)
         {
-            if (this.targetProperty.Name != propertyName)
+            if (this._targetProperty.Name != propertyName)
             {
                 return;
             }
 
             try
             {
-                var value = this.targetProperty.GetValue(this.target);
-                this.sourceProperty.SetValue(this.source, value);
+                var value = this._targetProperty.GetValue(this._target);
+                this._sourceProperty.SetValue(this._source, value);
 
-                this.onTargetValueUpdating?.Invoke();
+                this._onTargetValueUpdating?.Invoke();
 
-                if (this.sourceCallbackMethod != null)
+                if (this._sourceCallbackMethod != null)
                 {
-                    if (typeof(Task<CallbackResult>).IsAssignableFrom(this.sourceCallbackMethod.ReturnType))
+                    if (typeof(Task<CallbackResult>).IsAssignableFrom(this._sourceCallbackMethod.ReturnType))
                     {
-                        var result = await (Task<CallbackResult>)this.sourceCallbackMethod.Invoke(this.source, null);
+                        var result = await (Task<CallbackResult>)this._sourceCallbackMethod.Invoke(this._source, null);
 
                         if (result.HasError)
                         {
-                            this.onTargetErrorEncountered?.Invoke();
+                            this._onTargetErrorEncountered?.Invoke();
                             return;
                         }
                     }
-                    else if (typeof(Task).IsAssignableFrom(this.sourceCallbackMethod.ReturnType))
+                    else if (typeof(Task).IsAssignableFrom(this._sourceCallbackMethod.ReturnType))
                     {
-                        await (Task)this.sourceCallbackMethod.Invoke(this.source, null);
+                        await (Task)this._sourceCallbackMethod.Invoke(this._source, null);
                     }
                     else
                     {
-                        this.sourceCallbackMethod.Invoke(this.source, null);
+                        this._sourceCallbackMethod.Invoke(this._source, null);
                     }
                 }
 
-                this.onTargetValueUpdated?.Invoke();
+                this._onTargetValueUpdated?.Invoke();
 
-                if (this.isCallbackInvokedBothWays)
+                if (this._isCallbackInvokedBothWays)
                 {
                     await this.OnSourcePropertyChangedAsync(propertyName);
                 }
             }
             catch (ValueUpdateException)
             {
-                this.onTargetErrorEncountered?.Invoke();
+                this._onTargetErrorEncountered?.Invoke();
             }
         }
     }

@@ -51,8 +51,8 @@ namespace nGratis.Cop.Core.Wpf
             typeof(AweScrollBar),
             new PropertyMetadata(double.MaxValue));
 
-        private ButtonBase leftButton;
-        private ButtonBase rightButton;
+        private ButtonBase _leftButton;
+        private ButtonBase _rightButton;
 
         public AweScrollBar()
         {
@@ -75,8 +75,8 @@ namespace nGratis.Cop.Core.Wpf
         {
             base.OnApplyTemplate();
 
-            this.leftButton = (ButtonBase)this.Template.FindName("PART_LeftButton", this);
-            this.rightButton = (ButtonBase)this.Template.FindName("PART_RightButton", this);
+            this._leftButton = (ButtonBase)this.Template.FindName("PART_LeftButton", this);
+            this._rightButton = (ButtonBase)this.Template.FindName("PART_RightButton", this);
 
             this.UpdateButtonStates();
         }
@@ -91,25 +91,25 @@ namespace nGratis.Cop.Core.Wpf
             }
             else
             {
-                if (this.leftButton == null || this.rightButton == null)
+                if (this._leftButton == null || this._rightButton == null)
                 {
                     return;
                 }
 
                 if (value <= 0)
                 {
-                    this.leftButton.IsEnabled = false;
-                    this.rightButton.IsEnabled = true;
+                    this._leftButton.IsEnabled = false;
+                    this._rightButton.IsEnabled = true;
                 }
                 else if (value + this.ActualWidth >= this.ContentWidth)
                 {
-                    this.leftButton.IsEnabled = true;
-                    this.rightButton.IsEnabled = false;
+                    this._leftButton.IsEnabled = true;
+                    this._rightButton.IsEnabled = false;
                 }
                 else
                 {
-                    this.leftButton.IsEnabled = true;
-                    this.rightButton.IsEnabled = true;
+                    this._leftButton.IsEnabled = true;
+                    this._rightButton.IsEnabled = true;
                 }
             }
         }

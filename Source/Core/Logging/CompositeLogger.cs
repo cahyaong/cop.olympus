@@ -37,14 +37,14 @@ namespace nGratis.Cop.Core
 
     public class CompositeLogger : BaseLogger
     {
-        private readonly ConcurrentDictionary<string, ILogger> loggerLookup;
+        private readonly ConcurrentDictionary<string, ILogger> _loggerLookup;
 
-        private bool isDisposed;
+        private bool _isDisposed;
 
         public CompositeLogger(string id)
             : base(id)
         {
-            this.loggerLookup = new ConcurrentDictionary<string, ILogger>();
+            this._loggerLookup = new ConcurrentDictionary<string, ILogger>();
         }
 
         public override IEnumerable<string> Components
@@ -52,7 +52,7 @@ namespace nGratis.Cop.Core
             get
             {
                 return this
-                    .loggerLookup.Values
+                    ._loggerLookup.Values
                     .SelectMany(logger => logger.Components)
                     .Distinct();
             }
@@ -71,10 +71,10 @@ namespace nGratis.Cop.Core
                     Key = $"{logger.Id}.{logger.GetType().Name}",
                     Logger = logger
                 })
-                .Where(anon => !this.loggerLookup.ContainsKey(anon.Key))
+                .Where(anon => !this._loggerLookup.ContainsKey(anon.Key))
                 .ForEach(anon =>
                 {
-                    this.loggerLookup.TryAdd(anon.Key, anon.Logger);
+                    this._loggerLookup.TryAdd(anon.Key, anon.Logger);
 
                     if (!(anon.Logger is CompositeLogger))
                     {
@@ -96,10 +96,10 @@ namespace nGratis.Cop.Core
                     Key = $"{logger.Id}.{logger.GetType().Name}",
                     Logger = logger
                 })
-                .Where(anon => this.loggerLookup.ContainsKey(anon.Key))
+                .Where(anon => this._loggerLookup.ContainsKey(anon.Key))
                 .ForEach(anon =>
                 {
-                    this.loggerLookup.TryRemove(anon.Key, out ILogger logger);
+                    this._loggerLookup.TryRemove(anon.Key, out var logger);
 
                     if (!(logger is CompositeLogger))
                     {
@@ -111,28 +111,28 @@ namespace nGratis.Cop.Core
         public override void LogWith(Verbosity verbosity, string message)
         {
             this
-                .loggerLookup.Values
+                ._loggerLookup.Values
                 .ForEach(logger => logger.LogWith(verbosity, message));
         }
 
         public override void LogWith(Verbosity verbosity, string message, Exception exception)
         {
             this
-                .loggerLookup.Values
+                ._loggerLookup.Values
                 .ForEach(logger => logger.LogWith(verbosity, message, exception));
         }
 
         public override IObservable<LogEntry> WhenLogEntryAdded()
         {
             return this
-                .loggerLookup.Values
+                ._loggerLookup.Values
                 .Select(logger => logger.WhenLogEntryAdded())
                 .Merge();
         }
 
         protected override void Dispose(bool isDisposing)
         {
-            if (this.isDisposed)
+            if (this._isDisposed)
             {
                 return;
             }
@@ -140,13 +140,13 @@ namespace nGratis.Cop.Core
             if (isDisposing)
             {
                 this
-                    .loggerLookup.Values
+                    ._loggerLookup.Values
                     .ForEach(logger => logger.Dispose());
             }
 
             base.Dispose(isDisposing);
 
-            this.isDisposed = true;
+            this._isDisposed = true;
         }
     }
 }

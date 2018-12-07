@@ -55,9 +55,9 @@ namespace nGratis.Cop.Core.Wpf
             typeof(AweStatusBar),
             new PropertyMetadata(string.Empty));
 
-        private IDisposable onLogEntryAdded;
+        private IDisposable _onLogEntryAdded;
 
-        private bool isDisposed;
+        private bool _isDisposed;
 
         ~AweStatusBar()
         {
@@ -102,13 +102,13 @@ namespace nGratis.Cop.Core.Wpf
                 return;
             }
 
-            statusBar.onLogEntryAdded?.Dispose();
+            statusBar._onLogEntryAdded?.Dispose();
 
             var logger = (ILogger)args.NewValue;
 
             if (logger != null)
             {
-                statusBar.onLogEntryAdded = logger
+                statusBar._onLogEntryAdded = logger
                     .WhenLogEntryAdded()?
                     .ObserveOnDispatcher()
                     .Subscribe(statusBar.UpdateMessage);
@@ -132,17 +132,17 @@ namespace nGratis.Cop.Core.Wpf
 
         private void Dispose(bool isDisposing)
         {
-            if (this.isDisposed)
+            if (this._isDisposed)
             {
                 return;
             }
 
             if (isDisposing)
             {
-                this.onLogEntryAdded?.Dispose();
+                this._onLogEntryAdded?.Dispose();
             }
 
-            this.isDisposed = true;
+            this._isDisposed = true;
         }
     }
 }

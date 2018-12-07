@@ -39,17 +39,17 @@ namespace nGratis.Cop.Core.Wpf
             "UserValue",
             BindingFlags.Instance | BindingFlags.Public);
 
-        private FieldMode mode;
+        private FieldMode _mode;
 
-        private FieldType type;
+        private FieldType _type;
 
-        private string label;
+        private string _label;
 
-        private object userValue;
+        private object _userValue;
 
-        private bool isValueUpdating;
+        private bool _isValueUpdating;
 
-        private bool hasError;
+        private bool _hasError;
 
         internal FieldViewModel(Type valueType, AsFieldAttribute attribute)
         {
@@ -70,25 +70,25 @@ namespace nGratis.Cop.Core.Wpf
 
         public FieldType Type
         {
-            get => this.type;
-            private set => this.RaiseAndSetIfChanged(ref this.type, value);
+            get => this._type;
+            private set => this.RaiseAndSetIfChanged(ref this._type, value);
         }
 
         public string Label
         {
-            get => this.label;
-            private set => this.RaiseAndSetIfChanged(ref this.label, value);
+            get => this._label;
+            private set => this.RaiseAndSetIfChanged(ref this._label, value);
         }
 
         public object UserValue
         {
-            get => this.userValue;
+            get => this._userValue;
 
             set
             {
-                if (this.userValue != value)
+                if (this._userValue != value)
                 {
-                    if (this.userValue is INotifyPropertyChanged oldNotifier)
+                    if (this._userValue is INotifyPropertyChanged oldNotifier)
                     {
                         oldNotifier.RemoveEventHandler<INotifyPropertyChanged, PropertyChangedEventArgs>(
                             nameof(this.PropertyChanged),
@@ -103,14 +103,14 @@ namespace nGratis.Cop.Core.Wpf
                     }
                 }
 
-                this.RaiseAndSetIfChanged(ref this.userValue, value);
+                this.RaiseAndSetIfChanged(ref this._userValue, value);
             }
         }
 
         public FieldMode Mode
         {
-            get => this.mode;
-            private set => this.RaiseAndSetIfChanged(ref this.mode, value);
+            get => this._mode;
+            private set => this.RaiseAndSetIfChanged(ref this._mode, value);
         }
 
         public Type ValueType
@@ -120,14 +120,14 @@ namespace nGratis.Cop.Core.Wpf
 
         public bool IsValueUpdating
         {
-            get => this.isValueUpdating;
-            set => this.RaiseAndSetIfChanged(ref this.isValueUpdating, value);
+            get => this._isValueUpdating;
+            set => this.RaiseAndSetIfChanged(ref this._isValueUpdating, value);
         }
 
         public bool HasError
         {
-            get => this.hasError;
-            set => this.RaiseAndSetIfChanged(ref this.hasError, value);
+            get => this._hasError;
+            set => this.RaiseAndSetIfChanged(ref this._hasError, value);
         }
 
         private void OnInnerPropertyChanged(object sender, PropertyChangedEventArgs args)

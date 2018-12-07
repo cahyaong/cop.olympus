@@ -35,7 +35,7 @@ namespace nGratis.Cop.Core.Vision.Imaging
 
     public class WriteableImage : IImage
     {
-        private WriteableBitmap writeableBitmap;
+        private WriteableBitmap _writeableBitmap;
 
         public int Width { get; private set; }
 
@@ -43,8 +43,8 @@ namespace nGratis.Cop.Core.Vision.Imaging
 
         public Color this[int x, int y]
         {
-            get => this.writeableBitmap.GetPixel(x, y);
-            set => this.writeableBitmap.SetPixel(x, y, value);
+            get => this._writeableBitmap.GetPixel(x, y);
+            set => this._writeableBitmap.SetPixel(x, y, value);
         }
 
         public void LoadData(Stream dataSteam)
@@ -60,10 +60,10 @@ namespace nGratis.Cop.Core.Vision.Imaging
             bitmap.StreamSource = dataSteam;
             bitmap.EndInit();
 
-            this.writeableBitmap = new WriteableBitmap(bitmap);
+            this._writeableBitmap = new WriteableBitmap(bitmap);
 
-            this.Width = this.writeableBitmap.PixelWidth;
-            this.Height = this.writeableBitmap.PixelHeight;
+            this.Width = this._writeableBitmap.PixelWidth;
+            this.Height = this._writeableBitmap.PixelHeight;
         }
 
         public Stream SaveData()
@@ -73,7 +73,7 @@ namespace nGratis.Cop.Core.Vision.Imaging
 
         public ImageSource ToImageSource()
         {
-            return this.writeableBitmap;
+            return this._writeableBitmap;
         }
 
         public IEnumerable<Color> ToPixels()

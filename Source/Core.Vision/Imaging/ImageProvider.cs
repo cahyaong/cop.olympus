@@ -32,7 +32,7 @@ namespace nGratis.Cop.Core.Vision.Imaging
 
     public class ImageProvider : IImageProvider
     {
-        private readonly IStorageManager storageManager;
+        private readonly IStorageManager _storageManager;
 
         public ImageProvider(IStorageManager storageManager)
         {
@@ -40,7 +40,7 @@ namespace nGratis.Cop.Core.Vision.Imaging
                 .Require(storageManager, nameof(storageManager))
                 .Is.Not.Null();
 
-            this.storageManager = storageManager;
+            this._storageManager = storageManager;
         }
 
         public IImage LoadImage(DataSpec imageSpec)
@@ -49,12 +49,12 @@ namespace nGratis.Cop.Core.Vision.Imaging
                 .Require(imageSpec, nameof(imageSpec))
                 .Is.Not.Null();
 
-            using (var imageStream = this.storageManager.LoadEntry(imageSpec))
+            using (var imageStream = this._storageManager.LoadEntry(imageSpec))
             {
-                var writeableImage = new WriteableImage();
-                writeableImage.LoadData(imageStream);
+                var writableImage = new WriteableImage();
+                writableImage.LoadData(imageStream);
 
-                return writeableImage;
+                return writableImage;
             }
         }
 

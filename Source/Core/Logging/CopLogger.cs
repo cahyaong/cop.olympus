@@ -35,9 +35,9 @@ namespace nGratis.Cop.Core
 
     public sealed class CopLogger : BaseLogger
     {
-        private readonly ReplaySubject<LogEntry> whenLogEntryBuffered;
+        private readonly ReplaySubject<LogEntry> _whenLogEntryBuffered;
 
-        private bool isDisposed;
+        private bool _isDisposed;
 
         public CopLogger(string id, string component)
             : base(id)
@@ -46,7 +46,7 @@ namespace nGratis.Cop.Core
                 .Require(component, nameof(component))
                 .Is.Not.Empty();
 
-            this.whenLogEntryBuffered = new ReplaySubject<LogEntry>();
+            this._whenLogEntryBuffered = new ReplaySubject<LogEntry>();
             this.Components = new[] { component };
         }
 
@@ -61,7 +61,7 @@ namespace nGratis.Cop.Core
                 Message = message
             };
 
-            this.whenLogEntryBuffered.OnNext(logEntry);
+            this._whenLogEntryBuffered.OnNext(logEntry);
         }
 
         public override void LogWith(Verbosity verbosity, string message, Exception exception)
@@ -74,29 +74,29 @@ namespace nGratis.Cop.Core
                 Message = message
             };
 
-            this.whenLogEntryBuffered.OnNext(logEntry);
+            this._whenLogEntryBuffered.OnNext(logEntry);
         }
 
         public override IObservable<LogEntry> WhenLogEntryAdded()
         {
-            return this.whenLogEntryBuffered;
+            return this._whenLogEntryBuffered;
         }
 
         protected override void Dispose(bool isDisposing)
         {
-            if (this.isDisposed)
+            if (this._isDisposed)
             {
                 return;
             }
 
             if (isDisposing)
             {
-                this.whenLogEntryBuffered.Dispose();
+                this._whenLogEntryBuffered.Dispose();
             }
 
             base.Dispose(isDisposing);
 
-            this.isDisposed = true;
+            this._isDisposed = true;
         }
     }
 }

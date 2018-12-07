@@ -38,7 +38,7 @@ namespace nGratis.Cop.Core.Demo
 
     internal class AweWindowViewModel : ReactiveObject
     {
-        private readonly ILogger logger;
+        private readonly ILogger _logger;
 
         public AweWindowViewModel(ILogger logger)
         {
@@ -46,7 +46,7 @@ namespace nGratis.Cop.Core.Demo
                 .Require(logger, nameof(logger))
                 .Is.Not.Null();
 
-            this.logger = logger;
+            this._logger = logger;
 
             this.SimulateStatusOneCommand = ReactiveCommand.CreateFromTask(async () =>
             {
@@ -85,17 +85,17 @@ namespace nGratis.Cop.Core.Demo
             {
                 foreach (var index in Enumerable.Range(1, 10))
                 {
-                    this.logger.LogAsTrace($"Worker [{key}]: Checking event {index} of 10...");
+                    this._logger.LogAsTrace($"Worker [{key}]: Checking event {index} of 10...");
                     await Task.Delay(TimeSpan.FromMilliseconds(random.Next(100, 1000)));
                 }
             });
 
-            this.logger.LogAsInformation($"Worker [{key}]: Completed checking!");
+            this._logger.LogAsInformation($"Worker [{key}]: Completed checking!");
         }
 
         private async Task ThrowReactiveExceptionAsync()
         {
-            this.logger.LogAsInformation("Manager [X]: Monitoring workers!");
+            this._logger.LogAsInformation("Manager [X]: Monitoring workers!");
 
             await Task.Run(async () =>
             {
@@ -107,7 +107,7 @@ namespace nGratis.Cop.Core.Demo
 
         private void ThrowApplicationException()
         {
-            this.logger.LogAsInformation("Manager [Y]: Monitoring workers!");
+            this._logger.LogAsInformation("Manager [Y]: Monitoring workers!");
 
             throw new CopException("Workers are running away!");
         }

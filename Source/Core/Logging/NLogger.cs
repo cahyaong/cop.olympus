@@ -35,7 +35,7 @@ namespace nGratis.Cop.Core
 
     public sealed class NLogger : BaseLogger
     {
-        private readonly Logger logger;
+        private readonly Logger _logger;
 
         public NLogger(string id, string component)
             : base(id)
@@ -44,7 +44,7 @@ namespace nGratis.Cop.Core
                 .Require(component, nameof(component))
                 .Is.Not.Empty();
 
-            this.logger = LogManager.GetLogger(id);
+            this._logger = LogManager.GetLogger(id);
             this.Components = new[] { component };
         }
 
@@ -52,12 +52,12 @@ namespace nGratis.Cop.Core
 
         public override void LogWith(Verbosity verbosity, string message)
         {
-            this.logger.Log(verbosity.ToLogLevel(), message);
+            this._logger.Log(verbosity.ToLogLevel(), message);
         }
 
         public override void LogWith(Verbosity verbosity, string message, Exception exception)
         {
-            this.logger.Log(verbosity.ToLogLevel(), exception, message);
+            this._logger.Log(verbosity.ToLogLevel(), exception, message);
         }
     }
 }

@@ -49,7 +49,7 @@ namespace nGratis.Cop.Core.Wpf
             typeof(AweLogViewer),
             new PropertyMetadata(new ObservableCollection<LogEntry>()));
 
-        private IDisposable onLogEntryAdded;
+        private IDisposable _onLogEntryAdded;
 
         public ILogger Logger
         {
@@ -57,10 +57,10 @@ namespace nGratis.Cop.Core.Wpf
 
             set
             {
-                this.onLogEntryAdded?.Dispose();
+                this._onLogEntryAdded?.Dispose();
                 this.LogEntries.Clear();
 
-                this.onLogEntryAdded = value
+                this._onLogEntryAdded = value
                     .WhenLogEntryAdded()
                     .Subscribe(this.LogEntries.Add);
 

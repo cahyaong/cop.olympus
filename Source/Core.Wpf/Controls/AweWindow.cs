@@ -44,11 +44,11 @@ namespace nGratis.Cop.Core.Wpf
             typeof(AweWindow),
             new PropertyMetadata(VoidLogger.Instance, AweWindow.OnLoggerChanged));
 
-        private readonly IThemeManager themeManager;
+        private readonly IThemeManager _themeManager;
 
-        private AweStatusBar statusBar;
+        private AweStatusBar _statusBar;
 
-        private bool isDisposed;
+        private bool _isDisposed;
 
         public AweWindow()
             : this(ThemeManager.Instance)
@@ -66,7 +66,7 @@ namespace nGratis.Cop.Core.Wpf
                 .Require(themeManager, nameof(themeManager))
                 .Is.Not.Null();
 
-            this.themeManager = themeManager;
+            this._themeManager = themeManager;
         }
 
         public ILogger Logger
@@ -94,32 +94,32 @@ namespace nGratis.Cop.Core.Wpf
                 return;
             }
 
-            this.statusBar?.Dispose();
+            this._statusBar?.Dispose();
 
-            this.statusBar = new AweStatusBar();
-            this.statusBar.SetValue(Grid.RowProperty, 3);
-            this.statusBar.VerticalAlignment = VerticalAlignment.Bottom;
+            this._statusBar = new AweStatusBar();
+            this._statusBar.SetValue(Grid.RowProperty, 3);
+            this._statusBar.VerticalAlignment = VerticalAlignment.Bottom;
 
             if (this.Logger != null)
             {
-                this.statusBar.Logger = this.Logger;
+                this._statusBar.Logger = this.Logger;
             }
 
             contentFrame.Margin = new Thickness(
                 contentFrame.Margin.Left,
                 contentFrame.Margin.Top,
                 contentFrame.Margin.Right,
-                this.themeManager.FindResource("Cop.StatusBar.Height", 0.0) + 8);
+                this._themeManager.FindResource("Cop.StatusBar.Height", 0.0) + 8);
 
             resizingGrid
                 .Children
                 .Cast<FrameworkElement>()
                 .OfType<System.Windows.Shapes.Path>()
                 .ToList()
-                .ForEach(path => path.Stroke = this.themeManager.ApplicationBackgroundBrush);
+                .ForEach(path => path.Stroke = this._themeManager.ApplicationBackgroundBrush);
 
             layoutGrid.Children.Remove(resizingGrid);
-            layoutGrid.Children.Add(this.statusBar);
+            layoutGrid.Children.Add(this._statusBar);
             layoutGrid.Children.Add(resizingGrid);
         }
 
@@ -136,30 +136,30 @@ namespace nGratis.Cop.Core.Wpf
                 return;
             }
 
-            if (window.statusBar != null)
+            if (window._statusBar != null)
             {
-                window.statusBar.Logger = (ILogger)args.NewValue ?? VoidLogger.Instance;
+                window._statusBar.Logger = (ILogger)args.NewValue ?? VoidLogger.Instance;
             }
         }
 
         [SuppressMessage(
             "Microsoft.Usage",
             "CA2213:DisposableFieldsShouldBeDisposed",
-            MessageId = "statusBar",
+            MessageId = "_statusBar",
             Justification = "Does not work with NULL propagation syntax.")]
         protected virtual void Dispose(bool isDisposing)
         {
-            if (this.isDisposed)
+            if (this._isDisposed)
             {
                 return;
             }
 
             if (isDisposing)
             {
-                this.statusBar?.Dispose();
+                this._statusBar?.Dispose();
             }
 
-            this.isDisposed = true;
+            this._isDisposed = true;
         }
     }
 }
