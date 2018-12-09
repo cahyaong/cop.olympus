@@ -53,6 +53,7 @@
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="ApplicationExtensions.cs" />
+    <Compile Include="Behaviors\AutoResetScroll.cs" />
     <Compile Include="CopBootstrapper.cs" />
     <Compile Include="BasePageViewModel.cs" />
     <Compile Include="BaseFormViewModel.cs" />
