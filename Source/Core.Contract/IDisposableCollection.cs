@@ -1,8 +1,8 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="EnumerableToCountConverter.cs" company="nGratis">
+// <copyright file="IDisposableCollection.cs" company="nGratis">
 //  The MIT License (MIT)
 //
-//  Copyright (c) 2014 Cahya Ong
+//  Copyright (c) 2014 - 2018 Cahya Ong
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -23,35 +23,15 @@
 //  SOFTWARE.
 // </copyright>
 // <author>Cahya Ong - cahya.ong@gmail.com</author>
-// <creation_timestamp>Wednesday, 24 December 2014 12:08:32 AM UTC</creation_timestamp>
+// <creation_timestamp>Wednesday, 12 December 2018 9:07:10 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Core.Wpf
+namespace nGratis.Cop.Core.Contract
 {
     using System;
-    using System.Collections;
-    using System.Globalization;
-    using System.Linq;
-    using System.Windows.Data;
+    using System.Collections.Generic;
 
-    [ValueConversion(typeof(IEnumerable), typeof(int))]
-    public class EnumerableToCountConverter : IValueConverter
+    public interface IDisposableCollection<TItem> : IList<TItem>, IDisposable
     {
-        public object Convert(object value, Type type, object parameter, CultureInfo culture)
-        {
-            if (value is IEnumerable enumerable)
-            {
-                return enumerable
-                    .Cast<object>()
-                    .Count();
-            }
-
-            return 0;
-        }
-
-        public object ConvertBack(object value, Type type, object parameter, CultureInfo culture)
-        {
-            throw new NotSupportedException();
-        }
     }
 }

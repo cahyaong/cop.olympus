@@ -39,6 +39,8 @@ namespace nGratis.Cop.Core.Wpf
     {
         static CopBootstrapper()
         {
+            // TODO: Need to capture unhandled exception produced by RX observable!
+
             AppDomain.CurrentDomain.UnhandledException += (_, args) => CopBootstrapper
                 .OnUnhandledExceptionReceived(ExceptionSource.Application, args.ExceptionObject as Exception);
 

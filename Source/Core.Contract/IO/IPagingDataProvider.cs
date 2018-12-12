@@ -1,8 +1,8 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="EnumerableToCountConverter.cs" company="nGratis">
+// <copyright file="IPagingDataProvider.cs" company="nGratis">
 //  The MIT License (MIT)
 //
-//  Copyright (c) 2014 Cahya Ong
+//  Copyright (c) 2014 - 2018 Cahya Ong
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -23,35 +23,29 @@
 //  SOFTWARE.
 // </copyright>
 // <author>Cahya Ong - cahya.ong@gmail.com</author>
-// <creation_timestamp>Wednesday, 24 December 2014 12:08:32 AM UTC</creation_timestamp>
+// <creation_timestamp>Friday, 7 December 2018 10:58:00 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Core.Wpf
+namespace nGratis.Cop.Core.Contract
 {
-    using System;
-    using System.Collections;
-    using System.Globalization;
-    using System.Linq;
-    using System.Windows.Data;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Threading.Tasks;
 
-    [ValueConversion(typeof(IEnumerable), typeof(int))]
-    public class EnumerableToCountConverter : IValueConverter
+    public interface IPagingDataProvider<TItem>
     {
-        public object Convert(object value, Type type, object parameter, CultureInfo culture)
-        {
-            if (value is IEnumerable enumerable)
-            {
-                return enumerable
-                    .Cast<object>()
-                    .Count();
-            }
+        TItem DefaultItem { get; }
 
-            return 0;
-        }
+        [SuppressMessage(
+            "Microsoft.Design",
+            "CA1024:UsePropertiesWhereAppropriate",
+            Justification = "Getting count must be done asynchronously!")]
+        Task<int> GetCountAsync();
 
-        public object ConvertBack(object value, Type type, object parameter, CultureInfo culture)
-        {
-            throw new NotSupportedException();
-        }
+        [SuppressMessage(
+            "Microsoft.Design",
+            "CA1006:DoNotNestGenericTypesInMemberSignatures",
+            Justification = "Task returning collection of specific type.")]
+        Task<IReadOnlyCollection<TItem>> GetItemsAsync(int pagingIndex, int itemCount);
     }
 }
