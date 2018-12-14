@@ -7,27 +7,26 @@
     <core:SharedResourceDictionary Source="/nGratis.Cop.Core.Theme;component/Cop.Palette.Generic.xaml" />
     <core:SharedResourceDictionary Source="/nGratis.Cop.Core.Theme;component/Cop.Style.TextBlock.xaml" />
   </ResourceDictionary.MergedDictionaries>
+
   <Style x:Key="{x:Type core:AweTile}" TargetType="core:AweTile">
     <Style.Setters>
       <Setter Property="Template">
         <Setter.Value>
           <ControlTemplate TargetType="core:AweTile">
-            <Border
-              Margin="0,0,20,0"
-              BorderBrush="{StaticResource Cop.Brush.Accent}"
-              BorderThickness="4,0,0,0">
+            <Border BorderBrush="{StaticResource Cop.Brush.Accent}" BorderThickness="0,0,4,0">
               <StackPanel
-                Margin="10,0,0,0"
-                HorizontalAlignment="Left"
+                Margin="0,0,10,0"
+                HorizontalAlignment="Right"
                 Orientation="Vertical">
                 <TextBlock
-                  FontSize="12"
+                  HorizontalAlignment="Right"
+                  FontSize="10"
                   Foreground="{StaticResource Cop.Brush.Accent}"
                   Style="{StaticResource Cop.TextBlock.Base}"
                   Text="{Binding Header, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay, Converter={StaticResource Cop.Converter.AnyToUpperCaseConverter}}" />
                 <TextBlock
-                  HorizontalAlignment="Left"
-                  FontSize="28"
+                  HorizontalAlignment="Right"
+                  FontSize="26"
                   Style="{StaticResource Cop.TextBlock.Base}"
                   Text="{TemplateBinding FormattedValue}" />
               </StackPanel>

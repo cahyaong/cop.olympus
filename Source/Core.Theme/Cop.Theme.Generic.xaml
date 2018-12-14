@@ -16,6 +16,7 @@
     <core:SharedResourceDictionary Source="/nGratis.Cop.Core.Theme;component/Cop.Style.AweStatusBar.xaml" />
     <core:SharedResourceDictionary Source="/nGratis.Cop.Core.Theme;component/Cop.Style.AweSystemBrowserButton.xaml" />
     <core:SharedResourceDictionary Source="/nGratis.Cop.Core.Theme;component/Cop.Style.AweTile.xaml" />
+    <core:SharedResourceDictionary Source="/nGratis.Cop.Core.Theme;component/Cop.Style.AweTileGroup.xaml" />
     <core:SharedResourceDictionary Source="/nGratis.Cop.Core.Theme;component/Cop.Style.DataGrid.xaml" />
     <core:SharedResourceDictionary Source="/nGratis.Cop.Core.Theme;component/Cop.Style.TextBlock.xaml" />
     <core:SharedResourceDictionary Source="/nGratis.Cop.Core.Theme;component/Cop.Style.TextBox.xaml" />

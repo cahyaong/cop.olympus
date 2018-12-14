@@ -55,6 +55,8 @@
     <Compile Include="ApplicationExtensions.cs" />
     <Compile Include="AsyncVirtualizingCollection.cs" />
     <Compile Include="Behaviors\AutoResetScroll.cs" />
+    <Compile Include="Behaviors\ChildMargin.cs" />
+    <Compile Include="Controls\AweTileGroup.cs" />
     <Compile Include="CopBootstrapper.cs" />
     <Compile Include="BasePageViewModel.cs" />
     <Compile Include="BaseFormViewModel.cs" />
