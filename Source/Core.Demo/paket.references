@@ -1,7 +1,5 @@
-group Build-UI
+group _UI
     Caliburn.Micro
     MahApps.Metro
     ModernUI.WPF
-    ReactiveUI
     ReactiveUI.Wpf
-    System.Threading.Tasks.Extensions

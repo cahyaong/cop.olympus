@@ -1,12 +1,10 @@
-group Build
-    Humanizer.Core
-    JetBrains.Annotations
+Humanizer.Core
+JetBrains.Annotations
 
-group Build-UI
+group _UI
     Caliburn.Micro
     MahApps.Metro
     ModernUI.WPF
     OxyPlot.Wpf
     ReactiveUI.WPF
-    System.Reactive
     System.Reactive.Linq

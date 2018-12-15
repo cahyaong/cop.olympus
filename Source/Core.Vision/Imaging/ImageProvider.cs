@@ -51,7 +51,7 @@ namespace nGratis.Cop.Core.Vision.Imaging
 
             using (var imageStream = this._storageManager.LoadEntry(imageSpec))
             {
-                var writableImage = new WriteableImage();
+                var writableImage = new WritableImage();
                 writableImage.LoadData(imageStream);
 
                 return writableImage;

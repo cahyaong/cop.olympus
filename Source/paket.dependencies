@@ -1,21 +1,18 @@
-group Build
+framework: net472
+source https://api.nuget.org/v3/index.json
 
-    framework: net462
-    source https://api.nuget.org/v3/index.json
+nuget Humanizer.Core
+nuget JetBrains.Annotations
+nuget Newtonsoft.Json
+nuget NLog
+nuget System.Reactive
+nuget System.Reactive.Linq
+nuget System.Threading.Tasks.Extensions
+nuget YamlDotNet
 
-    nuget Humanizer.Core
-    nuget JetBrains.Annotations
-    nuget Newtonsoft.Json
-    nuget NLog
-    nuget System.Reactive
-    nuget System.Reactive.Linq
-    nuget System.Threading.Tasks.Extensions ~> 4.3.0
-    nuget System.ValueTuple
-    nuget YamlDotNet
+group _UI
 
-group Build-UI
-
-    framework: net462
+    framework: net472
     source https://api.nuget.org/v3/index.json
 
     nuget Caliburn.Micro
@@ -24,24 +21,20 @@ group Build-UI
     nuget OxyPlot.Wpf
     nuget ReactiveUI
     nuget ReactiveUI.WPF
-    nuget System.Reactive
-    nuget System.Reactive.Linq
-    nuget System.Threading.Tasks.Extensions ~> 4.3.0
 
-group Build-Vision
+group _Vision
 
-    framework: net462
+    framework: net472
     source https://api.nuget.org/v3/index.json
 
     nuget AForge.Imaging
     nuget WriteableBitmapEx
 
-group Test
+group _Test
 
-    framework: net462
+    framework: net472
     source https://api.nuget.org/v3/index.json
 
     nuget FluentAssertions
-    nuget Moq ~> 4.8.2.0
-    nuget System.Threading.Tasks.Extensions ~> 4.3.0
+    nuget Moq
     nuget xunit

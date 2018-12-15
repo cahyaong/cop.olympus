@@ -1,5 +1,4 @@
-group Build
-    JetBrains.Annotations
+JetBrains.Annotations
 
-group Test
+group _Test
     Moq

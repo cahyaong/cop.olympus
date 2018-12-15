@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="WriteableImage.cs" company="nGratis">
+// <copyright file="WritableImage.cs" company="nGratis">
 //  The MIT License (MIT)
 //
 //  Copyright (c) 2014 Cahya Ong
@@ -33,9 +33,9 @@ namespace nGratis.Cop.Core.Vision.Imaging
     using System.Windows.Media;
     using System.Windows.Media.Imaging;
 
-    public class WriteableImage : IImage
+    public class WritableImage : IImage
     {
-        private WriteableBitmap _writeableBitmap;
+        private WriteableBitmap _writableBitmap;
 
         public int Width { get; private set; }
 
@@ -43,8 +43,8 @@ namespace nGratis.Cop.Core.Vision.Imaging
 
         public Color this[int x, int y]
         {
-            get => this._writeableBitmap.GetPixel(x, y);
-            set => this._writeableBitmap.SetPixel(x, y, value);
+            get => this._writableBitmap.GetPixel(x, y);
+            set => this._writableBitmap.SetPixel(x, y, value);
         }
 
         public void LoadData(Stream dataSteam)
@@ -60,10 +60,10 @@ namespace nGratis.Cop.Core.Vision.Imaging
             bitmap.StreamSource = dataSteam;
             bitmap.EndInit();
 
-            this._writeableBitmap = new WriteableBitmap(bitmap);
+            this._writableBitmap = new WriteableBitmap(bitmap);
 
-            this.Width = this._writeableBitmap.PixelWidth;
-            this.Height = this._writeableBitmap.PixelHeight;
+            this.Width = this._writableBitmap.PixelWidth;
+            this.Height = this._writableBitmap.PixelHeight;
         }
 
         public Stream SaveData()
@@ -73,7 +73,7 @@ namespace nGratis.Cop.Core.Vision.Imaging
 
         public ImageSource ToImageSource()
         {
-            return this._writeableBitmap;
+            return this._writableBitmap;
         }
 
         public IEnumerable<Color> ToPixels()

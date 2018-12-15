@@ -1,6 +1,4 @@
-group Build
-    JetBrains.Annotations
-    Newtonsoft.Json
-    NLog
-    System.Reactive
-    System.Reactive.Linq
+JetBrains.Annotations
+Newtonsoft.Json
+NLog
+System.Reactive.Linq

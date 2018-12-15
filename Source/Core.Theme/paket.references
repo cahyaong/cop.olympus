@@ -1,4 +1,4 @@
-group Build-UI
+group _UI
     MahApps.Metro
     ModernUI.WPF
     OxyPlot.Wpf

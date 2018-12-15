@@ -1,5 +1,4 @@
-group Test
+group _Test
     FluentAssertions
     Moq
-    System.Threading.Tasks.Extensions
     xunit
