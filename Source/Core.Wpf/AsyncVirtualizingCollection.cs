@@ -37,6 +37,7 @@ namespace nGratis.Cop.Core.Wpf
     using System.Reactive.Concurrency;
     using System.Reactive.Linq;
     using System.Reactive.Subjects;
+    using System.Threading;
     using System.Threading.Tasks;
     using nGratis.Cop.Core.Contract;
     using ReactiveUI;
@@ -267,7 +268,9 @@ namespace nGratis.Cop.Core.Wpf
             }
 
             var cachingEntry = this._deferredCachingEntryLookup
-                .GetOrAdd(request.PagingIndex, _ => new Lazy<CachingEntry>(CreateCachingEntry, true))
+                .GetOrAdd(
+                    request.PagingIndex,
+                    _ => new Lazy<CachingEntry>(CreateCachingEntry, LazyThreadSafetyMode.ExecutionAndPublication))
                 .Value;
 
             if (cachingEntry.AccessedTimestamp <= DateTimeOffset.MinValue)
