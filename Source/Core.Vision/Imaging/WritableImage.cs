@@ -32,6 +32,7 @@ namespace nGratis.Cop.Core.Vision.Imaging
     using System.IO;
     using System.Windows.Media;
     using System.Windows.Media.Imaging;
+    using nGratis.Cop.Core.Contract;
 
     public class WritableImage : IImage
     {
@@ -49,6 +50,11 @@ namespace nGratis.Cop.Core.Vision.Imaging
 
         public void LoadData(Stream dataSteam)
         {
+            Guard
+                .Require(dataSteam, nameof(dataSteam))
+                .Is.Not.Null()
+                .Is.Readable();
+
             // TODO: Handle a case when input data contains transparency.
 
             dataSteam.Position = 0;

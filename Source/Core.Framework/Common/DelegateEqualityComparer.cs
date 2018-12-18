@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Feature.cs" company="nGratis">
+// <copyright file="DelegateEqualityComparer.cs" company="nGratis">
 //  The MIT License (MIT)
 //
 //  Copyright (c) 2014 Cahya Ong
@@ -25,34 +25,33 @@
 // <author>Cahya Ong - cahya.ong@gmail.com</author>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Core.Wpf
+namespace nGratis.Cop.Core.Framework
 {
+    using System;
     using System.Collections.Generic;
-    using System.Linq;
     using nGratis.Cop.Core.Contract;
 
-    public class Feature : IFeature
+    internal class DelegateEqualityComparer<TItem> : IEqualityComparer<TItem>
     {
-        public Feature(string name, IEnumerable<Page> pages)
-            : this(name, int.MinValue, pages)
-        {
-        }
+        private readonly Func<TItem, TItem, bool> _isEqual;
 
-        public Feature(string name, int order, IEnumerable<Page> pages)
+        public DelegateEqualityComparer(Func<TItem, TItem, bool> isEqual)
         {
             Guard
-                .Require(name, nameof(name))
-                .Is.Not.Empty();
+                .Require(isEqual, nameof(isEqual))
+                .Is.Not.Null();
 
-            this.Name = name;
-            this.Order = order;
-            this.Pages = pages ?? Enumerable.Empty<Page>();
+            this._isEqual = isEqual;
         }
 
-        public string Name { get; }
+        public bool Equals(TItem leftItem, TItem rightItem)
+        {
+            return this._isEqual(leftItem, rightItem);
+        }
 
-        public int Order { get; }
-
-        public IEnumerable<IPage> Pages { get; }
+        public int GetHashCode(TItem item)
+        {
+            return 0;
+        }
     }
 }

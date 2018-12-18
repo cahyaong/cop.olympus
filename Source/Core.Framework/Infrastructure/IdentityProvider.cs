@@ -1,8 +1,8 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Feature.cs" company="nGratis">
+// <copyright file="IdentityProvider.cs" company="nGratis">
 //  The MIT License (MIT)
 //
-//  Copyright (c) 2014 Cahya Ong
+//  Copyright (c) 2014 - 2015 Cahya Ong
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -23,36 +23,52 @@
 //  SOFTWARE.
 // </copyright>
 // <author>Cahya Ong - cahya.ong@gmail.com</author>
+// <creation_timestamp>Saturday, 25 April 2015 1:01:42 PM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Core.Wpf
+namespace nGratis.Cop.Core.Framework
 {
-    using System.Collections.Generic;
-    using System.Linq;
+    using System;
+    using System.Globalization;
+    using System.Security.Cryptography;
+    using System.Text;
     using nGratis.Cop.Core.Contract;
 
-    public class Feature : IFeature
+    public class IdentityProvider : IIdentityProvider
     {
-        public Feature(string name, IEnumerable<Page> pages)
-            : this(name, int.MinValue, pages)
+        static IdentityProvider()
+        {
+            IdentityProvider.Instance = new IdentityProvider();
+        }
+
+        private IdentityProvider()
         {
         }
 
-        public Feature(string name, int order, IEnumerable<Page> pages)
+        public static IIdentityProvider Instance { get; private set; }
+
+        public Guid CreateGuid()
+        {
+            return Guid.NewGuid();
+        }
+
+        public Guid CreateGuid(string content)
         {
             Guard
-                .Require(name, nameof(name))
+                .Require(content, nameof(content))
                 .Is.Not.Empty();
 
-            this.Name = name;
-            this.Order = order;
-            this.Pages = pages ?? Enumerable.Empty<Page>();
+            var md5 = MD5.Create();
+
+            return new Guid(md5.ComputeHash(Encoding.UTF8.GetBytes(content)));
         }
 
-        public string Name { get; }
-
-        public int Order { get; }
-
-        public IEnumerable<IPage> Pages { get; }
+        public string CreateId()
+        {
+            return this
+                .CreateGuid()
+                .ToString("D")
+                .ToUpper(CultureInfo.InvariantCulture);
+        }
     }
 }

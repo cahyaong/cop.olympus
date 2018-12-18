@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Feature.cs" company="nGratis">
+// <copyright file="NotifyingObject.cs" company="nGratis">
 //  The MIT License (MIT)
 //
 //  Copyright (c) 2014 Cahya Ong
@@ -23,36 +23,38 @@
 //  SOFTWARE.
 // </copyright>
 // <author>Cahya Ong - cahya.ong@gmail.com</author>
+// <creation_timestamp>Wednesday, 24 December 2014 5:52:27 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Core.Wpf
+namespace nGratis.Cop.Core.Framework
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using nGratis.Cop.Core.Contract;
+    using System.ComponentModel;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Runtime.CompilerServices;
 
-    public class Feature : IFeature
+    public abstract class NotifyingObject : INotifyPropertyChanging, INotifyPropertyChanged
     {
-        public Feature(string name, IEnumerable<Page> pages)
-            : this(name, int.MinValue, pages)
+        public event PropertyChangingEventHandler PropertyChanging;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [SuppressMessage("Microsoft.Design", "CA1030:UseEventsWhereAppropriate")]
+        [SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed")]
+        protected void RaiseAndSetIfChanged<TValue>(
+            ref TValue oldValue,
+            TValue newValue,
+            [CallerMemberName] string propertyName = null)
         {
+            if (object.Equals(oldValue, newValue))
+            {
+                return;
+            }
+
+            this.PropertyChanging?.Invoke(this, new PropertyChangingEventArgs(propertyName));
+
+            oldValue = newValue;
+
+            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
-        public Feature(string name, int order, IEnumerable<Page> pages)
-        {
-            Guard
-                .Require(name, nameof(name))
-                .Is.Not.Empty();
-
-            this.Name = name;
-            this.Order = order;
-            this.Pages = pages ?? Enumerable.Empty<Page>();
-        }
-
-        public string Name { get; }
-
-        public int Order { get; }
-
-        public IEnumerable<IPage> Pages { get; }
     }
 }

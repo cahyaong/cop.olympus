@@ -44,19 +44,19 @@ namespace nGratis.Cop.Core.Wpf
                 return null;
             }
 
-            var vm = ViewModelLocator.LocateForView(content);
+            var viewModel = ViewModelLocator.LocateForView(content);
 
-            if (vm == null)
+            if (viewModel == null)
             {
                 return content;
             }
 
-            if (content is DependencyObject)
+            if (content is DependencyObject container)
             {
-                ViewModelBinder.Bind(vm, content as DependencyObject, null);
+                ViewModelBinder.Bind(viewModel, container, null);
             }
 
-            if (content is FrameworkElement element && vm is IActivatable activatable)
+            if (content is FrameworkElement element && viewModel is IActivatable activatable)
             {
                 element.Loaded += (_, __) => activatable.Activate();
                 element.Unloaded += (_, __) => activatable.Deactivate();

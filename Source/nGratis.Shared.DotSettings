@@ -142,7 +142,8 @@ $END$</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/Todo/TodoPatterns/=FC3FC73D376C834DB5A5AC12140EB5BA/MatchComments/@EntryValue">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/Todo/TodoPatterns/=FC3FC73D376C834DB5A5AC12140EB5BA/Name/@EntryValue">Fix Me</s:String>
 	<s:String x:Key="/Default/PatternsAndTemplates/Todo/TodoPatterns/=FC3FC73D376C834DB5A5AC12140EB5BA/Pattern/@EntryValue">(?&lt;=\W|^)(?&lt;TAG&gt;FIXME)(\W|$)(.*)</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/Todo/TodoPatterns/=FC3FC73D376C834DB5A5AC12140EB5BA/TodoIconStyle/@EntryValue">Warning</s:String>	
+	<s:String x:Key="/Default/PatternsAndTemplates/Todo/TodoPatterns/=FC3FC73D376C834DB5A5AC12140EB5BA/TodoIconStyle/@EntryValue">Warning</s:String>
+	<s:Boolean x:Key="/Default/UserDictionary/Words/=activatable/@EntryIndexedValue">True</s:Boolean>	
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=aysnc/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=cahya/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=caliburn/@EntryIndexedValue">True</s:Boolean>
@@ -152,4 +153,5 @@ $END$</s:String>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=noninfringement/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=templated/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=unregister/@EntryIndexedValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/UserDictionary/Words/=virtualizing/@EntryIndexedValue">True</s:Boolean></wpf:ResourceDictionary>
+	<s:Boolean x:Key="/Default/UserDictionary/Words/=virtualizing/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/UserDictionary/Words/=xunit/@EntryIndexedValue">True</s:Boolean></wpf:ResourceDictionary>

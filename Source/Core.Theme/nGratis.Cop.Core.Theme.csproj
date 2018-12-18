@@ -166,10 +166,6 @@
       <Project>{199487eb-64e4-4d48-9e9a-3afdddadf041}</Project>
       <Name>nGratis.Cop.Core.Wpf</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Core\nGratis.Cop.Core.csproj">
-      <Project>{b90c4c38-a600-44bb-840e-2a7d4b46618a}</Project>
-      <Name>nGratis.Cop.Core</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Choose>

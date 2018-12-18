@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Feature.cs" company="nGratis">
+// <copyright file="AssemblyInfo.cs" company="nGratis">
 //  The MIT License (MIT)
 //
 //  Copyright (c) 2014 Cahya Ong
@@ -23,36 +23,18 @@
 //  SOFTWARE.
 // </copyright>
 // <author>Cahya Ong - cahya.ong@gmail.com</author>
+// <creation_timestamp>Sunday, 28 December 2014 12:32:15 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Core.Wpf
-{
-    using System.Collections.Generic;
-    using System.Linq;
-    using nGratis.Cop.Core.Contract;
+using System;
+using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Windows.Markup;
 
-    public class Feature : IFeature
-    {
-        public Feature(string name, IEnumerable<Page> pages)
-            : this(name, int.MinValue, pages)
-        {
-        }
-
-        public Feature(string name, int order, IEnumerable<Page> pages)
-        {
-            Guard
-                .Require(name, nameof(name))
-                .Is.Not.Empty();
-
-            this.Name = name;
-            this.Order = order;
-            this.Pages = pages ?? Enumerable.Empty<Page>();
-        }
-
-        public string Name { get; }
-
-        public int Order { get; }
-
-        public IEnumerable<IPage> Pages { get; }
-    }
-}
+[assembly: AssemblyTitle("nGratis.Cop.Core.Framework")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyCulture("")]
+[assembly: ComVisible(false)]
+[assembly: Guid("aad5b1cf-5af1-4011-a396-493e640ab914")]
+[assembly: CLSCompliant(true)]
+[assembly: XmlnsDefinition("http://schemas.ngratis.com/2014/core", "nGratis.Cop.Core")]

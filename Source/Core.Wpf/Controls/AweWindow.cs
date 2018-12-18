@@ -35,6 +35,7 @@ namespace nGratis.Cop.Core.Wpf
     using System.Windows.Controls;
     using FirstFloor.ModernUI.Windows.Controls;
     using nGratis.Cop.Core.Contract;
+    using nGratis.Cop.Core.Framework;
 
     public class AweWindow : ModernWindow, IDisposable
     {

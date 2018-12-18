@@ -1,8 +1,8 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Feature.cs" company="nGratis">
+// <copyright file="DataSpecExtensions.cs" company="nGratis">
 //  The MIT License (MIT)
 //
-//  Copyright (c) 2014 Cahya Ong
+//  Copyright (c) 2014 - 2017 Cahya Ong
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -23,36 +23,27 @@
 //  SOFTWARE.
 // </copyright>
 // <author>Cahya Ong - cahya.ong@gmail.com</author>
+// <creation_timestamp>Friday, 17 November 2017 11:04:03 PM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Core.Wpf
+namespace nGratis.Cop.Core.Framework
 {
-    using System.Collections.Generic;
     using System.Linq;
     using nGratis.Cop.Core.Contract;
 
-    public class Feature : IFeature
+    public static class DataSpecExtensions
     {
-        public Feature(string name, IEnumerable<Page> pages)
-            : this(name, int.MinValue, pages)
-        {
-        }
-
-        public Feature(string name, int order, IEnumerable<Page> pages)
+        public static string GetFileName(this DataSpec dataSpec)
         {
             Guard
-                .Require(name, nameof(name))
+                .Require(dataSpec, nameof(dataSpec))
+                .Is.Not.Null();
+
+            Guard
+                .Require(dataSpec.Mime.Extensions, nameof(dataSpec))
                 .Is.Not.Empty();
 
-            this.Name = name;
-            this.Order = order;
-            this.Pages = pages ?? Enumerable.Empty<Page>();
+            return $"{dataSpec.Name}.{dataSpec.Mime.Extensions.First()}";
         }
-
-        public string Name { get; }
-
-        public int Order { get; }
-
-        public IEnumerable<IPage> Pages { get; }
     }
 }

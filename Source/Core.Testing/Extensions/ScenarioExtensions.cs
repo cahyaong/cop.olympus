@@ -26,16 +26,15 @@
 // <creation_timestamp>Monday, 20 April 2015 1:14:58 PM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Core.Testing
+// ReSharper disable CheckNamespace
+
+namespace System.Data
 {
     using System;
-    using System.Data;
     using System.Globalization;
     using System.Windows;
-    using JetBrains.Annotations;
     using nGratis.Cop.Core.Contract;
 
-    [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
     public static class ScenarioExtensions
     {
         public static Guid AsGuid(this DataRow row, string column)

@@ -47,6 +47,7 @@
     <Compile Include="..\Core.Shared\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Imaging\EmptyImage.cs" />
     <Compile Include="Imaging\FilterExtensions.cs" />
     <Compile Include="Imaging\IImage.cs" />
     <Compile Include="Imaging\IImageProvider.cs" />
@@ -59,9 +60,9 @@
       <Project>{e727ca53-5288-4e7e-828c-011803b0bedd}</Project>
       <Name>nGratis.Cop.Core.Contract</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Core\nGratis.Cop.Core.csproj">
+    <ProjectReference Include="..\Core.Framework\nGratis.Cop.Core.Framework.csproj">
       <Project>{b90c4c38-a600-44bb-840e-2a7d4b46618a}</Project>
-      <Name>nGratis.Cop.Core</Name>
+      <Name>nGratis.Cop.Core.Framework</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

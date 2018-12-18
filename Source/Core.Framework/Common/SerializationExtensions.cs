@@ -1,8 +1,8 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Feature.cs" company="nGratis">
+// <copyright file="SerializationExtensions.cs" company="nGratis">
 //  The MIT License (MIT)
 //
-//  Copyright (c) 2014 Cahya Ong
+//  Copyright (c) 2014 - 2017 Cahya Ong
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -23,36 +23,58 @@
 //  SOFTWARE.
 // </copyright>
 // <author>Cahya Ong - cahya.ong@gmail.com</author>
+// <creation_timestamp>Friday, 28 April 2017 11:27:29 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Core.Wpf
+// ReSharper disable CheckNamespace
+
+namespace System
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using System.IO;
     using System.Linq;
+    using System.Text;
+    using Newtonsoft.Json;
     using nGratis.Cop.Core.Contract;
 
-    public class Feature : IFeature
+    public static class SerializationExtensions
     {
-        public Feature(string name, IEnumerable<Page> pages)
-            : this(name, int.MinValue, pages)
-        {
-        }
-
-        public Feature(string name, int order, IEnumerable<Page> pages)
+        public static Stream SerializeManyAsJson<T>(this IEnumerable<T> instances)
         {
             Guard
-                .Require(name, nameof(name))
-                .Is.Not.Empty();
+                .Require(instances, nameof(instances))
+                .Is.Not.Null();
 
-            this.Name = name;
-            this.Order = order;
-            this.Pages = pages ?? Enumerable.Empty<Page>();
+            return instances
+                .ToArray()
+                .SerializeAsJson();
         }
 
-        public string Name { get; }
+        [SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times")]
+        public static Stream SerializeAsJson<T>(this T instance)
+            where T : class
+        {
+            Guard
+                .Require(instance, nameof(instance))
+                .Is.Not.Null();
 
-        public int Order { get; }
+            var serializer = new JsonSerializer();
+            var stream = new MemoryStream();
 
-        public IEnumerable<IPage> Pages { get; }
+            using (var streamWriter = new StreamWriter(stream, Encoding.UTF8, 4096, true))
+            using (var jsonWriter = new JsonTextWriter(streamWriter))
+            {
+                jsonWriter.Formatting = Formatting.Indented;
+                jsonWriter.IndentChar = ' ';
+                jsonWriter.Indentation = 2;
+
+                serializer.Serialize(jsonWriter, instance, typeof(T));
+                jsonWriter.Flush();
+                stream.Position = 0;
+
+                return stream;
+            }
+        }
     }
 }

@@ -33,7 +33,7 @@ namespace nGratis.Cop.Core.Contract
         None = 0,
         Trace,
         Debug,
-        Information,
+        Info,
         Warning,
         Error,
         Fatal

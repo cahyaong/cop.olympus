@@ -33,7 +33,6 @@ namespace Moq
     using System.Text.RegularExpressions;
     using nGratis.Cop.Core.Contract;
     using Contract = nGratis.Cop.Core.Contract;
-    using IO = System.IO;
 
     public class Arg
     {
@@ -67,13 +66,13 @@ namespace Moq
 
         public class Stream
         {
-            public static IO.Stream IsHtml()
+            public static System.IO.Stream IsHtml()
             {
-                return Match.Create<IO.Stream>(stream =>
+                return Match.Create<System.IO.Stream>(stream =>
                 {
                     stream.Position = 0;
 
-                    var reader = new IO.StreamReader(stream);
+                    var reader = new System.IO.StreamReader(stream);
                     var content = reader.ReadToEnd();
 
                     stream.Position = 0;

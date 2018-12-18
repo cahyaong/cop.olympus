@@ -1,8 +1,8 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Feature.cs" company="nGratis">
+// <copyright file="VoidLogger.cs" company="nGratis">
 //  The MIT License (MIT)
 //
-//  Copyright (c) 2014 Cahya Ong
+//  Copyright (c) 2014 - 2015 Cahya Ong
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -23,36 +23,33 @@
 //  SOFTWARE.
 // </copyright>
 // <author>Cahya Ong - cahya.ong@gmail.com</author>
+// <creation_timestamp>Friday, 1 May 2015 1:44:25 PM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Core.Wpf
+namespace nGratis.Cop.Core.Framework
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using nGratis.Cop.Core.Contract;
 
-    public class Feature : IFeature
+    public sealed class VoidLogger : BaseLogger
     {
-        public Feature(string name, IEnumerable<Page> pages)
-            : this(name, int.MinValue, pages)
+        private VoidLogger()
+            : base(Text.Void)
         {
         }
 
-        public Feature(string name, int order, IEnumerable<Page> pages)
-        {
-            Guard
-                .Require(name, nameof(name))
-                .Is.Not.Empty();
+        public static ILogger Instance { get; } = new VoidLogger();
 
-            this.Name = name;
-            this.Order = order;
-            this.Pages = pages ?? Enumerable.Empty<Page>();
+        public override IEnumerable<string> Components => Enumerable.Empty<string>();
+
+        public override void LogWith(Verbosity verbosity, string message)
+        {
         }
 
-        public string Name { get; }
-
-        public int Order { get; }
-
-        public IEnumerable<IPage> Pages { get; }
+        public override void LogWith(Verbosity verbosity, string message, Exception exception)
+        {
+        }
     }
 }

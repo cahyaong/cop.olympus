@@ -1,8 +1,8 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Feature.cs" company="nGratis">
+// <copyright file="VoidStorageManager.cs" company="nGratis">
 //  The MIT License (MIT)
 //
-//  Copyright (c) 2014 Cahya Ong
+//  Copyright (c) 2014 - 2015 Cahya Ong
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -23,36 +23,43 @@
 //  SOFTWARE.
 // </copyright>
 // <author>Cahya Ong - cahya.ong@gmail.com</author>
+// <creation_timestamp>Friday, 3 April 2015 9:22:12 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Core.Wpf
+namespace nGratis.Cop.Core.Framework
 {
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
     using nGratis.Cop.Core.Contract;
 
-    public class Feature : IFeature
+    public class VoidStorageManager : IStorageManager
     {
-        public Feature(string name, IEnumerable<Page> pages)
-            : this(name, int.MinValue, pages)
+        private VoidStorageManager()
         {
         }
 
-        public Feature(string name, int order, IEnumerable<Page> pages)
-        {
-            Guard
-                .Require(name, nameof(name))
-                .Is.Not.Empty();
+        public static VoidStorageManager Default { get; } = new VoidStorageManager();
 
-            this.Name = name;
-            this.Order = order;
-            this.Pages = pages ?? Enumerable.Empty<Page>();
+        public bool IsAvailable { get; } = false;
+
+        public IEnumerable<DataInfo> FindEntries(string pattern, Mime mime)
+        {
+            return Enumerable.Empty<DataInfo>();
         }
 
-        public string Name { get; }
+        public bool HasEntry(DataSpec dataSpec)
+        {
+            return false;
+        }
 
-        public int Order { get; }
+        public Stream LoadEntry(DataSpec dataSpec)
+        {
+            return new MemoryStream();
+        }
 
-        public IEnumerable<IPage> Pages { get; }
+        public void SaveEntry(DataSpec dataSpec, Stream dataStream, bool canOverride)
+        {
+        }
     }
 }

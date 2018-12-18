@@ -30,6 +30,7 @@ namespace nGratis.Cop.Core.Wpf
 {
     using System.Collections.Generic;
     using nGratis.Cop.Core.Contract;
+    using nGratis.Cop.Core.Framework;
 
     public class ChartConfiguration : NotifyingObject
     {

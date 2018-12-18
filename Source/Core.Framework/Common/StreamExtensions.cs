@@ -1,8 +1,8 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Feature.cs" company="nGratis">
+// <copyright file="StreamExtensions.cs" company="nGratis">
 //  The MIT License (MIT)
 //
-//  Copyright (c) 2014 Cahya Ong
+//  Copyright (c) 2014 - 2017 Cahya Ong
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -23,36 +23,43 @@
 //  SOFTWARE.
 // </copyright>
 // <author>Cahya Ong - cahya.ong@gmail.com</author>
+// <creation_timestamp>Friday, 28 April 2017 11:39:38 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Core.Wpf
+// ReSharper disable CheckNamespace
+
+namespace System.IO
 {
-    using System.Collections.Generic;
-    using System.Linq;
+    using System.Text;
     using nGratis.Cop.Core.Contract;
 
-    public class Feature : IFeature
+    public static class StreamExtensions
     {
-        public Feature(string name, IEnumerable<Page> pages)
-            : this(name, int.MinValue, pages)
-        {
-        }
+        private const int BufferSize = 4 * 1024;
 
-        public Feature(string name, int order, IEnumerable<Page> pages)
+        public static string ReadString(this Stream stream)
         {
             Guard
-                .Require(name, nameof(name))
-                .Is.Not.Empty();
+                .Require(stream, nameof(stream))
+                .Is.Not.Null()
+                .Is.Readable();
 
-            this.Name = name;
-            this.Order = order;
-            this.Pages = pages ?? Enumerable.Empty<Page>();
+            if (stream.CanSeek)
+            {
+                stream.Position = 0;
+            }
+
+            using (var reader = new StreamReader(stream, Encoding.UTF8, true, StreamExtensions.BufferSize, false))
+            {
+                var content = reader.ReadToEnd();
+
+                if (stream.CanSeek)
+                {
+                    stream.Position = 0;
+                }
+
+                return content;
+            }
         }
-
-        public string Name { get; }
-
-        public int Order { get; }
-
-        public IEnumerable<IPage> Pages { get; }
     }
 }

@@ -1,8 +1,8 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Feature.cs" company="nGratis">
+// <copyright file="InfrastructureManager.cs" company="nGratis">
 //  The MIT License (MIT)
 //
-//  Copyright (c) 2014 Cahya Ong
+//  Copyright (c) 2014 - 2015 Cahya Ong
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -23,36 +23,57 @@
 //  SOFTWARE.
 // </copyright>
 // <author>Cahya Ong - cahya.ong@gmail.com</author>
+// <creation_timestamp>Saturday, 25 April 2015 1:01:42 PM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Core.Wpf
+namespace nGratis.Cop.Core.Framework
 {
-    using System.Collections.Generic;
-    using System.Linq;
+    using System;
     using nGratis.Cop.Core.Contract;
 
-    public class Feature : IFeature
+    public sealed class InfrastructureManager : IInfrastructureManager, IDisposable
     {
-        public Feature(string name, IEnumerable<Page> pages)
-            : this(name, int.MinValue, pages)
+        private bool _isDisposed;
+
+        public InfrastructureManager(LoggingModes loggingModes)
         {
+            this.IdentityProvider = Framework.IdentityProvider.Instance;
+            this.LoggingProvider = new LoggingProvider(loggingModes);
+            this.TemporalProvider = Framework.TemporalProvider.Instance;
         }
 
-        public Feature(string name, int order, IEnumerable<Page> pages)
+        ~InfrastructureManager()
         {
-            Guard
-                .Require(name, nameof(name))
-                .Is.Not.Empty();
-
-            this.Name = name;
-            this.Order = order;
-            this.Pages = pages ?? Enumerable.Empty<Page>();
+            this.Dispose(false);
         }
 
-        public string Name { get; }
+        public static IInfrastructureManager Instance { get; } = new InfrastructureManager(LoggingModes.All);
 
-        public int Order { get; }
+        public IIdentityProvider IdentityProvider { get; }
 
-        public IEnumerable<IPage> Pages { get; }
+        public ITemporalProvider TemporalProvider { get; }
+
+        public ILoggingProvider LoggingProvider { get; }
+
+        public void Dispose()
+        {
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        private void Dispose(bool isDisposing)
+        {
+            if (this._isDisposed)
+            {
+                return;
+            }
+
+            if (isDisposing)
+            {
+                this.LoggingProvider?.Dispose();
+            }
+
+            this._isDisposed = true;
+        }
     }
 }

@@ -1,8 +1,8 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Feature.cs" company="nGratis">
+// <copyright file="ConsoleLogger.cs" company="nGratis">
 //  The MIT License (MIT)
 //
-//  Copyright (c) 2014 Cahya Ong
+//  Copyright (c) 2014 - 2015 Cahya Ong
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -23,36 +23,45 @@
 //  SOFTWARE.
 // </copyright>
 // <author>Cahya Ong - cahya.ong@gmail.com</author>
+// <creation_timestamp>Monday, 20 July 2015 2:25:29 PM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Core.Wpf
+namespace nGratis.Cop.Core.Framework
 {
+    using System;
     using System.Collections.Generic;
-    using System.Linq;
+    using System.ComponentModel;
+    using System.Diagnostics.CodeAnalysis;
     using nGratis.Cop.Core.Contract;
 
-    public class Feature : IFeature
+    public class ConsoleLogger : BaseLogger
     {
-        public Feature(string name, IEnumerable<Page> pages)
-            : this(name, int.MinValue, pages)
-        {
-        }
-
-        public Feature(string name, int order, IEnumerable<Page> pages)
+        public ConsoleLogger(string id, string component)
+            : base(id)
         {
             Guard
-                .Require(name, nameof(name))
+                .Require(component, nameof(component))
                 .Is.Not.Empty();
 
-            this.Name = name;
-            this.Order = order;
-            this.Pages = pages ?? Enumerable.Empty<Page>();
+            this.Components = new[] { component };
         }
 
-        public string Name { get; }
+        public override IEnumerable<string> Components { get; }
 
-        public int Order { get; }
+        [SuppressMessage("Microsoft.Globalization", "CA1303:Do not pass literals as localized parameters")]
+        public override void LogWith(Verbosity verbosity, [Localizable(false)] string message)
+        {
+            var line = $"{DateTimeOffset.Now:s} | {verbosity.ToConsoleText()} | {message}";
 
-        public IEnumerable<IPage> Pages { get; }
+            Console.WriteLine(line);
+        }
+
+        [SuppressMessage("Microsoft.Globalization", "CA1303:Do not pass literals as localized parameters")]
+        public override void LogWith(Verbosity verbosity, [Localizable(false)] string message, Exception exception)
+        {
+            var line = $"{DateTimeOffset.Now:s} | {verbosity.ToConsoleText()} | {message} {exception.Message}";
+
+            Console.WriteLine(line);
+        }
     }
 }

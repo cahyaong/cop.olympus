@@ -64,10 +64,6 @@
       <Project>{e727ca53-5288-4e7e-828c-011803b0bedd}</Project>
       <Name>nGratis.Cop.Core.Contract</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Core\nGratis.Cop.Core.csproj">
-      <Project>{b90c4c38-a600-44bb-840e-2a7d4b46618a}</Project>
-      <Name>nGratis.Cop.Core</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

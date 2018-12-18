@@ -90,12 +90,12 @@ namespace nGratis.Cop.Core.Demo
                 }
             });
 
-            this._logger.LogAsInformation($"Worker [{key}]: Completed checking!");
+            this._logger.LogAsInfo($"Worker [{key}]: Completed checking!");
         }
 
         private async Task ThrowReactiveExceptionAsync()
         {
-            this._logger.LogAsInformation("Manager [X]: Monitoring workers!");
+            this._logger.LogAsInfo("Manager [X]: Monitoring workers!");
 
             await Task.Run(async () =>
             {
@@ -107,7 +107,7 @@ namespace nGratis.Cop.Core.Demo
 
         private void ThrowApplicationException()
         {
-            this._logger.LogAsInformation("Manager [Y]: Monitoring workers!");
+            this._logger.LogAsInfo("Manager [Y]: Monitoring workers!");
 
             throw new CopException("Workers are running away!");
         }

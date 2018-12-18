@@ -26,9 +26,10 @@
 // <creation_timestamp>Saturday, 14 October 2017 11:24:46 PM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-﻿namespace nGratis.Cop.Core.Demo
+namespace nGratis.Cop.Core.Demo
 {
     using nGratis.Cop.Core.Contract;
+    using nGratis.Cop.Core.Framework;
 
     public partial class App
     {

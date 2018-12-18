@@ -26,8 +26,6 @@
 // <creation_timestamp>Tuesday, 24 April 2018 12:53:51 PM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-// ReSharper disable UnusedVariable
-
 namespace nGratis.Cop.Core.Contract.UnitTest
 {
     using System;
@@ -49,7 +47,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 var action = new Action(() =>
                 {
-                    var mime = new Mime(Mime.Text.UniqueId, "[_MOCK_EXTENSION_]");
+                    var _ = new Mime(Mime.Text.UniqueId, "[_MOCK_EXTENSION_]");
                 });
 
                 // Assert.
@@ -85,7 +83,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 var action = new Action(() =>
                 {
-                    var mime = Mime.ParseByUniqueId("[_MOCK_UNIQUE_ID_]");
+                    var _ = Mime.ParseByUniqueId("[_MOCK_UNIQUE_ID_]");
                 });
 
                 // Assert.
@@ -136,7 +134,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 var action = new Action(() =>
                 {
-                    var mime = Mime.ParseByFileExtension("[_MOCK_FILE_EXTENSION_]");
+                    var _ = Mime.ParseByFileExtension("[_MOCK_FILE_EXTENSION_]");
                 });
 
                 // Assert.

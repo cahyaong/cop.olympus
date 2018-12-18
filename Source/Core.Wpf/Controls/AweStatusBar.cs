@@ -33,6 +33,7 @@ namespace nGratis.Cop.Core.Wpf
     using System.Windows;
     using System.Windows.Controls;
     using nGratis.Cop.Core.Contract;
+    using nGratis.Cop.Core.Framework;
 
     [TemplatePart(Name = "PART_ResponsivenessIndicator", Type = typeof(Grid))]
     public sealed class AweStatusBar : Control, IDisposable

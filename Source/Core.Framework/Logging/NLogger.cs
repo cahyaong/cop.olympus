@@ -1,8 +1,8 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Feature.cs" company="nGratis">
+// <copyright file="NLogger.cs" company="nGratis">
 //  The MIT License (MIT)
 //
-//  Copyright (c) 2014 Cahya Ong
+//  Copyright (c) 2014 - 2015 Cahya Ong
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -23,36 +23,41 @@
 //  SOFTWARE.
 // </copyright>
 // <author>Cahya Ong - cahya.ong@gmail.com</author>
+// <creation_timestamp>Saturday, 25 April 2015 11:41:23 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Core.Wpf
+namespace nGratis.Cop.Core.Framework
 {
+    using System;
     using System.Collections.Generic;
-    using System.Linq;
     using nGratis.Cop.Core.Contract;
+    using NLog;
 
-    public class Feature : IFeature
+    public sealed class NLogger : BaseLogger
     {
-        public Feature(string name, IEnumerable<Page> pages)
-            : this(name, int.MinValue, pages)
-        {
-        }
+        private readonly Logger _logger;
 
-        public Feature(string name, int order, IEnumerable<Page> pages)
+        public NLogger(string id, string component)
+            : base(id)
         {
             Guard
-                .Require(name, nameof(name))
+                .Require(component, nameof(component))
                 .Is.Not.Empty();
 
-            this.Name = name;
-            this.Order = order;
-            this.Pages = pages ?? Enumerable.Empty<Page>();
+            this._logger = LogManager.GetLogger(id);
+            this.Components = new[] { component };
         }
 
-        public string Name { get; }
+        public override IEnumerable<string> Components { get; }
 
-        public int Order { get; }
+        public override void LogWith(Verbosity verbosity, string message)
+        {
+            this._logger.Log(verbosity.ToLogLevel(), message);
+        }
 
-        public IEnumerable<IPage> Pages { get; }
+        public override void LogWith(Verbosity verbosity, string message, Exception exception)
+        {
+            this._logger.Log(verbosity.ToLogLevel(), exception, message);
+        }
     }
 }

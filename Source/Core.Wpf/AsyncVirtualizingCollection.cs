@@ -33,6 +33,7 @@ namespace nGratis.Cop.Core.Wpf
     using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Collections.Specialized;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Reactive.Concurrency;
     using System.Reactive.Linq;
@@ -311,8 +312,7 @@ namespace nGratis.Cop.Core.Wpf
                 new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
         }
 
-        // ReSharper disable UnusedAutoPropertyAccessor.Local
-
+        [SuppressMessage("ReSharper", "UnusedAutoPropertyAccessor.Local")]
         private sealed class CachingEntry
         {
             public int PagingIndex { get; set; }
@@ -329,13 +329,12 @@ namespace nGratis.Cop.Core.Wpf
             public bool IsNeeded { get; set; }
         }
 
+        [SuppressMessage("ReSharper", "UnusedAutoPropertyAccessor.Local")]
         private sealed class RefreshingRequest
         {
             public int PagingIndex { get; set; }
 
             public bool IsNeeded { get; set; }
         }
-
-        // ReSharper restore UnusedAutoPropertyAccessor.Local
     }
 }

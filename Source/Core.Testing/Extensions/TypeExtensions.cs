@@ -27,6 +27,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 // ReSharper disable once CheckNamespace
+
 namespace System
 {
     using System.IO;
