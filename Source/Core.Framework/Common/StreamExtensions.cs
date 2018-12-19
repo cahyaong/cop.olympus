@@ -30,6 +30,7 @@
 
 namespace System.IO
 {
+    using System.Collections.Generic;
     using System.Text;
     using nGratis.Cop.Core.Contract;
 
@@ -37,7 +38,7 @@ namespace System.IO
     {
         private const int BufferSize = 4 * 1024;
 
-        public static string ReadString(this Stream stream)
+        public static IEnumerable<byte> ReadBlob(this Stream stream)
         {
             Guard
                 .Require(stream, nameof(stream))
@@ -49,7 +50,44 @@ namespace System.IO
                 stream.Position = 0;
             }
 
-            using (var reader = new StreamReader(stream, Encoding.UTF8, true, StreamExtensions.BufferSize, false))
+            var blob = new byte[stream.Length];
+
+            var totalCount = 0;
+
+            while (totalCount < stream.Length)
+            {
+                totalCount += stream.Read(
+                    blob,
+                    totalCount,
+                    (int)Math.Min(stream.Length - totalCount, StreamExtensions.BufferSize));
+            }
+
+            if (stream.CanSeek)
+            {
+                stream.Position = 0;
+            }
+
+            return blob;
+        }
+
+        public static string ReadText(this Stream stream, Encoding encoding = default(Encoding))
+        {
+            Guard
+                .Require(stream, nameof(stream))
+                .Is.Not.Null()
+                .Is.Readable();
+
+            if (encoding == null)
+            {
+                encoding = Encoding.UTF8;
+            }
+
+            if (stream.CanSeek)
+            {
+                stream.Position = 0;
+            }
+
+            using (var reader = new StreamReader(stream, encoding, true, StreamExtensions.BufferSize, true))
             {
                 var content = reader.ReadToEnd();
 

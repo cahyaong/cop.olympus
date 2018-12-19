@@ -29,6 +29,7 @@
 namespace nGratis.Cop.Core.Framework
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using nGratis.Cop.Core.Contract;
 
     public sealed class InfrastructureManager : IInfrastructureManager, IDisposable
@@ -61,6 +62,11 @@ namespace nGratis.Cop.Core.Framework
             GC.SuppressFinalize(this);
         }
 
+        [SuppressMessage(
+            "Microsoft.Usage",
+            "CA2213:DisposableFieldsShouldBeDisposed",
+            MessageId = "<LoggingProvider>k__BackingField",
+            Justification = "Does not work with NULL propagation syntax.")]
         private void Dispose(bool isDisposing)
         {
             if (this._isDisposed)

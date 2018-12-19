@@ -1,8 +1,8 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FilterExtensions.cs" company="nGratis">
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="AssemblyInfo.cs" company="nGratis">
 //  The MIT License (MIT)
 //
-//  Copyright (c) 2014 - 2017 Cahya Ong
+//  Copyright (c) 2014 - 2018 Cahya Ong
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -23,32 +23,14 @@
 //  SOFTWARE.
 // </copyright>
 // <author>Cahya Ong - cahya.ong@gmail.com</author>
-// <creation_timestamp>Tuesday, 25 April 2017 6:51:18 AM UTC</creation_timestamp>
+// <creation_timestamp>Tuesday, 18 December 2018 11:17:55 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-// ReSharper disable CheckNamespace
+using System.Reflection;
+using System.Runtime.InteropServices;
 
-namespace System.Drawing
-{
-    using System;
-    using AForge;
-    using AForge.Imaging.Filters;
-    using nGratis.Cop.Core.Contract;
-
-    public static class FilterExtensions
-    {
-        public static ColorFiltering ToColorFiltering(this Color color, int threshold)
-        {
-            Guard
-                .Require(threshold, nameof(threshold))
-                .Is.ZeroOrPositive();
-
-            var halfThreshold = (int)Math.Ceiling(threshold / 2.0);
-
-            return new ColorFiltering(
-                new IntRange((color.R - halfThreshold).Clamp(0, 255), (color.R + halfThreshold).Clamp(0, 255)),
-                new IntRange((color.G - halfThreshold).Clamp(0, 255), (color.G + halfThreshold).Clamp(0, 255)),
-                new IntRange((color.B - halfThreshold).Clamp(0, 255), (color.B + halfThreshold).Clamp(0, 255)));
-        }
-    }
-}
+[assembly: AssemblyTitle("nGratis.Cop.Core.Framework.UnitTest")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyCulture("")]
+[assembly: ComVisible(false)]
+[assembly: Guid("d8004cfa-3f80-47b1-a35a-230ce3cb6a7b")]
