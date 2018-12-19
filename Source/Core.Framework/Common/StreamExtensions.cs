@@ -30,7 +30,6 @@
 
 namespace System.IO
 {
-    using System.Collections.Generic;
     using System.Text;
     using nGratis.Cop.Core.Contract;
 
@@ -38,7 +37,7 @@ namespace System.IO
     {
         private const int BufferSize = 4 * 1024;
 
-        public static IEnumerable<byte> ReadBlob(this Stream stream)
+        public static byte[] ReadBlob(this Stream stream)
         {
             Guard
                 .Require(stream, nameof(stream))
@@ -50,16 +49,14 @@ namespace System.IO
                 stream.Position = 0;
             }
 
-            var blob = new byte[stream.Length];
+            var blob = default(byte[]);
 
-            var totalCount = 0;
-
-            while (totalCount < stream.Length)
+            using (var cachingStream = new MemoryStream())
             {
-                totalCount += stream.Read(
-                    blob,
-                    totalCount,
-                    (int)Math.Min(stream.Length - totalCount, StreamExtensions.BufferSize));
+                stream.CopyTo(cachingStream, StreamExtensions.BufferSize);
+                cachingStream.Position = 0;
+
+                blob = cachingStream.ToArray();
             }
 
             if (stream.CanSeek)
@@ -70,17 +67,25 @@ namespace System.IO
             return blob;
         }
 
-        public static string ReadText(this Stream stream, Encoding encoding = default(Encoding))
+        public static string ReadText(this Stream stream)
+        {
+            Guard
+                .Require(stream, nameof(stream))
+                .Is.Not.Null();
+
+            return stream.ReadText(Encoding.UTF8);
+        }
+
+        public static string ReadText(this Stream stream, Encoding encoding)
         {
             Guard
                 .Require(stream, nameof(stream))
                 .Is.Not.Null()
                 .Is.Readable();
 
-            if (encoding == null)
-            {
-                encoding = Encoding.UTF8;
-            }
+            Guard
+                .Require(encoding, nameof(encoding))
+                .Is.Not.Null();
 
             if (stream.CanSeek)
             {
