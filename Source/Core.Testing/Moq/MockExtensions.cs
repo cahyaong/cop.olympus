@@ -30,7 +30,24 @@
 
 namespace Moq
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using nGratis.Cop.Core.Contract;
+
     public static partial class MockExtensions
     {
+        public static T[] ToObjects<T>(this IEnumerable<Mock<T>> mocks)
+            where T : class
+
+        {
+            Guard
+                .Require(mocks, nameof(mocks))
+                .Is.Not.Null()
+                .Is.Not.Empty();
+
+            return mocks
+                .Select(mock => mock.Object)
+                .ToArray();
+        }
     }
 }
