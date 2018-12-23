@@ -29,6 +29,7 @@
 namespace nGratis.Cop.Core.Contract
 {
     using System;
+    using System.Diagnostics;
     using System.Globalization;
 
     public abstract class ConditionValidator<T>
@@ -50,6 +51,7 @@ namespace nGratis.Cop.Core.Contract
 
         protected bool IsNegated { get; set; }
 
+        [DebuggerStepThrough]
         public ValidationContinuation<T> Validate(Func<T, bool> evaluate, string reason)
         {
             var isValid = evaluate(this.Value);

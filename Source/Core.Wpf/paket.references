@@ -1,5 +1,6 @@
 Humanizer.Core
 JetBrains.Annotations
+System.Reactive.Linq
 
 group _UI
     Caliburn.Micro
@@ -7,4 +8,3 @@ group _UI
     ModernUI.WPF
     OxyPlot.Wpf
     ReactiveUI.WPF
-    System.Reactive.Linq

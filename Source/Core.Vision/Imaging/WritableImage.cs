@@ -77,7 +77,7 @@ namespace nGratis.Cop.Core.Vision.Imaging
             throw new NotImplementedException();
         }
 
-        public ImageSource ToImageSource()
+        public BitmapSource ToBitmapSource()
         {
             return this._writableBitmap;
         }

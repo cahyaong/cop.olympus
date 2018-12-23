@@ -56,6 +56,12 @@
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\Core.Framework\nGratis.Cop.Core.Framework.csproj">
+      <Project>{b90c4c38-a600-44bb-840e-2a7d4b46618a}</Project>
+      <Name>nGratis.Cop.Core.Framework</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Choose>
     <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
       <ItemGroup>
@@ -129,12 +135,6 @@
     <Analyzer Include="..\packages\_test\xunit.analyzers\analyzers\dotnet\cs\xunit.analyzers.dll">
       <Paket>True</Paket>
     </Analyzer>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Core.Framework\nGratis.Cop.Core.Framework.csproj">
-      <Project>{b90c4c38-a600-44bb-840e-2a7d4b46618a}</Project>
-      <Name>nGratis.Cop.Core.Framework</Name>
-    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">

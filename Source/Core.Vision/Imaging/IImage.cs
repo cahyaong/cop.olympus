@@ -30,6 +30,7 @@ namespace nGratis.Cop.Core.Vision.Imaging
     using System.Collections.Generic;
     using System.IO;
     using System.Windows.Media;
+    using System.Windows.Media.Imaging;
 
     public interface IImage
     {
@@ -43,7 +44,7 @@ namespace nGratis.Cop.Core.Vision.Imaging
 
         Stream SaveData();
 
-        ImageSource ToImageSource();
+        BitmapSource ToBitmapSource();
 
         IEnumerable<Color> ToPixels();
     }

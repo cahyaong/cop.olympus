@@ -62,7 +62,7 @@ namespace nGratis.Cop.Core.Vision.Imaging
             throw new NotSupportedException();
         }
 
-        public ImageSource ToImageSource()
+        public BitmapSource ToBitmapSource()
         {
             return new BitmapImage();
         }
