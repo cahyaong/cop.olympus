@@ -68,6 +68,8 @@ namespace nGratis.Cop.Core.Wpf
                 .Is.Not.Null();
 
             this._themeManager = themeManager;
+
+            this.Closed += this.OnClosed;
         }
 
         public ILogger Logger
@@ -130,19 +132,6 @@ namespace nGratis.Cop.Core.Wpf
             GC.SuppressFinalize(this);
         }
 
-        private static void OnLoggerChanged(DependencyObject container, DependencyPropertyChangedEventArgs args)
-        {
-            if (!(container is AweWindow window))
-            {
-                return;
-            }
-
-            if (window._statusBar != null)
-            {
-                window._statusBar.Logger = (ILogger)args.NewValue ?? VoidLogger.Instance;
-            }
-        }
-
         [SuppressMessage(
             "Microsoft.Usage",
             "CA2213:DisposableFieldsShouldBeDisposed",
@@ -161,6 +150,29 @@ namespace nGratis.Cop.Core.Wpf
             }
 
             this._isDisposed = true;
+        }
+
+        private static void OnLoggerChanged(DependencyObject container, DependencyPropertyChangedEventArgs args)
+        {
+            if (!(container is AweWindow window))
+            {
+                return;
+            }
+
+            if (window._statusBar != null)
+            {
+                window._statusBar.Logger = (ILogger)args.NewValue ?? VoidLogger.Instance;
+            }
+        }
+
+        private void OnClosed(object sender, EventArgs args)
+        {
+            this.Closed -= this.OnClosed;
+
+            if (Application.Current.Resources["Bootstrapper"] is IDisposable disposable)
+            {
+                disposable.Dispose();
+            }
         }
     }
 }
