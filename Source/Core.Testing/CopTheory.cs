@@ -30,28 +30,9 @@ namespace nGratis.Cop.Core.Testing
 {
     using nGratis.Cop.Core.Contract;
 
-    public class CopTheory<TParameter> : CopTheory
-    {
-        public CopTheory(TParameter parameter)
-        {
-            Guard
-                .Require(parameter, nameof(parameter))
-                .Is.Not.Default();
-
-            this.Parameter = parameter;
-        }
-
-        public TParameter Parameter { get; }
-    }
-
-    public class CopTheory
+    public abstract class CopTheory
     {
         public string Label { get; private set; }
-
-        public static CopTheory<TParameter> Create<TParameter>(TParameter parameter)
-        {
-            return new CopTheory<TParameter>(parameter);
-        }
 
         public CopTheory WithLabel(string label)
         {
