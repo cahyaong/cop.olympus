@@ -148,14 +148,13 @@ namespace nGratis.Cop.Core.Contract.UnitTest
         {
             [Theory]
             [MemberData(nameof(SharedTestData.EquivalentMimeTheories), MemberType = typeof(SharedTestData))]
-            public void WhenGettingEquivalentInstances_ShouldReturnTrue(
-                CopTheory<(Mime LeftMime, Mime RightMime)> theory)
+            public void WhenGettingEquivalentInstances_ShouldReturnTrue(MimeEquivalentTheory theory)
             {
                 // Arrange.
 
                 // Act.
 
-                var isEqual = theory.Parameter.LeftMime == theory.Parameter.RightMime;
+                var isEqual = theory.LeftMime == theory.RightMime;
 
                 // Assert.
 
@@ -165,14 +164,13 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
             [Theory]
             [MemberData(nameof(SharedTestData.NonEquivalentMimeTheories), MemberType = typeof(SharedTestData))]
-            public void WhenGettingNonEquivalentInstances_ShouldReturnFalse(
-                CopTheory<(Mime LeftMime, Mime RightMime)> theory)
+            public void WhenGettingNonEquivalentInstances_ShouldReturnFalse(MimeEquivalentTheory theory)
             {
                 // Arrange.
 
                 // Act.
 
-                var isEqual = theory.Parameter.LeftMime == theory.Parameter.RightMime;
+                var isEqual = theory.LeftMime == theory.RightMime;
 
                 // Assert.
 
@@ -185,15 +183,14 @@ namespace nGratis.Cop.Core.Contract.UnitTest
         {
             [Theory]
             [MemberData(nameof(SharedTestData.EquivalentMimeTheories), MemberType = typeof(SharedTestData))]
-            public void WhenGettingEquivalentInstances_ShouldReturnSameHashValue(
-                CopTheory<(Mime LeftMime, Mime RightMime)> theory)
+            public void WhenGettingEquivalentInstances_ShouldReturnSameHashValue(MimeEquivalentTheory theory)
             {
                 // Arrange.
 
                 // Act.
 
-                var leftHash = theory.Parameter.LeftMime.GetHashCode();
-                var rightHash = theory.Parameter.RightMime.GetHashCode();
+                var leftHash = theory.LeftMime.GetHashCode();
+                var rightHash = theory.RightMime.GetHashCode();
 
                 // Assert.
 
@@ -203,15 +200,14 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
             [Theory]
             [MemberData(nameof(SharedTestData.NonEquivalentMimeTheories), MemberType = typeof(SharedTestData))]
-            public void WhenGettingNonEquivalentInstances_ShouldReturnDifferentHashValue(
-                CopTheory<(Mime LeftMime, Mime RightMime)> theory)
+            public void WhenGettingNonEquivalentInstances_ShouldReturnDifferentHashValue(MimeEquivalentTheory theory)
             {
                 // Arrange.
 
                 // Act.
 
-                var leftHash = theory.Parameter.LeftMime.GetHashCode();
-                var rightHash = theory.Parameter.RightMime.GetHashCode();
+                var leftHash = theory.LeftMime.GetHashCode();
+                var rightHash = theory.RightMime.GetHashCode();
 
                 // Assert.
 
@@ -226,20 +222,22 @@ namespace nGratis.Cop.Core.Contract.UnitTest
             {
                 get
                 {
-                    yield return SharedTestData
-                        .CreateTheory(Mime.Text, Mime.Text)
+                    yield return MimeEquivalentTheory
+                        .Create(
+                            Mime.Text,
+                            Mime.Text)
                         .WithLabel("CASE 01 -> Both predefined MIME instances.")
                         .ToXunitTheory();
 
-                    yield return SharedTestData
-                        .CreateTheory(
+                    yield return MimeEquivalentTheory
+                        .Create(
                             new Mime("[_MOCK_UNIQUE_ID_]", "[_MOCK_EXTENSION_]"),
                             new Mime("[_MOCK_UNIQUE_ID_]", "[_MOCK_EXTENSION_]"))
                         .WithLabel("CASE 02 -> Both new MIME instances with same unique ID and extension.")
                         .ToXunitTheory();
 
-                    yield return SharedTestData
-                        .CreateTheory(
+                    yield return MimeEquivalentTheory
+                        .Create(
                             new Mime("[_MOCK_UNIQUE_ID_]", "[_MOCK_EXTENSION_01_]"),
                             new Mime("[_MOCK_UNIQUE_ID_]", "[_MOCK_EXTENSION_02_]"))
                         .WithLabel("CASE 03 -> Both new MIME instances with same unique ID but different extensions.")
@@ -251,37 +249,50 @@ namespace nGratis.Cop.Core.Contract.UnitTest
             {
                 get
                 {
-                    yield return SharedTestData
-                        .CreateTheory(Mime.Text, Mime.Xml)
+                    yield return MimeEquivalentTheory
+                        .Create(
+                            Mime.Text,
+                            Mime.Xml)
                         .WithLabel("CASE 01 -> Both predefined MIME instances.")
                         .ToXunitTheory();
 
-                    yield return SharedTestData
-                        .CreateTheory(
+                    yield return MimeEquivalentTheory
+                        .Create(
                             new Mime("[_MOCK_UNIQUE_ID_01_]", "[_MOCK_EXTENSION_01_]"),
                             new Mime("[_MOCK_UNIQUE_ID_02_]", "[_MOCK_EXTENSION_02_]"))
                         .WithLabel("CASE 02 -> Both new MIME instances with different unique IDs and extensions.")
                         .ToXunitTheory();
 
-                    yield return SharedTestData
-                        .CreateTheory(
+                    yield return MimeEquivalentTheory
+                        .Create(
                             new Mime("[_MOCK_UNIQUE_ID_01_]", "[_MOCK_EXTENSION_]"),
                             new Mime("[_MOCK_UNIQUE_ID_02_]", "[_MOCK_EXTENSION_]"))
                         .WithLabel("CASE 03 -> Both new MIME instances with different unique IDs but same extension.")
                         .ToXunitTheory();
 
-                    yield return SharedTestData
-                        .CreateTheory(
+                    yield return MimeEquivalentTheory
+                        .Create(
                             Mime.Text,
                             new Mime("[_MOCK_UNIQUE_ID_]", "txt"))
                         .WithLabel("CASE 04 -> Combination MIME instances with different unique IDs but same extension.")
                         .ToXunitTheory();
                 }
             }
+        }
 
-            private static CopTheory CreateTheory(Mime leftMime, Mime rightMime)
+        public class MimeEquivalentTheory : CopTheory
+        {
+            public Mime LeftMime { get; private set; }
+
+            public Mime RightMime { get; private set; }
+
+            public static MimeEquivalentTheory Create(Mime leftMime, Mime rightMime)
             {
-                return new CopTheory<(Mime LeftMime, Mime RightMime)>((leftMime, rightMime));
+                return new MimeEquivalentTheory
+                {
+                    LeftMime = leftMime,
+                    RightMime = rightMime
+                };
             }
         }
     }
