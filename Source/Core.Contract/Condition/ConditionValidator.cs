@@ -32,6 +32,7 @@ namespace nGratis.Cop.Core.Contract
     using System.Diagnostics;
     using System.Globalization;
 
+    [DebuggerStepThrough]
     public abstract class ConditionValidator<T>
     {
         protected ConditionValidator(string name, T value, ValidatorKind kind)
@@ -51,7 +52,6 @@ namespace nGratis.Cop.Core.Contract
 
         protected bool IsNegated { get; set; }
 
-        [DebuggerStepThrough]
         public ValidationContinuation<T> Validate(Func<T, bool> evaluate, string reason)
         {
             var isValid = evaluate(this.Value);
@@ -84,6 +84,7 @@ namespace nGratis.Cop.Core.Contract
         }
     }
 
+    [DebuggerStepThrough]
     public sealed class ClassValidator<T> : ConditionValidator<T>
     {
         public ClassValidator(string name, T value, ValidatorKind kind)
@@ -101,6 +102,7 @@ namespace nGratis.Cop.Core.Contract
         }
     }
 
+    [DebuggerStepThrough]
     public sealed class PropertyValidator<T> : ConditionValidator<T>
     {
         internal PropertyValidator(string name, T value, ValidatorKind kind)
@@ -118,6 +120,7 @@ namespace nGratis.Cop.Core.Contract
         }
     }
 
+    [DebuggerStepThrough]
     public class ValidationContinuation<T>
     {
         public ValidationContinuation(string name, T value, ValidatorKind kind)
