@@ -55,7 +55,7 @@
     <Compile Include="ApplicationExtensions.cs" />
     <Compile Include="AsyncVirtualizingCollection.cs" />
     <Compile Include="Behaviors\AutoResetScroll.cs" />
-    <Compile Include="Behaviors\ChildMargin.cs" />
+    <Compile Include="Behaviors\ChildrenMargin.cs" />
     <Compile Include="Controls\AweTileGroup.cs" />
     <Compile Include="Converters\AnyToLowerCaseConverter.cs" />
     <Compile Include="CopBootstrapper.cs" />

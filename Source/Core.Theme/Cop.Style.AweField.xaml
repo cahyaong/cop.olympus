@@ -45,7 +45,7 @@
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="core:AweField">
-          <StackPanel core:ChildMargin.Value="0,5" Orientation="Vertical">
+          <StackPanel core:ChildrenMargin.Value="0,5" Orientation="Vertical">
             <TextBlock
               HorizontalAlignment="Right"
               FontSize="10"

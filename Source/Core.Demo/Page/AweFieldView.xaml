@@ -8,14 +8,14 @@
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   d:DataContext="{d:DesignInstance demo:AweFieldViewModel}"
   mc:Ignorable="d">
-  <Grid core:ChildMargin.Value="20,0">
+  <Grid core:ChildrenMargin.Value="20,0">
     <Grid.ColumnDefinitions>
       <ColumnDefinition Width="*" />
       <ColumnDefinition Width="*" />
     </Grid.ColumnDefinitions>
     <StackPanel
       Grid.Column="0"
-      core:ChildMargin.Value="0,10"
+      core:ChildrenMargin.Value="0,10"
       Orientation="Vertical">
       <core:AweField
         Header="Input...Text"
@@ -31,7 +31,7 @@
     </StackPanel>
     <StackPanel
       Grid.Column="1"
-      core:ChildMargin.Value="0,10"
+      core:ChildrenMargin.Value="0,10"
       Orientation="Vertical">
       <core:AweField
         Header="Output...Text"
