@@ -36,12 +36,12 @@ namespace nGratis.Cop.Core.Wpf
     [ValueConversion(typeof(Color), typeof(SolidColorBrush))]
     public class ColorToSolidBrushConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object Convert(object value, Type targetType, object parameter, CultureInfo cultureInfo)
         {
             return new SolidColorBrush((Color)(value ?? Colors.Gray));
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo cultureInfo)
         {
             return (value as SolidColorBrush)?.Color ?? Colors.Gray;
         }

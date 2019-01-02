@@ -28,10 +28,10 @@
 
 namespace nGratis.Cop.Core.Wpf
 {
-    using System;
     using System.Collections.Generic;
     using System.Windows;
     using System.Windows.Controls;
+    using MahApps.Metro.Controls;
     using nGratis.Cop.Core.Contract;
 
     public class FieldTemplateSelector : DataTemplateSelector
@@ -47,31 +47,27 @@ namespace nGratis.Cop.Core.Wpf
 
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
-            var control = (FrameworkElement)container;
-            var context = (FieldViewModel)item;
-
             Guard
-                .Require(control, nameof(control))
+                .Require(container, nameof(container))
                 .Is.Not.Null();
 
-            Guard
-                .Require(context, nameof(context))
-                .Is.Not.Null();
+            var field = container.TryFindParent<AweField>();
 
-            var typeName = context.Type == FieldType.Auto
-                ? context.ValueType.IsEnum ? "Enumeration" : context.ValueType.GetGenericName()
-                : context.Type.ToString();
+            if (field == null)
+            {
+                throw new CopException($"This selector must be used within control type [{typeof(AweField)}].");
+            }
 
-            var key = $"Cop.AweField.{context.Mode}.{typeName}";
+            var key = $"Cop.AweField.{field.Mode}.{field.Kind}";
 
-            if (this._templateLookup.ContainsKey(key))
+            if (this._templateLookup.TryGetValue(key, out var template))
             {
                 return this._templateLookup[key];
             }
 
-            var template =
-                (DataTemplate)control.TryFindResource(key) ??
-                (DataTemplate)control.TryFindResource(FieldTemplateSelector.DefaultKey);
+            template =
+                (DataTemplate)field.TryFindResource(key) ??
+                (DataTemplate)field.TryFindResource(FieldTemplateSelector.DefaultKey);
 
             this._templateLookup.Add(key, template);
 

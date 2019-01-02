@@ -38,7 +38,7 @@ namespace nGratis.Cop.Core.Wpf
     [ValueConversion(typeof(IEnumerable<IModule>), typeof(LinkGroupCollection))]
     public class ModulesToLinkGroupsConverter : IValueConverter
     {
-        public object Convert(object value, Type type, object parameter, CultureInfo culture)
+        public object Convert(object value, Type type, object parameter, CultureInfo cultureInfo)
         {
             Guard
                 .Require(value, nameof(value))
@@ -74,7 +74,7 @@ namespace nGratis.Cop.Core.Wpf
             return linkGroups;
         }
 
-        public object ConvertBack(object value, Type type, object parameter, CultureInfo culture)
+        public object ConvertBack(object value, Type type, object parameter, CultureInfo cultureInfo)
         {
             throw new NotSupportedException();
         }

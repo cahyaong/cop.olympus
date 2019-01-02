@@ -42,6 +42,8 @@ namespace nGratis.Cop.Core.Contract
 
         public const string Undefined = "<undefined>";
 
+        public const string Unsupported = "<unsupported>";
+
         public const string True = "<true>";
 
         public const string False = "<false>";

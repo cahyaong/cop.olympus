@@ -34,14 +34,14 @@ namespace nGratis.Cop.Core.Wpf
     [ValueConversion(typeof(object), typeof(string))]
     public class AnyToUpperCaseConverter : IValueConverter
     {
-        public object Convert(object value, Type type, object parameter, CultureInfo culture)
+        public object Convert(object value, Type type, object parameter, CultureInfo cultureInfo)
         {
             return value?
                 .ToString()
-                .ToUpper(culture);
+                .ToUpper(cultureInfo);
         }
 
-        public object ConvertBack(object value, Type type, object parameter, CultureInfo culture)
+        public object ConvertBack(object value, Type type, object parameter, CultureInfo cultureInfo)
         {
             throw new NotSupportedException();
         }

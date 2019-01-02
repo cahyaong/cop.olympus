@@ -1,8 +1,8 @@
-// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="AsFieldCallbackAttribute.cs" company="nGratis">
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="AweFieldView.xaml.cs" company="nGratis">
 //  The MIT License (MIT)
 //
-//  Copyright (c) 2014 Cahya Ong
+//  Copyright (c) 2014 - 2018 Cahya Ong
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -23,16 +23,17 @@
 //  SOFTWARE.
 // </copyright>
 // <author>Cahya Ong - cahya.ong@gmail.com</author>
+// <creation_timestamp>Wednesday, 2 January 2019 5:49:43 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Core.Wpf
+namespace nGratis.Cop.Core.Demo
 {
-    using System;
-    using JetBrains.Annotations;
-
-    [MeansImplicitUse]
-    [AttributeUsage(AttributeTargets.Method, Inherited = false)]
-    public class AsFieldCallbackAttribute : Attribute
+    public partial class AweFieldView
     {
+        public AweFieldView()
+        {
+            this.InitializeComponent();
+            this.DataContext = new AweFieldViewModel();
+        }
     }
 }

@@ -1,8 +1,8 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="AsFieldAttribute.cs" company="nGratis">
+// <copyright file="AweFieldViewModel.cs" company="nGratis">
 //  The MIT License (MIT)
 //
-//  Copyright (c) 2014 Cahya Ong
+//  Copyright (c) 2014 - 2018 Cahya Ong
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -23,44 +23,46 @@
 //  SOFTWARE.
 // </copyright>
 // <author>Cahya Ong - cahya.ong@gmail.com</author>
+// <creation_timestamp>Wednesday, 2 January 2019 5:48:46 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Core.Wpf
+namespace nGratis.Cop.Core.Demo
 {
-    using System;
-    using nGratis.Cop.Core.Contract;
+    using System.Collections.Generic;
+    using System.Linq;
+    using ReactiveUI;
 
-    [AttributeUsage(AttributeTargets.Property)]
-    public class AsFieldAttribute : Attribute
+    internal class AweFieldViewModel : ReactiveObject
     {
-        public AsFieldAttribute(FieldMode mode, string label)
-            : this(mode, FieldType.Text, label)
+        private string _text;
+
+        private IEnumerable<int> _availableNumbers;
+
+        private int _selectedNumber;
+
+        public AweFieldViewModel()
         {
+            this.AvailableNumbers = Enumerable
+                .Range(0, 10)
+                .ToArray();
         }
 
-        public AsFieldAttribute(FieldMode mode, FieldType type, string label)
+        public string Text
         {
-            Guard
-                .Require(mode, nameof(mode))
-                .Is.Not.EqualTo(FieldMode.Unknown);
-
-            Guard
-                .Require(type, nameof(type))
-                .Is.Not.EqualTo(FieldType.Unknown);
-
-            Guard
-                .Require(label, nameof(label))
-                .Is.Not.Empty();
-
-            this.Mode = mode;
-            this.Type = type;
-            this.Label = label;
+            get => this._text;
+            set => this.RaiseAndSetIfChanged(ref this._text, value);
         }
 
-        public FieldMode Mode { get; }
+        public IEnumerable<int> AvailableNumbers
+        {
+            get => this._availableNumbers;
+            private set => this.RaiseAndSetIfChanged(ref this._availableNumbers, value);
+        }
 
-        public FieldType Type { get; }
-
-        public string Label { get; }
+        public int SelectedNumber
+        {
+            get => this._selectedNumber;
+            set => this.RaiseAndSetIfChanged(ref this._selectedNumber, value);
+        }
     }
 }

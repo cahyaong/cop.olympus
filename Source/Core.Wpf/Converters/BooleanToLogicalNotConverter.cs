@@ -35,12 +35,12 @@ namespace nGratis.Cop.Core.Wpf
     [ValueConversion(typeof(bool), typeof(bool))]
     public class BooleanToLogicalNotConverter : IValueConverter
     {
-        public object Convert(object value, Type type, object parameter, CultureInfo culture)
+        public object Convert(object value, Type type, object parameter, CultureInfo cultureInfo)
         {
             return value != null && !(bool)value;
         }
 
-        public object ConvertBack(object value, Type type, object parameter, CultureInfo culture)
+        public object ConvertBack(object value, Type type, object parameter, CultureInfo cultureInfo)
         {
             return value != null && !(bool)value;
         }

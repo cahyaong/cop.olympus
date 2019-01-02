@@ -65,12 +65,20 @@
       <DependentUpon>AppView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Page\AweFieldView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Page\AweWindowView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Page\AweFieldView.xaml.cs">
+      <DependentUpon>AweFieldView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Page\AweFieldViewModel.cs" />
     <Compile Include="Page\AweWindowView.xaml.cs">
       <DependentUpon>AweWindowView.xaml</DependentUpon>
     </Compile>

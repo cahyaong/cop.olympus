@@ -108,7 +108,7 @@ namespace nGratis.Cop.Core.Wpf
                 .GetType()
                 .GetMethods(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
                 .SingleOrDefault(method =>
-                    method.GetCustomAttribute<AsFieldCallbackAttribute>() != null &&
+                    method.GetCustomAttribute<BindingCallbackAttribute>() != null &&
                     method.Name == methodName && !method.GetParameters().Any());
 
             this._onSourceValueUpdating = onValueUpdating;
@@ -128,7 +128,7 @@ namespace nGratis.Cop.Core.Wpf
                 .GetType()
                 .GetMethods(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
                 .SingleOrDefault(method =>
-                    method.GetCustomAttribute<AsFieldCallbackAttribute>() != null &&
+                    method.GetCustomAttribute<BindingCallbackAttribute>() != null &&
                     method.Name == methodName && !method.GetParameters().Any());
 
             this._onTargetValueUpdating = onValueUpdating;

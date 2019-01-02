@@ -1,5 +1,5 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="EnumerableToCountConverter.cs" company="nGratis">
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="BindingCallbackAttribute.cs" company="nGratis">
 //  The MIT License (MIT)
 //
 //  Copyright (c) 2014 Cahya Ong
@@ -23,35 +23,16 @@
 //  SOFTWARE.
 // </copyright>
 // <author>Cahya Ong - cahya.ong@gmail.com</author>
-// <creation_timestamp>Wednesday, 24 December 2014 12:08:32 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace nGratis.Cop.Core.Wpf
 {
     using System;
-    using System.Collections;
-    using System.Globalization;
-    using System.Linq;
-    using System.Windows.Data;
+    using JetBrains.Annotations;
 
-    [ValueConversion(typeof(IEnumerable), typeof(int))]
-    public class EnumerableToCountConverter : IValueConverter
+    [MeansImplicitUse]
+    [AttributeUsage(AttributeTargets.Method, Inherited = false)]
+    public class BindingCallbackAttribute : Attribute
     {
-        public object Convert(object value, Type type, object parameter, CultureInfo cultureInfo)
-        {
-            if (value is IEnumerable enumerable)
-            {
-                return enumerable
-                    .Cast<object>()
-                    .Count();
-            }
-
-            return 0;
-        }
-
-        public object ConvertBack(object value, Type type, object parameter, CultureInfo cultureInfo)
-        {
-            throw new NotSupportedException();
-        }
     }
 }

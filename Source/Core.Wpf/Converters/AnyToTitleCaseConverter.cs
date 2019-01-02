@@ -33,17 +33,17 @@ namespace nGratis.Cop.Core.Wpf
     using System.Windows.Data;
     using Humanizer;
 
-    [ValueConversion(typeof(string), typeof(string))]
+    [ValueConversion(typeof(object), typeof(string))]
     public class AnyToTitleCaseConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object Convert(object value, Type targetType, object parameter, CultureInfo cultureInfo)
         {
             return value?
                 .ToString()
                 .Humanize(LetterCasing.Title);
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo cultureInfo)
         {
             throw new NotSupportedException();
         }

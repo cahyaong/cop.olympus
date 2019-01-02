@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="BaseFormViewModel.cs" company="nGratis">
+// <copyright file="FieldKind.cs" company="nGratis">
 //  The MIT License (MIT)
 //
 //  Copyright (c) 2014 Cahya Ong
@@ -27,30 +27,10 @@
 
 namespace nGratis.Cop.Core.Wpf
 {
-    using ReactiveUI;
-
-    public abstract class BaseFormViewModel : BasePageViewModel
+    public enum FieldKind
     {
-        private FieldGroupViewModel _inputFieldGroup;
-
-        private FieldGroupViewModel _outputFieldGroup;
-
-        protected BaseFormViewModel()
-        {
-            this.InputFieldGroup = new FieldGroupViewModel(this, FieldMode.Input);
-            this.OutputFieldGroup = new FieldGroupViewModel(this, FieldMode.Output);
-        }
-
-        public FieldGroupViewModel InputFieldGroup
-        {
-            get => this._inputFieldGroup;
-            private set => this.RaiseAndSetIfChanged(ref this._inputFieldGroup, value);
-        }
-
-        public FieldGroupViewModel OutputFieldGroup
-        {
-            get => this._outputFieldGroup;
-            private set => this.RaiseAndSetIfChanged(ref this._outputFieldGroup, value);
-        }
+        Unknown,
+        Text,
+        DropDown
     }
 }

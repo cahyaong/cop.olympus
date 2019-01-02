@@ -35,7 +35,7 @@ namespace nGratis.Cop.Core.Wpf
     [ValueConversion(typeof(object), typeof(string))]
     public class AnyToTypeNameConverter : IValueConverter
     {
-        public object Convert(object value, Type type, object parameter, CultureInfo culture)
+        public object Convert(object value, Type type, object parameter, CultureInfo cultureInfo)
         {
             Guard
                 .Require(type, nameof(type))
@@ -44,7 +44,7 @@ namespace nGratis.Cop.Core.Wpf
             return value != null ? value.GetType().FullName : Text.Null;
         }
 
-        public object ConvertBack(object value, Type type, object parameter, CultureInfo culture)
+        public object ConvertBack(object value, Type type, object parameter, CultureInfo cultureInfo)
         {
             throw new NotSupportedException();
         }

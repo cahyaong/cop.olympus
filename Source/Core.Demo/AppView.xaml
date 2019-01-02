@@ -16,6 +16,7 @@
       <mui:LinkGroup DisplayName="Control">
         <mui:LinkGroup.Links>
           <mui:Link DisplayName="Window" Source="/nGratis.Cop.Core.Demo;component/Page/AweWindowView.xaml" />
+          <mui:Link DisplayName="Field" Source="/nGratis.Cop.Core.Demo;component/Page/AweFieldView.xaml" />
         </mui:LinkGroup.Links>
       </mui:LinkGroup>
     </mui:LinkGroupCollection>

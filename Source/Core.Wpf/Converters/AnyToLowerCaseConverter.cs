@@ -1,8 +1,8 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FieldType.cs" company="nGratis">
+// <copyright file="AnyToLowerCaseConverter.cs" company="nGratis">
 //  The MIT License (MIT)
 //
-//  Copyright (c) 2014 Cahya Ong
+//  Copyright (c) 2014 - 2018 Cahya Ong
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -23,17 +23,28 @@
 //  SOFTWARE.
 // </copyright>
 // <author>Cahya Ong - cahya.ong@gmail.com</author>
+// <creation_timestamp>Wednesday, 2 January 2019 7:28:47 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace nGratis.Cop.Core.Wpf
 {
-    public enum FieldType
+    using System;
+    using System.Globalization;
+    using System.Windows.Data;
+
+    [ValueConversion(typeof(object), typeof(string))]
+    public class AnyToLowerCaseConverter : IValueConverter
     {
-        Unknown,
-        Auto,
-        Text,
-        File,
-        Image,
-        ReadOnlyText
+        public object Convert(object value, Type targetType, object parameter, CultureInfo cultureInfo)
+        {
+            return value?
+                .ToString()
+                .ToLower(cultureInfo);
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo cultureInfo)
+        {
+            throw new NotSupportedException();
+        }
     }
 }
