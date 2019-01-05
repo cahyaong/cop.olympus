@@ -22,12 +22,29 @@
         Kind="Text"
         Mode="Input"
         Value="{Binding Text, Mode=TwoWay}" />
+      <Grid core:ChildrenMargin.Value="10,0">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="2*" />
+          <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <core:AweField
+          Grid.Column="0"
+          Header="Input...DropDown"
+          Kind="DropDown"
+          Mode="Input"
+          Values="{Binding AvailableNumbers, Mode=OneWay}"
+          Value="{Binding SelectedNumber, Mode=TwoWay}" />
+        <core:AweField
+          Grid.Column="1"
+          Header="Debug...DropDown"
+          Kind="Text"
+          Mode="Output"
+          Value="{Binding SelectedNumber, Mode=OneWay}" />
+      </Grid>
       <core:AweField
-        Header="Input...DropDown"
-        Kind="DropDown"
-        Mode="Input"
-        Values="{Binding AvailableNumbers, Mode=OneWay}"
-        Value="{Binding SelectedNumber, Mode=TwoWay}" />
+        Header="Input...List"
+        Kind="List"
+        Mode="Input" />
     </StackPanel>
     <StackPanel
       Grid.Column="1"
@@ -40,9 +57,13 @@
         Value="{Binding Text, Mode=OneWay}" />
       <core:AweField
         Header="Output...DropDown"
-        Kind="Text"
+        Kind="DropDown"
+        Mode="Output" />
+      <core:AweField
+        Header="Output...List"
+        Kind="List"
         Mode="Output"
-        Value="{Binding SelectedNumber, Mode=OneWay}" />
+        Values="{Binding Messages, Mode=OneWay}" />
     </StackPanel>
   </Grid>
 </UserControl>

@@ -31,6 +31,7 @@ namespace nGratis.Cop.Core.Wpf
     {
         Unknown,
         Text,
-        DropDown
+        DropDown,
+        List
     }
 }

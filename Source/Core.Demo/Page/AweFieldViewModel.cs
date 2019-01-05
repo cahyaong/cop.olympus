@@ -40,10 +40,17 @@ namespace nGratis.Cop.Core.Demo
 
         private int _selectedNumber;
 
+        private IEnumerable<string> _messages;
+
         public AweFieldViewModel()
         {
             this.AvailableNumbers = Enumerable
                 .Range(0, 10)
+                .ToArray();
+
+            this.Messages = Enumerable
+                .Range(1, 3)
+                .Select(index => $"This is message #{index:00}!")
                 .ToArray();
         }
 
@@ -63,6 +70,12 @@ namespace nGratis.Cop.Core.Demo
         {
             get => this._selectedNumber;
             set => this.RaiseAndSetIfChanged(ref this._selectedNumber, value);
+        }
+
+        public IEnumerable<string> Messages
+        {
+            get => this._messages;
+            private set => this.RaiseAndSetIfChanged(ref this._messages, value);
         }
     }
 }

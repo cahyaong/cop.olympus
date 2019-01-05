@@ -41,6 +41,26 @@
     </Border>
   </DataTemplate>
 
+  <DataTemplate x:Key="Cop.AweField.Output.List">
+    <ItemsControl ItemsSource="{Binding Values, Mode=OneWay, RelativeSource={RelativeSource AncestorType={x:Type core:AweField}}}">
+      <ItemsControl.ItemTemplate>
+        <DataTemplate>
+          <BulletDecorator>
+            <BulletDecorator.Bullet>
+              <Ellipse
+                Width="5"
+                Height="5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Fill="{DynamicResource Cop.Brush.Accent}" />
+            </BulletDecorator.Bullet>
+            <TextBlock Margin="10,0,0,0" Text="{Binding Mode=OneWay}" />
+          </BulletDecorator>
+        </DataTemplate>
+      </ItemsControl.ItemTemplate>
+    </ItemsControl>
+  </DataTemplate>
+
   <Style x:Key="{x:Type core:AweField}" TargetType="core:AweField">
     <Setter Property="Template">
       <Setter.Value>
