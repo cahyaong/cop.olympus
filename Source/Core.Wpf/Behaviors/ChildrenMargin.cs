@@ -115,9 +115,12 @@ namespace nGratis.Cop.Core.Wpf
                 .Where((element, index) => index < panel.Children.Count - 1)
                 .ForEach(element => element.UpdateMargin(value.Width, value.Height));
 
-            elements
-                .Last()
-                .UpdateMargin(0, 0);
+            if (elements.Any())
+            {
+                elements
+                    .Last()
+                    .UpdateMargin(0, 0);
+            }
         }
 
         private static void UpdateMargin(this FrameworkElement element, double right, double bottom)

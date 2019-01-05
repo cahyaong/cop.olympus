@@ -73,10 +73,16 @@ namespace nGratis.Cop.Core.Wpf
             new PropertyMetadata(Enumerable.Empty<object>(), AweField.OnValuesChanged));
 
         public static readonly DependencyProperty DisplayMemberPathProperty = DependencyProperty.Register(
-            nameof(DisplayMemberPath),
+            nameof(AweField.DisplayMemberPath),
             typeof(string),
             typeof(AweField),
             new PropertyMetadata(string.Empty));
+
+        public static readonly DependencyProperty CustomTemplateProperty = DependencyProperty.Register(
+            nameof(AweField.CustomTemplate),
+            typeof(DataTemplate),
+            typeof(AweField),
+            new PropertyMetadata(null));
 
         public FieldMode Mode
         {
@@ -114,7 +120,17 @@ namespace nGratis.Cop.Core.Wpf
             set => this.SetValue(AweField.ValuesProperty, value);
         }
 
-        public string DisplayMemberPath { get; set; }
+        public string DisplayMemberPath
+        {
+            get => (string)this.GetValue(AweField.DisplayMemberPathProperty);
+            set => this.SetValue(AweField.DisplayMemberPathProperty, value);
+        }
+
+        public DataTemplate CustomTemplate
+        {
+            get => (DataTemplate)this.GetValue(AweField.CustomTemplateProperty);
+            set => this.SetValue(AweField.CustomTemplateProperty, value);
+        }
 
         private static void OnValueChanged(DependencyObject container, DependencyPropertyChangedEventArgs args)
         {
@@ -135,7 +151,7 @@ namespace nGratis.Cop.Core.Wpf
                 return;
             }
 
-            field.Value = default(object);
+            field.Value = null;
         }
     }
 }

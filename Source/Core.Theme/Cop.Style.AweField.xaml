@@ -34,10 +34,7 @@
 
   <DataTemplate x:Key="Cop.AweField.Output.Text">
     <Border BorderBrush="{DynamicResource Cop.Brush.Shade2}" BorderThickness="0,0,0,1">
-      <TextBlock
-        Margin="0,2"
-        Style="{StaticResource Cop.TextBlock.Base}"
-        Text="{Binding FormattedValue, Mode=OneWay, RelativeSource={RelativeSource AncestorType={x:Type core:AweField}}}" />
+      <TextBlock Style="{StaticResource Cop.TextBlock.Base}" Text="{Binding FormattedValue, Mode=OneWay, RelativeSource={RelativeSource AncestorType={x:Type core:AweField}}}" />
     </Border>
   </DataTemplate>
 
@@ -72,7 +69,10 @@
               Foreground="{DynamicResource Cop.Brush.Accent}"
               Style="{StaticResource Cop.TextBlock.Base}"
               Text="{Binding Header, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource Cop.Converter.AnyToUpperCaseConverter}}" />
-            <ContentPresenter Content="{Binding}" ContentTemplateSelector="{StaticResource Cop.AweField.TemplateSelector}" />
+            <ContentPresenter
+              Content="{Binding Mode=OneWay}"
+              ContentTemplate="{TemplateBinding CustomTemplate}"
+              ContentTemplateSelector="{StaticResource Cop.AweField.TemplateSelector}" />
           </StackPanel>
         </ControlTemplate>
       </Setter.Value>

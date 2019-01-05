@@ -8,62 +8,117 @@
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   d:DataContext="{d:DesignInstance demo:AweFieldViewModel}"
   mc:Ignorable="d">
-  <Grid core:ChildrenMargin.Value="20,0">
-    <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="*" />
-      <ColumnDefinition Width="*" />
-    </Grid.ColumnDefinitions>
-    <StackPanel
-      Grid.Column="0"
-      core:ChildrenMargin.Value="0,10"
-      Orientation="Vertical">
-      <core:AweField
-        Header="Input...Text"
-        Kind="Text"
-        Mode="Input"
-        Value="{Binding Text, Mode=TwoWay}" />
+  <UserControl.Resources>
+    <DataTemplate x:Key="Cop.AweField.Input.Custom" DataType="demo:AweFieldViewModel">
       <Grid core:ChildrenMargin.Value="10,0">
         <Grid.ColumnDefinitions>
-          <ColumnDefinition Width="2*" />
+          <ColumnDefinition Width="Auto" />
           <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <core:AweField
+        <Rectangle
           Grid.Column="0"
-          Header="Input...DropDown"
-          Kind="DropDown"
-          Mode="Input"
-          Values="{Binding AvailableNumbers, Mode=OneWay}"
-          Value="{Binding SelectedNumber, Mode=TwoWay}" />
-        <core:AweField
-          Grid.Column="1"
-          Header="Debug...DropDown"
-          Kind="Text"
-          Mode="Output"
-          Value="{Binding SelectedNumber, Mode=OneWay}" />
+          Width="8"
+          Height="8"
+          Fill="HotPink" />
+        <TextBox Grid.Column="1" Text="{Binding CustomText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
       </Grid>
+    </DataTemplate>
+    <DataTemplate x:Key="Cop.AweField.Output.Custom" DataType="demo:AweFieldViewModel">
+      <Grid core:ChildrenMargin.Value="10,0">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="Auto" />
+          <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Rectangle
+          Grid.Column="0"
+          Width="8"
+          Height="8"
+          Fill="HotPink" />
+        <Border
+          Grid.Column="1"
+          BorderBrush="{DynamicResource Cop.Brush.Shade2}"
+          BorderThickness="0,0,0,1">
+          <TextBlock Style="{StaticResource Cop.TextBlock.Base}" Text="{Binding CustomText, Mode=OneWay}" />
+        </Border>
+      </Grid>
+    </DataTemplate>
+  </UserControl.Resources>
+  <Grid core:ChildrenMargin.Value="0,10">
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="*" />
+      <ColumnDefinition Width="20" />
+      <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
+    </Grid.RowDefinitions>
+    <core:AweField
+      Grid.Row="0"
+      Grid.Column="0"
+      Header="Input...Text"
+      Kind="Text"
+      Mode="Input"
+      Value="{Binding Text, Mode=TwoWay}" />
+    <core:AweField
+      Grid.Row="0"
+      Grid.Column="2"
+      Header="Output...Text"
+      Kind="Text"
+      Mode="Output"
+      Value="{Binding Text, Mode=OneWay}" />
+    <Grid
+      Grid.Row="1"
+      Grid.Column="0"
+      core:ChildrenMargin.Value="10,0">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="2*" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
       <core:AweField
-        Header="Input...List"
-        Kind="List"
-        Mode="Input" />
-    </StackPanel>
-    <StackPanel
-      Grid.Column="1"
-      core:ChildrenMargin.Value="0,10"
-      Orientation="Vertical">
+        Grid.Column="0"
+        Header="Input...DropDown"
+        Kind="DropDown"
+        Mode="Input"
+        Values="{Binding AvailableNumbers, Mode=OneWay}"
+        Value="{Binding SelectedNumber, Mode=TwoWay}" />
       <core:AweField
-        Header="Output...Text"
+        Grid.Column="1"
+        Header="Debug...DropDown"
         Kind="Text"
         Mode="Output"
-        Value="{Binding Text, Mode=OneWay}" />
-      <core:AweField
-        Header="Output...DropDown"
-        Kind="DropDown"
-        Mode="Output" />
-      <core:AweField
-        Header="Output...List"
-        Kind="List"
-        Mode="Output"
-        Values="{Binding Messages, Mode=OneWay}" />
-    </StackPanel>
+        Value="{Binding SelectedNumber, Mode=OneWay}" />
+    </Grid>
+    <core:AweField
+      Grid.Row="1"
+      Grid.Column="2"
+      Header="Output...DropDown"
+      Kind="DropDown"
+      Mode="Output" />
+    <core:AweField
+      Grid.Row="2"
+      Grid.Column="0"
+      Header="Input...List"
+      Kind="List"
+      Mode="Input" />
+    <core:AweField
+      Grid.Row="2"
+      Grid.Column="2"
+      Header="Output...List"
+      Kind="List"
+      Mode="Output"
+      Values="{Binding Messages, Mode=OneWay}" />
+    <core:AweField
+      Grid.Row="3"
+      Grid.Column="0"
+      CustomTemplate="{StaticResource Cop.AweField.Input.Custom}"
+      Header="Input...Custom" />
+    <core:AweField
+      Grid.Row="3"
+      Grid.Column="2"
+      CustomTemplate="{StaticResource Cop.AweField.Output.Custom}"
+      Header="Output...Custom" />
   </Grid>
 </UserControl>

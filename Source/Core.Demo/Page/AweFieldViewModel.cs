@@ -42,6 +42,8 @@ namespace nGratis.Cop.Core.Demo
 
         private IEnumerable<string> _messages;
 
+        private string _customText;
+
         public AweFieldViewModel()
         {
             this.AvailableNumbers = Enumerable
@@ -76,6 +78,12 @@ namespace nGratis.Cop.Core.Demo
         {
             get => this._messages;
             private set => this.RaiseAndSetIfChanged(ref this._messages, value);
+        }
+
+        public string CustomText
+        {
+            get => this._customText;
+            set => this.RaiseAndSetIfChanged(ref this._customText, value);
         }
     }
 }
