@@ -64,7 +64,7 @@ namespace nGratis.Cop.Core.Wpf
             nameof(AweField.FormattedValue),
             typeof(string),
             typeof(AweField),
-            new PropertyMetadata(Text.Empty));
+            new PropertyMetadata("???"));
 
         public static readonly DependencyProperty ValuesProperty = DependencyProperty.Register(
             nameof(AweField.Values),
@@ -141,7 +141,7 @@ namespace nGratis.Cop.Core.Wpf
 
             field.FormattedValue = args.NewValue != null
                 ? args.NewValue.ToString()
-                : Text.Undefined;
+                : "???";
         }
 
         private static void OnValuesChanged(DependencyObject container, DependencyPropertyChangedEventArgs args)
