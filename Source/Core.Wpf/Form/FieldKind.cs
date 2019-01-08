@@ -32,6 +32,7 @@ namespace nGratis.Cop.Core.Wpf
         Unknown,
         Text,
         DropDown,
-        List
+        List,
+        Chips
     }
 }

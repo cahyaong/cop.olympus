@@ -54,6 +54,7 @@
       <RowDefinition Height="Auto" />
       <RowDefinition Height="Auto" />
       <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
     </Grid.RowDefinitions>
     <core:AweField
       Grid.Row="0"
@@ -113,10 +114,23 @@
     <core:AweField
       Grid.Row="3"
       Grid.Column="0"
+      Header="Input...Chips"
+      Kind="Chips"
+      Mode="Input" />
+    <core:AweField
+      Grid.Row="3"
+      Grid.Column="2"
+      Header="Output...Chips"
+      Kind="Chips"
+      Mode="Output"
+      Values="{Binding Animals, Mode=OneWay}" />
+    <core:AweField
+      Grid.Row="4"
+      Grid.Column="0"
       CustomTemplate="{StaticResource Cop.AweField.Input.Custom}"
       Header="Input...Custom" />
     <core:AweField
-      Grid.Row="3"
+      Grid.Row="4"
       Grid.Column="2"
       CustomTemplate="{StaticResource Cop.AweField.Output.Custom}"
       Header="Output...Custom" />

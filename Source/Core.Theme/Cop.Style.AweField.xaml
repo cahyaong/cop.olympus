@@ -15,10 +15,12 @@
   <core:FieldTemplateSelector x:Key="Cop.AweField.TemplateSelector" />
 
   <DataTemplate x:Key="Cop.AweField.Default">
-    <TextBlock
-      FontStyle="Italic"
-      Style="{StaticResource Cop.TextBlock.Body}"
-      Text="{x:Static contract:Text.Unsupported}" />
+    <Border BorderBrush="{DynamicResource Cop.Brush.Shade2}" BorderThickness="0,0,0,1">
+      <TextBlock
+        FontStyle="Italic"
+        Style="{StaticResource Cop.TextBlock.Body}"
+        Text="{x:Static contract:Text.Unsupported}" />
+    </Border>
   </DataTemplate>
 
   <DataTemplate x:Key="Cop.AweField.Input.Text">
@@ -51,10 +53,38 @@
                 VerticalAlignment="Center"
                 Fill="{DynamicResource Cop.Brush.Accent}" />
             </BulletDecorator.Bullet>
-            <TextBlock Margin="10,0,0,0" Text="{Binding Mode=OneWay}" />
+            <TextBlock
+              Margin="10,1,0,1"
+              Style="{StaticResource Cop.TextBlock.Body}"
+              Text="{Binding Mode=OneWay}"
+              TextWrapping="Wrap" />
           </BulletDecorator>
         </DataTemplate>
       </ItemsControl.ItemTemplate>
+    </ItemsControl>
+  </DataTemplate>
+
+  <DataTemplate x:Key="Cop.AweField.Output.Chips">
+    <ItemsControl ItemsSource="{Binding Values, Mode=OneWay, RelativeSource={RelativeSource AncestorType={x:Type core:AweField}}}">
+      <ItemsControl.ItemTemplate>
+        <DataTemplate>
+          <Border
+            Margin="0,1,5,1"
+            BorderBrush="{DynamicResource Cop.Brush.Shade4}"
+            BorderThickness="1">
+            <TextBlock
+              Padding="10,1"
+              HorizontalAlignment="Center"
+              Style="{StaticResource Cop.TextBlock.Body}"
+              Text="{Binding Mode=OneWay}" />
+          </Border>
+        </DataTemplate>
+      </ItemsControl.ItemTemplate>
+      <ItemsControl.ItemsPanel>
+        <ItemsPanelTemplate>
+          <WrapPanel Orientation="Horizontal" />
+        </ItemsPanelTemplate>
+      </ItemsControl.ItemsPanel>
     </ItemsControl>
   </DataTemplate>
 

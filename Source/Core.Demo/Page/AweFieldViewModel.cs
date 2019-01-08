@@ -44,6 +44,8 @@ namespace nGratis.Cop.Core.Demo
 
         private string _customText;
 
+        private IEnumerable<string> _animals;
+
         public AweFieldViewModel()
         {
             this.AvailableNumbers = Enumerable
@@ -54,6 +56,11 @@ namespace nGratis.Cop.Core.Demo
                 .Range(1, 3)
                 .Select(index => $"This is message #{index:00}!")
                 .ToArray();
+
+            this.Animals = new[]
+            {
+                "Quokka", "Wallaby", "Chinchilla", "Chameleon", "Hedgehog", "Meerkat", "Warthog"
+            };
         }
 
         public string Text
@@ -84,6 +91,12 @@ namespace nGratis.Cop.Core.Demo
         {
             get => this._customText;
             set => this.RaiseAndSetIfChanged(ref this._customText, value);
+        }
+
+        public IEnumerable<string> Animals
+        {
+            get => this._animals;
+            private set => this.RaiseAndSetIfChanged(ref this._animals, value);
         }
     }
 }
