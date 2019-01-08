@@ -84,7 +84,7 @@ namespace nGratis.Cop.Core.Wpf
             this._whenDataFetchingRequested
                 .DistinctUntilChanged(request => request.PagingIndex)
                 .ObserveOn(ThreadPoolScheduler.Instance)
-                .Subscribe(this.OnDataFetchingRequested);
+                .Subscribe(this.FetchData);
 
             this._whenDataRefreshingRequested
                 .Where(request => request.IsNeeded)
@@ -253,7 +253,7 @@ namespace nGratis.Cop.Core.Wpf
                     .Single();
         }
 
-        private void OnDataFetchingRequested(FetchingRequest request)
+        private void FetchData(FetchingRequest request)
         {
             CachingEntry CreateCachingEntry()
             {
