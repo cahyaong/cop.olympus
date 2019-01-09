@@ -24,7 +24,10 @@
   </DataTemplate>
 
   <DataTemplate x:Key="{x:Static core:FieldTemplateSelector+Key.Empty}">
-    <Border BorderBrush="{DynamicResource Cop.Brush.Shade2}" BorderThickness="0,0,0,1">
+    <Border
+      Margin="0,0,0,5"
+      BorderBrush="{DynamicResource Cop.Brush.Shade2}"
+      BorderThickness="0,0,0,1">
       <TextBlock
         FontStyle="Italic"
         Style="{StaticResource Cop.TextBlock.Body}"
@@ -78,11 +81,11 @@
       <ItemsControl.ItemTemplate>
         <DataTemplate>
           <Border
-            Margin="0,1,5,1"
+            Margin="0,0,5,2"
             BorderBrush="{DynamicResource Cop.Brush.Shade4}"
             BorderThickness="1">
             <TextBlock
-              Padding="10,1"
+              Margin="10,1"
               HorizontalAlignment="Center"
               Style="{StaticResource Cop.TextBlock.Body}"
               Text="{Binding Mode=OneWay}" />
