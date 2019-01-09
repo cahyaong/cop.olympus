@@ -29,6 +29,7 @@
 namespace nGratis.Cop.Core.Wpf
 {
     using System.Collections.Generic;
+    using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
     using MahApps.Metro.Controls;
@@ -36,8 +37,6 @@ namespace nGratis.Cop.Core.Wpf
 
     public class FieldTemplateSelector : DataTemplateSelector
     {
-        private const string DefaultKey = "Cop.AweField.Default";
-
         private readonly IDictionary<string, DataTemplate> _templateLookup;
 
         public FieldTemplateSelector()
@@ -62,16 +61,32 @@ namespace nGratis.Cop.Core.Wpf
 
             if (this._templateLookup.TryGetValue(key, out var template))
             {
-                return this._templateLookup[key];
+                var hasValues = field
+                    .Values?
+                    .Cast<object>()
+                    .Any() == true;
+
+                template = field.Kind.IsMultipleValuesRequired() && !hasValues
+                    ? (DataTemplate)field.TryFindResource(Key.Empty)
+                    : this._templateLookup[key];
+            }
+            else
+            {
+                template =
+                    (DataTemplate)field.TryFindResource(key) ??
+                    (DataTemplate)field.TryFindResource(Key.Default);
+
+                this._templateLookup.Add(key, template);
             }
 
-            template =
-                (DataTemplate)field.TryFindResource(key) ??
-                (DataTemplate)field.TryFindResource(FieldTemplateSelector.DefaultKey);
-
-            this._templateLookup.Add(key, template);
-
             return template;
+        }
+
+        public static class Key
+        {
+            public const string Default = "Cop.AweField.Default";
+
+            public const string Empty = "Cop.AweField.Empty";
         }
     }
 }

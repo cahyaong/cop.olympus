@@ -1,8 +1,8 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FieldKind.cs" company="nGratis">
+// <copyright file="MultipleValuesRequiredAttribute.cs" company="nGratis">
 //  The MIT License (MIT)
 //
-//  Copyright (c) 2014 Cahya Ong
+//  Copyright (c) 2014 - 2018 Cahya Ong
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -23,40 +23,15 @@
 //  SOFTWARE.
 // </copyright>
 // <author>Cahya Ong - cahya.ong@gmail.com</author>
+// <creation_timestamp>Tuesday, 8 January 2019 11:18:06 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace nGratis.Cop.Core.Wpf
 {
-    using System.Linq;
-    using System.Reflection;
-    using nGratis.Cop.Core.Contract;
+    using System;
 
-    public enum FieldKind
+    [AttributeUsage(AttributeTargets.Enum | AttributeTargets.Field)]
+    public class MultipleValuesRequiredAttribute : Attribute
     {
-        Unknown,
-        Text,
-        DropDown,
-
-        [MultipleValuesRequired]
-        List,
-
-        [MultipleValuesRequired]
-        Chips
-    }
-
-    public static class FieldKindExtensions
-    {
-        public static bool IsMultipleValuesRequired(this FieldKind fieldKind)
-        {
-            Guard
-                .Require(fieldKind, nameof(fieldKind))
-                .Is.Not.Default();
-
-            return typeof(FieldKind)
-                .GetMember(fieldKind.ToString())
-                .Single()
-                .GetCustomAttributes<MultipleValuesRequiredAttribute>()
-                .Any();
-        }
     }
 }

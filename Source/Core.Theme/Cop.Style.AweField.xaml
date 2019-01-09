@@ -14,12 +14,21 @@
 
   <core:FieldTemplateSelector x:Key="Cop.AweField.TemplateSelector" />
 
-  <DataTemplate x:Key="Cop.AweField.Default">
+  <DataTemplate x:Key="{x:Static core:FieldTemplateSelector+Key.Default}">
     <Border BorderBrush="{DynamicResource Cop.Brush.Shade2}" BorderThickness="0,0,0,1">
       <TextBlock
         FontStyle="Italic"
         Style="{StaticResource Cop.TextBlock.Body}"
         Text="{x:Static contract:Text.Unsupported}" />
+    </Border>
+  </DataTemplate>
+
+  <DataTemplate x:Key="{x:Static core:FieldTemplateSelector+Key.Empty}">
+    <Border BorderBrush="{DynamicResource Cop.Brush.Shade2}" BorderThickness="0,0,0,1">
+      <TextBlock
+        FontStyle="Italic"
+        Style="{StaticResource Cop.TextBlock.Body}"
+        Text="{x:Static contract:Text.Empty}" />
     </Border>
   </DataTemplate>
 
