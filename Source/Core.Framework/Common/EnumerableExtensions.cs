@@ -31,103 +31,46 @@ namespace System.Collections.Generic
 {
     using System;
     using System.Diagnostics;
-    using System.Linq;
     using JetBrains.Annotations;
-    using nGratis.Cop.Core.Framework;
     using nGratis.Cop.Core.Contract;
 
     public static class EnumerableExtensions
     {
         [DebuggerStepThrough]
-        public static IEnumerable<T> Append<T>(this IEnumerable<T> lefts, IEnumerable<T> rights)
+        public static IEnumerable<T> AppendItem<T>(this IEnumerable<T> leftItems, T rightItem)
         {
             Guard
-                .Require(lefts, nameof(lefts))
+                .Require(leftItems, nameof(leftItems))
                 .Is.Not.Null();
 
-            Guard
-                .Require(rights, nameof(rights))
-                .Is.Not.Null();
-
-            foreach (var left in lefts)
+            foreach (var leftItem in leftItems)
             {
-                yield return left;
+                yield return leftItem;
             }
 
-            foreach (var right in rights)
-            {
-                yield return right;
-            }
+            yield return rightItem;
         }
 
         [DebuggerStepThrough]
-        public static IEnumerable<T> Prepend<T>(this IEnumerable<T> lefts, IEnumerable<T> rights)
+        public static IEnumerable<T> AppendItems<T>(this IEnumerable<T> leftItems, IEnumerable<T> rightItems)
         {
             Guard
-                .Require(lefts, nameof(lefts))
+                .Require(leftItems, nameof(leftItems))
                 .Is.Not.Null();
 
             Guard
-                .Require(rights, nameof(rights))
+                .Require(rightItems, nameof(rightItems))
                 .Is.Not.Null();
 
-            foreach (var right in rights)
+            foreach (var leftItem in leftItems)
             {
-                yield return right;
+                yield return leftItem;
             }
 
-            foreach (var left in lefts)
+            foreach (var rightItem in rightItems)
             {
-                yield return left;
+                yield return rightItem;
             }
-        }
-
-        [DebuggerStepThrough]
-        public static IEnumerable<T> Append<T>(this IEnumerable<T> lefts, T right)
-        {
-            Guard
-                .Require(lefts, nameof(lefts))
-                .Is.Not.Null();
-
-            foreach (var left in lefts)
-            {
-                yield return left;
-            }
-
-            yield return right;
-        }
-
-        [DebuggerStepThrough]
-        public static IEnumerable<T> Prepend<T>(this IEnumerable<T> lefts, T right)
-        {
-            Guard
-                .Require(lefts, nameof(lefts))
-                .Is.Not.Null();
-
-            yield return right;
-
-            foreach (var left in lefts)
-            {
-                yield return left;
-            }
-        }
-
-        [DebuggerStepThrough]
-        public static IEnumerable<T> Except<T>(this IEnumerable<T> lefts, IEnumerable<T> rights, Func<T, T, bool> isEqual)
-        {
-            Guard
-                .Require(lefts, nameof(lefts))
-                .Is.Not.Null();
-
-            Guard
-                .Require(rights, nameof(rights))
-                .Is.Not.Null();
-
-            Guard
-                .Require(isEqual, nameof(isEqual))
-                .Is.Not.Null();
-
-            return lefts.Except(rights, new DelegateEqualityComparer<T>(isEqual));
         }
 
         [DebuggerStepThrough]
