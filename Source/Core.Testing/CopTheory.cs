@@ -34,13 +34,13 @@ namespace nGratis.Cop.Core.Testing
     {
         public string Label { get; private set; }
 
-        public CopTheory WithLabel(string label)
+        public CopTheory WithLabel(ushort caseNumber, string description)
         {
             Guard
-                .Require(label, nameof(label))
+                .Require(description, nameof(description))
                 .Is.Not.Empty();
 
-            this.Label = label;
+            this.Label = $"CASE {caseNumber:000} -> {description}";
 
             return this;
         }
