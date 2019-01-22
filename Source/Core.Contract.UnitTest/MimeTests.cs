@@ -226,21 +226,21 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                         .Create(
                             Mime.Text,
                             Mime.Text)
-                        .WithLabel("CASE 01 -> Both predefined MIME instances.")
+                        .WithLabel(1, "Both predefined MIME instances.")
                         .ToXunitTheory();
 
                     yield return MimeEquivalentTheory
                         .Create(
                             new Mime("[_MOCK_UNIQUE_ID_]", "[_MOCK_EXTENSION_]"),
                             new Mime("[_MOCK_UNIQUE_ID_]", "[_MOCK_EXTENSION_]"))
-                        .WithLabel("CASE 02 -> Both new MIME instances with same unique ID and extension.")
+                        .WithLabel(2, "Both new MIME instances with same unique ID and extension.")
                         .ToXunitTheory();
 
                     yield return MimeEquivalentTheory
                         .Create(
                             new Mime("[_MOCK_UNIQUE_ID_]", "[_MOCK_EXTENSION_01_]"),
                             new Mime("[_MOCK_UNIQUE_ID_]", "[_MOCK_EXTENSION_02_]"))
-                        .WithLabel("CASE 03 -> Both new MIME instances with same unique ID but different extensions.")
+                        .WithLabel(3, "Both new MIME instances with same unique ID but different extensions.")
                         .ToXunitTheory();
                 }
             }
@@ -253,28 +253,28 @@ namespace nGratis.Cop.Core.Contract.UnitTest
                         .Create(
                             Mime.Text,
                             Mime.Xml)
-                        .WithLabel("CASE 01 -> Both predefined MIME instances.")
+                        .WithLabel(1, "Both predefined MIME instances.")
                         .ToXunitTheory();
 
                     yield return MimeEquivalentTheory
                         .Create(
                             new Mime("[_MOCK_UNIQUE_ID_01_]", "[_MOCK_EXTENSION_01_]"),
                             new Mime("[_MOCK_UNIQUE_ID_02_]", "[_MOCK_EXTENSION_02_]"))
-                        .WithLabel("CASE 02 -> Both new MIME instances with different unique IDs and extensions.")
+                        .WithLabel(2, "Both new MIME instances with different unique IDs and extensions.")
                         .ToXunitTheory();
 
                     yield return MimeEquivalentTheory
                         .Create(
                             new Mime("[_MOCK_UNIQUE_ID_01_]", "[_MOCK_EXTENSION_]"),
                             new Mime("[_MOCK_UNIQUE_ID_02_]", "[_MOCK_EXTENSION_]"))
-                        .WithLabel("CASE 03 -> Both new MIME instances with different unique IDs but same extension.")
+                        .WithLabel(3, "Both new MIME instances with different unique IDs but same extension.")
                         .ToXunitTheory();
 
                     yield return MimeEquivalentTheory
                         .Create(
                             Mime.Text,
                             new Mime("[_MOCK_UNIQUE_ID_]", "txt"))
-                        .WithLabel("CASE 04 -> Combination MIME instances with different unique IDs but same extension.")
+                        .WithLabel(4, "Combination MIME instances with different unique IDs but same extension.")
                         .ToXunitTheory();
                 }
             }
