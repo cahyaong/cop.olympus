@@ -93,16 +93,16 @@ namespace nGratis.Cop.Core.Contract.UnitTest
             }
         }
 
-        public class ParseByFileExtensionMethod
+        public class ParseByExtensionMethod
         {
             [Fact]
-            public void WhenGettingExistingPrimaryFileExtension_ShouldReturnExistingInstance()
+            public void WhenGettingExistingPrimaryExtension_ShouldReturnExistingInstance()
             {
                 // Arrange.
 
                 // Act.
 
-                var mime = Mime.ParseByFileExtension(".txt");
+                var mime = Mime.ParseByExtension(".txt");
 
                 // Assert.
 
@@ -111,13 +111,13 @@ namespace nGratis.Cop.Core.Contract.UnitTest
             }
 
             [Fact]
-            public void WhenGettingExistingNonPrimaryFileExtension_ShouldReturnExistingInstance()
+            public void WhenGettingExistingNonPrimaryExtension_ShouldReturnExistingInstance()
             {
                 // Arrange.
 
                 // Act.
 
-                var mime = Mime.ParseByFileExtension(".jpg");
+                var mime = Mime.ParseByExtension(".jpg");
 
                 // Assert.
 
@@ -126,7 +126,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
             }
 
             [Fact]
-            public void WhenGettingNonExistedFileExtension_ShouldThrowCopPreConditionException()
+            public void WhenGettingNonExistedExtension_ShouldThrowCopPreConditionException()
             {
                 // Arrange.
 
@@ -134,7 +134,7 @@ namespace nGratis.Cop.Core.Contract.UnitTest
 
                 var action = new Action(() =>
                 {
-                    var _ = Mime.ParseByFileExtension("[_MOCK_FILE_EXTENSION_]");
+                    var _ = Mime.ParseByExtension("[_MOCK_FILE_EXTENSION_]");
                 });
 
                 // Assert.

@@ -71,7 +71,7 @@ namespace nGratis.Cop.Core.Contract
                 .GetFields(BindingFlags.Public | BindingFlags.Static)
                 .Select(field => field.GetValue(typeof(Mime)))
                 .OfType<Mime>()
-                .ToList();
+                .ToArray();
 
             Mime.UniqueIdLookup = mimes
                 .ToDictionary(mime => mime.UniqueId, mime => mime);
@@ -134,6 +134,8 @@ namespace nGratis.Cop.Core.Contract
 
         public bool IsText => this.UniqueId.Split('/').First() == "text";
 
+        public bool IsImage => this.UniqueId.Split('/').First() == "image";
+
         public static Mime ParseByUniqueId(string uniqueId)
         {
             Guard
@@ -147,7 +149,7 @@ namespace nGratis.Cop.Core.Contract
             return Mime.UniqueIdLookup[uniqueId];
         }
 
-        public static Mime ParseByFileExtension(string extension)
+        public static Mime ParseByExtension(string extension)
         {
             Guard
                 .Require(extension, nameof(extension))
@@ -185,6 +187,11 @@ namespace nGratis.Cop.Core.Contract
             hash = hash * 23 + this.UniqueId?.GetHashCode() ?? 0;
 
             return hash;
+        }
+
+        public override string ToString()
+        {
+            return this.UniqueId;
         }
     }
 }
