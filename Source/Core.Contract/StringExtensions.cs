@@ -31,14 +31,38 @@
 namespace System
 {
     using System.Linq;
+    using System.Security.Cryptography;
+    using System.Text;
 
     public static class StringExtensions
     {
+        private static readonly string DefaultHash = new string('0', 32);
+
         public static string Coalesce(this string value, params string[] alternatives)
         {
             return string.IsNullOrWhiteSpace(value)
                 ? alternatives.FirstOrDefault(alternative => !string.IsNullOrWhiteSpace(alternative))
                 : value;
+        }
+
+        public static string CalculateMd5Hash(this string text)
+        {
+            if (string.IsNullOrEmpty(text))
+            {
+                return StringExtensions.DefaultHash;
+            }
+
+            using (var md5 = MD5.Create())
+            {
+                var hashBuilder = new StringBuilder();
+
+                md5
+                    .ComputeHash(Encoding.UTF8.GetBytes(text))
+                    .ToList()
+                    .ForEach(chunk => hashBuilder.Append(chunk.ToString("x2")));
+
+                return hashBuilder.ToString();
+            }
         }
     }
 }
