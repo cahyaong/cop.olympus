@@ -1,10 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<RuleSet Name="nGratis (COP) Contract Rules" Description="This rule set contains minimum rules for nGratis (Community of Practice) Contract project." ToolsVersion="15.0">
+<RuleSet Name="nGratis (COP) Contract Rules" Description="This rule set contains minimum rules for nGratis (Community of Practice) Contract project." ToolsVersion="16.0">
   <Include Path="basiccorrectnessrules.ruleset" Action="Default" />
   <Include Path="basicdesignguidelinerules.ruleset" Action="Default" />
   <Include Path="managedminimumrules.ruleset" Action="Default" />
   <Rules AnalyzerId="Microsoft.Analyzers.ManagedCodeAnalysis" RuleNamespace="Microsoft.Rules.Managed">
     <Rule Id="CA1011" Action="None" />
     <Rule Id="CA2104" Action="None" />
+  </Rules>
+  <Rules AnalyzerId="Microsoft.CodeAnalysis.CSharp.Features" RuleNamespace="Microsoft.CodeAnalysis.CSharp.Features">
+    <Rule Id="IDE0002" Action="None" />
   </Rules>
 </RuleSet>
