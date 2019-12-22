@@ -47,7 +47,7 @@
 using System.Reflection;
 
 [assembly: AssemblyCompany("nGratis")]
-[assembly: AssemblyProduct("CommunityOfPractice.Theia")]
+[assembly: AssemblyProduct("CommunityOfPractice.Core")]
 [assembly: AssemblyCopyright("Copyright © 2014 - <#= BuildTimestamp.Year #> Cahya Ong")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyVersion("<#= Version.Major #>.<#= Version.Minor #>.0.0")]

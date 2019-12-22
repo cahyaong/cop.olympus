@@ -85,16 +85,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Core.Contract\nGratis.Cop.Core.Contract.csproj">
-      <Project>{e727ca53-5288-4e7e-828c-011803b0bedd}</Project>
-      <Name>nGratis.Cop.Core.Contract</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
     <None Include="paket.references" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Core.Contract\nGratis.Cop.Core.Contract.csproj">
+      <Project>{d889f850-19a5-4bb3-8a60-c4a2c4bf21f4}</Project>
+      <Name>nGratis.Cop.Core.Contract</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Choose>

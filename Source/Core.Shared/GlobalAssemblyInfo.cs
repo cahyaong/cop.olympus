@@ -29,8 +29,8 @@
 using System.Reflection;
 
 [assembly: AssemblyCompany("nGratis")]
-[assembly: AssemblyProduct("CommunityOfPractice.Theia")]
-[assembly: AssemblyCopyright("Copyright © 2014 - 2016 Cahya Ong")]
+[assembly: AssemblyProduct("CommunityOfPractice.Core")]
+[assembly: AssemblyCopyright("Copyright © 2014 - 2019 Cahya Ong")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyVersion("0.1.0.0")]
 [assembly: AssemblyFileVersion("0.1.618.57")]

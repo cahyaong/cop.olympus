@@ -17,6 +17,12 @@ NUGET
     System.ValueTuple (4.5)
     YamlDotNet (5.3)
 
+GROUP _Contract
+RESTRICTION: == netstandard2.0
+NUGET
+  remote: https://api.nuget.org/v3/index.json
+    JetBrains.Annotations (2019.1.3)
+
 GROUP _Test
 RESTRICTION: == net472
 NUGET
