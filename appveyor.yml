@@ -1,7 +1,6 @@
 version: 0.1.{build}
 image: Visual Studio 2019
 configuration: Release
-platform: AnyCPU
 before_build:
 - cmd: 'appveyor_prebuild.cmd'
 build:
