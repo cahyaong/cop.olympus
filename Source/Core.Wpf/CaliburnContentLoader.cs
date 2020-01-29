@@ -58,6 +58,8 @@ namespace nGratis.Cop.Core.Wpf
 
             if (content is FrameworkElement element && viewModel is IActivatable activatable)
             {
+                // FIXME: Investigate why 'Loaded' event is called when tabbing to different page?
+
                 element.Loaded += (_, __) => activatable.Activate();
                 element.Unloaded += (_, __) => activatable.Deactivate();
             }

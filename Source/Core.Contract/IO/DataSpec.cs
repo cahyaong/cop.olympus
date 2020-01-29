@@ -32,6 +32,8 @@ namespace nGratis.Cop.Core.Contract
 
     public class DataSpec
     {
+        public static DataSpec None = new DataSpec(Text.None, Mime.None);
+
         public DataSpec(string name, Mime mime)
         {
             Guard

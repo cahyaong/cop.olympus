@@ -34,6 +34,8 @@ namespace nGratis.Cop.Core.Contract
 
         public const string Default = "<default>";
 
+        public const string None = "<none>";
+
         public const string Void = "<void>";
 
         public const string Empty = "<empty>";

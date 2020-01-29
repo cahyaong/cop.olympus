@@ -35,7 +35,9 @@ namespace nGratis.Cop.Core.Contract
 
     public class Mime
     {
-        public static readonly Mime Unknown = new Mime("unknown", 0, 0, "*");
+        public static readonly Mime Unknown = new Mime("cop/unknown", 0, 0, string.Empty);
+
+        public static readonly Mime None = new Mime("cop/none", 0, 0, string.Empty);
 
         public static readonly Mime Text = new Mime("text/plain", 0, 0, "txt");
 
