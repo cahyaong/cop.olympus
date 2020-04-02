@@ -1,0 +1,24 @@
+﻿<olympus:AweWindow
+  x:Class="nGratis.Cop.Olympus.Demo.AppView"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:olympus="http://schemas.ngratis.com/2014/olympus"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+  Title="COP.OLYMPUS"
+  Width="800"
+  Height="600"
+  IsTitleVisible="True"
+  mc:Ignorable="d">
+  <olympus:AweWindow.MenuLinkGroups>
+    <mui:LinkGroupCollection>
+      <mui:LinkGroup DisplayName="Control">
+        <mui:LinkGroup.Links>
+          <mui:Link DisplayName="Window" Source="/nGratis.Cop.Olympus.Demo;component/Page/AweWindowView.xaml" />
+          <mui:Link DisplayName="Field" Source="/nGratis.Cop.Olympus.Demo;component/Page/AweFieldView.xaml" />
+        </mui:LinkGroup.Links>
+      </mui:LinkGroup>
+    </mui:LinkGroupCollection>
+  </olympus:AweWindow.MenuLinkGroups>
+</olympus:AweWindow>

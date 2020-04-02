@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <Authors>Cahya Ong</Authors>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="nGratis.Cop.Olympus.Contract.csproj.DotSettings" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Olympus.Shared\GlobalAssemblyInfo.cs" Link="Properties\GlobalAssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="..\.paket\Paket.Restore.targets" />
+</Project>

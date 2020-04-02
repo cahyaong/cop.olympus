@@ -1,0 +1,30 @@
+﻿<Application
+  x:Class="nGratis.Cop.Olympus.Demo.App"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+  xmlns:olympus="http://schemas.ngratis.com/2014/olympus"
+  StartupUri="AppView.xaml">
+  <Application.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary>
+          <olympus:CopBootstrapper x:Key="Bootstrapper" />
+          <olympus:CaliburnContentLoader x:Key="CaliburnContentLoader" />
+        </ResourceDictionary>
+        <ResourceDictionary>
+          <Style TargetType="mui:ModernWindow">
+            <Setter Property="ContentLoader" Value="{StaticResource CaliburnContentLoader}" />
+          </Style>
+          <Style TargetType="mui:ModernFrame">
+            <Setter Property="ContentLoader" Value="{StaticResource CaliburnContentLoader}" />
+          </Style>
+          <Style TargetType="mui:ModernTab">
+            <Setter Property="ContentLoader" Value="{StaticResource CaliburnContentLoader}" />
+          </Style>
+        </ResourceDictionary>
+        <olympus:SharedResourceDictionary Source="/nGratis.Cop.Olympus.Theme;component/Cop.Theme.Dark.xaml" />
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </Application.Resources>
+</Application>

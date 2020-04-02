@@ -1,0 +1,138 @@
+﻿<UserControl
+  x:Class="nGratis.Cop.Olympus.Demo.AweFieldView"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:olympus="http://schemas.ngratis.com/2014/olympus"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:demo="clr-namespace:nGratis.Cop.Olympus.Demo"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  d:DataContext="{d:DesignInstance demo:AweFieldViewModel}"
+  mc:Ignorable="d">
+  <UserControl.Resources>
+    <DataTemplate x:Key="Cop.AweField.Input.Custom" DataType="demo:AweFieldViewModel">
+      <Grid olympus:ChildrenMargin.Value="10,0">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="Auto" />
+          <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Rectangle
+          Grid.Column="0"
+          Width="8"
+          Height="8"
+          Fill="HotPink" />
+        <TextBox Grid.Column="1" Text="{Binding CustomText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+      </Grid>
+    </DataTemplate>
+    <DataTemplate x:Key="Cop.AweField.Output.Custom" DataType="demo:AweFieldViewModel">
+      <Grid olympus:ChildrenMargin.Value="10,0">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="Auto" />
+          <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Rectangle
+          Grid.Column="0"
+          Width="8"
+          Height="8"
+          Fill="HotPink" />
+        <Border
+          Grid.Column="1"
+          BorderBrush="{DynamicResource Cop.Brush.Shade2}"
+          BorderThickness="0,0,0,1">
+          <TextBlock Style="{StaticResource Cop.TextBlock.Base}" Text="{Binding CustomText, Mode=OneWay}" />
+        </Border>
+      </Grid>
+    </DataTemplate>
+  </UserControl.Resources>
+  <Grid olympus:ChildrenMargin.Value="0,10">
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="*" />
+      <ColumnDefinition Width="20" />
+      <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
+    </Grid.RowDefinitions>
+    <olympus:AweField
+      Grid.Row="0"
+      Grid.Column="0"
+      Header="Input...Text"
+      Kind="Text"
+      Mode="Input"
+      Value="{Binding Text, Mode=TwoWay}" />
+    <olympus:AweField
+      Grid.Row="0"
+      Grid.Column="2"
+      Header="Output...Text"
+      Kind="Text"
+      Mode="Output"
+      Value="{Binding Text, Mode=OneWay}" />
+    <Grid
+      Grid.Row="1"
+      Grid.Column="0"
+      olympus:ChildrenMargin.Value="10,0">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="2*" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
+      <olympus:AweField
+        Grid.Column="0"
+        Header="Input...DropDown"
+        Kind="DropDown"
+        Mode="Input"
+        Values="{Binding AvailableNumbers, Mode=OneWay}"
+        Value="{Binding SelectedNumber, Mode=TwoWay}" />
+      <olympus:AweField
+        Grid.Column="1"
+        Header="Debug...DropDown"
+        Kind="Text"
+        Mode="Output"
+        Value="{Binding SelectedNumber, Mode=OneWay}" />
+    </Grid>
+    <olympus:AweField
+      Grid.Row="1"
+      Grid.Column="2"
+      Header="Output...DropDown"
+      Kind="DropDown"
+      Mode="Output" />
+    <olympus:AweField
+      Grid.Row="2"
+      Grid.Column="0"
+      Header="Input...List"
+      Kind="List"
+      Mode="Input" />
+    <olympus:AweField
+      Grid.Row="2"
+      Grid.Column="2"
+      Header="Output...List"
+      Kind="List"
+      Mode="Output"
+      Values="{Binding Messages, Mode=OneWay}" />
+    <olympus:AweField
+      Grid.Row="3"
+      Grid.Column="0"
+      Header="Input...Chips"
+      Kind="Chips"
+      Mode="Input" />
+    <olympus:AweField
+      Grid.Row="3"
+      Grid.Column="2"
+      Header="Output...Chips"
+      Kind="Chips"
+      Mode="Output"
+      Values="{Binding Animals, Mode=OneWay}" />
+    <olympus:AweField
+      Grid.Row="4"
+      Grid.Column="0"
+      CustomTemplate="{StaticResource Cop.AweField.Input.Custom}"
+      Header="Input...Custom" />
+    <olympus:AweField
+      Grid.Row="4"
+      Grid.Column="2"
+      CustomTemplate="{StaticResource Cop.AweField.Output.Custom}"
+      Header="Output...Custom" />
+  </Grid>
+</UserControl>

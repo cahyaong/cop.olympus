@@ -1,0 +1,250 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ assembly name="System" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+<#
+    var numericalLookup = new Dictionary<string, NumericalInfo>
+    {
+        ["int"] = new NumericalInfo(typeof(int).Name, false, "0"),
+        ["long"] = new NumericalInfo(typeof(long).Name, false, "0L"),
+        ["float"] = new NumericalInfo(typeof(float).Name, true, "0.0F"),
+        ["double"] = new NumericalInfo(typeof(double).Name, true, "0.0")
+    };
+
+    var methodLookup = new Dictionary<string, MethodInfo>
+    {
+        ["LessThan"] = new MethodInfo(true, "MinValue", "MaxValue", "be less than [0]"),
+        ["LessThanOrEqualTo"] = new MethodInfo(true, "MinValue", "MaxValue", "be less than or equal to [0]"),
+        ["GreaterThan"] = new MethodInfo(true, "MaxValue", "MinValue", "be greater than [0]"),
+        ["GreaterThanOrEqualTo"] = new MethodInfo(true, "MaxValue", "MinValue", "be greater than or equal to [0]"),
+        ["ZeroOrPositive"] = new MethodInfo(false, "MaxValue", "MinValue", "be zero or a positive number"),
+        ["Positive"] = new MethodInfo(false, "MaxValue", "MinValue", "be a positive number"),
+        ["ZeroOrNegative"] = new MethodInfo(false, "MinValue", "MaxValue", "be zero or a negative number"),
+        ["Negative"] = new MethodInfo(false, "MinValue", "MaxValue", "be a negative number"),
+        ["Zero"] = new MethodInfo(false, "ZeroValue", "MaxValue", "be zero"),
+        ["EqualTo"] = new MethodInfo(true, "ZeroValue", "MaxValue", "be equal to [0]")
+    };
+#>
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Guard.All.Numerical.cs" company="nGratis">
+//  The MIT License (MIT)
+//
+//  Copyright (c) 2014 - 2020 Cahya Ong
+//
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in all
+//  copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+//  SOFTWARE.
+// </copyright>
+// <author>Cahya Ong - cahya.ong@gmail.com</author>
+// <creation_timestamp>Sunday, 1 April 2018 1:05:37 AM UTC</creation_timestamp>
+// <remark>
+//
+//     _  _   _ _____ ___       ___ ___ _  _ ___ ___    _ _____ ___ ___    _____ _ _  
+//    /_\| | | |_   _/ _ \ ___ / __| __| \| | __| _ \  /_\_   _| __|   \  |_   _| | | 
+//   / _ \ |_| | | || (_) |___| (_ | _|| .` | _||   / / _ \| | | _|| |) |   | | |_  _|
+//  /_/ \_\___/  |_| \___/     \___|___|_|\_|___|_|_\/_/ \_\_| |___|___/    |_|   |_| 
+//
+// </remark>
+// --------------------------------------------------------------------------------------------------------------------
+
+// ReSharper disable InconsistentNaming
+// ReSharper disable ConvertToConstant.Local
+
+namespace nGratis.Cop.Olympus.Contract.UnitTest
+{
+    using System;
+    using FluentAssertions;
+    using Xunit;
+
+    public partial class GuardTests
+    {
+<#
+    var numericalIndex = 0;
+
+    foreach (var numerical in numericalLookup.Keys)
+    {
+        var methodIndex = 0;
+        var alias = numericalLookup[numerical].Alias;
+        var zeroValue = numericalLookup[numerical].ZeroValue;
+
+        foreach (var method in methodLookup.Keys)
+        {
+            var validValue = methodLookup[method].ValidValue;
+            validValue = validValue == "ZeroValue" ? zeroValue : $"{numerical}.{validValue}";
+            
+            var invalidValue = methodLookup[method].InvalidValue;
+            invalidValue = invalidValue == "ZeroValue" ? zeroValue : $"{numerical}.{invalidValue}";
+
+            var invalidReason = methodLookup[method].InvalidReason;
+
+            var methodArgument = methodLookup[method].HasArgument
+                ? zeroValue
+                : string.Empty;
+#>
+        public class <#=method#>Method_<#=alias#>
+        {
+            [Fact]
+            public void WhenGettingValidPreCondition_ShouldNotThrowException()
+            {
+                // Arrange.
+
+                var value = <#=validValue#>;
+
+                // Act.
+
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.<#=method#>(<#=methodArgument#>);
+                });
+
+                // Assert.
+
+                action
+                    .Should().NotThrow();
+            }
+
+            [Fact]
+            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+            {
+                // Arrange.
+
+                var value = <#=invalidValue#>;
+
+                // Act.
+
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.<#=method#>(<#=methodArgument#>);
+                });
+
+                // Assert.
+
+                action
+                    .Should().Throw<CopPreConditionException>()
+                    .WithMessage("PRE-CONDITION: Variable [value] should <#=invalidReason#>!");
+            }
+
+            [Fact]
+            public void WhenGettingValidPostCondition_ShouldNotThrowException()
+            {
+                // Arrange.
+
+                var value = <#=validValue#>;
+
+                // Act.
+
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.<#=method#>(<#=methodArgument#>);
+                });
+
+                // Assert.
+
+                action
+                    .Should().NotThrow();
+            }
+
+            [Fact]
+            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+            {
+                // Arrange.
+
+                var value = <#=invalidValue#>;
+
+                // Act.
+
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.<#=method#>(<#=methodArgument#>);
+                });
+
+                // Assert.
+
+                action
+                    .Should().Throw<CopPostConditionException>()
+                    .WithMessage("POST-CONDITION: Variable [value] should <#=invalidReason#>!");
+            }
+        }
+<#
+            if (methodIndex < methodLookup.Count - 1)
+            {
+#>
+
+<#
+            }
+
+            methodIndex++;
+        }
+#>
+<#
+        if (numericalIndex < numericalLookup.Count - 1)
+        {
+#>
+
+<#
+        }
+
+        numericalIndex++;
+    }
+#>
+    }
+}
+<#+
+    internal class NumericalInfo
+    {
+        public NumericalInfo(string alias, bool isFloatingPoint, string zeroValue)
+        {
+            this.Alias = alias;
+            this.IsFloatingPoint = isFloatingPoint;
+            this.ZeroValue = zeroValue;
+        }
+
+        public string Alias { get; }
+
+        public bool IsFloatingPoint { get; }
+
+        public string ZeroValue { get; }
+    }
+
+    internal class MethodInfo
+    {
+        public MethodInfo(bool hasArgument, string validValue, string invalidValue, string invalidReason)
+        {
+            this.HasArgument = hasArgument;
+            this.ValidValue = validValue;
+            this.InvalidValue = invalidValue;
+            this.InvalidReason = invalidReason;
+        }
+
+        public bool HasArgument { get; }
+
+        public string ValidValue { get; }
+
+        public string InvalidValue { get; }
+
+        public string InvalidReason { get; }
+    }
+#>

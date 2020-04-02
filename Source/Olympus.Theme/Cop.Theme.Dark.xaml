@@ -1,0 +1,8 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:olympus="http://schemas.ngratis.com/2014/olympus">
+  <ResourceDictionary.MergedDictionaries>
+    <olympus:SharedResourceDictionary Source="/MahApps.Metro;component/Styles/Accents/BaseDark.xaml" />
+    <olympus:SharedResourceDictionary Source="/FirstFloor.ModernUI;component/Assets/ModernUI.Dark.xaml" />
+    <olympus:SharedResourceDictionary Source="/nGratis.Cop.Olympus.Theme;component/Cop.Palette.Dark.xaml" />
+    <olympus:SharedResourceDictionary Source="/nGratis.Cop.Olympus.Theme;component/Cop.Theme.Generic.xaml" />
+  </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>
