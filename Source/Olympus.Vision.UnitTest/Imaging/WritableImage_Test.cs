@@ -26,7 +26,7 @@
 // <creation_timestamp>Saturday, 18 April 2015 1:49:37 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Core.Vision.UnitTest
+namespace nGratis.Cop.Olympus.Vision.UnitTest
 {
     using System;
     using System.Linq;
@@ -34,8 +34,8 @@ namespace nGratis.Cop.Core.Vision.UnitTest
     using System.Windows.Media;
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using nGratis.Cop.Core.Testing;
-    using nGratis.Cop.Core.Vision.Imaging;
+    using nGratis.Cop.Olympus.Testing;
+    using nGratis.Cop.Olympus.Vision.Imaging;
 
     [DeploymentItem(@"Imaging\WritableImage_Scenarios.xml", "Imaging")]
     public class WritableImage_Test
