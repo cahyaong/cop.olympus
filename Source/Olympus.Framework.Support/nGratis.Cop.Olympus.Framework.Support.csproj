@@ -8,6 +8,9 @@
     <RootNamespace>nGratis.Cop.Olympus.Framework</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="nGratis.Cop.Olympus.Framework.Support.csproj.DotSettings" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="..\Olympus.Shared\GlobalAssemblyInfo.cs" Link="Properties\GlobalAssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
