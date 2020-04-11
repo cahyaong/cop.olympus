@@ -109,7 +109,7 @@ namespace nGratis.Cop.Olympus.Contract
                 "be empty");
         }
 
-		// TODO: Add <DataTable> validation in a separate project!
+        // TODO: Add <DataTable> validation in a separate project!
 
         [DebuggerStepThrough]
         [SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures")]
