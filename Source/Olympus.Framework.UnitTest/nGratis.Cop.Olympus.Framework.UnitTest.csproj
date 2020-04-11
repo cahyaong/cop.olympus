@@ -57,6 +57,10 @@
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
+    <ProjectReference Include="..\Olympus.Framework.Support\nGratis.Cop.Olympus.Framework.Support.csproj">
+      <Project>{abe37048-538a-40a4-99f0-fedab5d87793}</Project>
+      <Name>nGratis.Cop.Olympus.Framework.Support</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Olympus.Framework\nGratis.Cop.Olympus.Framework.csproj">
       <Project>{b90c4c38-a600-44bb-840e-2a7d4b46618a}</Project>
       <Name>nGratis.Cop.Olympus.Framework</Name>
@@ -101,8 +105,11 @@
   <Choose>
     <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
       <ItemGroup>
+        <Reference Include="mscorlib">
+          <Paket>True</Paket>
+        </Reference>
         <Reference Include="System.Runtime.CompilerServices.Unsafe">
-          <HintPath>..\packages\_test\System.Runtime.CompilerServices.Unsafe\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+          <HintPath>..\packages\_test\System.Runtime.CompilerServices.Unsafe\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -113,7 +120,7 @@
     <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
       <ItemGroup>
         <Reference Include="System.Threading.Tasks.Extensions">
-          <HintPath>..\packages\_test\System.Threading.Tasks.Extensions\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
+          <HintPath>..\packages\_test\System.Threading.Tasks.Extensions\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>

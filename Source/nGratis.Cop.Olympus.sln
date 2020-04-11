@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nGratis.Cop.Olympus.Framewo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "nGratis.Cop.Olympus.Contract", "Olympus.Contract\nGratis.Cop.Olympus.Contract.csproj", "{D889F850-19A5-4BB3-8A60-C4A2C4BF21F4}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "nGratis.Cop.Olympus.Framework.Support", "Olympus.Framework.Support\nGratis.Cop.Olympus.Framework.Support.csproj", "{ABE37048-538A-40A4-99F0-FEDAB5D87793}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +79,10 @@ Global
 		{D889F850-19A5-4BB3-8A60-C4A2C4BF21F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D889F850-19A5-4BB3-8A60-C4A2C4BF21F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D889F850-19A5-4BB3-8A60-C4A2C4BF21F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABE37048-538A-40A4-99F0-FEDAB5D87793}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABE37048-538A-40A4-99F0-FEDAB5D87793}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABE37048-538A-40A4-99F0-FEDAB5D87793}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABE37048-538A-40A4-99F0-FEDAB5D87793}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

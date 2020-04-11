@@ -1,8 +1,8 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="DoubleExtensions.cs" company="nGratis">
+// <copyright file="AssemblyInfo.cs" company="nGratis">
 //  The MIT License (MIT)
 //
-//  Copyright (c) 2014 Cahya Ong
+//  Copyright (c) 2014 - 2020 Cahya Ong
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -23,22 +23,15 @@
 //  SOFTWARE.
 // </copyright>
 // <author>Cahya Ong - cahya.ong@gmail.com</author>
+// <creation_timestamp>Saturday, April 11, 2020 4:27:45 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-// ReSharper disable once CheckNamespace
+using System;
+using System.Reflection;
+using System.Runtime.InteropServices;
 
-namespace System
-{
-    public static class DoubleExtensions
-    {
-        public static bool IsCloseTo(this double firstValue, double secondValue)
-        {
-            return firstValue.IsCloseTo(secondValue, 0.00001);
-        }
-
-        public static bool IsCloseTo(this double firstValue, double secondValue, double tolerance)
-        {
-            return Math.Abs(firstValue - secondValue) <= tolerance;
-        }
-    }
-}
+[assembly: AssemblyTitle("nGratis.Cop.Olympus.Framework.Support")]
+[assembly: AssemblyDescription("")]
+[assembly: ComVisible(false)]
+[assembly: Guid("abe37048-538a-40a4-99f0-fedab5d87793")]
+[assembly: CLSCompliant(true)]

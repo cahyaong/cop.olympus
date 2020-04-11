@@ -1,0 +1,4 @@
+group _Support
+    Newtonsoft.Json
+    NLog
+    System.Reactive.Linq

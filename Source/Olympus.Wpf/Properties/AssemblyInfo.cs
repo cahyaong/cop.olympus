@@ -2,7 +2,7 @@
 // <copyright file="AssemblyInfo.cs" company="nGratis">
 //  The MIT License (MIT)
 //
-//  Copyright (c) 2014 Cahya Ong
+//  Copyright (c) 2014 - 2020 Cahya Ong
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -33,7 +33,7 @@ using System.Windows.Markup;
 
 [assembly: AssemblyTitle("nGratis.Cop.Olympus.Wpf")]
 [assembly: AssemblyDescription("")]
-[assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
+[assembly: Guid("199487eb-64e4-4d48-9e9a-3afdddadf041")]
 [assembly: ThemeInfo(ResourceDictionaryLocation.None, ResourceDictionaryLocation.SourceAssembly)]
 [assembly: XmlnsDefinition("http://schemas.ngratis.com/2014/olympus", "nGratis.Cop.Olympus.Wpf")]

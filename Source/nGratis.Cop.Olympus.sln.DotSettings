@@ -1,4 +1,4 @@
-﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	<s:Boolean x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=4A9582635890054E8FBEA7BC98EE5F13/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=4A9582635890054E8FBEA7BC98EE5F13/RelativePath/@EntryValue">..\Olympus.Wpf\nGratis.Cop.Olympus.Wpf.csproj.DotSettings</s:String>
 	<s:Boolean x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=8B7F08C27C966B478E5B2B2446BAFA5C/@KeyIndexDefined">True</s:Boolean>
@@ -9,6 +9,8 @@
 	<s:String x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=F3E2D81F77981C4F9A8A9B8F698E9877/RelativePath/@EntryValue">..\nGratis.Shared.DotSettings</s:String>
 	<s:Boolean x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=FBD33673B273254CBBD395A780AD5487/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=FBD33673B273254CBBD395A780AD5487/RelativePath/@EntryValue">..\Olympus.Contract\nGratis.Cop.Olympus.Contract.csproj.DotSettings</s:String>
+	<s:Boolean x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=FDD98B0FC0F34F469E7661676B2CEB5B/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=FDD98B0FC0F34F469E7661676B2CEB5B/RelativePath/@EntryValue">..\nGratis.Cop.Shared.DotSettings</s:String>
 	<s:Boolean x:Key="/Default/Environment/InjectedLayers/InjectedLayerCustomization/=File4A9582635890054E8FBEA7BC98EE5F13/@KeyIndexDefined">True</s:Boolean>
 	<s:Double x:Key="/Default/Environment/InjectedLayers/InjectedLayerCustomization/=File4A9582635890054E8FBEA7BC98EE5F13/RelativePriority/@EntryValue">4</s:Double>
 	<s:Boolean x:Key="/Default/Environment/InjectedLayers/InjectedLayerCustomization/=File8B7F08C27C966B478E5B2B2446BAFA5C/@KeyIndexDefined">True</s:Boolean>
@@ -19,6 +21,8 @@
 	<s:Double x:Key="/Default/Environment/InjectedLayers/InjectedLayerCustomization/=FileF3E2D81F77981C4F9A8A9B8F698E9877/RelativePriority/@EntryValue">1</s:Double>
 	<s:Boolean x:Key="/Default/Environment/InjectedLayers/InjectedLayerCustomization/=FileFBD33673B273254CBBD395A780AD5487/@KeyIndexDefined">True</s:Boolean>
 	<s:Double x:Key="/Default/Environment/InjectedLayers/InjectedLayerCustomization/=FileFBD33673B273254CBBD395A780AD5487/RelativePriority/@EntryValue">2</s:Double>
+	<s:Boolean x:Key="/Default/Environment/InjectedLayers/InjectedLayerCustomization/=FileFDD98B0FC0F34F469E7661676B2CEB5B/@KeyIndexDefined">True</s:Boolean>
+	<s:Double x:Key="/Default/Environment/InjectedLayers/InjectedLayerCustomization/=FileFDD98B0FC0F34F469E7661676B2CEB5B/RelativePriority/@EntryValue">1.5</s:Double>
 	<s:String x:Key="/Default/FilterSettingsManager/AttributeFilterXml/@EntryValue">&lt;data /&gt;</s:String>
 	<s:String x:Key="/Default/FilterSettingsManager/CoverageFilterXml/@EntryValue">&lt;data&gt;&lt;IncludeFilters /&gt;&lt;ExcludeFilters&gt;&lt;Filter ModuleMask="*.UnitTest" ModuleVersionMask="*" ClassMask="*" FunctionMask="*" IsEnabled="True" /&gt;&lt;Filter ModuleMask="*.Demo" ModuleVersionMask="*" ClassMask="*" FunctionMask="*" IsEnabled="True" /&gt;&lt;/ExcludeFilters&gt;&lt;/data&gt;</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=81C133807C43D0499FEC2DAE35346FF5/@KeyIndexDefined">True</s:Boolean>

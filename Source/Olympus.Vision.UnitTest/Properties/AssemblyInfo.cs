@@ -2,7 +2,7 @@
 // <copyright file="AssemblyInfo.cs" company="nGratis">
 //  The MIT License (MIT)
 //
-//  Copyright (c) 2014 - 2015 Cahya Ong
+//  Copyright (c) 2014 - 2020 Cahya Ong
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -33,4 +33,4 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
-[assembly: Guid("ef9953a9-46a1-47e0-a04f-be04c2f21105")]
+[assembly: Guid("f40704bc-4dfc-43c3-85e8-120d0b30b43b")]

@@ -4,7 +4,6 @@ source https://api.nuget.org/v3/index.json
 nuget Humanizer.Core
 nuget JetBrains.Annotations
 nuget Newtonsoft.Json
-nuget NLog
 nuget System.Reactive
 nuget System.Reactive.Linq
 nuget System.Threading.Tasks.Extensions
@@ -36,6 +35,15 @@ group _Vision
 
     nuget AForge.Imaging
     nuget WriteableBitmapEx
+
+group _Support
+
+    framework: netstandard2.0
+    source https://api.nuget.org/v3/index.json
+
+    nuget Newtonsoft.Json
+    nuget NLog
+    nuget System.Reactive.Linq
 
 group _Test
 

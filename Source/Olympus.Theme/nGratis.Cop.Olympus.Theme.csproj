@@ -220,6 +220,12 @@
   <Choose>
     <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
       <ItemGroup>
+        <Reference Include="ReachFramework">
+          <Paket>True</Paket>
+        </Reference>
+        <Reference Include="System.Printing">
+          <Paket>True</Paket>
+        </Reference>
         <Reference Include="OxyPlot.Wpf">
           <HintPath>..\packages\_ui\OxyPlot.Wpf\lib\net45\OxyPlot.Wpf.dll</HintPath>
           <Private>True</Private>

@@ -31,6 +31,5 @@ using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("nGratis.Cop.Olympus.Testing")]
 [assembly: AssemblyDescription("")]
-[assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
-[assembly: Guid("ac9d0f9d-26c3-4729-b4d6-59ebd21aaf3d")]
+[assembly: Guid("b199217e-4103-44a9-afb9-65287a52d06f")]

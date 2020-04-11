@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="AssemblyInfo.cs" company="nGratis">
+// <copyright file="LoggingModes.cs" company="nGratis">
 //  The MIT License (MIT)
 //
 //  Copyright (c) 2014 - 2020 Cahya Ong
@@ -23,18 +23,24 @@
 //  SOFTWARE.
 // </copyright>
 // <author>Cahya Ong - cahya.ong@gmail.com</author>
-// <creation_timestamp>Sunday, 28 December 2014 12:32:15 AM UTC</creation_timestamp>
+// <creation_timestamp>Monday, 20 July 2015 2:22:28 PM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System;
-using System.Reflection;
-using System.Runtime.InteropServices;
-using System.Windows.Markup;
+namespace nGratis.Cop.Olympus.Framework
+{
+    using System;
 
-[assembly: AssemblyTitle("nGratis.Cop.Olympus.Framework")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyCulture("")]
-[assembly: ComVisible(false)]
-[assembly: Guid("b90c4c38-a600-44bb-840e-2a7d4b46618a")]
-[assembly: CLSCompliant(true)]
-[assembly: XmlnsDefinition("http://schemas.ngratis.com/2014/olympus", "nGratis.Cop.Olympus")]
+    [Flags]
+    public enum LoggingModes
+    {
+        None = 0,
+
+        CommunityOfPractice = 1,
+
+        NLogger = 1 << 1,
+
+        Console = 1 << 2,
+
+        All = LoggingModes.CommunityOfPractice | LoggingModes.NLogger | LoggingModes.Console
+    }
+}

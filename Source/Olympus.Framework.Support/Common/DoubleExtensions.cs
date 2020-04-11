@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="LoggingModes.cs" company="nGratis">
+// <copyright file="DoubleExtensions.cs" company="nGratis">
 //  The MIT License (MIT)
 //
 //  Copyright (c) 2014 - 2020 Cahya Ong
@@ -23,24 +23,22 @@
 //  SOFTWARE.
 // </copyright>
 // <author>Cahya Ong - cahya.ong@gmail.com</author>
-// <creation_timestamp>Monday, 20 July 2015 2:22:28 PM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Framework
+// ReSharper disable once CheckNamespace
+
+namespace System
 {
-    using System;
-
-    [Flags]
-    public enum LoggingModes
+    public static class DoubleExtensions
     {
-        None = 0,
+        public static bool IsCloseTo(this double firstValue, double secondValue)
+        {
+            return firstValue.IsCloseTo(secondValue, 0.00001);
+        }
 
-        CommunityOfPractice = 1 << 0,
-
-        NLogger = 1 << 1,
-
-        Console = 1 << 2,
-
-        All = LoggingModes.CommunityOfPractice | LoggingModes.NLogger | LoggingModes.Console
+        public static bool IsCloseTo(this double firstValue, double secondValue, double tolerance)
+        {
+            return Math.Abs(firstValue - secondValue) <= tolerance;
+        }
     }
 }

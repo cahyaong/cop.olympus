@@ -2,7 +2,7 @@
 // <copyright file="AssemblyInfo.cs" company="nGratis">
 //  The MIT License (MIT)
 //
-//  Copyright (c) 2014 Cahya Ong
+//  Copyright (c) 2014 - 2020 Cahya Ong
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -32,6 +32,6 @@ using System.Windows;
 
 [assembly: AssemblyTitle("nGratis.Cop.Olympus.Theme")]
 [assembly: AssemblyDescription("")]
-[assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
+[assembly: Guid("2b8de19c-be3d-4516-aecb-01fc709f8ed8")]
 [assembly: ThemeInfo(ResourceDictionaryLocation.SourceAssembly, ResourceDictionaryLocation.ExternalAssembly)]

@@ -1,3 +1,6 @@
+System.Reactive
+System.Reactive.Linq
+
 group _UI
     Caliburn.Micro
     MahApps.Metro

@@ -2,7 +2,7 @@
 // <copyright file="AssemblyInfo.cs" company="nGratis">
 //  The MIT License (MIT)
 //
-//  Copyright (c) 2014 Cahya Ong
+//  Copyright (c) 2014 - 2020 Cahya Ong
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -35,6 +35,6 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
-[assembly: Guid("d7381189-cf6a-45f3-9664-d5a983d016d6")]
+[assembly: Guid("d889f850-19a5-4bb3-8a60-c4a2c4bf21f4")]
 [assembly: CLSCompliant(true)]
 [assembly: InternalsVisibleTo("nGratis.Cop.Olympus.Contract.UnitTest")]

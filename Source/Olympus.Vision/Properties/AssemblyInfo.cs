@@ -33,4 +33,4 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
-[assembly: Guid("3aac3008-2fec-4bdb-8ba0-1b35b89c49b4")]
+[assembly: Guid("5d4ffbfb-372e-4fbb-b7dc-fe3bb5a7e00f")]

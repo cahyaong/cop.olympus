@@ -147,8 +147,7 @@ namespace nGratis.Cop.Olympus.Wpf
                     Title = configuration.Title,
                     ItemsSource = configuration.Points,
                     DataFieldX = configuration.Category,
-                    DataFieldY = configuration.Value,
-                    Smooth = true
+                    DataFieldY = configuration.Value
                 })
                 .ForEach(series => plotModel.Series.Add(series));
 

@@ -98,6 +98,10 @@
       <Project>{d889f850-19a5-4bb3-8a60-c4a2c4bf21f4}</Project>
       <Name>nGratis.Cop.Olympus.Contract</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Olympus.Framework.Support\nGratis.Cop.Olympus.Framework.Support.csproj">
+      <Project>{abe37048-538a-40a4-99f0-fedab5d87793}</Project>
+      <Name>nGratis.Cop.Olympus.Framework.Support</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Olympus.Framework\nGratis.Cop.Olympus.Framework.csproj">
       <Project>{B90C4C38-A600-44BB-840E-2A7D4B46618A}</Project>
       <Name>nGratis.Cop.Olympus.Framework</Name>
@@ -164,7 +168,7 @@
     <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
       <ItemGroup>
         <Reference Include="DynamicData">
-          <HintPath>..\packages\_ui\DynamicData\lib\net46\DynamicData.dll</HintPath>
+          <HintPath>..\packages\_ui\DynamicData\lib\net461\DynamicData.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -229,23 +233,6 @@
   <Choose>
     <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
       <ItemGroup>
-        <Reference Include="System.Drawing">
-          <Paket>True</Paket>
-        </Reference>
-        <Reference Include="mscorlib">
-          <Paket>True</Paket>
-        </Reference>
-        <Reference Include="System.Drawing.Primitives">
-          <HintPath>..\packages\_ui\System.Drawing.Primitives\lib\net45\System.Drawing.Primitives.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-      </ItemGroup>
-    </When>
-  </Choose>
-  <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
-      <ItemGroup>
         <Reference Include="System.Windows">
           <Paket>True</Paket>
         </Reference>
@@ -263,107 +250,11 @@
   <Choose>
     <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
       <ItemGroup>
-        <Reference Include="System.Reactive.Core">
-          <HintPath>..\packages\_ui\System.Reactive.Core\lib\net46\System.Reactive.Core.dll</HintPath>
-          <Private>True</Private>
+        <Reference Include="mscorlib">
           <Paket>True</Paket>
         </Reference>
-      </ItemGroup>
-    </When>
-  </Choose>
-  <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
-      <ItemGroup>
-        <Reference Include="System.Reactive.Experimental">
-          <HintPath>..\packages\_ui\System.Reactive.Experimental\lib\net46\System.Reactive.Experimental.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-      </ItemGroup>
-    </When>
-  </Choose>
-  <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
-      <ItemGroup>
-        <Reference Include="System.Reactive.Interfaces">
-          <HintPath>..\packages\_ui\System.Reactive.Interfaces\lib\net46\System.Reactive.Interfaces.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-      </ItemGroup>
-    </When>
-  </Choose>
-  <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
-      <ItemGroup>
-        <Reference Include="System.Reactive.Linq">
-          <HintPath>..\packages\_ui\System.Reactive.Linq\lib\net46\System.Reactive.Linq.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-      </ItemGroup>
-    </When>
-  </Choose>
-  <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
-      <ItemGroup>
-        <Reference Include="System.Reactive.PlatformServices">
-          <HintPath>..\packages\_ui\System.Reactive.PlatformServices\lib\net46\System.Reactive.PlatformServices.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-      </ItemGroup>
-    </When>
-  </Choose>
-  <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
-      <ItemGroup>
-        <Reference Include="System.Reactive.Providers">
-          <HintPath>..\packages\_ui\System.Reactive.Providers\lib\net46\System.Reactive.Providers.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-      </ItemGroup>
-    </When>
-  </Choose>
-  <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
-      <ItemGroup>
-        <Reference Include="System.Reactive.Runtime.Remoting">
-          <HintPath>..\packages\_ui\System.Reactive.Runtime.Remoting\lib\net46\System.Reactive.Runtime.Remoting.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-      </ItemGroup>
-    </When>
-  </Choose>
-  <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
-      <ItemGroup>
-        <Reference Include="System.Reactive.Windows.Forms">
-          <HintPath>..\packages\_ui\System.Reactive.Windows.Forms\lib\net46\System.Reactive.Windows.Forms.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-      </ItemGroup>
-    </When>
-  </Choose>
-  <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
-      <ItemGroup>
-        <Reference Include="System.Reactive.Windows.Threading">
-          <HintPath>..\packages\_ui\System.Reactive.Windows.Threading\lib\net46\System.Reactive.Windows.Threading.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-      </ItemGroup>
-    </When>
-  </Choose>
-  <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
-      <ItemGroup>
         <Reference Include="System.Runtime.CompilerServices.Unsafe">
-          <HintPath>..\packages\_ui\System.Runtime.CompilerServices.Unsafe\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+          <HintPath>..\packages\_ui\System.Runtime.CompilerServices.Unsafe\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -374,7 +265,7 @@
     <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
       <ItemGroup>
         <Reference Include="System.Threading.Tasks.Extensions">
-          <HintPath>..\packages\_ui\System.Threading.Tasks.Extensions\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
+          <HintPath>..\packages\_ui\System.Threading.Tasks.Extensions\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -386,6 +277,17 @@
       <ItemGroup>
         <Reference Include="System.ValueTuple">
           <HintPath>..\packages\_ui\System.ValueTuple\lib\net47\System.ValueTuple.dll</HintPath>
+          <Private>True</Private>
+          <Paket>True</Paket>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
+  <Choose>
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
+      <ItemGroup>
+        <Reference Include="System.Reactive.Linq">
+          <HintPath>..\packages\System.Reactive.Linq\lib\net46\System.Reactive.Linq.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
