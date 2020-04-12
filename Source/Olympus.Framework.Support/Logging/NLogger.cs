@@ -50,12 +50,12 @@ namespace nGratis.Cop.Olympus.Framework
 
         public override IEnumerable<string> Components { get; }
 
-        public override void LogWith(Verbosity verbosity, string message)
+        public override void Log(Verbosity verbosity, string message)
         {
             this._logger.Log(verbosity.ToLogLevel(), message);
         }
 
-        public override void LogWith(Verbosity verbosity, string message, Exception exception)
+        public override void Log(Verbosity verbosity, string message, Exception exception)
         {
             this._logger.Log(verbosity.ToLogLevel(), exception, message);
         }

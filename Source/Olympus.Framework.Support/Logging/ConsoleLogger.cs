@@ -49,7 +49,7 @@ namespace nGratis.Cop.Olympus.Framework
         public override IEnumerable<string> Components { get; }
 
         [SuppressMessage("Microsoft.Globalization", "CA1303:Do not pass literals as localized parameters")]
-        public override void LogWith(Verbosity verbosity, [Localizable(false)] string message)
+        public override void Log(Verbosity verbosity, [Localizable(false)] string message)
         {
             var line = $"{DateTimeOffset.Now:s} | {verbosity.ToConsoleText()} | {message}";
 
@@ -57,7 +57,7 @@ namespace nGratis.Cop.Olympus.Framework
         }
 
         [SuppressMessage("Microsoft.Globalization", "CA1303:Do not pass literals as localized parameters")]
-        public override void LogWith(Verbosity verbosity, [Localizable(false)] string message, Exception exception)
+        public override void Log(Verbosity verbosity, [Localizable(false)] string message, Exception exception)
         {
             var line = $"{DateTimeOffset.Now:s} | {verbosity.ToConsoleText()} | {message} {exception.Message}";
 

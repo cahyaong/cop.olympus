@@ -78,7 +78,7 @@ namespace nGratis.Cop.Olympus.Framework
 
                     if (!(anon.Logger is CompositeLogger))
                     {
-                        anon.Logger.LogAsDebug("Registered to composite logger.");
+                        anon.Logger.LogDebug("Registered to composite logger.");
                     }
                 });
         }
@@ -103,23 +103,23 @@ namespace nGratis.Cop.Olympus.Framework
 
                     if (!(logger is CompositeLogger))
                     {
-                        logger.LogAsDebug("Unregistered from composite logger.");
+                        logger.LogDebug("Unregistered from composite logger.");
                     }
                 });
         }
 
-        public override void LogWith(Verbosity verbosity, string message)
+        public override void Log(Verbosity verbosity, string message)
         {
             this
                 ._loggerLookup.Values
-                .ForEach(logger => logger.LogWith(verbosity, message));
+                .ForEach(logger => logger.Log(verbosity, message));
         }
 
-        public override void LogWith(Verbosity verbosity, string message, Exception exception)
+        public override void Log(Verbosity verbosity, string message, Exception exception)
         {
             this
                 ._loggerLookup.Values
-                .ForEach(logger => logger.LogWith(verbosity, message, exception));
+                .ForEach(logger => logger.Log(verbosity, message, exception));
         }
 
         public override IObservable<LogEntry> WhenLogEntryAdded()

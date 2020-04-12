@@ -44,11 +44,11 @@ namespace nGratis.Cop.Olympus.Framework
 
         public override IEnumerable<string> Components => Enumerable.Empty<string>();
 
-        public override void LogWith(Verbosity verbosity, string message)
+        public override void Log(Verbosity verbosity, string message)
         {
         }
 
-        public override void LogWith(Verbosity verbosity, string message, Exception exception)
+        public override void Log(Verbosity verbosity, string message, Exception exception)
         {
         }
     }

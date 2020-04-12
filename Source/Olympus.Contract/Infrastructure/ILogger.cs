@@ -37,9 +37,9 @@ namespace nGratis.Cop.Olympus.Contract
 
         IEnumerable<string> Components { get; }
 
-        void LogWith(Verbosity verbosity, string message);
+        void Log(Verbosity verbosity, string message);
 
-        void LogWith(Verbosity verbosity, string message, Exception exception);
+        void Log(Verbosity verbosity, string message, Exception exception);
 
         IObservable<LogEntry> WhenLogEntryAdded();
     }

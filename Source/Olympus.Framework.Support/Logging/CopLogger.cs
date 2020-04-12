@@ -52,7 +52,7 @@ namespace nGratis.Cop.Olympus.Framework
 
         public override IEnumerable<string> Components { get; }
 
-        public override void LogWith(Verbosity verbosity, string message)
+        public override void Log(Verbosity verbosity, string message)
         {
             var logEntry = new LogEntry
             {
@@ -64,7 +64,7 @@ namespace nGratis.Cop.Olympus.Framework
             this._whenLogEntryBuffered.OnNext(logEntry);
         }
 
-        public override void LogWith(Verbosity verbosity, string message, Exception exception)
+        public override void Log(Verbosity verbosity, string message, Exception exception)
         {
             var logEntry = new LogEntry
             {

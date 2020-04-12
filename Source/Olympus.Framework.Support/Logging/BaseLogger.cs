@@ -53,9 +53,9 @@ namespace nGratis.Cop.Olympus.Framework
 
         public abstract IEnumerable<string> Components { get; }
 
-        public abstract void LogWith(Verbosity verbosity, string message);
+        public abstract void Log(Verbosity verbosity, string message);
 
-        public abstract void LogWith(Verbosity verbosity, string message, Exception exception);
+        public abstract void Log(Verbosity verbosity, string message, Exception exception);
 
         public virtual IObservable<LogEntry> WhenLogEntryAdded()
         {

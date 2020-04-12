@@ -35,58 +35,58 @@ namespace nGratis.Cop.Olympus.Contract
 
     public static class LoggerExtensions
     {
-        public static void LogAsTrace(this ILogger logger, string message)
+        public static void LogTrace(this ILogger logger, string message)
         {
             Guard
                 .Require(logger, nameof(logger))
                 .Is.Not.Null();
 
-            logger.LogWith(Verbosity.Trace, message);
+            logger.Log(Verbosity.Trace, message);
         }
 
-        public static void LogAsDebug(this ILogger logger, [Localizable(false)] string message)
+        public static void LogDebug(this ILogger logger, [Localizable(false)] string message)
         {
             Guard
                 .Require(logger, nameof(logger))
                 .Is.Not.Null();
 
-            logger.LogWith(Verbosity.Debug, message);
+            logger.Log(Verbosity.Debug, message);
         }
 
-        public static void LogAsInfo(this ILogger logger, string message)
+        public static void LogInfo(this ILogger logger, string message)
         {
             Guard
                 .Require(logger, nameof(logger))
                 .Is.Not.Null();
 
-            logger.LogWith(Verbosity.Info, message);
+            logger.Log(Verbosity.Info, message);
         }
 
-        public static void LogAsWarning(this ILogger logger, string message)
+        public static void LogWarning(this ILogger logger, string message)
         {
             Guard
                 .Require(logger, nameof(logger))
                 .Is.Not.Null();
 
-            logger.LogWith(Verbosity.Warning, message);
+            logger.Log(Verbosity.Warning, message);
         }
 
-        public static void LogAsError(this ILogger logger, string message)
+        public static void LogError(this ILogger logger, string message)
         {
             Guard
                 .Require(logger, nameof(logger))
                 .Is.Not.Null();
 
-            logger.LogWith(Verbosity.Error, message);
+            logger.Log(Verbosity.Error, message);
         }
 
-        public static void LogAsFatal(this ILogger logger, Exception exception, string message)
+        public static void LogFatal(this ILogger logger, Exception exception, string message)
         {
             Guard
                 .Require(logger, nameof(logger))
                 .Is.Not.Null();
 
-            logger.LogWith(Verbosity.Fatal, message, exception);
+            logger.Log(Verbosity.Fatal, message, exception);
         }
     }
 }
