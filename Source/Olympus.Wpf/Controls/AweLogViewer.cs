@@ -61,7 +61,7 @@ namespace nGratis.Cop.Olympus.Wpf
                 this.LogEntries.Clear();
 
                 this._onLogEntryAdded = value
-                    .WhenLogEntryAdded()
+                    .WhenEntryAdded()
                     .Subscribe(this.LogEntries.Add);
 
                 this.SetValue(AweLogViewer.LoggerProperty, value);

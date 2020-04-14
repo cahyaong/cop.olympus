@@ -30,7 +30,9 @@ namespace nGratis.Cop.Olympus.Framework
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Reactive.Linq;
+    using System.Text;
     using nGratis.Cop.Olympus.Contract;
 
     public abstract class BaseLogger : ILogger
@@ -44,6 +46,11 @@ namespace nGratis.Cop.Olympus.Framework
             this.Id = id;
         }
 
+        protected internal BaseLogger()
+            : this("[_MOCK_ID_]")
+        {
+        }
+
         ~BaseLogger()
         {
             this.Dispose(false);
@@ -55,9 +62,27 @@ namespace nGratis.Cop.Olympus.Framework
 
         public abstract void Log(Verbosity verbosity, string message);
 
+        public virtual void Log(Verbosity verbosity, string message, params string[] submessages)
+        {
+            var messageBuilder = new StringBuilder(!string.IsNullOrEmpty(message)
+                ? message
+                : Text.Empty);
+
+            submessages
+                .Select(submessage => !string.IsNullOrEmpty(submessage)
+                    ? submessage
+                    : Text.Empty)
+                .ForEach(submessage => messageBuilder.AppendFormat(
+                    "{0}  |_ {1}",
+                    Environment.NewLine,
+                    submessage));
+
+            this.Log(verbosity, messageBuilder.ToString());
+        }
+
         public abstract void Log(Verbosity verbosity, string message, Exception exception);
 
-        public virtual IObservable<LogEntry> WhenLogEntryAdded()
+        public virtual IObservable<LogEntry> WhenEntryAdded()
         {
             return Observable.Empty<LogEntry>();
         }

@@ -38,11 +38,12 @@ namespace nGratis.Cop.Olympus.Contract
     {
         public LogEntry()
         {
-            this.Timestamp = DateTimeOffset.Now;
+            this.Timestamp = DateTimeOffset.UtcNow;
             this.Components = Enumerable.Empty<string>();
             this.Verbosity = Verbosity.None;
             this.Exception = null;
             this.Message = string.Empty;
+            this.Submessages = Enumerable.Empty<string>();
         }
 
         public DateTimeOffset Timestamp { get; set; }
@@ -54,5 +55,7 @@ namespace nGratis.Cop.Olympus.Contract
         public Exception Exception { get; set; }
 
         public string Message { get; set; }
+
+        public IEnumerable<string> Submessages { get; set; }
     }
 }

@@ -122,11 +122,11 @@ namespace nGratis.Cop.Olympus.Framework
                 .ForEach(logger => logger.Log(verbosity, message, exception));
         }
 
-        public override IObservable<LogEntry> WhenLogEntryAdded()
+        public override IObservable<LogEntry> WhenEntryAdded()
         {
             return this
                 ._loggerLookup.Values
-                .Select(logger => logger.WhenLogEntryAdded())
+                .Select(logger => logger.WhenEntryAdded())
                 .Merge();
         }
 

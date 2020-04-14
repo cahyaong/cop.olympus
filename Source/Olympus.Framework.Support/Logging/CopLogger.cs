@@ -30,12 +30,13 @@ namespace nGratis.Cop.Olympus.Framework
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Reactive.Subjects;
     using nGratis.Cop.Olympus.Contract;
 
     public sealed class CopLogger : BaseLogger
     {
-        private readonly ReplaySubject<LogEntry> _whenLogEntryBuffered;
+        private readonly ReplaySubject<LogEntry> _whenEntryBuffered;
 
         private bool _isDisposed;
 
@@ -46,7 +47,7 @@ namespace nGratis.Cop.Olympus.Framework
                 .Require(component, nameof(component))
                 .Is.Not.Empty();
 
-            this._whenLogEntryBuffered = new ReplaySubject<LogEntry>();
+            this._whenEntryBuffered = new ReplaySubject<LogEntry>();
             this.Components = new[] { component };
         }
 
@@ -54,32 +55,55 @@ namespace nGratis.Cop.Olympus.Framework
 
         public override void Log(Verbosity verbosity, string message)
         {
-            var logEntry = new LogEntry
+            var entry = new LogEntry
             {
                 Components = this.Components,
                 Verbosity = verbosity,
-                Message = message
+                Message = !string.IsNullOrEmpty(message)
+                    ? message
+                    : Text.Empty
             };
 
-            this._whenLogEntryBuffered.OnNext(logEntry);
+            this._whenEntryBuffered.OnNext(entry);
+        }
+
+        public override void Log(Verbosity verbosity, string message, params string[] submessages)
+        {
+            var entry = new LogEntry
+            {
+                Components = this.Components,
+                Verbosity = verbosity,
+                Message = !string.IsNullOrEmpty(message)
+                    ? message
+                    : Text.Empty,
+                Submessages = submessages
+                    .Select(submessage => !string.IsNullOrEmpty(submessage)
+                        ? submessage
+                        : Text.Empty)
+                    .ToArray()
+            };
+
+            this._whenEntryBuffered.OnNext(entry);
         }
 
         public override void Log(Verbosity verbosity, string message, Exception exception)
         {
-            var logEntry = new LogEntry
+            var entry = new LogEntry
             {
                 Components = this.Components,
                 Verbosity = verbosity,
                 Exception = exception,
-                Message = message
+                Message = !string.IsNullOrEmpty(message)
+                    ? message
+                    : Text.Empty
             };
 
-            this._whenLogEntryBuffered.OnNext(logEntry);
+            this._whenEntryBuffered.OnNext(entry);
         }
 
-        public override IObservable<LogEntry> WhenLogEntryAdded()
+        public override IObservable<LogEntry> WhenEntryAdded()
         {
-            return this._whenLogEntryBuffered;
+            return this._whenEntryBuffered;
         }
 
         protected override void Dispose(bool isDisposing)
@@ -91,7 +115,7 @@ namespace nGratis.Cop.Olympus.Framework
 
             if (isDisposing)
             {
-                this._whenLogEntryBuffered.Dispose();
+                this._whenEntryBuffered.Dispose();
             }
 
             base.Dispose(isDisposing);

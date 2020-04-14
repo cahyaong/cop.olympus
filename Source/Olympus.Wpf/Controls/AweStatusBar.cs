@@ -110,7 +110,7 @@ namespace nGratis.Cop.Olympus.Wpf
             if (logger != null)
             {
                 statusBar._onLogEntryAdded = logger
-                    .WhenLogEntryAdded()?
+                    .WhenEntryAdded()?
                     .ObserveOnDispatcher()
                     .Subscribe(statusBar.UpdateMessage);
             }
