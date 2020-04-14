@@ -85,17 +85,17 @@ namespace nGratis.Cop.Olympus.Demo
             {
                 foreach (var index in Enumerable.Range(1, 10))
                 {
-                    this._logger.LogAsTrace($"Worker [{key}]: Checking event {index} of 10...");
+                    this._logger.LogTrace($"Worker [{key}]: Checking event {index} of 10...");
                     await Task.Delay(TimeSpan.FromMilliseconds(random.Next(100, 1000)));
                 }
             });
 
-            this._logger.LogAsInfo($"Worker [{key}]: Completed checking!");
+            this._logger.LogInfo($"Worker [{key}]: Completed checking!");
         }
 
         private async Task ThrowReactiveExceptionAsync()
         {
-            this._logger.LogAsInfo("Manager [X]: Monitoring workers!");
+            this._logger.LogInfo("Manager [X]: Monitoring workers!");
 
             await Task.Run(async () =>
             {
@@ -107,7 +107,7 @@ namespace nGratis.Cop.Olympus.Demo
 
         private void ThrowApplicationException()
         {
-            this._logger.LogAsInfo("Manager [Y]: Monitoring workers!");
+            this._logger.LogInfo("Manager [Y]: Monitoring workers!");
 
             throw new CopException("Workers are running away!");
         }
