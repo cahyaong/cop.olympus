@@ -37,4 +37,4 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 [assembly: Guid("d889f850-19a5-4bb3-8a60-c4a2c4bf21f4")]
 [assembly: CLSCompliant(true)]
-[assembly: InternalsVisibleTo("nGratis.Cop.Olympus.Contract.UnitTest")]
+[assembly: InternalsVisibleTo("nGratis.Cop.Olympus.Contract.Test")]

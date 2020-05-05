@@ -28,7 +28,7 @@
 
 // ReSharper disable InconsistentNaming
 
-namespace nGratis.Cop.Olympus.Contract.UnitTest
+namespace nGratis.Cop.Olympus.Contract.Test
 {
     using System;
     using System.Collections.Generic;

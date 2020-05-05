@@ -29,7 +29,7 @@
 // ReSharper disable InconsistentNaming
 // ReSharper disable ExpressionIsAlwaysNull
 
-namespace nGratis.Cop.Olympus.Contract.UnitTest
+namespace nGratis.Cop.Olympus.Contract.Test
 {
     using System;
     using System.IO;

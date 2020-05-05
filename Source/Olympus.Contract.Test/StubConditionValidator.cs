@@ -1,5 +1,5 @@
-// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="AssemblyInfo.cs" company="nGratis">
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="StubConditionValidator.cs" company="nGratis">
 //  The MIT License (MIT)
 //
 //  Copyright (c) 2014 - 2020 Cahya Ong
@@ -23,14 +23,32 @@
 //  SOFTWARE.
 // </copyright>
 // <author>Cahya Ong - cahya.ong@gmail.com</author>
-// <creation_timestamp>Wednesday, 28 February 2018 11:16:02 AM UTC</creation_timestamp>
+// <creation_timestamp>Saturday, 31 March 2018 7:25:01 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Reflection;
-using System.Runtime.InteropServices;
+namespace nGratis.Cop.Olympus.Contract.Test
+{
+    internal class StubPreConditionValidator : ConditionValidator<string>
+    {
+        public StubPreConditionValidator(string value)
+            : base("[_MOCK_NAME_]", value, ValidatorKind.PreCondition)
+        {
+        }
+    }
 
-[assembly: AssemblyTitle("nGratis.Cop.Olympus.Contract.UnitTest")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyCulture("")]
-[assembly: ComVisible(false)]
-[assembly: Guid("54ca06a5-da35-4529-b9ae-e40c619417a2")]
+    internal class StubPostConditionValidator : ConditionValidator<string>
+    {
+        public StubPostConditionValidator(string value)
+            : base("[_MOCK_NAME_]", value, ValidatorKind.PostCondition)
+        {
+        }
+    }
+
+    internal class StubUnknownConditionValidator : ConditionValidator<string>
+    {
+        public StubUnknownConditionValidator(string value)
+            : base("[_MOCK_NAME_]", value, ValidatorKind.Unknown)
+        {
+        }
+    }
+}

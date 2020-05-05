@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="CopLoggerTests.cs" company="nGratis">
+// <copyright file="StreamExtensionsTests.cs" company="nGratis">
 //  The MIT License (MIT)
 //
 //  Copyright (c) 2014 - 2020 Cahya Ong
@@ -23,67 +23,68 @@
 //  SOFTWARE.
 // </copyright>
 // <author>Cahya Ong - cahya.ong@gmail.com</author>
-// <creation_timestamp>Tuesday, April 14, 2020 6:03:15 AM UTC</creation_timestamp>
+// <creation_timestamp>Wednesday, 19 December 2018 11:24:59 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Framework.UnitTest
+namespace nGratis.Cop.Olympus.Framework.Test
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
+    using System.IO;
+    using System.Text;
     using FluentAssertions;
-    using FluentAssertions.Execution;
-    using nGratis.Cop.Olympus.Contract;
     using Xunit;
 
-    public class CopLoggerTests
+    public class StreamExtensionsTests
     {
-        public class LogMethod
+        public class ReadBlobMethod
         {
             [Fact]
-            public void WhenGettingSubmessages_ShouldIncludeThemInLogEntry()
+            public void WhenGettingReadableStream_ShouldReadFromStartToFinish()
             {
                 // Arrange.
 
-                var observedEntries = new List<LogEntry>();
-
-                var logger = new CopLogger("[_MOCK_ID_]", "[_MOCK_COMPONENT_]");
-
-                var onEntryAdded = logger
-                    .WhenEntryAdded()
-                    .Subscribe(observedEntries.Add);
-
-                using (onEntryAdded)
+                using (var stream = new MemoryStream(Encoding.ASCII.GetBytes("[_MOCK_CONTENT_]")))
                 {
+                    stream.Position = stream.Length / 2;
+
                     // Act.
 
-                    logger.Log(
-                        Verbosity.Info,
-                        "[_MOCK_MESSAGE_]",
-                        "[_MOCK_SUBMESSAGE_01_]", "[_MOCK_SUBMESSAGE_02_]");
+                    var blob = stream.ReadBlob();
 
                     // Assert.
 
-                    observedEntries
-                        .Should().HaveCount(1);
+                    blob
+                        .Should().BeEquivalentTo(Encoding.ASCII.GetBytes("[_MOCK_CONTENT_]"));
 
-                    var observedEntry = observedEntries.Single();
+                    stream
+                        .Position
+                        .Should().Be(0);
+                }
+            }
+        }
 
-                    observedEntry
-                        .Should().NotBeNull();
+        public class ReadTextMethod
+        {
+            [Fact]
+            public void WhenGettingReadableStream_ShouldReadFromStartToFinish()
+            {
+                // Arrange.
 
-                    using (new AssertionScope())
-                    {
-                        observedEntry
-                            .Message
-                            .Should().Be("[_MOCK_MESSAGE_]");
+                using (var stream = new MemoryStream(Encoding.UTF8.GetBytes("[_MOCK_CONTENT_]")))
+                {
+                    stream.Position = stream.Length / 2;
 
-                        observedEntry
-                            .Submessages
-                            .Should().NotBeNull()
-                            .And.HaveCount(2)
-                            .And.Contain("[_MOCK_SUBMESSAGE_01_]", "[_MOCK_SUBMESSAGE_02_]");
-                    }
+                    // Act.
+
+                    var text = stream.ReadText();
+
+                    // Assert.
+
+                    text
+                        .Should().BeEquivalentTo("[_MOCK_CONTENT_]");
+
+                    stream
+                        .Position
+                        .Should().Be(0);
                 }
             }
         }

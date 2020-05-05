@@ -4,7 +4,7 @@
 	<s:Boolean x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=8B7F08C27C966B478E5B2B2446BAFA5C/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=8B7F08C27C966B478E5B2B2446BAFA5C/RelativePath/@EntryValue">..\Olympus.Framework\nGratis.Cop.Olympus.Framework.csproj.DotSettings</s:String>
 	<s:Boolean x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=D0F6690E2811D547B38C888CDF5BCFC1/@KeyIndexDefined">True</s:Boolean>
-	<s:String x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=D0F6690E2811D547B38C888CDF5BCFC1/RelativePath/@EntryValue">..\Olympus.Contract.UnitTest\nGratis.Cop.Olympus.Contract.UnitTest.csproj.DotSettings</s:String>
+	<s:String x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=D0F6690E2811D547B38C888CDF5BCFC1/RelativePath/@EntryValue">..\Olympus.Contract.Test\nGratis.Cop.Olympus.Contract.Test.csproj.DotSettings</s:String>
 	<s:Boolean x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=F3E2D81F77981C4F9A8A9B8F698E9877/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=F3E2D81F77981C4F9A8A9B8F698E9877/RelativePath/@EntryValue">..\nGratis.Shared.DotSettings</s:String>
 	<s:Boolean x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=FBD33673B273254CBBD395A780AD5487/@KeyIndexDefined">True</s:Boolean>
@@ -24,7 +24,7 @@
 	<s:Boolean x:Key="/Default/Environment/InjectedLayers/InjectedLayerCustomization/=FileFDD98B0FC0F34F469E7661676B2CEB5B/@KeyIndexDefined">True</s:Boolean>
 	<s:Double x:Key="/Default/Environment/InjectedLayers/InjectedLayerCustomization/=FileFDD98B0FC0F34F469E7661676B2CEB5B/RelativePriority/@EntryValue">1.5</s:Double>
 	<s:String x:Key="/Default/FilterSettingsManager/AttributeFilterXml/@EntryValue">&lt;data /&gt;</s:String>
-	<s:String x:Key="/Default/FilterSettingsManager/CoverageFilterXml/@EntryValue">&lt;data&gt;&lt;IncludeFilters /&gt;&lt;ExcludeFilters&gt;&lt;Filter ModuleMask="*.UnitTest" ModuleVersionMask="*" ClassMask="*" FunctionMask="*" IsEnabled="True" /&gt;&lt;Filter ModuleMask="*.Demo" ModuleVersionMask="*" ClassMask="*" FunctionMask="*" IsEnabled="True" /&gt;&lt;/ExcludeFilters&gt;&lt;/data&gt;</s:String>
+	<s:String x:Key="/Default/FilterSettingsManager/CoverageFilterXml/@EntryValue">&lt;data&gt;&lt;IncludeFilters /&gt;&lt;ExcludeFilters&gt;&lt;Filter ModuleMask="*.Test" ModuleVersionMask="*" ClassMask="*" FunctionMask="*" IsEnabled="True" /&gt;&lt;Filter ModuleMask="*.Demo" ModuleVersionMask="*" ClassMask="*" FunctionMask="*" IsEnabled="True" /&gt;&lt;/ExcludeFilters&gt;&lt;/data&gt;</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=81C133807C43D0499FEC2DAE35346FF5/@KeyIndexDefined">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=81C133807C43D0499FEC2DAE35346FF5/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=81C133807C43D0499FEC2DAE35346FF5/Description/@EntryValue">Insert xUnit fact methods for testing condition validator extension.</s:String>

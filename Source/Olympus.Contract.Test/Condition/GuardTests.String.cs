@@ -26,7 +26,7 @@
 // <creation_timestamp>Monday, 9 April 2018 9:46:28 PM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Contract.UnitTest
+namespace nGratis.Cop.Olympus.Contract.Test
 {
     using System;
     using FluentAssertions;

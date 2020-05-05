@@ -1,4 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="AssemblyInfo.cs" company="nGratis">
 //  The MIT License (MIT)
 //
@@ -23,14 +23,14 @@
 //  SOFTWARE.
 // </copyright>
 // <author>Cahya Ong - cahya.ong@gmail.com</author>
-// <creation_timestamp>a UTC</creation_timestamp>
+// <creation_timestamp>Wednesday, 28 February 2018 11:16:02 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("nGratis.Cop.Olympus.Vision.UnitTest")]
+[assembly: AssemblyTitle("nGratis.Cop.Olympus.Contract.Test")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
-[assembly: Guid("f40704bc-4dfc-43c3-85e8-120d0b30b43b")]
+[assembly: Guid("54ca06a5-da35-4529-b9ae-e40c619417a2")]

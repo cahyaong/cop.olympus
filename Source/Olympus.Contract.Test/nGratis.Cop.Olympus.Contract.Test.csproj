@@ -1,15 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\_test\xunit.core\build\xunit.core.props" Condition="Exists('..\packages\_test\xunit.core\build\xunit.core.props')" Label="Paket" />
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D8004CFA-3F80-47B1-A35A-230CE3CB6A7B}</ProjectGuid>
+    <ProjectGuid>{54CA06A5-DA35-4529-B9AE-E40C619417A2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>nGratis.Cop.Olympus.Framework.UnitTest</RootNamespace>
-    <AssemblyName>nGratis.Cop.Olympus.Framework.UnitTest</AssemblyName>
+    <RootNamespace>nGratis.Cop.Olympus.Contract.Test</RootNamespace>
+    <AssemblyName>nGratis.Cop.Olympus.Contract.Test</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -20,6 +19,8 @@
     <TestProjectType>UnitTest</TestProjectType>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -40,6 +41,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
@@ -48,16 +50,35 @@
     <Compile Include="..\Olympus.Shared\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Common\StreamExtensionsTests.cs" />
-    <Compile Include="Logging\BaseLoggerTests.cs" />
-    <Compile Include="Logging\CopLoggerTests.cs" />
+    <Compile Include="Condition\ConditionValidatorTests.Auto.cs">
+      <DependentUpon>ConditionValidatorTests.Auto.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Condition\ConditionValidatorTests.cs" />
+    <Compile Include="Condition\GuardTests.Collection.cs">
+      <DependentUpon>GuardTests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Condition\GuardTests.cs" />
+    <Compile Include="Condition\GuardTests.Numerical.Auto.cs">
+      <DependentUpon>GuardTests.Numerical.Auto.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Condition\GuardTests.String.cs">
+      <DependentUpon>GuardTests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Condition\GuardTests.System.cs">
+      <DependentUpon>GuardTests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StubConditionValidator.cs" />
+    <Compile Include="MimeTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="paket.references" />
   </ItemGroup>
-  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\Olympus.Contract\nGratis.Cop.Olympus.Contract.csproj">
       <Project>{d889f850-19a5-4bb3-8a60-c4a2c4bf21f4}</Project>
@@ -67,21 +88,27 @@
       <Project>{f3e71997-bef8-4724-97e1-c38286950725}</Project>
       <Name>nGratis.Cop.Olympus.Framework.QualityAssurance</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Olympus.Framework.Support\nGratis.Cop.Olympus.Framework.Support.csproj">
-      <Project>{abe37048-538a-40a4-99f0-fedab5d87793}</Project>
-      <Name>nGratis.Cop.Olympus.Framework.Support</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Olympus.Framework\nGratis.Cop.Olympus.Framework.csproj">
-      <Project>{b90c4c38-a600-44bb-840e-2a7d4b46618a}</Project>
-      <Name>nGratis.Cop.Olympus.Framework</Name>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Content Include="Condition\ConditionValidatorTests.Auto.tt">
+      <DependentUpon>ConditionValidatorTests.cs</DependentUpon>
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ConditionValidatorTests.Auto.cs</LastGenOutput>
+    </Content>
+    <Content Include="Condition\GuardTests.Numerical.Auto.tt">
+      <DependentUpon>GuardTests.cs</DependentUpon>
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GuardTests.Numerical.Auto.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Choose>
     <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
       <ItemGroup>
-        <Reference Include="System.Configuration">
-          <Paket>True</Paket>
-        </Reference>
         <Reference Include="Castle.Core">
           <HintPath>..\packages\_test\Castle.Core\lib\net45\Castle.Core.dll</HintPath>
           <Private>True</Private>
@@ -180,26 +207,6 @@
       <ItemGroup>
         <Reference Include="xunit.execution.desktop">
           <HintPath>..\packages\_test\xunit.extensibility.execution\lib\net452\xunit.execution.desktop.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-      </ItemGroup>
-    </When>
-  </Choose>
-  <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.2'">
-      <ItemGroup>
-        <Reference Include="System.Windows">
-          <Paket>True</Paket>
-        </Reference>
-        <Reference Include="System.Windows.Forms">
-          <Paket>True</Paket>
-        </Reference>
-        <Reference Include="WindowsBase">
-          <Paket>True</Paket>
-        </Reference>
-        <Reference Include="System.Reactive">
-          <HintPath>..\packages\System.Reactive\lib\net46\System.Reactive.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>

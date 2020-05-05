@@ -26,7 +26,7 @@
 // <creation_timestamp>Tuesday, 24 April 2018 12:53:51 PM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Contract.UnitTest
+namespace nGratis.Cop.Olympus.Contract.Test
 {
     using System;
     using System.Collections.Generic;

@@ -26,7 +26,7 @@
 // <creation_timestamp>Tuesday, April 14, 2020 5:41:15 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Framework.UnitTest
+namespace nGratis.Cop.Olympus.Framework.Test
 {
     using Moq;
     using nGratis.Cop.Olympus.Contract;
