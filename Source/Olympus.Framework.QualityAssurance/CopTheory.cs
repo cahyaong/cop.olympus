@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="AssemblyInfo.cs" company="nGratis">
+// <copyright file="CopTheory.cs" company="nGratis">
 //  The MIT License (MIT)
 //
 //  Copyright (c) 2014 - 2020 Cahya Ong
@@ -23,13 +23,35 @@
 //  SOFTWARE.
 // </copyright>
 // <author>Cahya Ong - cahya.ong@gmail.com</author>
-// <creation_timestamp>Saturday, 18 April 2015 5:03:46 AM UTC</creation_timestamp>
+// <creation_timestamp>Friday, 19 October 2018 10:28:44 PM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Reflection;
-using System.Runtime.InteropServices;
+namespace nGratis.Cop.Olympus.Framework
+{
+    using nGratis.Cop.Olympus.Contract;
 
-[assembly: AssemblyTitle("nGratis.Cop.Olympus.Testing")]
-[assembly: AssemblyDescription("")]
-[assembly: ComVisible(false)]
-[assembly: Guid("b199217e-4103-44a9-afb9-65287a52d06f")]
+    public abstract class CopTheory
+    {
+        public string Label { get; private set; }
+
+        public CopTheory WithLabel(ushort caseNumber, string description)
+        {
+            Guard
+                .Require(description, nameof(description))
+                .Is.Not.Empty();
+
+            this.Label = $"CASE {caseNumber:000} -> {description}";
+
+            return this;
+        }
+
+        public object[] ToXunitTheory()
+        {
+            return new object[] { this };
+        }
+
+        public override string ToString() => !string.IsNullOrEmpty(this.Label)
+            ? $"[ {this.Label} ]"
+            : base.ToString();
+    }
+}

@@ -84,9 +84,9 @@
       <Project>{d889f850-19a5-4bb3-8a60-c4a2c4bf21f4}</Project>
       <Name>nGratis.Cop.Olympus.Contract</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Olympus.Testing\nGratis.Cop.Olympus.Testing.csproj">
-      <Project>{b199217e-4103-44a9-afb9-65287a52d06f}</Project>
-      <Name>nGratis.Cop.Olympus.Testing</Name>
+    <ProjectReference Include="..\Olympus.Framework.QualityAssurance\nGratis.Cop.Olympus.Framework.QualityAssurance.csproj">
+      <Project>{f3e71997-bef8-4724-97e1-c38286950725}</Project>
+      <Name>nGratis.Cop.Olympus.Framework.QualityAssurance</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

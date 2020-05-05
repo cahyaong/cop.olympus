@@ -32,7 +32,6 @@ namespace System.Data
 {
     using System;
     using System.Globalization;
-    using System.Windows;
     using nGratis.Cop.Olympus.Contract;
 
     public static class ScenarioExtensions
@@ -128,15 +127,6 @@ namespace System.Data
                 .Is.True();
 
             return value;
-        }
-
-        public static Size AsSize(this DataRow row, string column)
-        {
-            Guard
-                .Require(row, nameof(row))
-                .Is.Not.Null();
-
-            return Size.Parse(row.AsString(column));
         }
 
         public static string AsString(this DataRow row, string column)

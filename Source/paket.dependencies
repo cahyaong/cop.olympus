@@ -42,6 +42,7 @@ group _Support
     source https://api.nuget.org/v3/index.json
 
     nuget Newtonsoft.Json
+    nuget Moq
     nuget NLog
     nuget System.Reactive.Linq
 

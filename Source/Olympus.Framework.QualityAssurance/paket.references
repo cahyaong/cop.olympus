@@ -1,0 +1,5 @@
+group _Contract
+    JetBrains.Annotations
+
+group _Support
+    Moq

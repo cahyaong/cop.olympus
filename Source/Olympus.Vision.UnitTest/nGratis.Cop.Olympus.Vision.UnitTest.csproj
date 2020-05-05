@@ -52,9 +52,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Olympus.Testing\nGratis.Cop.Olympus.Testing.csproj">
-      <Project>{b199217e-4103-44a9-afb9-65287a52d06f}</Project>
-      <Name>nGratis.Cop.Olympus.Testing</Name>
+    <ProjectReference Include="..\Olympus.Framework.QualityAssurance\nGratis.Cop.Olympus.Framework.QualityAssurance.csproj">
+      <Project>{f3e71997-bef8-4724-97e1-c38286950725}</Project>
+      <Name>nGratis.Cop.Olympus.Framework.QualityAssurance</Name>
     </ProjectReference>
     <ProjectReference Include="..\Olympus.Vision\nGratis.Cop.Olympus.Vision.csproj">
       <Project>{5D4FFBFB-372E-4FBB-B7DC-FE3BB5A7E00F}</Project>

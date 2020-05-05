@@ -31,7 +31,7 @@ namespace nGratis.Cop.Olympus.Contract.UnitTest
     using System;
     using System.Collections.Generic;
     using FluentAssertions;
-    using nGratis.Cop.Olympus.Testing;
+    using nGratis.Cop.Olympus.Framework;
     using Xunit;
 
     public class MimeTests
