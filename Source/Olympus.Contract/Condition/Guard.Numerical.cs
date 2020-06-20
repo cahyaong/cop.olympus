@@ -74,14 +74,6 @@ namespace nGratis.Cop.Olympus.Contract
         }
 
         [DebuggerStepThrough]
-        public static ValidationContinuation<int> ZeroOrPositive(this ClassValidator<int> validator)
-        {
-            return validator.Validate(
-                actual => actual >= 0,
-                "be zero or a positive number");
-        }
-
-        [DebuggerStepThrough]
         public static ValidationContinuation<int> Positive(this ClassValidator<int> validator)
         {
             return validator.Validate(
@@ -90,11 +82,11 @@ namespace nGratis.Cop.Olympus.Contract
         }
 
         [DebuggerStepThrough]
-        public static ValidationContinuation<int> ZeroOrNegative(this ClassValidator<int> validator)
+        public static ValidationContinuation<int> ZeroOrPositive(this ClassValidator<int> validator)
         {
             return validator.Validate(
-                actual => actual <= 0,
-                "be zero or a negative number");
+                actual => actual >= 0,
+                "be zero or a positive number");
         }
 
         [DebuggerStepThrough]
@@ -103,6 +95,14 @@ namespace nGratis.Cop.Olympus.Contract
             return validator.Validate(
                 actual => actual < 0,
                 "be a negative number");
+        }
+
+        [DebuggerStepThrough]
+        public static ValidationContinuation<int> ZeroOrNegative(this ClassValidator<int> validator)
+        {
+            return validator.Validate(
+                actual => actual <= 0,
+                "be zero or a negative number");
         }
 
         [DebuggerStepThrough]
@@ -154,14 +154,6 @@ namespace nGratis.Cop.Olympus.Contract
         }
 
         [DebuggerStepThrough]
-        public static ValidationContinuation<long> ZeroOrPositive(this ClassValidator<long> validator)
-        {
-            return validator.Validate(
-                actual => actual >= 0L,
-                "be zero or a positive number");
-        }
-
-        [DebuggerStepThrough]
         public static ValidationContinuation<long> Positive(this ClassValidator<long> validator)
         {
             return validator.Validate(
@@ -170,11 +162,11 @@ namespace nGratis.Cop.Olympus.Contract
         }
 
         [DebuggerStepThrough]
-        public static ValidationContinuation<long> ZeroOrNegative(this ClassValidator<long> validator)
+        public static ValidationContinuation<long> ZeroOrPositive(this ClassValidator<long> validator)
         {
             return validator.Validate(
-                actual => actual <= 0L,
-                "be zero or a negative number");
+                actual => actual >= 0L,
+                "be zero or a positive number");
         }
 
         [DebuggerStepThrough]
@@ -183,6 +175,14 @@ namespace nGratis.Cop.Olympus.Contract
             return validator.Validate(
                 actual => actual < 0L,
                 "be a negative number");
+        }
+
+        [DebuggerStepThrough]
+        public static ValidationContinuation<long> ZeroOrNegative(this ClassValidator<long> validator)
+        {
+            return validator.Validate(
+                actual => actual <= 0L,
+                "be zero or a negative number");
         }
 
         [DebuggerStepThrough]
@@ -234,14 +234,6 @@ namespace nGratis.Cop.Olympus.Contract
         }
 
         [DebuggerStepThrough]
-        public static ValidationContinuation<float> ZeroOrPositive(this ClassValidator<float> validator)
-        {
-            return validator.Validate(
-                actual => actual >= 0.0F,
-                "be zero or a positive number");
-        }
-
-        [DebuggerStepThrough]
         public static ValidationContinuation<float> Positive(this ClassValidator<float> validator)
         {
             return validator.Validate(
@@ -250,11 +242,11 @@ namespace nGratis.Cop.Olympus.Contract
         }
 
         [DebuggerStepThrough]
-        public static ValidationContinuation<float> ZeroOrNegative(this ClassValidator<float> validator)
+        public static ValidationContinuation<float> ZeroOrPositive(this ClassValidator<float> validator)
         {
             return validator.Validate(
-                actual => actual <= 0.0F,
-                "be zero or a negative number");
+                actual => actual >= 0.0F,
+                "be zero or a positive number");
         }
 
         [DebuggerStepThrough]
@@ -263,6 +255,14 @@ namespace nGratis.Cop.Olympus.Contract
             return validator.Validate(
                 actual => actual < 0.0F,
                 "be a negative number");
+        }
+
+        [DebuggerStepThrough]
+        public static ValidationContinuation<float> ZeroOrNegative(this ClassValidator<float> validator)
+        {
+            return validator.Validate(
+                actual => actual <= 0.0F,
+                "be zero or a negative number");
         }
 
         [DebuggerStepThrough]
@@ -314,14 +314,6 @@ namespace nGratis.Cop.Olympus.Contract
         }
 
         [DebuggerStepThrough]
-        public static ValidationContinuation<double> ZeroOrPositive(this ClassValidator<double> validator)
-        {
-            return validator.Validate(
-                actual => actual >= 0.0,
-                "be zero or a positive number");
-        }
-
-        [DebuggerStepThrough]
         public static ValidationContinuation<double> Positive(this ClassValidator<double> validator)
         {
             return validator.Validate(
@@ -330,11 +322,11 @@ namespace nGratis.Cop.Olympus.Contract
         }
 
         [DebuggerStepThrough]
-        public static ValidationContinuation<double> ZeroOrNegative(this ClassValidator<double> validator)
+        public static ValidationContinuation<double> ZeroOrPositive(this ClassValidator<double> validator)
         {
             return validator.Validate(
-                actual => actual <= 0.0,
-                "be zero or a negative number");
+                actual => actual >= 0.0,
+                "be zero or a positive number");
         }
 
         [DebuggerStepThrough]
@@ -343,6 +335,14 @@ namespace nGratis.Cop.Olympus.Contract
             return validator.Validate(
                 actual => actual < 0.0,
                 "be a negative number");
+        }
+
+        [DebuggerStepThrough]
+        public static ValidationContinuation<double> ZeroOrNegative(this ClassValidator<double> validator)
+        {
+            return validator.Validate(
+                actual => actual <= 0.0,
+                "be zero or a negative number");
         }
 
         [DebuggerStepThrough]
@@ -358,6 +358,62 @@ namespace nGratis.Cop.Olympus.Contract
         {
             return validator.Validate(
                 actual => Math.Abs(actual - expected) <= double.Epsilon,
+                $"be equal to [{expected}]");
+        }
+
+        [DebuggerStepThrough]
+        public static ValidationContinuation<ushort> LessThan(this ClassValidator<ushort> validator, ushort expected)
+        {
+            return validator.Validate(
+                actual => actual < expected,
+                $"be less than [{expected}]");
+        }
+
+        [DebuggerStepThrough]
+        public static ValidationContinuation<ushort> LessThanOrEqualTo(this ClassValidator<ushort> validator, ushort expected)
+        {
+            return validator.Validate(
+                actual => actual <= expected,
+                $"be less than or equal to [{expected}]");
+        }
+
+        [DebuggerStepThrough]
+        public static ValidationContinuation<ushort> GreaterThan(this ClassValidator<ushort> validator, ushort expected)
+        {
+            return validator.Validate(
+                actual => actual > expected,
+                $"be greater than [{expected}]");
+        }
+
+        [DebuggerStepThrough]
+        public static ValidationContinuation<ushort> GreaterThanOrEqualTo(this ClassValidator<ushort> validator, ushort expected)
+        {
+            return validator.Validate(
+                actual => actual >= expected,
+                $"be greater than or equal to [{expected}]");
+        }
+
+        [DebuggerStepThrough]
+        public static ValidationContinuation<ushort> Positive(this ClassValidator<ushort> validator)
+        {
+            return validator.Validate(
+                actual => actual > 0,
+                "be a positive number");
+        }
+
+        [DebuggerStepThrough]
+        public static ValidationContinuation<ushort> Zero(this ClassValidator<ushort> validator)
+        {
+            return validator.Validate(
+                actual => actual == 0,
+                "be zero");
+        }
+
+        [DebuggerStepThrough]
+        public static ValidationContinuation<ushort> EqualTo(this ClassValidator<ushort> validator, ushort expected)
+        {
+            return validator.Validate(
+                actual => actual == expected,
                 $"be equal to [{expected}]");
         }
     }

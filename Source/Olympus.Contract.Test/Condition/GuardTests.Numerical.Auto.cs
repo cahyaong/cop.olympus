@@ -60,7 +60,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Require(value, nameof(value))
-                        .Is.LessThan(0);
+                        .Is.LessThan((int.MinValue + int.MaxValue) / 2);
                 });
 
                 // Assert.
@@ -82,14 +82,14 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Require(value, nameof(value))
-                        .Is.LessThan(0);
+                        .Is.LessThan((int.MinValue + int.MaxValue) / 2);
                 });
 
                 // Assert.
 
                 action
                     .Should().Throw<CopPreConditionException>()
-                    .WithMessage("PRE-CONDITION: Variable [value] should be less than [0]!");
+                    .WithMessage($"PRE-CONDITION: Variable [value] should be less than [{(int.MinValue + int.MaxValue) / 2}]!");
             }
 
             [Fact]
@@ -105,7 +105,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Ensure(value, nameof(value))
-                        .Is.LessThan(0);
+                        .Is.LessThan((int.MinValue + int.MaxValue) / 2);
                 });
 
                 // Assert.
@@ -127,14 +127,14 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Ensure(value, nameof(value))
-                        .Is.LessThan(0);
+                        .Is.LessThan((int.MinValue + int.MaxValue) / 2);
                 });
 
                 // Assert.
 
                 action
                     .Should().Throw<CopPostConditionException>()
-                    .WithMessage("POST-CONDITION: Variable [value] should be less than [0]!");
+                    .WithMessage($"POST-CONDITION: Variable [value] should be less than [{(int.MinValue + int.MaxValue) / 2}]!");
             }
         }
 
@@ -153,7 +153,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Require(value, nameof(value))
-                        .Is.LessThanOrEqualTo(0);
+                        .Is.LessThanOrEqualTo((int.MinValue + int.MaxValue) / 2);
                 });
 
                 // Assert.
@@ -175,14 +175,14 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Require(value, nameof(value))
-                        .Is.LessThanOrEqualTo(0);
+                        .Is.LessThanOrEqualTo((int.MinValue + int.MaxValue) / 2);
                 });
 
                 // Assert.
 
                 action
                     .Should().Throw<CopPreConditionException>()
-                    .WithMessage("PRE-CONDITION: Variable [value] should be less than or equal to [0]!");
+                    .WithMessage($"PRE-CONDITION: Variable [value] should be less than or equal to [{(int.MinValue + int.MaxValue) / 2}]!");
             }
 
             [Fact]
@@ -198,7 +198,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Ensure(value, nameof(value))
-                        .Is.LessThanOrEqualTo(0);
+                        .Is.LessThanOrEqualTo((int.MinValue + int.MaxValue) / 2);
                 });
 
                 // Assert.
@@ -220,14 +220,14 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Ensure(value, nameof(value))
-                        .Is.LessThanOrEqualTo(0);
+                        .Is.LessThanOrEqualTo((int.MinValue + int.MaxValue) / 2);
                 });
 
                 // Assert.
 
                 action
                     .Should().Throw<CopPostConditionException>()
-                    .WithMessage("POST-CONDITION: Variable [value] should be less than or equal to [0]!");
+                    .WithMessage($"POST-CONDITION: Variable [value] should be less than or equal to [{(int.MinValue + int.MaxValue) / 2}]!");
             }
         }
 
@@ -246,7 +246,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Require(value, nameof(value))
-                        .Is.GreaterThan(0);
+                        .Is.GreaterThan((int.MinValue + int.MaxValue) / 2);
                 });
 
                 // Assert.
@@ -268,14 +268,14 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Require(value, nameof(value))
-                        .Is.GreaterThan(0);
+                        .Is.GreaterThan((int.MinValue + int.MaxValue) / 2);
                 });
 
                 // Assert.
 
                 action
                     .Should().Throw<CopPreConditionException>()
-                    .WithMessage("PRE-CONDITION: Variable [value] should be greater than [0]!");
+                    .WithMessage($"PRE-CONDITION: Variable [value] should be greater than [{(int.MinValue + int.MaxValue) / 2}]!");
             }
 
             [Fact]
@@ -291,7 +291,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Ensure(value, nameof(value))
-                        .Is.GreaterThan(0);
+                        .Is.GreaterThan((int.MinValue + int.MaxValue) / 2);
                 });
 
                 // Assert.
@@ -313,14 +313,14 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Ensure(value, nameof(value))
-                        .Is.GreaterThan(0);
+                        .Is.GreaterThan((int.MinValue + int.MaxValue) / 2);
                 });
 
                 // Assert.
 
                 action
                     .Should().Throw<CopPostConditionException>()
-                    .WithMessage("POST-CONDITION: Variable [value] should be greater than [0]!");
+                    .WithMessage($"POST-CONDITION: Variable [value] should be greater than [{(int.MinValue + int.MaxValue) / 2}]!");
             }
         }
 
@@ -339,7 +339,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Require(value, nameof(value))
-                        .Is.GreaterThanOrEqualTo(0);
+                        .Is.GreaterThanOrEqualTo((int.MinValue + int.MaxValue) / 2);
                 });
 
                 // Assert.
@@ -361,14 +361,14 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Require(value, nameof(value))
-                        .Is.GreaterThanOrEqualTo(0);
+                        .Is.GreaterThanOrEqualTo((int.MinValue + int.MaxValue) / 2);
                 });
 
                 // Assert.
 
                 action
                     .Should().Throw<CopPreConditionException>()
-                    .WithMessage("PRE-CONDITION: Variable [value] should be greater than or equal to [0]!");
+                    .WithMessage($"PRE-CONDITION: Variable [value] should be greater than or equal to [{(int.MinValue + int.MaxValue) / 2}]!");
             }
 
             [Fact]
@@ -384,7 +384,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Ensure(value, nameof(value))
-                        .Is.GreaterThanOrEqualTo(0);
+                        .Is.GreaterThanOrEqualTo((int.MinValue + int.MaxValue) / 2);
                 });
 
                 // Assert.
@@ -406,107 +406,14 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Ensure(value, nameof(value))
-                        .Is.GreaterThanOrEqualTo(0);
+                        .Is.GreaterThanOrEqualTo((int.MinValue + int.MaxValue) / 2);
                 });
 
                 // Assert.
 
                 action
                     .Should().Throw<CopPostConditionException>()
-                    .WithMessage("POST-CONDITION: Variable [value] should be greater than or equal to [0]!");
-            }
-        }
-
-        public class ZeroOrPositiveMethod_Int32
-        {
-            [Fact]
-            public void WhenGettingValidPreCondition_ShouldNotThrowException()
-            {
-                // Arrange.
-
-                var value = int.MaxValue;
-
-                // Act.
-
-                var action = new Action(() =>
-                {
-                    Guard
-                        .Require(value, nameof(value))
-                        .Is.ZeroOrPositive();
-                });
-
-                // Assert.
-
-                action
-                    .Should().NotThrow();
-            }
-
-            [Fact]
-            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
-            {
-                // Arrange.
-
-                var value = int.MinValue;
-
-                // Act.
-
-                var action = new Action(() => 
-                {
-                    Guard
-                        .Require(value, nameof(value))
-                        .Is.ZeroOrPositive();
-                });
-
-                // Assert.
-
-                action
-                    .Should().Throw<CopPreConditionException>()
-                    .WithMessage("PRE-CONDITION: Variable [value] should be zero or a positive number!");
-            }
-
-            [Fact]
-            public void WhenGettingValidPostCondition_ShouldNotThrowException()
-            {
-                // Arrange.
-
-                var value = int.MaxValue;
-
-                // Act.
-
-                var action = new Action(() => 
-                {
-                    Guard
-                        .Ensure(value, nameof(value))
-                        .Is.ZeroOrPositive();
-                });
-
-                // Assert.
-
-                action
-                    .Should().NotThrow();
-            }
-
-            [Fact]
-            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
-            {
-                // Arrange.
-
-                var value = int.MinValue;
-
-                // Act.
-
-                var action = new Action(() => 
-                {
-                    Guard
-                        .Ensure(value, nameof(value))
-                        .Is.ZeroOrPositive();
-                });
-
-                // Assert.
-
-                action
-                    .Should().Throw<CopPostConditionException>()
-                    .WithMessage("POST-CONDITION: Variable [value] should be zero or a positive number!");
+                    .WithMessage($"POST-CONDITION: Variable [value] should be greater than or equal to [{(int.MinValue + int.MaxValue) / 2}]!");
             }
         }
 
@@ -554,7 +461,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
 
                 action
                     .Should().Throw<CopPreConditionException>()
-                    .WithMessage("PRE-CONDITION: Variable [value] should be a positive number!");
+                    .WithMessage($"PRE-CONDITION: Variable [value] should be a positive number!");
             }
 
             [Fact]
@@ -599,18 +506,18 @@ namespace nGratis.Cop.Olympus.Contract.Test
 
                 action
                     .Should().Throw<CopPostConditionException>()
-                    .WithMessage("POST-CONDITION: Variable [value] should be a positive number!");
+                    .WithMessage($"POST-CONDITION: Variable [value] should be a positive number!");
             }
         }
 
-        public class ZeroOrNegativeMethod_Int32
+        public class ZeroOrPositiveMethod_Int32
         {
             [Fact]
             public void WhenGettingValidPreCondition_ShouldNotThrowException()
             {
                 // Arrange.
 
-                var value = int.MinValue;
+                var value = int.MaxValue;
 
                 // Act.
 
@@ -618,7 +525,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Require(value, nameof(value))
-                        .Is.ZeroOrNegative();
+                        .Is.ZeroOrPositive();
                 });
 
                 // Assert.
@@ -632,29 +539,6 @@ namespace nGratis.Cop.Olympus.Contract.Test
             {
                 // Arrange.
 
-                var value = int.MaxValue;
-
-                // Act.
-
-                var action = new Action(() => 
-                {
-                    Guard
-                        .Require(value, nameof(value))
-                        .Is.ZeroOrNegative();
-                });
-
-                // Assert.
-
-                action
-                    .Should().Throw<CopPreConditionException>()
-                    .WithMessage("PRE-CONDITION: Variable [value] should be zero or a negative number!");
-            }
-
-            [Fact]
-            public void WhenGettingValidPostCondition_ShouldNotThrowException()
-            {
-                // Arrange.
-
                 var value = int.MinValue;
 
                 // Act.
@@ -662,8 +546,31 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 var action = new Action(() => 
                 {
                     Guard
+                        .Require(value, nameof(value))
+                        .Is.ZeroOrPositive();
+                });
+
+                // Assert.
+
+                action
+                    .Should().Throw<CopPreConditionException>()
+                    .WithMessage($"PRE-CONDITION: Variable [value] should be zero or a positive number!");
+            }
+
+            [Fact]
+            public void WhenGettingValidPostCondition_ShouldNotThrowException()
+            {
+                // Arrange.
+
+                var value = int.MaxValue;
+
+                // Act.
+
+                var action = new Action(() => 
+                {
+                    Guard
                         .Ensure(value, nameof(value))
-                        .Is.ZeroOrNegative();
+                        .Is.ZeroOrPositive();
                 });
 
                 // Assert.
@@ -677,7 +584,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             {
                 // Arrange.
 
-                var value = int.MaxValue;
+                var value = int.MinValue;
 
                 // Act.
 
@@ -685,14 +592,14 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Ensure(value, nameof(value))
-                        .Is.ZeroOrNegative();
+                        .Is.ZeroOrPositive();
                 });
 
                 // Assert.
 
                 action
                     .Should().Throw<CopPostConditionException>()
-                    .WithMessage("POST-CONDITION: Variable [value] should be zero or a negative number!");
+                    .WithMessage($"POST-CONDITION: Variable [value] should be zero or a positive number!");
             }
         }
 
@@ -740,7 +647,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
 
                 action
                     .Should().Throw<CopPreConditionException>()
-                    .WithMessage("PRE-CONDITION: Variable [value] should be a negative number!");
+                    .WithMessage($"PRE-CONDITION: Variable [value] should be a negative number!");
             }
 
             [Fact]
@@ -785,7 +692,100 @@ namespace nGratis.Cop.Olympus.Contract.Test
 
                 action
                     .Should().Throw<CopPostConditionException>()
-                    .WithMessage("POST-CONDITION: Variable [value] should be a negative number!");
+                    .WithMessage($"POST-CONDITION: Variable [value] should be a negative number!");
+            }
+        }
+
+        public class ZeroOrNegativeMethod_Int32
+        {
+            [Fact]
+            public void WhenGettingValidPreCondition_ShouldNotThrowException()
+            {
+                // Arrange.
+
+                var value = int.MinValue;
+
+                // Act.
+
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.ZeroOrNegative();
+                });
+
+                // Assert.
+
+                action
+                    .Should().NotThrow();
+            }
+
+            [Fact]
+            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+            {
+                // Arrange.
+
+                var value = int.MaxValue;
+
+                // Act.
+
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.ZeroOrNegative();
+                });
+
+                // Assert.
+
+                action
+                    .Should().Throw<CopPreConditionException>()
+                    .WithMessage($"PRE-CONDITION: Variable [value] should be zero or a negative number!");
+            }
+
+            [Fact]
+            public void WhenGettingValidPostCondition_ShouldNotThrowException()
+            {
+                // Arrange.
+
+                var value = int.MinValue;
+
+                // Act.
+
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.ZeroOrNegative();
+                });
+
+                // Assert.
+
+                action
+                    .Should().NotThrow();
+            }
+
+            [Fact]
+            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+            {
+                // Arrange.
+
+                var value = int.MaxValue;
+
+                // Act.
+
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.ZeroOrNegative();
+                });
+
+                // Assert.
+
+                action
+                    .Should().Throw<CopPostConditionException>()
+                    .WithMessage($"POST-CONDITION: Variable [value] should be zero or a negative number!");
             }
         }
 
@@ -833,7 +833,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
 
                 action
                     .Should().Throw<CopPreConditionException>()
-                    .WithMessage("PRE-CONDITION: Variable [value] should be zero!");
+                    .WithMessage($"PRE-CONDITION: Variable [value] should be zero!");
             }
 
             [Fact]
@@ -878,7 +878,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
 
                 action
                     .Should().Throw<CopPostConditionException>()
-                    .WithMessage("POST-CONDITION: Variable [value] should be zero!");
+                    .WithMessage($"POST-CONDITION: Variable [value] should be zero!");
             }
         }
 
@@ -926,7 +926,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
 
                 action
                     .Should().Throw<CopPreConditionException>()
-                    .WithMessage("PRE-CONDITION: Variable [value] should be equal to [0]!");
+                    .WithMessage($"PRE-CONDITION: Variable [value] should be equal to [0]!");
             }
 
             [Fact]
@@ -971,7 +971,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
 
                 action
                     .Should().Throw<CopPostConditionException>()
-                    .WithMessage("POST-CONDITION: Variable [value] should be equal to [0]!");
+                    .WithMessage($"POST-CONDITION: Variable [value] should be equal to [0]!");
             }
         }
 
@@ -990,7 +990,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Require(value, nameof(value))
-                        .Is.LessThan(0L);
+                        .Is.LessThan((long.MinValue + long.MaxValue) / 2);
                 });
 
                 // Assert.
@@ -1012,14 +1012,14 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Require(value, nameof(value))
-                        .Is.LessThan(0L);
+                        .Is.LessThan((long.MinValue + long.MaxValue) / 2);
                 });
 
                 // Assert.
 
                 action
                     .Should().Throw<CopPreConditionException>()
-                    .WithMessage("PRE-CONDITION: Variable [value] should be less than [0]!");
+                    .WithMessage($"PRE-CONDITION: Variable [value] should be less than [{(long.MinValue + long.MaxValue) / 2}]!");
             }
 
             [Fact]
@@ -1035,7 +1035,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Ensure(value, nameof(value))
-                        .Is.LessThan(0L);
+                        .Is.LessThan((long.MinValue + long.MaxValue) / 2);
                 });
 
                 // Assert.
@@ -1057,14 +1057,14 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Ensure(value, nameof(value))
-                        .Is.LessThan(0L);
+                        .Is.LessThan((long.MinValue + long.MaxValue) / 2);
                 });
 
                 // Assert.
 
                 action
                     .Should().Throw<CopPostConditionException>()
-                    .WithMessage("POST-CONDITION: Variable [value] should be less than [0]!");
+                    .WithMessage($"POST-CONDITION: Variable [value] should be less than [{(long.MinValue + long.MaxValue) / 2}]!");
             }
         }
 
@@ -1083,7 +1083,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Require(value, nameof(value))
-                        .Is.LessThanOrEqualTo(0L);
+                        .Is.LessThanOrEqualTo((long.MinValue + long.MaxValue) / 2);
                 });
 
                 // Assert.
@@ -1105,14 +1105,14 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Require(value, nameof(value))
-                        .Is.LessThanOrEqualTo(0L);
+                        .Is.LessThanOrEqualTo((long.MinValue + long.MaxValue) / 2);
                 });
 
                 // Assert.
 
                 action
                     .Should().Throw<CopPreConditionException>()
-                    .WithMessage("PRE-CONDITION: Variable [value] should be less than or equal to [0]!");
+                    .WithMessage($"PRE-CONDITION: Variable [value] should be less than or equal to [{(long.MinValue + long.MaxValue) / 2}]!");
             }
 
             [Fact]
@@ -1128,7 +1128,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Ensure(value, nameof(value))
-                        .Is.LessThanOrEqualTo(0L);
+                        .Is.LessThanOrEqualTo((long.MinValue + long.MaxValue) / 2);
                 });
 
                 // Assert.
@@ -1150,14 +1150,14 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Ensure(value, nameof(value))
-                        .Is.LessThanOrEqualTo(0L);
+                        .Is.LessThanOrEqualTo((long.MinValue + long.MaxValue) / 2);
                 });
 
                 // Assert.
 
                 action
                     .Should().Throw<CopPostConditionException>()
-                    .WithMessage("POST-CONDITION: Variable [value] should be less than or equal to [0]!");
+                    .WithMessage($"POST-CONDITION: Variable [value] should be less than or equal to [{(long.MinValue + long.MaxValue) / 2}]!");
             }
         }
 
@@ -1176,7 +1176,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Require(value, nameof(value))
-                        .Is.GreaterThan(0L);
+                        .Is.GreaterThan((long.MinValue + long.MaxValue) / 2);
                 });
 
                 // Assert.
@@ -1198,14 +1198,14 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Require(value, nameof(value))
-                        .Is.GreaterThan(0L);
+                        .Is.GreaterThan((long.MinValue + long.MaxValue) / 2);
                 });
 
                 // Assert.
 
                 action
                     .Should().Throw<CopPreConditionException>()
-                    .WithMessage("PRE-CONDITION: Variable [value] should be greater than [0]!");
+                    .WithMessage($"PRE-CONDITION: Variable [value] should be greater than [{(long.MinValue + long.MaxValue) / 2}]!");
             }
 
             [Fact]
@@ -1221,7 +1221,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Ensure(value, nameof(value))
-                        .Is.GreaterThan(0L);
+                        .Is.GreaterThan((long.MinValue + long.MaxValue) / 2);
                 });
 
                 // Assert.
@@ -1243,14 +1243,14 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Ensure(value, nameof(value))
-                        .Is.GreaterThan(0L);
+                        .Is.GreaterThan((long.MinValue + long.MaxValue) / 2);
                 });
 
                 // Assert.
 
                 action
                     .Should().Throw<CopPostConditionException>()
-                    .WithMessage("POST-CONDITION: Variable [value] should be greater than [0]!");
+                    .WithMessage($"POST-CONDITION: Variable [value] should be greater than [{(long.MinValue + long.MaxValue) / 2}]!");
             }
         }
 
@@ -1269,7 +1269,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Require(value, nameof(value))
-                        .Is.GreaterThanOrEqualTo(0L);
+                        .Is.GreaterThanOrEqualTo((long.MinValue + long.MaxValue) / 2);
                 });
 
                 // Assert.
@@ -1291,14 +1291,14 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Require(value, nameof(value))
-                        .Is.GreaterThanOrEqualTo(0L);
+                        .Is.GreaterThanOrEqualTo((long.MinValue + long.MaxValue) / 2);
                 });
 
                 // Assert.
 
                 action
                     .Should().Throw<CopPreConditionException>()
-                    .WithMessage("PRE-CONDITION: Variable [value] should be greater than or equal to [0]!");
+                    .WithMessage($"PRE-CONDITION: Variable [value] should be greater than or equal to [{(long.MinValue + long.MaxValue) / 2}]!");
             }
 
             [Fact]
@@ -1314,7 +1314,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Ensure(value, nameof(value))
-                        .Is.GreaterThanOrEqualTo(0L);
+                        .Is.GreaterThanOrEqualTo((long.MinValue + long.MaxValue) / 2);
                 });
 
                 // Assert.
@@ -1336,107 +1336,14 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Ensure(value, nameof(value))
-                        .Is.GreaterThanOrEqualTo(0L);
+                        .Is.GreaterThanOrEqualTo((long.MinValue + long.MaxValue) / 2);
                 });
 
                 // Assert.
 
                 action
                     .Should().Throw<CopPostConditionException>()
-                    .WithMessage("POST-CONDITION: Variable [value] should be greater than or equal to [0]!");
-            }
-        }
-
-        public class ZeroOrPositiveMethod_Int64
-        {
-            [Fact]
-            public void WhenGettingValidPreCondition_ShouldNotThrowException()
-            {
-                // Arrange.
-
-                var value = long.MaxValue;
-
-                // Act.
-
-                var action = new Action(() =>
-                {
-                    Guard
-                        .Require(value, nameof(value))
-                        .Is.ZeroOrPositive();
-                });
-
-                // Assert.
-
-                action
-                    .Should().NotThrow();
-            }
-
-            [Fact]
-            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
-            {
-                // Arrange.
-
-                var value = long.MinValue;
-
-                // Act.
-
-                var action = new Action(() => 
-                {
-                    Guard
-                        .Require(value, nameof(value))
-                        .Is.ZeroOrPositive();
-                });
-
-                // Assert.
-
-                action
-                    .Should().Throw<CopPreConditionException>()
-                    .WithMessage("PRE-CONDITION: Variable [value] should be zero or a positive number!");
-            }
-
-            [Fact]
-            public void WhenGettingValidPostCondition_ShouldNotThrowException()
-            {
-                // Arrange.
-
-                var value = long.MaxValue;
-
-                // Act.
-
-                var action = new Action(() => 
-                {
-                    Guard
-                        .Ensure(value, nameof(value))
-                        .Is.ZeroOrPositive();
-                });
-
-                // Assert.
-
-                action
-                    .Should().NotThrow();
-            }
-
-            [Fact]
-            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
-            {
-                // Arrange.
-
-                var value = long.MinValue;
-
-                // Act.
-
-                var action = new Action(() => 
-                {
-                    Guard
-                        .Ensure(value, nameof(value))
-                        .Is.ZeroOrPositive();
-                });
-
-                // Assert.
-
-                action
-                    .Should().Throw<CopPostConditionException>()
-                    .WithMessage("POST-CONDITION: Variable [value] should be zero or a positive number!");
+                    .WithMessage($"POST-CONDITION: Variable [value] should be greater than or equal to [{(long.MinValue + long.MaxValue) / 2}]!");
             }
         }
 
@@ -1484,7 +1391,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
 
                 action
                     .Should().Throw<CopPreConditionException>()
-                    .WithMessage("PRE-CONDITION: Variable [value] should be a positive number!");
+                    .WithMessage($"PRE-CONDITION: Variable [value] should be a positive number!");
             }
 
             [Fact]
@@ -1529,18 +1436,18 @@ namespace nGratis.Cop.Olympus.Contract.Test
 
                 action
                     .Should().Throw<CopPostConditionException>()
-                    .WithMessage("POST-CONDITION: Variable [value] should be a positive number!");
+                    .WithMessage($"POST-CONDITION: Variable [value] should be a positive number!");
             }
         }
 
-        public class ZeroOrNegativeMethod_Int64
+        public class ZeroOrPositiveMethod_Int64
         {
             [Fact]
             public void WhenGettingValidPreCondition_ShouldNotThrowException()
             {
                 // Arrange.
 
-                var value = long.MinValue;
+                var value = long.MaxValue;
 
                 // Act.
 
@@ -1548,7 +1455,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Require(value, nameof(value))
-                        .Is.ZeroOrNegative();
+                        .Is.ZeroOrPositive();
                 });
 
                 // Assert.
@@ -1562,29 +1469,6 @@ namespace nGratis.Cop.Olympus.Contract.Test
             {
                 // Arrange.
 
-                var value = long.MaxValue;
-
-                // Act.
-
-                var action = new Action(() => 
-                {
-                    Guard
-                        .Require(value, nameof(value))
-                        .Is.ZeroOrNegative();
-                });
-
-                // Assert.
-
-                action
-                    .Should().Throw<CopPreConditionException>()
-                    .WithMessage("PRE-CONDITION: Variable [value] should be zero or a negative number!");
-            }
-
-            [Fact]
-            public void WhenGettingValidPostCondition_ShouldNotThrowException()
-            {
-                // Arrange.
-
                 var value = long.MinValue;
 
                 // Act.
@@ -1592,8 +1476,31 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 var action = new Action(() => 
                 {
                     Guard
+                        .Require(value, nameof(value))
+                        .Is.ZeroOrPositive();
+                });
+
+                // Assert.
+
+                action
+                    .Should().Throw<CopPreConditionException>()
+                    .WithMessage($"PRE-CONDITION: Variable [value] should be zero or a positive number!");
+            }
+
+            [Fact]
+            public void WhenGettingValidPostCondition_ShouldNotThrowException()
+            {
+                // Arrange.
+
+                var value = long.MaxValue;
+
+                // Act.
+
+                var action = new Action(() => 
+                {
+                    Guard
                         .Ensure(value, nameof(value))
-                        .Is.ZeroOrNegative();
+                        .Is.ZeroOrPositive();
                 });
 
                 // Assert.
@@ -1607,7 +1514,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             {
                 // Arrange.
 
-                var value = long.MaxValue;
+                var value = long.MinValue;
 
                 // Act.
 
@@ -1615,14 +1522,14 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Ensure(value, nameof(value))
-                        .Is.ZeroOrNegative();
+                        .Is.ZeroOrPositive();
                 });
 
                 // Assert.
 
                 action
                     .Should().Throw<CopPostConditionException>()
-                    .WithMessage("POST-CONDITION: Variable [value] should be zero or a negative number!");
+                    .WithMessage($"POST-CONDITION: Variable [value] should be zero or a positive number!");
             }
         }
 
@@ -1670,7 +1577,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
 
                 action
                     .Should().Throw<CopPreConditionException>()
-                    .WithMessage("PRE-CONDITION: Variable [value] should be a negative number!");
+                    .WithMessage($"PRE-CONDITION: Variable [value] should be a negative number!");
             }
 
             [Fact]
@@ -1715,7 +1622,100 @@ namespace nGratis.Cop.Olympus.Contract.Test
 
                 action
                     .Should().Throw<CopPostConditionException>()
-                    .WithMessage("POST-CONDITION: Variable [value] should be a negative number!");
+                    .WithMessage($"POST-CONDITION: Variable [value] should be a negative number!");
+            }
+        }
+
+        public class ZeroOrNegativeMethod_Int64
+        {
+            [Fact]
+            public void WhenGettingValidPreCondition_ShouldNotThrowException()
+            {
+                // Arrange.
+
+                var value = long.MinValue;
+
+                // Act.
+
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.ZeroOrNegative();
+                });
+
+                // Assert.
+
+                action
+                    .Should().NotThrow();
+            }
+
+            [Fact]
+            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+            {
+                // Arrange.
+
+                var value = long.MaxValue;
+
+                // Act.
+
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.ZeroOrNegative();
+                });
+
+                // Assert.
+
+                action
+                    .Should().Throw<CopPreConditionException>()
+                    .WithMessage($"PRE-CONDITION: Variable [value] should be zero or a negative number!");
+            }
+
+            [Fact]
+            public void WhenGettingValidPostCondition_ShouldNotThrowException()
+            {
+                // Arrange.
+
+                var value = long.MinValue;
+
+                // Act.
+
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.ZeroOrNegative();
+                });
+
+                // Assert.
+
+                action
+                    .Should().NotThrow();
+            }
+
+            [Fact]
+            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+            {
+                // Arrange.
+
+                var value = long.MaxValue;
+
+                // Act.
+
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.ZeroOrNegative();
+                });
+
+                // Assert.
+
+                action
+                    .Should().Throw<CopPostConditionException>()
+                    .WithMessage($"POST-CONDITION: Variable [value] should be zero or a negative number!");
             }
         }
 
@@ -1763,7 +1763,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
 
                 action
                     .Should().Throw<CopPreConditionException>()
-                    .WithMessage("PRE-CONDITION: Variable [value] should be zero!");
+                    .WithMessage($"PRE-CONDITION: Variable [value] should be zero!");
             }
 
             [Fact]
@@ -1808,7 +1808,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
 
                 action
                     .Should().Throw<CopPostConditionException>()
-                    .WithMessage("POST-CONDITION: Variable [value] should be zero!");
+                    .WithMessage($"POST-CONDITION: Variable [value] should be zero!");
             }
         }
 
@@ -1856,7 +1856,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
 
                 action
                     .Should().Throw<CopPreConditionException>()
-                    .WithMessage("PRE-CONDITION: Variable [value] should be equal to [0]!");
+                    .WithMessage($"PRE-CONDITION: Variable [value] should be equal to [0]!");
             }
 
             [Fact]
@@ -1901,7 +1901,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
 
                 action
                     .Should().Throw<CopPostConditionException>()
-                    .WithMessage("POST-CONDITION: Variable [value] should be equal to [0]!");
+                    .WithMessage($"POST-CONDITION: Variable [value] should be equal to [0]!");
             }
         }
 
@@ -1920,7 +1920,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Require(value, nameof(value))
-                        .Is.LessThan(0.0F);
+                        .Is.LessThan((float.MinValue + float.MaxValue) / 2);
                 });
 
                 // Assert.
@@ -1942,14 +1942,14 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Require(value, nameof(value))
-                        .Is.LessThan(0.0F);
+                        .Is.LessThan((float.MinValue + float.MaxValue) / 2);
                 });
 
                 // Assert.
 
                 action
                     .Should().Throw<CopPreConditionException>()
-                    .WithMessage("PRE-CONDITION: Variable [value] should be less than [0]!");
+                    .WithMessage($"PRE-CONDITION: Variable [value] should be less than [{(float.MinValue + float.MaxValue) / 2}]!");
             }
 
             [Fact]
@@ -1965,7 +1965,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Ensure(value, nameof(value))
-                        .Is.LessThan(0.0F);
+                        .Is.LessThan((float.MinValue + float.MaxValue) / 2);
                 });
 
                 // Assert.
@@ -1987,14 +1987,14 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Ensure(value, nameof(value))
-                        .Is.LessThan(0.0F);
+                        .Is.LessThan((float.MinValue + float.MaxValue) / 2);
                 });
 
                 // Assert.
 
                 action
                     .Should().Throw<CopPostConditionException>()
-                    .WithMessage("POST-CONDITION: Variable [value] should be less than [0]!");
+                    .WithMessage($"POST-CONDITION: Variable [value] should be less than [{(float.MinValue + float.MaxValue) / 2}]!");
             }
         }
 
@@ -2013,7 +2013,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Require(value, nameof(value))
-                        .Is.LessThanOrEqualTo(0.0F);
+                        .Is.LessThanOrEqualTo((float.MinValue + float.MaxValue) / 2);
                 });
 
                 // Assert.
@@ -2035,14 +2035,14 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Require(value, nameof(value))
-                        .Is.LessThanOrEqualTo(0.0F);
+                        .Is.LessThanOrEqualTo((float.MinValue + float.MaxValue) / 2);
                 });
 
                 // Assert.
 
                 action
                     .Should().Throw<CopPreConditionException>()
-                    .WithMessage("PRE-CONDITION: Variable [value] should be less than or equal to [0]!");
+                    .WithMessage($"PRE-CONDITION: Variable [value] should be less than or equal to [{(float.MinValue + float.MaxValue) / 2}]!");
             }
 
             [Fact]
@@ -2058,7 +2058,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Ensure(value, nameof(value))
-                        .Is.LessThanOrEqualTo(0.0F);
+                        .Is.LessThanOrEqualTo((float.MinValue + float.MaxValue) / 2);
                 });
 
                 // Assert.
@@ -2080,14 +2080,14 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Ensure(value, nameof(value))
-                        .Is.LessThanOrEqualTo(0.0F);
+                        .Is.LessThanOrEqualTo((float.MinValue + float.MaxValue) / 2);
                 });
 
                 // Assert.
 
                 action
                     .Should().Throw<CopPostConditionException>()
-                    .WithMessage("POST-CONDITION: Variable [value] should be less than or equal to [0]!");
+                    .WithMessage($"POST-CONDITION: Variable [value] should be less than or equal to [{(float.MinValue + float.MaxValue) / 2}]!");
             }
         }
 
@@ -2106,7 +2106,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Require(value, nameof(value))
-                        .Is.GreaterThan(0.0F);
+                        .Is.GreaterThan((float.MinValue + float.MaxValue) / 2);
                 });
 
                 // Assert.
@@ -2128,14 +2128,14 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Require(value, nameof(value))
-                        .Is.GreaterThan(0.0F);
+                        .Is.GreaterThan((float.MinValue + float.MaxValue) / 2);
                 });
 
                 // Assert.
 
                 action
                     .Should().Throw<CopPreConditionException>()
-                    .WithMessage("PRE-CONDITION: Variable [value] should be greater than [0]!");
+                    .WithMessage($"PRE-CONDITION: Variable [value] should be greater than [{(float.MinValue + float.MaxValue) / 2}]!");
             }
 
             [Fact]
@@ -2151,7 +2151,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Ensure(value, nameof(value))
-                        .Is.GreaterThan(0.0F);
+                        .Is.GreaterThan((float.MinValue + float.MaxValue) / 2);
                 });
 
                 // Assert.
@@ -2173,14 +2173,14 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Ensure(value, nameof(value))
-                        .Is.GreaterThan(0.0F);
+                        .Is.GreaterThan((float.MinValue + float.MaxValue) / 2);
                 });
 
                 // Assert.
 
                 action
                     .Should().Throw<CopPostConditionException>()
-                    .WithMessage("POST-CONDITION: Variable [value] should be greater than [0]!");
+                    .WithMessage($"POST-CONDITION: Variable [value] should be greater than [{(float.MinValue + float.MaxValue) / 2}]!");
             }
         }
 
@@ -2199,7 +2199,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Require(value, nameof(value))
-                        .Is.GreaterThanOrEqualTo(0.0F);
+                        .Is.GreaterThanOrEqualTo((float.MinValue + float.MaxValue) / 2);
                 });
 
                 // Assert.
@@ -2221,14 +2221,14 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Require(value, nameof(value))
-                        .Is.GreaterThanOrEqualTo(0.0F);
+                        .Is.GreaterThanOrEqualTo((float.MinValue + float.MaxValue) / 2);
                 });
 
                 // Assert.
 
                 action
                     .Should().Throw<CopPreConditionException>()
-                    .WithMessage("PRE-CONDITION: Variable [value] should be greater than or equal to [0]!");
+                    .WithMessage($"PRE-CONDITION: Variable [value] should be greater than or equal to [{(float.MinValue + float.MaxValue) / 2}]!");
             }
 
             [Fact]
@@ -2244,7 +2244,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Ensure(value, nameof(value))
-                        .Is.GreaterThanOrEqualTo(0.0F);
+                        .Is.GreaterThanOrEqualTo((float.MinValue + float.MaxValue) / 2);
                 });
 
                 // Assert.
@@ -2266,107 +2266,14 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Ensure(value, nameof(value))
-                        .Is.GreaterThanOrEqualTo(0.0F);
+                        .Is.GreaterThanOrEqualTo((float.MinValue + float.MaxValue) / 2);
                 });
 
                 // Assert.
 
                 action
                     .Should().Throw<CopPostConditionException>()
-                    .WithMessage("POST-CONDITION: Variable [value] should be greater than or equal to [0]!");
-            }
-        }
-
-        public class ZeroOrPositiveMethod_Single
-        {
-            [Fact]
-            public void WhenGettingValidPreCondition_ShouldNotThrowException()
-            {
-                // Arrange.
-
-                var value = float.MaxValue;
-
-                // Act.
-
-                var action = new Action(() =>
-                {
-                    Guard
-                        .Require(value, nameof(value))
-                        .Is.ZeroOrPositive();
-                });
-
-                // Assert.
-
-                action
-                    .Should().NotThrow();
-            }
-
-            [Fact]
-            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
-            {
-                // Arrange.
-
-                var value = float.MinValue;
-
-                // Act.
-
-                var action = new Action(() => 
-                {
-                    Guard
-                        .Require(value, nameof(value))
-                        .Is.ZeroOrPositive();
-                });
-
-                // Assert.
-
-                action
-                    .Should().Throw<CopPreConditionException>()
-                    .WithMessage("PRE-CONDITION: Variable [value] should be zero or a positive number!");
-            }
-
-            [Fact]
-            public void WhenGettingValidPostCondition_ShouldNotThrowException()
-            {
-                // Arrange.
-
-                var value = float.MaxValue;
-
-                // Act.
-
-                var action = new Action(() => 
-                {
-                    Guard
-                        .Ensure(value, nameof(value))
-                        .Is.ZeroOrPositive();
-                });
-
-                // Assert.
-
-                action
-                    .Should().NotThrow();
-            }
-
-            [Fact]
-            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
-            {
-                // Arrange.
-
-                var value = float.MinValue;
-
-                // Act.
-
-                var action = new Action(() => 
-                {
-                    Guard
-                        .Ensure(value, nameof(value))
-                        .Is.ZeroOrPositive();
-                });
-
-                // Assert.
-
-                action
-                    .Should().Throw<CopPostConditionException>()
-                    .WithMessage("POST-CONDITION: Variable [value] should be zero or a positive number!");
+                    .WithMessage($"POST-CONDITION: Variable [value] should be greater than or equal to [{(float.MinValue + float.MaxValue) / 2}]!");
             }
         }
 
@@ -2414,7 +2321,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
 
                 action
                     .Should().Throw<CopPreConditionException>()
-                    .WithMessage("PRE-CONDITION: Variable [value] should be a positive number!");
+                    .WithMessage($"PRE-CONDITION: Variable [value] should be a positive number!");
             }
 
             [Fact]
@@ -2459,18 +2366,18 @@ namespace nGratis.Cop.Olympus.Contract.Test
 
                 action
                     .Should().Throw<CopPostConditionException>()
-                    .WithMessage("POST-CONDITION: Variable [value] should be a positive number!");
+                    .WithMessage($"POST-CONDITION: Variable [value] should be a positive number!");
             }
         }
 
-        public class ZeroOrNegativeMethod_Single
+        public class ZeroOrPositiveMethod_Single
         {
             [Fact]
             public void WhenGettingValidPreCondition_ShouldNotThrowException()
             {
                 // Arrange.
 
-                var value = float.MinValue;
+                var value = float.MaxValue;
 
                 // Act.
 
@@ -2478,7 +2385,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Require(value, nameof(value))
-                        .Is.ZeroOrNegative();
+                        .Is.ZeroOrPositive();
                 });
 
                 // Assert.
@@ -2492,29 +2399,6 @@ namespace nGratis.Cop.Olympus.Contract.Test
             {
                 // Arrange.
 
-                var value = float.MaxValue;
-
-                // Act.
-
-                var action = new Action(() => 
-                {
-                    Guard
-                        .Require(value, nameof(value))
-                        .Is.ZeroOrNegative();
-                });
-
-                // Assert.
-
-                action
-                    .Should().Throw<CopPreConditionException>()
-                    .WithMessage("PRE-CONDITION: Variable [value] should be zero or a negative number!");
-            }
-
-            [Fact]
-            public void WhenGettingValidPostCondition_ShouldNotThrowException()
-            {
-                // Arrange.
-
                 var value = float.MinValue;
 
                 // Act.
@@ -2522,8 +2406,31 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 var action = new Action(() => 
                 {
                     Guard
+                        .Require(value, nameof(value))
+                        .Is.ZeroOrPositive();
+                });
+
+                // Assert.
+
+                action
+                    .Should().Throw<CopPreConditionException>()
+                    .WithMessage($"PRE-CONDITION: Variable [value] should be zero or a positive number!");
+            }
+
+            [Fact]
+            public void WhenGettingValidPostCondition_ShouldNotThrowException()
+            {
+                // Arrange.
+
+                var value = float.MaxValue;
+
+                // Act.
+
+                var action = new Action(() => 
+                {
+                    Guard
                         .Ensure(value, nameof(value))
-                        .Is.ZeroOrNegative();
+                        .Is.ZeroOrPositive();
                 });
 
                 // Assert.
@@ -2537,7 +2444,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             {
                 // Arrange.
 
-                var value = float.MaxValue;
+                var value = float.MinValue;
 
                 // Act.
 
@@ -2545,14 +2452,14 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Ensure(value, nameof(value))
-                        .Is.ZeroOrNegative();
+                        .Is.ZeroOrPositive();
                 });
 
                 // Assert.
 
                 action
                     .Should().Throw<CopPostConditionException>()
-                    .WithMessage("POST-CONDITION: Variable [value] should be zero or a negative number!");
+                    .WithMessage($"POST-CONDITION: Variable [value] should be zero or a positive number!");
             }
         }
 
@@ -2600,7 +2507,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
 
                 action
                     .Should().Throw<CopPreConditionException>()
-                    .WithMessage("PRE-CONDITION: Variable [value] should be a negative number!");
+                    .WithMessage($"PRE-CONDITION: Variable [value] should be a negative number!");
             }
 
             [Fact]
@@ -2645,7 +2552,100 @@ namespace nGratis.Cop.Olympus.Contract.Test
 
                 action
                     .Should().Throw<CopPostConditionException>()
-                    .WithMessage("POST-CONDITION: Variable [value] should be a negative number!");
+                    .WithMessage($"POST-CONDITION: Variable [value] should be a negative number!");
+            }
+        }
+
+        public class ZeroOrNegativeMethod_Single
+        {
+            [Fact]
+            public void WhenGettingValidPreCondition_ShouldNotThrowException()
+            {
+                // Arrange.
+
+                var value = float.MinValue;
+
+                // Act.
+
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.ZeroOrNegative();
+                });
+
+                // Assert.
+
+                action
+                    .Should().NotThrow();
+            }
+
+            [Fact]
+            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+            {
+                // Arrange.
+
+                var value = float.MaxValue;
+
+                // Act.
+
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.ZeroOrNegative();
+                });
+
+                // Assert.
+
+                action
+                    .Should().Throw<CopPreConditionException>()
+                    .WithMessage($"PRE-CONDITION: Variable [value] should be zero or a negative number!");
+            }
+
+            [Fact]
+            public void WhenGettingValidPostCondition_ShouldNotThrowException()
+            {
+                // Arrange.
+
+                var value = float.MinValue;
+
+                // Act.
+
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.ZeroOrNegative();
+                });
+
+                // Assert.
+
+                action
+                    .Should().NotThrow();
+            }
+
+            [Fact]
+            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+            {
+                // Arrange.
+
+                var value = float.MaxValue;
+
+                // Act.
+
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.ZeroOrNegative();
+                });
+
+                // Assert.
+
+                action
+                    .Should().Throw<CopPostConditionException>()
+                    .WithMessage($"POST-CONDITION: Variable [value] should be zero or a negative number!");
             }
         }
 
@@ -2693,7 +2693,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
 
                 action
                     .Should().Throw<CopPreConditionException>()
-                    .WithMessage("PRE-CONDITION: Variable [value] should be zero!");
+                    .WithMessage($"PRE-CONDITION: Variable [value] should be zero!");
             }
 
             [Fact]
@@ -2738,7 +2738,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
 
                 action
                     .Should().Throw<CopPostConditionException>()
-                    .WithMessage("POST-CONDITION: Variable [value] should be zero!");
+                    .WithMessage($"POST-CONDITION: Variable [value] should be zero!");
             }
         }
 
@@ -2786,7 +2786,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
 
                 action
                     .Should().Throw<CopPreConditionException>()
-                    .WithMessage("PRE-CONDITION: Variable [value] should be equal to [0]!");
+                    .WithMessage($"PRE-CONDITION: Variable [value] should be equal to [0]!");
             }
 
             [Fact]
@@ -2831,7 +2831,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
 
                 action
                     .Should().Throw<CopPostConditionException>()
-                    .WithMessage("POST-CONDITION: Variable [value] should be equal to [0]!");
+                    .WithMessage($"POST-CONDITION: Variable [value] should be equal to [0]!");
             }
         }
 
@@ -2850,7 +2850,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Require(value, nameof(value))
-                        .Is.LessThan(0.0);
+                        .Is.LessThan((double.MinValue + double.MaxValue) / 2);
                 });
 
                 // Assert.
@@ -2872,14 +2872,14 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Require(value, nameof(value))
-                        .Is.LessThan(0.0);
+                        .Is.LessThan((double.MinValue + double.MaxValue) / 2);
                 });
 
                 // Assert.
 
                 action
                     .Should().Throw<CopPreConditionException>()
-                    .WithMessage("PRE-CONDITION: Variable [value] should be less than [0]!");
+                    .WithMessage($"PRE-CONDITION: Variable [value] should be less than [{(double.MinValue + double.MaxValue) / 2}]!");
             }
 
             [Fact]
@@ -2895,7 +2895,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Ensure(value, nameof(value))
-                        .Is.LessThan(0.0);
+                        .Is.LessThan((double.MinValue + double.MaxValue) / 2);
                 });
 
                 // Assert.
@@ -2917,14 +2917,14 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Ensure(value, nameof(value))
-                        .Is.LessThan(0.0);
+                        .Is.LessThan((double.MinValue + double.MaxValue) / 2);
                 });
 
                 // Assert.
 
                 action
                     .Should().Throw<CopPostConditionException>()
-                    .WithMessage("POST-CONDITION: Variable [value] should be less than [0]!");
+                    .WithMessage($"POST-CONDITION: Variable [value] should be less than [{(double.MinValue + double.MaxValue) / 2}]!");
             }
         }
 
@@ -2943,7 +2943,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Require(value, nameof(value))
-                        .Is.LessThanOrEqualTo(0.0);
+                        .Is.LessThanOrEqualTo((double.MinValue + double.MaxValue) / 2);
                 });
 
                 // Assert.
@@ -2965,14 +2965,14 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Require(value, nameof(value))
-                        .Is.LessThanOrEqualTo(0.0);
+                        .Is.LessThanOrEqualTo((double.MinValue + double.MaxValue) / 2);
                 });
 
                 // Assert.
 
                 action
                     .Should().Throw<CopPreConditionException>()
-                    .WithMessage("PRE-CONDITION: Variable [value] should be less than or equal to [0]!");
+                    .WithMessage($"PRE-CONDITION: Variable [value] should be less than or equal to [{(double.MinValue + double.MaxValue) / 2}]!");
             }
 
             [Fact]
@@ -2988,7 +2988,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Ensure(value, nameof(value))
-                        .Is.LessThanOrEqualTo(0.0);
+                        .Is.LessThanOrEqualTo((double.MinValue + double.MaxValue) / 2);
                 });
 
                 // Assert.
@@ -3010,14 +3010,14 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Ensure(value, nameof(value))
-                        .Is.LessThanOrEqualTo(0.0);
+                        .Is.LessThanOrEqualTo((double.MinValue + double.MaxValue) / 2);
                 });
 
                 // Assert.
 
                 action
                     .Should().Throw<CopPostConditionException>()
-                    .WithMessage("POST-CONDITION: Variable [value] should be less than or equal to [0]!");
+                    .WithMessage($"POST-CONDITION: Variable [value] should be less than or equal to [{(double.MinValue + double.MaxValue) / 2}]!");
             }
         }
 
@@ -3036,7 +3036,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Require(value, nameof(value))
-                        .Is.GreaterThan(0.0);
+                        .Is.GreaterThan((double.MinValue + double.MaxValue) / 2);
                 });
 
                 // Assert.
@@ -3058,14 +3058,14 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Require(value, nameof(value))
-                        .Is.GreaterThan(0.0);
+                        .Is.GreaterThan((double.MinValue + double.MaxValue) / 2);
                 });
 
                 // Assert.
 
                 action
                     .Should().Throw<CopPreConditionException>()
-                    .WithMessage("PRE-CONDITION: Variable [value] should be greater than [0]!");
+                    .WithMessage($"PRE-CONDITION: Variable [value] should be greater than [{(double.MinValue + double.MaxValue) / 2}]!");
             }
 
             [Fact]
@@ -3081,7 +3081,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Ensure(value, nameof(value))
-                        .Is.GreaterThan(0.0);
+                        .Is.GreaterThan((double.MinValue + double.MaxValue) / 2);
                 });
 
                 // Assert.
@@ -3103,14 +3103,14 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Ensure(value, nameof(value))
-                        .Is.GreaterThan(0.0);
+                        .Is.GreaterThan((double.MinValue + double.MaxValue) / 2);
                 });
 
                 // Assert.
 
                 action
                     .Should().Throw<CopPostConditionException>()
-                    .WithMessage("POST-CONDITION: Variable [value] should be greater than [0]!");
+                    .WithMessage($"POST-CONDITION: Variable [value] should be greater than [{(double.MinValue + double.MaxValue) / 2}]!");
             }
         }
 
@@ -3129,7 +3129,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Require(value, nameof(value))
-                        .Is.GreaterThanOrEqualTo(0.0);
+                        .Is.GreaterThanOrEqualTo((double.MinValue + double.MaxValue) / 2);
                 });
 
                 // Assert.
@@ -3151,14 +3151,14 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Require(value, nameof(value))
-                        .Is.GreaterThanOrEqualTo(0.0);
+                        .Is.GreaterThanOrEqualTo((double.MinValue + double.MaxValue) / 2);
                 });
 
                 // Assert.
 
                 action
                     .Should().Throw<CopPreConditionException>()
-                    .WithMessage("PRE-CONDITION: Variable [value] should be greater than or equal to [0]!");
+                    .WithMessage($"PRE-CONDITION: Variable [value] should be greater than or equal to [{(double.MinValue + double.MaxValue) / 2}]!");
             }
 
             [Fact]
@@ -3174,7 +3174,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Ensure(value, nameof(value))
-                        .Is.GreaterThanOrEqualTo(0.0);
+                        .Is.GreaterThanOrEqualTo((double.MinValue + double.MaxValue) / 2);
                 });
 
                 // Assert.
@@ -3196,107 +3196,14 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Ensure(value, nameof(value))
-                        .Is.GreaterThanOrEqualTo(0.0);
+                        .Is.GreaterThanOrEqualTo((double.MinValue + double.MaxValue) / 2);
                 });
 
                 // Assert.
 
                 action
                     .Should().Throw<CopPostConditionException>()
-                    .WithMessage("POST-CONDITION: Variable [value] should be greater than or equal to [0]!");
-            }
-        }
-
-        public class ZeroOrPositiveMethod_Double
-        {
-            [Fact]
-            public void WhenGettingValidPreCondition_ShouldNotThrowException()
-            {
-                // Arrange.
-
-                var value = double.MaxValue;
-
-                // Act.
-
-                var action = new Action(() =>
-                {
-                    Guard
-                        .Require(value, nameof(value))
-                        .Is.ZeroOrPositive();
-                });
-
-                // Assert.
-
-                action
-                    .Should().NotThrow();
-            }
-
-            [Fact]
-            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
-            {
-                // Arrange.
-
-                var value = double.MinValue;
-
-                // Act.
-
-                var action = new Action(() => 
-                {
-                    Guard
-                        .Require(value, nameof(value))
-                        .Is.ZeroOrPositive();
-                });
-
-                // Assert.
-
-                action
-                    .Should().Throw<CopPreConditionException>()
-                    .WithMessage("PRE-CONDITION: Variable [value] should be zero or a positive number!");
-            }
-
-            [Fact]
-            public void WhenGettingValidPostCondition_ShouldNotThrowException()
-            {
-                // Arrange.
-
-                var value = double.MaxValue;
-
-                // Act.
-
-                var action = new Action(() => 
-                {
-                    Guard
-                        .Ensure(value, nameof(value))
-                        .Is.ZeroOrPositive();
-                });
-
-                // Assert.
-
-                action
-                    .Should().NotThrow();
-            }
-
-            [Fact]
-            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
-            {
-                // Arrange.
-
-                var value = double.MinValue;
-
-                // Act.
-
-                var action = new Action(() => 
-                {
-                    Guard
-                        .Ensure(value, nameof(value))
-                        .Is.ZeroOrPositive();
-                });
-
-                // Assert.
-
-                action
-                    .Should().Throw<CopPostConditionException>()
-                    .WithMessage("POST-CONDITION: Variable [value] should be zero or a positive number!");
+                    .WithMessage($"POST-CONDITION: Variable [value] should be greater than or equal to [{(double.MinValue + double.MaxValue) / 2}]!");
             }
         }
 
@@ -3344,7 +3251,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
 
                 action
                     .Should().Throw<CopPreConditionException>()
-                    .WithMessage("PRE-CONDITION: Variable [value] should be a positive number!");
+                    .WithMessage($"PRE-CONDITION: Variable [value] should be a positive number!");
             }
 
             [Fact]
@@ -3389,18 +3296,18 @@ namespace nGratis.Cop.Olympus.Contract.Test
 
                 action
                     .Should().Throw<CopPostConditionException>()
-                    .WithMessage("POST-CONDITION: Variable [value] should be a positive number!");
+                    .WithMessage($"POST-CONDITION: Variable [value] should be a positive number!");
             }
         }
 
-        public class ZeroOrNegativeMethod_Double
+        public class ZeroOrPositiveMethod_Double
         {
             [Fact]
             public void WhenGettingValidPreCondition_ShouldNotThrowException()
             {
                 // Arrange.
 
-                var value = double.MinValue;
+                var value = double.MaxValue;
 
                 // Act.
 
@@ -3408,7 +3315,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Require(value, nameof(value))
-                        .Is.ZeroOrNegative();
+                        .Is.ZeroOrPositive();
                 });
 
                 // Assert.
@@ -3422,29 +3329,6 @@ namespace nGratis.Cop.Olympus.Contract.Test
             {
                 // Arrange.
 
-                var value = double.MaxValue;
-
-                // Act.
-
-                var action = new Action(() => 
-                {
-                    Guard
-                        .Require(value, nameof(value))
-                        .Is.ZeroOrNegative();
-                });
-
-                // Assert.
-
-                action
-                    .Should().Throw<CopPreConditionException>()
-                    .WithMessage("PRE-CONDITION: Variable [value] should be zero or a negative number!");
-            }
-
-            [Fact]
-            public void WhenGettingValidPostCondition_ShouldNotThrowException()
-            {
-                // Arrange.
-
                 var value = double.MinValue;
 
                 // Act.
@@ -3452,8 +3336,31 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 var action = new Action(() => 
                 {
                     Guard
+                        .Require(value, nameof(value))
+                        .Is.ZeroOrPositive();
+                });
+
+                // Assert.
+
+                action
+                    .Should().Throw<CopPreConditionException>()
+                    .WithMessage($"PRE-CONDITION: Variable [value] should be zero or a positive number!");
+            }
+
+            [Fact]
+            public void WhenGettingValidPostCondition_ShouldNotThrowException()
+            {
+                // Arrange.
+
+                var value = double.MaxValue;
+
+                // Act.
+
+                var action = new Action(() => 
+                {
+                    Guard
                         .Ensure(value, nameof(value))
-                        .Is.ZeroOrNegative();
+                        .Is.ZeroOrPositive();
                 });
 
                 // Assert.
@@ -3467,7 +3374,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             {
                 // Arrange.
 
-                var value = double.MaxValue;
+                var value = double.MinValue;
 
                 // Act.
 
@@ -3475,14 +3382,14 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 {
                     Guard
                         .Ensure(value, nameof(value))
-                        .Is.ZeroOrNegative();
+                        .Is.ZeroOrPositive();
                 });
 
                 // Assert.
 
                 action
                     .Should().Throw<CopPostConditionException>()
-                    .WithMessage("POST-CONDITION: Variable [value] should be zero or a negative number!");
+                    .WithMessage($"POST-CONDITION: Variable [value] should be zero or a positive number!");
             }
         }
 
@@ -3530,7 +3437,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
 
                 action
                     .Should().Throw<CopPreConditionException>()
-                    .WithMessage("PRE-CONDITION: Variable [value] should be a negative number!");
+                    .WithMessage($"PRE-CONDITION: Variable [value] should be a negative number!");
             }
 
             [Fact]
@@ -3575,7 +3482,100 @@ namespace nGratis.Cop.Olympus.Contract.Test
 
                 action
                     .Should().Throw<CopPostConditionException>()
-                    .WithMessage("POST-CONDITION: Variable [value] should be a negative number!");
+                    .WithMessage($"POST-CONDITION: Variable [value] should be a negative number!");
+            }
+        }
+
+        public class ZeroOrNegativeMethod_Double
+        {
+            [Fact]
+            public void WhenGettingValidPreCondition_ShouldNotThrowException()
+            {
+                // Arrange.
+
+                var value = double.MinValue;
+
+                // Act.
+
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.ZeroOrNegative();
+                });
+
+                // Assert.
+
+                action
+                    .Should().NotThrow();
+            }
+
+            [Fact]
+            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+            {
+                // Arrange.
+
+                var value = double.MaxValue;
+
+                // Act.
+
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.ZeroOrNegative();
+                });
+
+                // Assert.
+
+                action
+                    .Should().Throw<CopPreConditionException>()
+                    .WithMessage($"PRE-CONDITION: Variable [value] should be zero or a negative number!");
+            }
+
+            [Fact]
+            public void WhenGettingValidPostCondition_ShouldNotThrowException()
+            {
+                // Arrange.
+
+                var value = double.MinValue;
+
+                // Act.
+
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.ZeroOrNegative();
+                });
+
+                // Assert.
+
+                action
+                    .Should().NotThrow();
+            }
+
+            [Fact]
+            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+            {
+                // Arrange.
+
+                var value = double.MaxValue;
+
+                // Act.
+
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.ZeroOrNegative();
+                });
+
+                // Assert.
+
+                action
+                    .Should().Throw<CopPostConditionException>()
+                    .WithMessage($"POST-CONDITION: Variable [value] should be zero or a negative number!");
             }
         }
 
@@ -3623,7 +3623,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
 
                 action
                     .Should().Throw<CopPreConditionException>()
-                    .WithMessage("PRE-CONDITION: Variable [value] should be zero!");
+                    .WithMessage($"PRE-CONDITION: Variable [value] should be zero!");
             }
 
             [Fact]
@@ -3668,7 +3668,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
 
                 action
                     .Should().Throw<CopPostConditionException>()
-                    .WithMessage("POST-CONDITION: Variable [value] should be zero!");
+                    .WithMessage($"POST-CONDITION: Variable [value] should be zero!");
             }
         }
 
@@ -3716,7 +3716,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
 
                 action
                     .Should().Throw<CopPreConditionException>()
-                    .WithMessage("PRE-CONDITION: Variable [value] should be equal to [0]!");
+                    .WithMessage($"PRE-CONDITION: Variable [value] should be equal to [0]!");
             }
 
             [Fact]
@@ -3761,8 +3761,660 @@ namespace nGratis.Cop.Olympus.Contract.Test
 
                 action
                     .Should().Throw<CopPostConditionException>()
-                    .WithMessage("POST-CONDITION: Variable [value] should be equal to [0]!");
+                    .WithMessage($"POST-CONDITION: Variable [value] should be equal to [0]!");
             }
         }
+
+        public class LessThanMethod_UInt16
+        {
+            [Fact]
+            public void WhenGettingValidPreCondition_ShouldNotThrowException()
+            {
+                // Arrange.
+
+                var value = ushort.MinValue;
+
+                // Act.
+
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.LessThan((ushort.MinValue + ushort.MaxValue) / 2);
+                });
+
+                // Assert.
+
+                action
+                    .Should().NotThrow();
+            }
+
+            [Fact]
+            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+            {
+                // Arrange.
+
+                var value = ushort.MaxValue;
+
+                // Act.
+
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.LessThan((ushort.MinValue + ushort.MaxValue) / 2);
+                });
+
+                // Assert.
+
+                action
+                    .Should().Throw<CopPreConditionException>()
+                    .WithMessage($"PRE-CONDITION: Variable [value] should be less than [{(ushort.MinValue + ushort.MaxValue) / 2}]!");
+            }
+
+            [Fact]
+            public void WhenGettingValidPostCondition_ShouldNotThrowException()
+            {
+                // Arrange.
+
+                var value = ushort.MinValue;
+
+                // Act.
+
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.LessThan((ushort.MinValue + ushort.MaxValue) / 2);
+                });
+
+                // Assert.
+
+                action
+                    .Should().NotThrow();
+            }
+
+            [Fact]
+            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+            {
+                // Arrange.
+
+                var value = ushort.MaxValue;
+
+                // Act.
+
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.LessThan((ushort.MinValue + ushort.MaxValue) / 2);
+                });
+
+                // Assert.
+
+                action
+                    .Should().Throw<CopPostConditionException>()
+                    .WithMessage($"POST-CONDITION: Variable [value] should be less than [{(ushort.MinValue + ushort.MaxValue) / 2}]!");
+            }
+        }
+
+        public class LessThanOrEqualToMethod_UInt16
+        {
+            [Fact]
+            public void WhenGettingValidPreCondition_ShouldNotThrowException()
+            {
+                // Arrange.
+
+                var value = ushort.MinValue;
+
+                // Act.
+
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.LessThanOrEqualTo((ushort.MinValue + ushort.MaxValue) / 2);
+                });
+
+                // Assert.
+
+                action
+                    .Should().NotThrow();
+            }
+
+            [Fact]
+            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+            {
+                // Arrange.
+
+                var value = ushort.MaxValue;
+
+                // Act.
+
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.LessThanOrEqualTo((ushort.MinValue + ushort.MaxValue) / 2);
+                });
+
+                // Assert.
+
+                action
+                    .Should().Throw<CopPreConditionException>()
+                    .WithMessage($"PRE-CONDITION: Variable [value] should be less than or equal to [{(ushort.MinValue + ushort.MaxValue) / 2}]!");
+            }
+
+            [Fact]
+            public void WhenGettingValidPostCondition_ShouldNotThrowException()
+            {
+                // Arrange.
+
+                var value = ushort.MinValue;
+
+                // Act.
+
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.LessThanOrEqualTo((ushort.MinValue + ushort.MaxValue) / 2);
+                });
+
+                // Assert.
+
+                action
+                    .Should().NotThrow();
+            }
+
+            [Fact]
+            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+            {
+                // Arrange.
+
+                var value = ushort.MaxValue;
+
+                // Act.
+
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.LessThanOrEqualTo((ushort.MinValue + ushort.MaxValue) / 2);
+                });
+
+                // Assert.
+
+                action
+                    .Should().Throw<CopPostConditionException>()
+                    .WithMessage($"POST-CONDITION: Variable [value] should be less than or equal to [{(ushort.MinValue + ushort.MaxValue) / 2}]!");
+            }
+        }
+
+        public class GreaterThanMethod_UInt16
+        {
+            [Fact]
+            public void WhenGettingValidPreCondition_ShouldNotThrowException()
+            {
+                // Arrange.
+
+                var value = ushort.MaxValue;
+
+                // Act.
+
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.GreaterThan((ushort.MinValue + ushort.MaxValue) / 2);
+                });
+
+                // Assert.
+
+                action
+                    .Should().NotThrow();
+            }
+
+            [Fact]
+            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+            {
+                // Arrange.
+
+                var value = ushort.MinValue;
+
+                // Act.
+
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.GreaterThan((ushort.MinValue + ushort.MaxValue) / 2);
+                });
+
+                // Assert.
+
+                action
+                    .Should().Throw<CopPreConditionException>()
+                    .WithMessage($"PRE-CONDITION: Variable [value] should be greater than [{(ushort.MinValue + ushort.MaxValue) / 2}]!");
+            }
+
+            [Fact]
+            public void WhenGettingValidPostCondition_ShouldNotThrowException()
+            {
+                // Arrange.
+
+                var value = ushort.MaxValue;
+
+                // Act.
+
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.GreaterThan((ushort.MinValue + ushort.MaxValue) / 2);
+                });
+
+                // Assert.
+
+                action
+                    .Should().NotThrow();
+            }
+
+            [Fact]
+            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+            {
+                // Arrange.
+
+                var value = ushort.MinValue;
+
+                // Act.
+
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.GreaterThan((ushort.MinValue + ushort.MaxValue) / 2);
+                });
+
+                // Assert.
+
+                action
+                    .Should().Throw<CopPostConditionException>()
+                    .WithMessage($"POST-CONDITION: Variable [value] should be greater than [{(ushort.MinValue + ushort.MaxValue) / 2}]!");
+            }
+        }
+
+        public class GreaterThanOrEqualToMethod_UInt16
+        {
+            [Fact]
+            public void WhenGettingValidPreCondition_ShouldNotThrowException()
+            {
+                // Arrange.
+
+                var value = ushort.MaxValue;
+
+                // Act.
+
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.GreaterThanOrEqualTo((ushort.MinValue + ushort.MaxValue) / 2);
+                });
+
+                // Assert.
+
+                action
+                    .Should().NotThrow();
+            }
+
+            [Fact]
+            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+            {
+                // Arrange.
+
+                var value = ushort.MinValue;
+
+                // Act.
+
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.GreaterThanOrEqualTo((ushort.MinValue + ushort.MaxValue) / 2);
+                });
+
+                // Assert.
+
+                action
+                    .Should().Throw<CopPreConditionException>()
+                    .WithMessage($"PRE-CONDITION: Variable [value] should be greater than or equal to [{(ushort.MinValue + ushort.MaxValue) / 2}]!");
+            }
+
+            [Fact]
+            public void WhenGettingValidPostCondition_ShouldNotThrowException()
+            {
+                // Arrange.
+
+                var value = ushort.MaxValue;
+
+                // Act.
+
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.GreaterThanOrEqualTo((ushort.MinValue + ushort.MaxValue) / 2);
+                });
+
+                // Assert.
+
+                action
+                    .Should().NotThrow();
+            }
+
+            [Fact]
+            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+            {
+                // Arrange.
+
+                var value = ushort.MinValue;
+
+                // Act.
+
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.GreaterThanOrEqualTo((ushort.MinValue + ushort.MaxValue) / 2);
+                });
+
+                // Assert.
+
+                action
+                    .Should().Throw<CopPostConditionException>()
+                    .WithMessage($"POST-CONDITION: Variable [value] should be greater than or equal to [{(ushort.MinValue + ushort.MaxValue) / 2}]!");
+            }
+        }
+
+        public class PositiveMethod_UInt16
+        {
+            [Fact]
+            public void WhenGettingValidPreCondition_ShouldNotThrowException()
+            {
+                // Arrange.
+
+                var value = ushort.MaxValue;
+
+                // Act.
+
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.Positive();
+                });
+
+                // Assert.
+
+                action
+                    .Should().NotThrow();
+            }
+
+            [Fact]
+            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+            {
+                // Arrange.
+
+                var value = ushort.MinValue;
+
+                // Act.
+
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.Positive();
+                });
+
+                // Assert.
+
+                action
+                    .Should().Throw<CopPreConditionException>()
+                    .WithMessage($"PRE-CONDITION: Variable [value] should be a positive number!");
+            }
+
+            [Fact]
+            public void WhenGettingValidPostCondition_ShouldNotThrowException()
+            {
+                // Arrange.
+
+                var value = ushort.MaxValue;
+
+                // Act.
+
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.Positive();
+                });
+
+                // Assert.
+
+                action
+                    .Should().NotThrow();
+            }
+
+            [Fact]
+            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+            {
+                // Arrange.
+
+                var value = ushort.MinValue;
+
+                // Act.
+
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.Positive();
+                });
+
+                // Assert.
+
+                action
+                    .Should().Throw<CopPostConditionException>()
+                    .WithMessage($"POST-CONDITION: Variable [value] should be a positive number!");
+            }
+        }
+
+        public class ZeroMethod_UInt16
+        {
+            [Fact]
+            public void WhenGettingValidPreCondition_ShouldNotThrowException()
+            {
+                // Arrange.
+
+                var value = (ushort)0;
+
+                // Act.
+
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.Zero();
+                });
+
+                // Assert.
+
+                action
+                    .Should().NotThrow();
+            }
+
+            [Fact]
+            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+            {
+                // Arrange.
+
+                var value = ushort.MaxValue;
+
+                // Act.
+
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.Zero();
+                });
+
+                // Assert.
+
+                action
+                    .Should().Throw<CopPreConditionException>()
+                    .WithMessage($"PRE-CONDITION: Variable [value] should be zero!");
+            }
+
+            [Fact]
+            public void WhenGettingValidPostCondition_ShouldNotThrowException()
+            {
+                // Arrange.
+
+                var value = (ushort)0;
+
+                // Act.
+
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.Zero();
+                });
+
+                // Assert.
+
+                action
+                    .Should().NotThrow();
+            }
+
+            [Fact]
+            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+            {
+                // Arrange.
+
+                var value = ushort.MaxValue;
+
+                // Act.
+
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.Zero();
+                });
+
+                // Assert.
+
+                action
+                    .Should().Throw<CopPostConditionException>()
+                    .WithMessage($"POST-CONDITION: Variable [value] should be zero!");
+            }
+        }
+
+        public class EqualToMethod_UInt16
+        {
+            [Fact]
+            public void WhenGettingValidPreCondition_ShouldNotThrowException()
+            {
+                // Arrange.
+
+                var value = (ushort)0;
+
+                // Act.
+
+                var action = new Action(() =>
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.EqualTo((ushort)0);
+                });
+
+                // Assert.
+
+                action
+                    .Should().NotThrow();
+            }
+
+            [Fact]
+            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+            {
+                // Arrange.
+
+                var value = ushort.MaxValue;
+
+                // Act.
+
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Require(value, nameof(value))
+                        .Is.EqualTo((ushort)0);
+                });
+
+                // Assert.
+
+                action
+                    .Should().Throw<CopPreConditionException>()
+                    .WithMessage($"PRE-CONDITION: Variable [value] should be equal to [0]!");
+            }
+
+            [Fact]
+            public void WhenGettingValidPostCondition_ShouldNotThrowException()
+            {
+                // Arrange.
+
+                var value = (ushort)0;
+
+                // Act.
+
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.EqualTo((ushort)0);
+                });
+
+                // Assert.
+
+                action
+                    .Should().NotThrow();
+            }
+
+            [Fact]
+            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+            {
+                // Arrange.
+
+                var value = ushort.MaxValue;
+
+                // Act.
+
+                var action = new Action(() => 
+                {
+                    Guard
+                        .Ensure(value, nameof(value))
+                        .Is.EqualTo((ushort)0);
+                });
+
+                // Assert.
+
+                action
+                    .Should().Throw<CopPostConditionException>()
+                    .WithMessage($"POST-CONDITION: Variable [value] should be equal to [0]!");
+            }
+        }
+
     }
 }

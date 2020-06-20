@@ -36,5 +36,5 @@ using System.Windows.Markup;
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
 [assembly: Guid("b90c4c38-a600-44bb-840e-2a7d4b46618a")]
-[assembly: CLSCompliant(true)]
+[assembly: CLSCompliant(false)]
 [assembly: XmlnsDefinition("http://schemas.ngratis.com/2014/olympus", "nGratis.Cop.Olympus")]
