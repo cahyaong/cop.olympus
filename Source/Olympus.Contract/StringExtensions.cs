@@ -30,6 +30,7 @@
 
 namespace System
 {
+    using System.Collections.Generic;
     using System.Linq;
     using System.Security.Cryptography;
     using System.Text;
@@ -63,6 +64,24 @@ namespace System
 
                 return hashBuilder.ToString();
             }
+        }
+
+        public static string ToPrettifiedText(this IReadOnlyCollection<string> values)
+        {
+            // TODO: Update any similar code to use this method!
+
+            if (!values.Any())
+            {
+                return nGratis.Cop.Olympus.Contract.Text.Empty;
+            }
+
+            var prettifiedValues = values
+                .Select(value => !string.IsNullOrEmpty(value)
+                    ? $"[{value}]"
+                    : @"[/]")
+                .ToArray();
+
+            return string.Join(", ", prettifiedValues);
         }
     }
 }

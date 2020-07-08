@@ -71,6 +71,7 @@
     <Compile Include="Condition\GuardTests.System.cs">
       <DependentUpon>GuardTests.cs</DependentUpon>
     </Compile>
+    <Compile Include="StringExtensionsTests.cs" />
     <Compile Include="StubConditionValidator.cs" />
     <Compile Include="MimeTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
