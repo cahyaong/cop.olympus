@@ -26,21 +26,20 @@
 // <creation_timestamp>Friday, 28 April 2017 11:27:29 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-// ReSharper disable CheckNamespace
+// ReSharper disable once CheckNamespace
 
-namespace System
+namespace Newtonsoft.Json
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Linq;
     using System.Text;
-    using Newtonsoft.Json;
     using nGratis.Cop.Olympus.Contract;
 
     public static class SerializationExtensions
     {
-        public static Stream SerializeManyAsJson<T>(this IEnumerable<T> instances)
+        public static Stream SerializeManyToJson<T>(this IEnumerable<T> instances)
         {
             Guard
                 .Require(instances, nameof(instances))
@@ -48,11 +47,11 @@ namespace System
 
             return instances
                 .ToArray()
-                .SerializeAsJson();
+                .SerializeToJson();
         }
 
         [SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times")]
-        public static Stream SerializeAsJson<T>(this T instance)
+        public static Stream SerializeToJson<T>(this T instance)
             where T : class
         {
             Guard

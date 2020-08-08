@@ -26,7 +26,7 @@
 // <creation_timestamp>Sunday, 1 April 2018 4:26:50 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-// ReSharper disable CheckNamespace
+// ReSharper disable once CheckNamespace
 
 namespace Moq
 {

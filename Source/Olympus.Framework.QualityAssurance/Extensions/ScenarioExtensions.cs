@@ -26,7 +26,7 @@
 // <creation_timestamp>Monday, 20 April 2015 1:14:58 PM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-// ReSharper disable CheckNamespace
+// ReSharper disable once CheckNamespace
 
 namespace System.Data
 {

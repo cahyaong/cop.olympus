@@ -26,7 +26,7 @@
 // <creation_timestamp>Saturday, 25 April 2015 1:23:52 PM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-// ReSharper disable CheckNamespace
+// ReSharper disable once CheckNamespace
 
 namespace nGratis.Cop.Olympus.Contract
 {

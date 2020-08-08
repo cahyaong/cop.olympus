@@ -26,7 +26,7 @@
 // <creation_timestamp>Tuesday, 25 April 2017 6:51:18 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-// ReSharper disable CheckNamespace
+// ReSharper disable once CheckNamespace
 
 namespace System.Drawing
 {
