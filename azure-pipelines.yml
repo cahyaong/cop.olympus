@@ -22,9 +22,11 @@ steps:
        paket | "$(Agent.OS)"
        paket
     path: $(packagesDirectory)
+    cacheHitVar: isPackagesFound
   displayName: Cache NuGet packages
 
 - task: DotNetCoreCLI@2
+  condition: ne(variables.isPackagesFound, 'true')
   inputs:
     command: 'restore'
     projects: Source/nGratis.Cop.Olympus.sln
@@ -34,6 +36,7 @@ steps:
     solution: '$(solution)'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+    restoreNugetPackages: false
 
 - task: VSTest@2
   inputs:
