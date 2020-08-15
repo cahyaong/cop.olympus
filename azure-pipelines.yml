@@ -1,0 +1,35 @@
+trigger:
+- master
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  solution: '**/nGratis.Cop.Olympus.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+
+steps:
+- checkout: self
+  clean: true
+  submodules: true
+  
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'restore'
+    projects: Source/nGratis.Cop.Olympus.sln
+
+- task: VSBuild@1
+  inputs:
+    solution: '$(solution)'
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
+
+- task: VSTest@2
+  inputs:
+    testSelector: 'testAssemblies'
+    testAssemblyVer2: '**/bin/$(buildConfiguration)/*Test.dll'
+    searchFolder: 'Source'
+    pathToCustomTestAdapters: 'Source/packages/_test/xunit.runner.visualstudio/build/_common'
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
