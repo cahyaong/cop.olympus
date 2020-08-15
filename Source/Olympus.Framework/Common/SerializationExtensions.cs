@@ -61,19 +61,20 @@ namespace Newtonsoft.Json
             var serializer = new JsonSerializer();
             var stream = new MemoryStream();
 
-            using (var streamWriter = new StreamWriter(stream, Encoding.UTF8, 4096, true))
-            using (var jsonWriter = new JsonTextWriter(streamWriter))
+            using var streamWriter = new StreamWriter(stream, Encoding.UTF8, 4096, true);
+
+            using var jsonWriter = new JsonTextWriter(streamWriter)
             {
-                jsonWriter.Formatting = Formatting.Indented;
-                jsonWriter.IndentChar = ' ';
-                jsonWriter.Indentation = 2;
+                Formatting = Formatting.Indented,
+                IndentChar = ' ',
+                Indentation = 2
+            };
 
-                serializer.Serialize(jsonWriter, instance, typeof(T));
-                jsonWriter.Flush();
-                stream.Position = 0;
+            serializer.Serialize(jsonWriter, instance, typeof(T));
+            jsonWriter.Flush();
+            stream.Position = 0;
 
-                return stream;
-            }
+            return stream;
         }
     }
 }

@@ -36,16 +36,11 @@ namespace nGratis.Cop.Olympus.Framework
 
     public class IdentityProvider : IIdentityProvider
     {
-        static IdentityProvider()
-        {
-            IdentityProvider.Instance = new IdentityProvider();
-        }
-
         private IdentityProvider()
         {
         }
 
-        public static IIdentityProvider Instance { get; private set; }
+        public static IIdentityProvider Instance { get; } = new IdentityProvider();
 
         public Guid CreateGuid()
         {

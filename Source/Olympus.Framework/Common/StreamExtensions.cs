@@ -92,17 +92,15 @@ namespace System.IO
                 stream.Position = 0;
             }
 
-            using (var reader = new StreamReader(stream, encoding, true, StreamExtensions.BufferSize, true))
+            using var reader = new StreamReader(stream, encoding, true, StreamExtensions.BufferSize, true);
+            var content = reader.ReadToEnd();
+
+            if (stream.CanSeek)
             {
-                var content = reader.ReadToEnd();
-
-                if (stream.CanSeek)
-                {
-                    stream.Position = 0;
-                }
-
-                return content;
+                stream.Position = 0;
             }
+
+            return content;
         }
     }
 }

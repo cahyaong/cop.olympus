@@ -136,6 +136,8 @@ namespace nGratis.Cop.Olympus.Wpf
             this._onTargetErrorEncountered = onErrorEncountered;
         }
 
+        // TODO: Need to refactor and simplify this crusty implementation of property changed event handling!
+
         private async Task OnSourcePropertyChangedAsync(string propertyName)
         {
             if (this._sourceProperty.Name != propertyName)
@@ -154,17 +156,27 @@ namespace nGratis.Cop.Olympus.Wpf
                 {
                     if (typeof(Task<CallbackResult>).IsAssignableFrom(this._targetCallbackMethod.ReturnType))
                     {
-                        var result = await (Task<CallbackResult>)this._targetCallbackMethod.Invoke(this._target, null);
+                        var task = (Task<CallbackResult>)this._targetCallbackMethod.Invoke(this._target, null);
 
-                        if (result.HasError)
+                        if (task != null)
                         {
-                            this._onSourceErrorEncountered?.Invoke();
-                            return;
+                            var result = await task;
+
+                            if (result.HasError)
+                            {
+                                this._onSourceErrorEncountered?.Invoke();
+                                return;
+                            }
                         }
                     }
                     else if (typeof(Task).IsAssignableFrom(this._targetCallbackMethod.ReturnType))
                     {
-                        await (Task)this._targetCallbackMethod.Invoke(this._target, null);
+                        var task = (Task)this._targetCallbackMethod.Invoke(this._target, null);
+
+                        if (task != null)
+                        {
+                            await task;
+                        }
                     }
                     else
                     {
@@ -203,17 +215,27 @@ namespace nGratis.Cop.Olympus.Wpf
                 {
                     if (typeof(Task<CallbackResult>).IsAssignableFrom(this._sourceCallbackMethod.ReturnType))
                     {
-                        var result = await (Task<CallbackResult>)this._sourceCallbackMethod.Invoke(this._source, null);
+                        var task = (Task<CallbackResult>)this._sourceCallbackMethod.Invoke(this._source, null);
 
-                        if (result.HasError)
+                        if (task != null)
                         {
-                            this._onTargetErrorEncountered?.Invoke();
-                            return;
+                            var result = await task;
+
+                            if (result.HasError)
+                            {
+                                this._onTargetErrorEncountered?.Invoke();
+                                return;
+                            }
                         }
                     }
                     else if (typeof(Task).IsAssignableFrom(this._sourceCallbackMethod.ReturnType))
                     {
-                        await (Task)this._sourceCallbackMethod.Invoke(this._source, null);
+                        var task = (Task)this._sourceCallbackMethod.Invoke(this._source, null);
+
+                        if (task != null)
+                        {
+                            await task;
+                        }
                     }
                     else
                     {

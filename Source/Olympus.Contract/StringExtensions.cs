@@ -53,17 +53,15 @@ namespace System
                 return StringExtensions.DefaultHash;
             }
 
-            using (var md5 = MD5.Create())
-            {
-                var hashBuilder = new StringBuilder();
+            using var md5 = MD5.Create();
+            var hashBuilder = new StringBuilder();
 
-                md5
-                    .ComputeHash(Encoding.UTF8.GetBytes(text))
-                    .ToList()
-                    .ForEach(chunk => hashBuilder.Append(chunk.ToString("x2")));
+            md5
+                .ComputeHash(Encoding.UTF8.GetBytes(text))
+                .ToList()
+                .ForEach(chunk => hashBuilder.Append(chunk.ToString("x2")));
 
-                return hashBuilder.ToString();
-            }
+            return hashBuilder.ToString();
         }
 
         public static string ToPrettifiedText(this IReadOnlyCollection<string> values)

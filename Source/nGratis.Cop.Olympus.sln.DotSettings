@@ -8,11 +8,11 @@
 	<s:Boolean x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=D0F6690E2811D547B38C888CDF5BCFC1/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=D0F6690E2811D547B38C888CDF5BCFC1/RelativePath/@EntryValue">..\Olympus.Contract.Test\nGratis.Cop.Olympus.Contract.Test.csproj.DotSettings</s:String>
 	<s:Boolean x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=F3E2D81F77981C4F9A8A9B8F698E9877/@KeyIndexDefined">True</s:Boolean>
-	<s:String x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=F3E2D81F77981C4F9A8A9B8F698E9877/RelativePath/@EntryValue">..\nGratis.Shared.DotSettings</s:String>
+	<s:String x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=F3E2D81F77981C4F9A8A9B8F698E9877/RelativePath/@EntryValue">..\Olympus.Shared\nGratis.Shared.DotSettings</s:String>
 	<s:Boolean x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=FBD33673B273254CBBD395A780AD5487/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=FBD33673B273254CBBD395A780AD5487/RelativePath/@EntryValue">..\Olympus.Contract\nGratis.Cop.Olympus.Contract.csproj.DotSettings</s:String>
 	<s:Boolean x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=FDD98B0FC0F34F469E7661676B2CEB5B/@KeyIndexDefined">True</s:Boolean>
-	<s:String x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=FDD98B0FC0F34F469E7661676B2CEB5B/RelativePath/@EntryValue">..\nGratis.Cop.Shared.DotSettings</s:String>
+	<s:String x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=FDD98B0FC0F34F469E7661676B2CEB5B/RelativePath/@EntryValue">..\Olympus.Shared\nGratis.Cop.Shared.DotSettings</s:String>
 	<s:Boolean x:Key="/Default/Environment/InjectedLayers/InjectedLayerCustomization/=File4A9582635890054E8FBEA7BC98EE5F13/@KeyIndexDefined">True</s:Boolean>
 	<s:Double x:Key="/Default/Environment/InjectedLayers/InjectedLayerCustomization/=File4A9582635890054E8FBEA7BC98EE5F13/RelativePriority/@EntryValue">4</s:Double>
 	<s:Boolean x:Key="/Default/Environment/InjectedLayers/InjectedLayerCustomization/=File4B82B915F5C45D42B6385CCC759D7D01/@KeyIndexDefined">True</s:Boolean>

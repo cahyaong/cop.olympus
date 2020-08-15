@@ -38,8 +38,8 @@ namespace nGratis.Cop.Olympus.Wpf
         public object Convert(object value, Type targetType, object parameter, CultureInfo cultureInfo)
         {
             return value?
-                .ToString()
-                .ToLower(cultureInfo);
+                .ToString()?
+                .ToLower(cultureInfo) ?? string.Empty;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo cultureInfo)

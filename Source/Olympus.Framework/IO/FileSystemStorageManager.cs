@@ -131,20 +131,18 @@ namespace nGratis.Cop.Olympus.Framework
 
             if (dataSpec.Mime.IsText)
             {
-                using (var reader = new StreamReader(dataStream))
-                using (var writer = new StreamWriter(File.OpenWrite(fileUri.LocalPath), Encoding.UTF8))
-                {
-                    writer.Write(reader.ReadToEnd());
-                    writer.Flush();
-                }
+                using var reader = new StreamReader(dataStream);
+                using var writer = new StreamWriter(File.OpenWrite(fileUri.LocalPath), Encoding.UTF8);
+
+                writer.Write(reader.ReadToEnd());
+                writer.Flush();
             }
             else
             {
-                using (var fileStream = new FileStream(fileUri.LocalPath, FileMode.Create))
-                {
-                    dataStream.CopyTo(fileStream);
-                    fileStream.Flush();
-                }
+                using var fileStream = new FileStream(fileUri.LocalPath, FileMode.Create);
+
+                dataStream.CopyTo(fileStream);
+                fileStream.Flush();
             }
         }
     }

@@ -42,23 +42,22 @@ namespace nGratis.Cop.Olympus.Framework.Test
             {
                 // Arrange.
 
-                using (var stream = new MemoryStream(Encoding.ASCII.GetBytes("[_MOCK_CONTENT_]")))
-                {
-                    stream.Position = stream.Length / 2;
+                using var stream = new MemoryStream(Encoding.ASCII.GetBytes("[_MOCK_CONTENT_]"));
 
-                    // Act.
+                stream.Position = stream.Length / 2;
 
-                    var blob = stream.ReadBlob();
+                // Act.
 
-                    // Assert.
+                var blob = stream.ReadBlob();
 
-                    blob
-                        .Should().BeEquivalentTo(Encoding.ASCII.GetBytes("[_MOCK_CONTENT_]"));
+                // Assert.
 
-                    stream
-                        .Position
-                        .Should().Be(0);
-                }
+                blob
+                    .Should().BeEquivalentTo(Encoding.ASCII.GetBytes("[_MOCK_CONTENT_]"));
+
+                stream
+                    .Position
+                    .Should().Be(0);
             }
         }
 
@@ -69,23 +68,22 @@ namespace nGratis.Cop.Olympus.Framework.Test
             {
                 // Arrange.
 
-                using (var stream = new MemoryStream(Encoding.UTF8.GetBytes("[_MOCK_CONTENT_]")))
-                {
-                    stream.Position = stream.Length / 2;
+                using var stream = new MemoryStream(Encoding.UTF8.GetBytes("[_MOCK_CONTENT_]"));
 
-                    // Act.
+                stream.Position = stream.Length / 2;
 
-                    var text = stream.ReadText();
+                // Act.
 
-                    // Assert.
+                var text = stream.ReadText();
 
-                    text
-                        .Should().BeEquivalentTo("[_MOCK_CONTENT_]");
+                // Assert.
 
-                    stream
-                        .Position
-                        .Should().Be(0);
-                }
+                text
+                    .Should().BeEquivalentTo("[_MOCK_CONTENT_]");
+
+                stream
+                    .Position
+                    .Should().Be(0);
             }
         }
     }
