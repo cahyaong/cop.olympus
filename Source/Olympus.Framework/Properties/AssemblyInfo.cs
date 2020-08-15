@@ -1,4 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="AssemblyInfo.cs" company="nGratis">
 //  The MIT License (MIT)
 //
@@ -29,12 +29,9 @@
 using System;
 using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Windows.Markup;
 
 [assembly: AssemblyTitle("nGratis.Cop.Olympus.Framework")]
 [assembly: AssemblyDescription("")]
-[assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
-[assembly: Guid("b90c4c38-a600-44bb-840e-2a7d4b46618a")]
+[assembly: Guid("abe37048-538a-40a4-99f0-fedab5d87793")]
 [assembly: CLSCompliant(false)]
-[assembly: XmlnsDefinition("http://schemas.ngratis.com/2014/olympus", "nGratis.Cop.Olympus")]

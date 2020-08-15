@@ -1,7 +1,0 @@
-group _Contract
-    JetBrains.Annotations
-
-group _Support
-    Newtonsoft.Json
-    NLog
-    System.Reactive.Linq

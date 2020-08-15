@@ -7,13 +7,6 @@ nuget Newtonsoft.Json
 nuget System.Threading.Tasks.Extensions
 nuget YamlDotNet
 
-group _Contract
-
-    framework: netstandard2.1
-    source https://api.nuget.org/v3/index.json
-
-    nuget JetBrains.Annotations
-
 group _UI
 
     framework: netcoreapp3.1
@@ -29,6 +22,7 @@ group _Support
     framework: netstandard2.1
     source https://api.nuget.org/v3/index.json
 
+    nuget JetBrains.Annotations
     nuget Moq
     nuget Newtonsoft.Json
     nuget NLog

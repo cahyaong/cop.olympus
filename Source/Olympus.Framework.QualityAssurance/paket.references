@@ -1,5 +1,3 @@
-group _Contract
-    JetBrains.Annotations
-
 group _Support
+    JetBrains.Annotations
     Moq

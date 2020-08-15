@@ -1,4 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="TypeExtensions.cs" company="nGratis">
 //  The MIT License (MIT)
 //
@@ -30,18 +30,53 @@
 
 namespace System
 {
+    using System.Windows;
+    using nGratis.Cop.Olympus.Contract;
+
     public static class TypeExtensions
     {
-        public static string GetGenericName(this Type type)
+        public static void AddEventHandler<TInstance, TArgs>(
+            this TInstance instance,
+            string eventName,
+            EventHandler<TArgs> handler)
+            where TInstance : class
+            where TArgs : EventArgs
         {
-            if (type == null)
-            {
-                return null;
-            }
+            Guard
+                .Require(instance, nameof(instance))
+                .Is.Not.Null();
 
-            return type.IsGenericType
-                ? type.Name.Remove(type.Name.IndexOf('`'))
-                : type.Name;
+            Guard
+                .Require(eventName, nameof(eventName))
+                .Is.Not.Empty();
+
+            Guard
+                .Require(handler, nameof(handler))
+                .Is.Not.Null();
+
+            WeakEventManager<TInstance, TArgs>.AddHandler(instance, eventName, handler);
+        }
+
+        public static void RemoveEventHandler<TInstance, TArgs>(
+            this TInstance instance,
+            string eventName,
+            EventHandler<TArgs> handler)
+            where TInstance : class
+            where TArgs : EventArgs
+        {
+            Guard
+                .Require(instance, nameof(instance))
+                .Is.Not.Null();
+
+            Guard
+                .Require(eventName, nameof(eventName))
+                .Is.Not.Empty();
+
+            Guard
+                .Require(handler, nameof(handler))
+                .Is.Not.Null();
+
+            WeakEventManager<TInstance, TArgs>.RemoveHandler(instance, eventName, handler);
         }
     }
 }

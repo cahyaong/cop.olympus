@@ -8,11 +8,14 @@
     <Authors>Cahya Ong</Authors>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="nGratis.Cop.Olympus.Wpf.csproj.DotSettings" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="..\Olympus.Shared\GlobalAssemblyInfo.cs" Link="Properties\GlobalAssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Olympus.Contract\nGratis.Cop.Olympus.Contract.csproj" />
-    <ProjectReference Include="..\Olympus.Framework.Support\nGratis.Cop.Olympus.Framework.Support.csproj" />
+    <ProjectReference Include="..\Olympus.Framework\nGratis.Cop.Olympus.Framework.csproj" />
   </ItemGroup>
   <Import Project="..\.paket\Paket.Restore.targets" />
 </Project>
