@@ -6,11 +6,10 @@
   <ResourceDictionary.MergedDictionaries>
     <olympus:SharedResourceDictionary Source="/nGratis.Cop.Olympus.Wpf;component/Cop.Converter.xaml" />
   </ResourceDictionary.MergedDictionaries>
-
-  <Style x:Key="{x:Type olympus:AweChart}" TargetType="olympus:AweChart">
+  <Style x:Key="{x:Type olympus:AweChart}" TargetType="{x:Type olympus:AweChart}">
     <Setter Property="Template">
       <Setter.Value>
-        <ControlTemplate TargetType="olympus:AweChart">
+        <ControlTemplate TargetType="{x:Type olympus:AweChart}">
           <oxy:PlotView
             Background="{DynamicResource Cop.Brush.Application.Background}"
             DefaultTrackerTemplate="{x:Null}"

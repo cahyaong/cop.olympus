@@ -1,10 +1,7 @@
 Humanizer.Core
 JetBrains.Annotations
-System.Reactive.Linq
 
 group _UI
-    Caliburn.Micro
     MahApps.Metro
-    ModernUI.WPF
     OxyPlot.Wpf
     ReactiveUI.WPF

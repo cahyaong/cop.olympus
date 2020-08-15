@@ -28,8 +28,10 @@
 
 namespace nGratis.Cop.Olympus.Demo
 {
+    using System.Windows;
     using nGratis.Cop.Olympus.Contract;
     using nGratis.Cop.Olympus.Framework;
+    using nGratis.Cop.Olympus.Wpf;
 
     public partial class App
     {
@@ -39,5 +41,15 @@ namespace nGratis.Cop.Olympus.Demo
         }
 
         public static ILogger Logger { get; }
+
+        protected override void OnStartup(StartupEventArgs args)
+        {
+            base.OnStartup(args);
+
+            // TODO: Make theme adjustable dynamically!
+
+            var theme = ControlzEx.Theming.ThemeManager.Current.ChangeTheme(this, "Dark.Green");
+            this.AdjustAccentColor(theme.PrimaryAccentColor);
+        }
     }
 }

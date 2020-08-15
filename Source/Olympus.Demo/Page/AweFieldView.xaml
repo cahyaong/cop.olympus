@@ -2,10 +2,10 @@
   x:Class="nGratis.Cop.Olympus.Demo.AweFieldView"
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-  xmlns:olympus="http://schemas.ngratis.com/2014/olympus"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:demo="clr-namespace:nGratis.Cop.Olympus.Demo"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:olympus="http://schemas.ngratis.com/2014/olympus"
   d:DataContext="{d:DesignInstance demo:AweFieldViewModel}"
   mc:Ignorable="d">
   <UserControl.Resources>

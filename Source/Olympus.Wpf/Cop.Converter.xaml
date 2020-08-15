@@ -12,5 +12,4 @@
   <wpf:ColorToSolidBrushConverter x:Key="Cop.Converter.ColorToSolidBrushConverter" />
   <wpf:EnumerableToCountConverter x:Key="Cop.Converter.EnumerableToCountConverter" />
   <wpf:EnumToValuesConverter x:Key="Cop.Converter.EnumToValuesConverter" />
-  <wpf:ModulesToLinkGroupsConverter x:Key="Cop.Converter.ModulesToLinkGroupsConverter" />
 </ResourceDictionary>

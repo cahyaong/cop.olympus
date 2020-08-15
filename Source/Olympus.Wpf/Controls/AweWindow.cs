@@ -29,47 +29,51 @@
 namespace nGratis.Cop.Olympus.Wpf
 {
     using System;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
+    using System.Reactive;
+    using System.Threading.Tasks;
     using System.Windows;
     using System.Windows.Controls;
-    using FirstFloor.ModernUI.Windows.Controls;
+    using MahApps.Metro.Controls;
+    using MahApps.Metro.Controls.Dialogs;
     using nGratis.Cop.Olympus.Contract;
     using nGratis.Cop.Olympus.Framework;
+    using ReactiveUI;
 
-    public class AweWindow : ModernWindow, IDisposable
+    public class AweWindow : MetroWindow, IDisposable
     {
+        private enum ExceptionSource
+        {
+            Unknown = 0,
+            Application,
+            Reactive
+        }
+
         private static readonly DependencyProperty LoggerProperty = DependencyProperty.Register(
             nameof(AweWindow.Logger),
             typeof(ILogger),
             typeof(AweWindow),
             new PropertyMetadata(VoidLogger.Instance, AweWindow.OnLoggerChanged));
 
-        private readonly IThemeManager _themeManager;
-
         private AweStatusBar _statusBar;
 
         private bool _isDisposed;
 
         public AweWindow()
-            : this(ThemeManager.Instance)
         {
+            // TODO: Fix unhandled exception handler, so that dialog should be acknowledged before app is closed!
+
+            AppDomain.CurrentDomain.UnhandledException += async (_, args) => await this
+                .OnUnhandledExceptionReceivedAsync(ExceptionSource.Application, args.ExceptionObject as Exception);
+
+            RxApp.DefaultExceptionHandler = Observer.Create<Exception>(async exception => await this
+                .OnUnhandledExceptionReceivedAsync(ExceptionSource.Reactive, exception));
+
+            this.Closed += this.OnClosed;
         }
 
         ~AweWindow()
         {
             this.Dispose(false);
-        }
-
-        internal AweWindow(IThemeManager themeManager)
-        {
-            Guard
-                .Require(themeManager, nameof(themeManager))
-                .Is.Not.Null();
-
-            this._themeManager = themeManager;
-
-            this.Closed += this.OnClosed;
         }
 
         public ILogger Logger
@@ -82,48 +86,37 @@ namespace nGratis.Cop.Olympus.Wpf
         {
             base.OnApplyTemplate();
 
-            if (!(this.GetTemplateChild("LayoutRoot") is Grid layoutGrid))
+            if (this.GetTemplateChild("PART_Content") is MetroContentControl metroContent)
             {
-                return;
+                var grid = new Grid
+                {
+                    RowDefinitions =
+                    {
+                        new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
+                        new RowDefinition { Height = GridLength.Auto }
+                    }
+                };
+
+                if (metroContent.Content is FrameworkElement innerContent)
+                {
+                    metroContent.Content = default;
+                    innerContent.SetValue(Grid.RowProperty, 0);
+                    grid.Children.Add(innerContent);
+                }
+
+                this._statusBar = new AweStatusBar();
+                this._statusBar.SetValue(Grid.RowProperty, 1);
+                this._statusBar.VerticalAlignment = VerticalAlignment.Center;
+
+                if (this.Logger != null)
+                {
+                    this._statusBar.Logger = this.Logger;
+                }
+
+                grid.Children.Add(this._statusBar);
+
+                metroContent.Content = grid;
             }
-
-            if (!(this.GetTemplateChild("ContentFrame") is ModernFrame contentFrame))
-            {
-                return;
-            }
-
-            if (!(this.GetTemplateChild("ResizeGrip") is Grid resizingGrid))
-            {
-                return;
-            }
-
-            this._statusBar?.Dispose();
-
-            this._statusBar = new AweStatusBar();
-            this._statusBar.SetValue(Grid.RowProperty, 3);
-            this._statusBar.VerticalAlignment = VerticalAlignment.Bottom;
-
-            if (this.Logger != null)
-            {
-                this._statusBar.Logger = this.Logger;
-            }
-
-            contentFrame.Margin = new Thickness(
-                contentFrame.Margin.Left,
-                contentFrame.Margin.Top,
-                contentFrame.Margin.Right,
-                this._themeManager.FindResource("Cop.StatusBar.Height", 0.0) + 8);
-
-            resizingGrid
-                .Children
-                .Cast<FrameworkElement>()
-                .OfType<System.Windows.Shapes.Path>()
-                .ToList()
-                .ForEach(path => path.Stroke = this._themeManager.ApplicationBackgroundBrush);
-
-            layoutGrid.Children.Remove(resizingGrid);
-            layoutGrid.Children.Add(this._statusBar);
-            layoutGrid.Children.Add(resizingGrid);
         }
 
         public void Dispose()
@@ -132,11 +125,6 @@ namespace nGratis.Cop.Olympus.Wpf
             GC.SuppressFinalize(this);
         }
 
-        [SuppressMessage(
-            "Microsoft.Usage",
-            "CA2213:DisposableFieldsShouldBeDisposed",
-            MessageId = "_statusBar",
-            Justification = "Does not work with NULL propagation syntax.")]
         protected virtual void Dispose(bool isDisposing)
         {
             if (this._isDisposed)
@@ -173,6 +161,23 @@ namespace nGratis.Cop.Olympus.Wpf
             {
                 disposable.Dispose();
             }
+        }
+
+        private async Task OnUnhandledExceptionReceivedAsync(ExceptionSource exceptionSource, Exception exception)
+        {
+            var dialogSettings = new MetroDialogSettings
+            {
+                AffirmativeButtonText = "OK",
+                ColorScheme = MetroDialogColorScheme.Theme,
+                DialogButtonFontSize = 11,
+                MaximumBodyHeight = this.Height * 0.3
+            };
+
+            await this.ShowMessageAsync(
+                 $"Unhandled Exception ({exceptionSource})",
+                 exception?.ToString() ?? Text.Unknown,
+                 MessageDialogStyle.Affirmative,
+                 dialogSettings);
         }
     }
 }

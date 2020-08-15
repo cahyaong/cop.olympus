@@ -2,7 +2,6 @@
   <ResourceDictionary.MergedDictionaries>
     <olympus:SharedResourceDictionary Source="/MahApps.Metro;component/Styles/Controls.xaml" />
     <olympus:SharedResourceDictionary Source="/MahApps.Metro;component/Styles/Fonts.xaml" />
-    <olympus:SharedResourceDictionary Source="/MahApps.Metro;component/Styles/Colors.xaml" />
     <olympus:SharedResourceDictionary Source="/nGratis.Cop.Olympus.Theme;component/Cop.Palette.Generic.xaml" />
     <olympus:SharedResourceDictionary Source="/nGratis.Cop.Olympus.Theme;component/Cop.Style.AweButton.xaml" />
     <olympus:SharedResourceDictionary Source="/nGratis.Cop.Olympus.Theme;component/Cop.Style.AweChart.xaml" />
@@ -17,6 +16,7 @@
     <olympus:SharedResourceDictionary Source="/nGratis.Cop.Olympus.Theme;component/Cop.Style.AweSystemBrowserButton.xaml" />
     <olympus:SharedResourceDictionary Source="/nGratis.Cop.Olympus.Theme;component/Cop.Style.AweTile.xaml" />
     <olympus:SharedResourceDictionary Source="/nGratis.Cop.Olympus.Theme;component/Cop.Style.AweTileGroup.xaml" />
+    <olympus:SharedResourceDictionary Source="/nGratis.Cop.Olympus.Theme;component/Cop.Style.Button.xaml" />
     <olympus:SharedResourceDictionary Source="/nGratis.Cop.Olympus.Theme;component/Cop.Style.DataGrid.xaml" />
     <olympus:SharedResourceDictionary Source="/nGratis.Cop.Olympus.Theme;component/Cop.Style.TextBlock.xaml" />
     <olympus:SharedResourceDictionary Source="/nGratis.Cop.Olympus.Theme;component/Cop.Style.TextBox.xaml" />

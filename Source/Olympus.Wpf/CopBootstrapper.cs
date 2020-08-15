@@ -28,45 +28,8 @@
 
 namespace nGratis.Cop.Olympus.Wpf
 {
-    using System;
-    using System.Reactive;
-    using Caliburn.Micro;
-    using FirstFloor.ModernUI.Windows.Controls;
-    using nGratis.Cop.Olympus.Contract;
-    using ReactiveUI;
-
-    public class CopBootstrapper : BootstrapperBase
+    public class CopBootstrapper
     {
-        static CopBootstrapper()
-        {
-            // TODO: Need to capture unhandled exception produced by RX observable!
-
-            AppDomain.CurrentDomain.UnhandledException += (_, args) => CopBootstrapper
-                .OnUnhandledExceptionReceived(ExceptionSource.Application, args.ExceptionObject as Exception);
-
-            RxApp.DefaultExceptionHandler = Observer.Create<Exception>(exception => CopBootstrapper
-                .OnUnhandledExceptionReceived(ExceptionSource.Reactive, exception));
-        }
-
-        private static void OnUnhandledExceptionReceived(ExceptionSource exceptionSource, Exception exception)
-        {
-            var dialog = new ModernDialog
-            {
-                Title = $"Unhandled Exception ({exceptionSource})",
-                Content = exception?.ToString() ?? Text.Unknown,
-                MaxWidth = int.MaxValue,
-                MaxHeight = int.MaxValue
-            };
-
-            dialog.Buttons = new[] { dialog.OkButton };
-            dialog.ShowDialog();
-        }
-    }
-
-    public enum ExceptionSource
-    {
-        Unknown = 0,
-        Application,
-        Reactive
+        // TODO: Add DI and IoC registration!
     }
 }

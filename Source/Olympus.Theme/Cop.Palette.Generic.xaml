@@ -1,13 +1,6 @@
-﻿<ResourceDictionary
-  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-  xmlns:olympus="http://schemas.ngratis.com/2014/olympus">
-  <ResourceDictionary.MergedDictionaries>
-    <olympus:SharedResourceDictionary Source="/FirstFloor.ModernUI;component/Assets/ModernUI.xaml" />
-  </ResourceDictionary.MergedDictionaries>
-
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <Color x:Key="Cop.Color.Accent">#FF7F7F7F</Color>
-  <SolidColorBrush x:Key="Cop.Brush.Accent" Color="{DynamicResource AccentColor}" />
+  <SolidColorBrush x:Key="Cop.Brush.Accent" Color="{DynamicResource Cop.Color.Accent}" />
   <SolidColorBrush x:Key="Cop.Brush.Error">#FF953734</SolidColorBrush>
   <SolidColorBrush x:Key="Cop.Brush.Warning">#FFE36C09</SolidColorBrush>
 </ResourceDictionary>

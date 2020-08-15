@@ -2,9 +2,9 @@
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:contract="clr-namespace:nGratis.Cop.Olympus.Contract;assembly=nGratis.Cop.Olympus.Contract"
-  xmlns:olympus="http://schemas.ngratis.com/2014/olympus"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:olympus="http://schemas.ngratis.com/2014/olympus"
   mc:Ignorable="d">
   <ResourceDictionary.MergedDictionaries>
     <olympus:SharedResourceDictionary Source="/nGratis.Cop.Olympus.Theme;component/Cop.Style.TextBlock.xaml" />
@@ -36,12 +36,14 @@
   </DataTemplate>
 
   <DataTemplate x:Key="Cop.AweField.Input.Text">
-    <TextBox Style="{StaticResource Cop.TextBox.Normal}" Text="{Binding Value, Mode=TwoWay, RelativeSource={RelativeSource AncestorType={x:Type olympus:AweField}}, UpdateSourceTrigger=PropertyChanged}" />
+    <TextBox Text="{Binding Value, Mode=TwoWay, RelativeSource={RelativeSource AncestorType={x:Type olympus:AweField}}, UpdateSourceTrigger=PropertyChanged}" />
   </DataTemplate>
 
   <DataTemplate x:Key="Cop.AweField.Input.DropDown">
     <ComboBox
       DisplayMemberPath="{Binding DisplayMemberPath, Mode=OneWay, RelativeSource={RelativeSource AncestorType={x:Type olympus:AweField}}}"
+      FontFamily="Segoe UI Semilight"
+      FontSize="11pt"
       ItemsSource="{Binding Values, Mode=OneWay, RelativeSource={RelativeSource AncestorType={x:Type olympus:AweField}}}"
       SelectedItem="{Binding Value, Mode=TwoWay, RelativeSource={RelativeSource AncestorType={x:Type olympus:AweField}}}" />
   </DataTemplate>
@@ -100,10 +102,10 @@
     </ItemsControl>
   </DataTemplate>
 
-  <Style x:Key="{x:Type olympus:AweField}" TargetType="olympus:AweField">
+  <Style x:Key="{x:Type olympus:AweField}" TargetType="{x:Type olympus:AweField}">
     <Setter Property="Template">
       <Setter.Value>
-        <ControlTemplate TargetType="olympus:AweField">
+        <ControlTemplate TargetType="{x:Type olympus:AweField}">
           <StackPanel olympus:ChildrenMargin.Value="0,5" Orientation="Vertical">
             <TextBlock
               HorizontalAlignment="Right"

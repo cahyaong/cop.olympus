@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IImageProvider.cs" company="nGratis">
+// <copyright file="RelayCommand.cs" company="nGratis">
 //  The MIT License (MIT)
 //
 //  Copyright (c) 2014 - 2020 Cahya Ong
@@ -23,16 +23,65 @@
 //  SOFTWARE.
 // </copyright>
 // <author>Cahya Ong - cahya.ong@gmail.com</author>
+// <creation_timestamp>Friday, August 14, 2020 10:32:42 PM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Vision.Imaging
+namespace nGratis.Cop.Olympus.Wpf
 {
+    using System;
+    using System.Windows.Input;
     using nGratis.Cop.Olympus.Contract;
 
-    public interface IImageProvider
+    public class RelayCommand : ICommand
     {
-        IImage LoadImage(DataSpec imageSpec);
+        private readonly Action _execute;
 
-        void SaveImage(IImage image, DataSpec imageSpec);
+        private readonly Func<bool> _canExecute;
+
+        private RelayCommand(Action execute, Func<bool> canExecute)
+        {
+            Guard
+                .Require(execute, nameof(execute))
+                .Is.Not.Null();
+
+            this._execute = execute;
+            this._canExecute = canExecute;
+        }
+
+        public static RelayCommand Create(Action execute, Func<bool> canExecute = null)
+        {
+            return new RelayCommand(execute, canExecute);
+        }
+
+        public event EventHandler CanExecuteChanged
+        {
+            add
+            {
+                if (this._canExecute != null)
+                {
+                    CommandManager.RequerySuggested += value;
+                }
+            }
+
+            remove
+            {
+                if (this._canExecute != null)
+                {
+                    CommandManager.RequerySuggested -= value;
+                }
+            }
+        }
+
+        public bool CanExecute(object parameter)
+        {
+            return
+                this._canExecute == null ||
+                this._canExecute();
+        }
+
+        public void Execute(object parameter)
+        {
+            this._execute();
+        }
     }
 }

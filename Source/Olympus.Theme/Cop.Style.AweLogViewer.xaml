@@ -1,18 +1,18 @@
 ﻿<ResourceDictionary
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-  xmlns:olympus="http://schemas.ngratis.com/2014/olympus"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:olympus="http://schemas.ngratis.com/2014/olympus"
   mc:Ignorable="d">
   <Style
     x:Key="{x:Type olympus:AweLogViewer}"
     BasedOn="{StaticResource {x:Type ContentControl}}"
-    TargetType="olympus:AweLogViewer">
+    TargetType="{x:Type olympus:AweLogViewer}">
     <Style.Setters>
       <Setter Property="Template">
         <Setter.Value>
-          <ControlTemplate TargetType="olympus:AweLogViewer">
+          <ControlTemplate TargetType="{x:Type olympus:AweLogViewer}">
             <DataGrid AutoGenerateColumns="False" ItemsSource="{TemplateBinding LogEntries}">
               <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Timestamp, StringFormat={}{0:yyyy-MMM-dd HH:mm:ss.ff}}" Header="Timestamp" />

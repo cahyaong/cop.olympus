@@ -3,16 +3,10 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:olympus="http://schemas.ngratis.com/2014/olympus">
   <ResourceDictionary.MergedDictionaries>
-    <olympus:SharedResourceDictionary Source="/MahApps.Metro;component/styles/Controls.TextBox.xaml" />
+    <olympus:SharedResourceDictionary Source="/MahApps.Metro;component/Styles/Controls.Buttons.xaml" />
   </ResourceDictionary.MergedDictionaries>
-  <Style
-    x:Key="{x:Type TextBox}"
-    BasedOn="{StaticResource MahApps.Styles.TextBox}"
-    TargetType="{x:Type TextBox}">
-    <Setter Property="VerticalAlignment" Value="Center" />
+  <Style BasedOn="{StaticResource MahApps.Styles.Button.Flat}" TargetType="{x:Type Button}">
     <Setter Property="FontFamily" Value="Segoe UI Semilight" />
     <Setter Property="FontSize" Value="11pt" />
-    <Setter Property="TextOptions.TextFormattingMode" Value="Ideal" />
-    <Setter Property="Padding" Value="2,1" />
   </Style>
 </ResourceDictionary>

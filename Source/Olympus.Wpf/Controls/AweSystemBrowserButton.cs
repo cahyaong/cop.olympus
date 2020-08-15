@@ -31,7 +31,6 @@ namespace nGratis.Cop.Olympus.Wpf
     using System.IO;
     using System.Windows;
     using System.Windows.Forms;
-    using FirstFloor.ModernUI.Presentation;
     using nGratis.Cop.Olympus.Contract;
     using Button = System.Windows.Controls.Button;
     using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
@@ -59,7 +58,7 @@ namespace nGratis.Cop.Olympus.Wpf
 
         public AweSystemBrowserButton()
         {
-            this.Command = new RelayCommand(this.OnMouseClicked, _ => true);
+            this.Command = RelayCommand.Create(this.SelectPath);
         }
 
         public string SelectedPath
@@ -74,7 +73,7 @@ namespace nGratis.Cop.Olympus.Wpf
             set => this.SetValue(AweSystemBrowserButton.ModeProperty, value);
         }
 
-        private void OnMouseClicked(object parameter)
+        private void SelectPath()
         {
             Guard
                 .Ensure(this.Mode, nameof(this.Mode))
@@ -107,7 +106,7 @@ namespace nGratis.Cop.Olympus.Wpf
             }
             else if (this.Mode == BrowsingMode.Folder)
             {
-                var folderDialog = new FolderBrowserDialog()
+                var folderDialog = new FolderBrowserDialog
                 {
                     SelectedPath = !string.IsNullOrEmpty(this.SelectedPath)
                         ? this.SelectedPath

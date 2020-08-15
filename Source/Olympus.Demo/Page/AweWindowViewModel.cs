@@ -32,8 +32,8 @@ namespace nGratis.Cop.Olympus.Demo
     using System.Linq;
     using System.Threading.Tasks;
     using System.Windows.Input;
-    using FirstFloor.ModernUI.Presentation;
     using nGratis.Cop.Olympus.Contract;
+    using nGratis.Cop.Olympus.Wpf;
     using ReactiveUI;
 
     internal class AweWindowViewModel : ReactiveObject
@@ -63,10 +63,7 @@ namespace nGratis.Cop.Olympus.Demo
                 await this.ThrowReactiveExceptionAsync();
             });
 
-            this.ThrowApplicationExceptionCommand = new RelayCommand(_ =>
-            {
-                this.ThrowApplicationException();
-            });
+            this.ThrowApplicationExceptionCommand = RelayCommand.Create(this.ThrowApplicationException);
         }
 
         public ICommand SimulateStatusOneCommand { get; }

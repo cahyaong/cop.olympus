@@ -7,10 +7,10 @@
     <olympus:SharedResourceDictionary Source="/nGratis.Cop.Olympus.Theme;component/Cop.Style.TextBlock.xaml" />
   </ResourceDictionary.MergedDictionaries>
 
-  <Style x:Key="{x:Type olympus:AweTileGroup}" TargetType="olympus:AweTileGroup">
+  <Style x:Key="{x:Type olympus:AweTileGroup}" TargetType="{x:Type olympus:AweTileGroup}">
     <Setter Property="Template">
       <Setter.Value>
-        <ControlTemplate TargetType="olympus:AweTileGroup">
+        <ControlTemplate TargetType="{x:Type olympus:AweTileGroup}">
           <Grid>
             <Grid.RowDefinitions>
               <RowDefinition Height="Auto" />

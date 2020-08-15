@@ -40,6 +40,8 @@ namespace nGratis.Cop.Olympus.Wpf
             this.ApplicationBackgroundBrush = this.FindBrush("Cop.Brush.Application.Background");
         }
 
+        // TODO: Replace singleton with DI and IoC!
+
         public static IThemeManager Instance { get; } = new ThemeManager();
 
         public Brush AccentBrush { get; }

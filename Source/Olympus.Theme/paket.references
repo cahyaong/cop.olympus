@@ -1,4 +1,3 @@
 group _UI
     MahApps.Metro
-    ModernUI.WPF
     OxyPlot.Wpf

@@ -6,7 +6,7 @@
     <olympus:SharedResourceDictionary Source="/nGratis.Cop.Olympus.Theme;component/Cop.Icon.MaterialDesignIcon.xaml" />
   </ResourceDictionary.MergedDictionaries>
 
-  <ControlTemplate x:Key="Cop.AweScrollBar.Template.Default" TargetType="ScrollBar">
+  <ControlTemplate x:Key="Cop.AweScrollBar.Template.Default" TargetType="{x:Type ScrollBar}">
     <Grid>
       <Grid.ColumnDefinitions>
         <ColumnDefinition Width="Auto" />
@@ -37,7 +37,7 @@
   <Style
     x:Key="{x:Type olympus:AweScrollBar}"
     BasedOn="{StaticResource {x:Type ScrollBar}}"
-    TargetType="ScrollBar">
+    TargetType="{x:Type ScrollBar}">
     <Setter Property="Template" Value="{StaticResource Cop.AweScrollBar.Template.Default}" />
   </Style>
 </ResourceDictionary>
