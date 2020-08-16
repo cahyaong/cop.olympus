@@ -23,7 +23,6 @@ group _Support
     source https://api.nuget.org/v3/index.json
 
     nuget JetBrains.Annotations
-    nuget Moq
     nuget Newtonsoft.Json
     nuget NLog
     nuget System.Reactive.Linq
@@ -33,9 +32,15 @@ group _Test
     framework: netcoreapp3.1
     source https://api.nuget.org/v3/index.json
 
-    nuget Castle.Core ~> 4.4.1
     nuget FluentAssertions
     nuget Microsoft.NET.Test.Sdk
     nuget Moq
     nuget xunit
     nuget xunit.runner.visualstudio ~> 2.4.1.0
+
+group _Test_Support
+
+    framework: netstandard2.1
+    source https://api.nuget.org/v3/index.json
+
+    nuget Moq

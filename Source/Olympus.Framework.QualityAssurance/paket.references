@@ -1,3 +1,5 @@
 group _Support
     JetBrains.Annotations
+
+group _Test_Support
     Moq
