@@ -12,6 +12,7 @@ group _UI
     framework: netcoreapp3.1
     source https://api.nuget.org/v3/index.json
 
+    nuget Caliburn.Micro ~> 4.0.136-rc
     nuget MahApps.Metro
     nuget OxyPlot.Wpf
     nuget ReactiveUI

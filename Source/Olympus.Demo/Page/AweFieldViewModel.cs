@@ -30,9 +30,10 @@ namespace nGratis.Cop.Olympus.Demo
 {
     using System.Collections.Generic;
     using System.Linq;
+    using nGratis.Cop.Olympus.Wpf.Glue;
     using ReactiveUI;
 
-    internal class AweFieldViewModel : ReactiveObject
+    internal class AweFieldViewModel : ReactiveScreen
     {
         private string _text;
 

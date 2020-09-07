@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="App.xaml.cs" company="nGratis">
+// <copyright file="ReactiveConductorBaseWithActiveItem.cs" company="nGratis">
 //  The MIT License (MIT)
 //
 //  Copyright (c) 2014 - 2020 Cahya Ong
@@ -23,21 +23,49 @@
 //  SOFTWARE.
 // </copyright>
 // <author>Cahya Ong - cahya.ong@gmail.com</author>
-// <creation_timestamp>Saturday, 14 October 2017 11:24:46 PM UTC</creation_timestamp>
+// <creation_timestamp>Thursday, September 3, 2020 2:16:25 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Demo
+namespace nGratis.Cop.Olympus.Wpf.Glue
 {
-    using nGratis.Cop.Olympus.Contract;
-    using nGratis.Cop.Olympus.Framework;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Caliburn.Micro;
+    using ReactiveUI;
 
-    public partial class App
+    public abstract class ReactiveConductorBaseWithActiveItem<T> : ReactiveConductorBase<T>, IConductActiveItem
+        where T : class
     {
-        static App()
+        private T _activeItem;
+
+        public T ActiveItem
         {
-            App.Logger = new CopLogger("OLYMPUS.DEMO", "*");
+            get => this._activeItem;
+            set => this.ActivateItemAsync(value, CancellationToken.None);
         }
 
-        public static ILogger Logger { get; }
+        object IHaveActiveItem.ActiveItem
+        {
+            get => this.ActiveItem;
+            set => this.ActiveItem = (T)value;
+        }
+
+        protected virtual async Task ChangeActiveItemAsync(
+            T item,
+            bool isClosingCurrent,
+            CancellationToken cancellationToken)
+        {
+            await ScreenExtensions.TryDeactivateAsync(this._activeItem, isClosingCurrent, cancellationToken);
+
+            item = this.EnsureItem(item);
+            this.RaiseAndSetIfChanged(ref this._activeItem, item, nameof(this.ActiveItem));
+
+            if (this.IsActive)
+            {
+                await ScreenExtensions.TryActivateAsync(item, cancellationToken);
+            }
+
+            this.RaisedActivationProcessed(this._activeItem, true);
+        }
     }
 }

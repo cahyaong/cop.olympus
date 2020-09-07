@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
   <PropertyGroup>
-    <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -9,15 +8,10 @@
     <Authors>Cahya Ong</Authors>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="nGratis.Cop.Olympus.Demo.csproj.DotSettings" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="..\Olympus.Shared\GlobalAssemblyInfo.cs" Link="Properties\GlobalAssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Olympus.Theme\nGratis.Cop.Olympus.Theme.csproj" />
-    <ProjectReference Include="..\Olympus.Wpf.Glue\nGratis.Cop.Olympus.Wpf.Glue.csproj" />
-    <ProjectReference Include="..\Olympus.Wpf\nGratis.Cop.Olympus.Wpf.csproj" />
+    <ProjectReference Include="..\Olympus.Contract\nGratis.Cop.Olympus.Contract.csproj" />
   </ItemGroup>
   <Import Project="..\.paket\Paket.Restore.targets" />
 </Project>

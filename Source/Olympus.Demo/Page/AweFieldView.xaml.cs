@@ -33,7 +33,6 @@ namespace nGratis.Cop.Olympus.Demo
         public AweFieldView()
         {
             this.InitializeComponent();
-            this.DataContext = new AweFieldViewModel();
         }
     }
 }

@@ -1,5 +1,5 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="App.xaml.cs" company="nGratis">
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="AssemblyInfo.cs" company="nGratis">
 //  The MIT License (MIT)
 //
 //  Copyright (c) 2014 - 2020 Cahya Ong
@@ -23,21 +23,13 @@
 //  SOFTWARE.
 // </copyright>
 // <author>Cahya Ong - cahya.ong@gmail.com</author>
-// <creation_timestamp>Saturday, 14 October 2017 11:24:46 PM UTC</creation_timestamp>
+// <creation_timestamp>Friday, August 28, 2020 5:37:58 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Demo
-{
-    using nGratis.Cop.Olympus.Contract;
-    using nGratis.Cop.Olympus.Framework;
+using System.Reflection;
+using System.Runtime.InteropServices;
 
-    public partial class App
-    {
-        static App()
-        {
-            App.Logger = new CopLogger("OLYMPUS.DEMO", "*");
-        }
-
-        public static ILogger Logger { get; }
-    }
-}
+[assembly: AssemblyTitle("nGratis.Cop.Olympus.Wpf")]
+[assembly: AssemblyDescription("")]
+[assembly: ComVisible(false)]
+[assembly: Guid("ec6fbb73-2a32-4189-86f3-4e2d325c07c3")]

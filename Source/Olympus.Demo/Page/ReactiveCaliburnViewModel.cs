@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="App.xaml.cs" company="nGratis">
+// <copyright file="ReactiveCaliburnViewModel.cs" company="nGratis">
 //  The MIT License (MIT)
 //
 //  Copyright (c) 2014 - 2020 Cahya Ong
@@ -23,21 +23,41 @@
 //  SOFTWARE.
 // </copyright>
 // <author>Cahya Ong - cahya.ong@gmail.com</author>
-// <creation_timestamp>Saturday, 14 October 2017 11:24:46 PM UTC</creation_timestamp>
+// <creation_timestamp>Thursday, September 3, 2020 6:07:11 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace nGratis.Cop.Olympus.Demo
 {
+    using System.Threading;
+    using System.Threading.Tasks;
     using nGratis.Cop.Olympus.Contract;
-    using nGratis.Cop.Olympus.Framework;
+    using nGratis.Cop.Olympus.Wpf.Glue;
 
-    public partial class App
+    public class ReactiveCaliburnViewModel : ReactiveScreen
     {
-        static App()
+        private readonly ILogger _logger;
+
+        public ReactiveCaliburnViewModel(ILogger logger)
         {
-            App.Logger = new CopLogger("OLYMPUS.DEMO", "*");
+            Guard
+                .Require(logger, nameof(logger))
+                .Is.Not.Null();
+
+            this._logger = logger;
         }
 
-        public static ILogger Logger { get; }
+        protected override async Task ActivateCoreAsync(CancellationToken cancellationToken)
+        {
+            this._logger.Log(Verbosity.Info, "Activating <Reactive.Caliburn> screen...");
+
+            await Task.CompletedTask;
+        }
+
+        protected override async Task DeactivateCoreAysnc(bool isClosed, CancellationToken cancellationToken)
+        {
+            this._logger.Log(Verbosity.Info, "Deactivating <Reactive.Caliburn> screen...");
+
+            await Task.CompletedTask;
+        }
     }
 }

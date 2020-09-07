@@ -33,7 +33,6 @@ namespace nGratis.Cop.Olympus.Demo
         public AweWindowView()
         {
             this.InitializeComponent();
-            this.DataContext = new AweWindowViewModel(App.Logger);
         }
     }
 }

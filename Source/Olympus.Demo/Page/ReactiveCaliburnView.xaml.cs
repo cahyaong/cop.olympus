@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="App.xaml.cs" company="nGratis">
+// <copyright file="ReactiveCaliburnView.xaml.cs" company="nGratis">
 //  The MIT License (MIT)
 //
 //  Copyright (c) 2014 - 2020 Cahya Ong
@@ -23,21 +23,16 @@
 //  SOFTWARE.
 // </copyright>
 // <author>Cahya Ong - cahya.ong@gmail.com</author>
-// <creation_timestamp>Saturday, 14 October 2017 11:24:46 PM UTC</creation_timestamp>
+// <creation_timestamp>Friday, September 4, 2020 5:47:25 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace nGratis.Cop.Olympus.Demo
 {
-    using nGratis.Cop.Olympus.Contract;
-    using nGratis.Cop.Olympus.Framework;
-
-    public partial class App
+    public partial class ReactiveCaliburnView
     {
-        static App()
+        public ReactiveCaliburnView()
         {
-            App.Logger = new CopLogger("OLYMPUS.DEMO", "*");
+            this.InitializeComponent();
         }
-
-        public static ILogger Logger { get; }
     }
 }

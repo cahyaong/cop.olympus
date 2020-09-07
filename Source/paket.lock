@@ -578,6 +578,13 @@ GROUP _UI
 RESTRICTION: == netcoreapp3.1
 NUGET
   remote: https://api.nuget.org/v3/index.json
+    Caliburn.Micro (4.0.136-rc)
+      Caliburn.Micro.Core (>= 4.0.136-rc)
+      Microsoft.WindowsDesktop.App (>= 3.0.0-preview7-27912-14)
+      Microsoft.Xaml.Behaviors.Wpf (>= 1.1.3)
+    Caliburn.Micro.Core (4.0.136-rc)
+      NETStandard.Library (>= 1.6.1)
+      System.Runtime.Serialization.Primitives (>= 4.3)
     ControlzEx (4.3.2)
       Microsoft.Xaml.Behaviors.Wpf (>= 1.1.19)
       System.Text.Json (>= 4.7.2)
@@ -587,6 +594,7 @@ NUGET
       ControlzEx (>= 4.3.2)
     Microsoft.NETCore.Platforms (3.1.2)
     Microsoft.NETCore.Targets (3.1)
+    Microsoft.WindowsDesktop.App (3.0.0-preview8-28405-07)
     Microsoft.Xaml.Behaviors.Wpf (1.1.19)
     NETStandard.Library (2.0.3)
       Microsoft.NETCore.Platforms (>= 1.1)

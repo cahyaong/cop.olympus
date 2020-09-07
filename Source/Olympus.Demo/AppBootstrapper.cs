@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="App.xaml.cs" company="nGratis">
+// <copyright file="AppBootstrapper.cs" company="nGratis">
 //  The MIT License (MIT)
 //
 //  Copyright (c) 2014 - 2020 Cahya Ong
@@ -23,21 +23,32 @@
 //  SOFTWARE.
 // </copyright>
 // <author>Cahya Ong - cahya.ong@gmail.com</author>
-// <creation_timestamp>Saturday, 14 October 2017 11:24:46 PM UTC</creation_timestamp>
+// <creation_timestamp>Thursday, September 3, 2020 6:33:56 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace nGratis.Cop.Olympus.Demo
 {
-    using nGratis.Cop.Olympus.Contract;
-    using nGratis.Cop.Olympus.Framework;
+    using System.Windows;
+    using nGratis.Cop.Olympus.Wpf;
 
-    public partial class App
+    public class AppBootstrapper : CopBootstrapper
     {
-        static App()
+        public AppBootstrapper()
         {
-            App.Logger = new CopLogger("OLYMPUS.DEMO", "*");
+            this.Initialize();
         }
 
-        public static ILogger Logger { get; }
+        protected override void OnStartup(object sender, StartupEventArgs __)
+        {
+            // TODO: Make theme adjustable dynamically!
+
+            if (sender is Application app)
+            {
+                var theme = ControlzEx.Theming.ThemeManager.Current.ChangeTheme(app, "Dark.Green");
+                app.AdjustAccentColor(theme.PrimaryAccentColor);
+            }
+
+            this.DisplayRootViewFor<AppViewModel>();
+        }
     }
 }

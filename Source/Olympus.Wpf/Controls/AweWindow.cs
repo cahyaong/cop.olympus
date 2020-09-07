@@ -61,6 +61,7 @@ namespace nGratis.Cop.Olympus.Wpf
         public AweWindow()
         {
             // TODO: Fix unhandled exception handler, so that dialog should be acknowledged before app is closed!
+            // FIXME: Need to wire unhandled exception handling once as part of static invocation!
 
             AppDomain.CurrentDomain.UnhandledException += async (_, args) => await this
                 .OnUnhandledExceptionReceivedAsync(ExceptionSource.Application, args.ExceptionObject as Exception);
@@ -101,6 +102,7 @@ namespace nGratis.Cop.Olympus.Wpf
                 {
                     metroContent.Content = default;
                     innerContent.SetValue(Grid.RowProperty, 0);
+                    innerContent.Margin = new Thickness(8, 2, 8, 2);
                     grid.Children.Add(innerContent);
                 }
 

@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="App.xaml.cs" company="nGratis">
+// <copyright file="AppViewModel.cs" company="nGratis">
 //  The MIT License (MIT)
 //
 //  Copyright (c) 2014 - 2020 Cahya Ong
@@ -23,21 +23,33 @@
 //  SOFTWARE.
 // </copyright>
 // <author>Cahya Ong - cahya.ong@gmail.com</author>
-// <creation_timestamp>Saturday, 14 October 2017 11:24:46 PM UTC</creation_timestamp>
+// <creation_timestamp>Thursday, September 3, 2020 6:01:49 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace nGratis.Cop.Olympus.Demo
 {
-    using nGratis.Cop.Olympus.Contract;
-    using nGratis.Cop.Olympus.Framework;
+    using Caliburn.Micro;
+    using nGratis.Cop.Olympus.Wpf.Glue;
 
-    public partial class App
+    internal class AppViewModel : ReactiveConductor<IScreen>.Collection.OneActive
     {
-        static App()
+        public AppViewModel()
         {
-            App.Logger = new CopLogger("OLYMPUS.DEMO", "*");
+            this.Items.AddRange(new ReactiveScreen[]
+            {
+                new AweWindowViewModel(App.Logger)
+                {
+                    DisplayName = "window"
+                },
+                new AweFieldViewModel
+                {
+                    DisplayName = "field"
+                },
+                new ReactiveCaliburnViewModel(App.Logger)
+                {
+                    DisplayName = "reactive-caliburn"
+                }
+            });
         }
-
-        public static ILogger Logger { get; }
     }
 }

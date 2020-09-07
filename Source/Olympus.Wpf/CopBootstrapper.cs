@@ -28,7 +28,9 @@
 
 namespace nGratis.Cop.Olympus.Wpf
 {
-    public class CopBootstrapper
+    using Caliburn.Micro;
+
+    public class CopBootstrapper : BootstrapperBase
     {
         // TODO: Add DI and IoC registration!
     }
