@@ -3,8 +3,8 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:olympus="http://schemas.ngratis.com/2014/olympus">
   <ResourceDictionary.MergedDictionaries>
-    <olympus:SharedResourceDictionary Source="/nGratis.Cop.Olympus.Theme;component/Cop.Palette.Generic.xaml" />
-    <olympus:SharedResourceDictionary Source="/nGratis.Cop.Olympus.Theme;component/Cop.Style.TextBlock.xaml" />
+    <olympus:SharedResourceDictionary Source="/nGratis.Cop.Olympus.Wpf.Theme;component/Cop.Palette.Generic.xaml" />
+    <olympus:SharedResourceDictionary Source="/nGratis.Cop.Olympus.Wpf.Theme;component/Cop.Style.TextBlock.xaml" />
   </ResourceDictionary.MergedDictionaries>
 
   <Style x:Key="{x:Type olympus:AweTileGroup}" TargetType="{x:Type olympus:AweTileGroup}">

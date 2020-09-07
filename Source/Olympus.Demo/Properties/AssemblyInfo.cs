@@ -5,5 +5,5 @@ using System.Windows;
 [assembly: AssemblyTitle("nGratis.Cop.Olympus.Demo")]
 [assembly: AssemblyDescription("")]
 [assembly: ComVisible(false)]
-[assembly: Guid("c2f58589-179c-4ea1-ac62-9f770de0faf7")]
+[assembly: Guid("db93e625-5e9e-4726-8c98-a96dcaa6956a")]
 [assembly: ThemeInfo(ResourceDictionaryLocation.ExternalAssembly, ResourceDictionaryLocation.ExternalAssembly)]

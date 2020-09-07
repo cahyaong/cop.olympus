@@ -4,8 +4,8 @@
   xmlns:olympus="http://schemas.ngratis.com/2014/olympus">
 
   <ResourceDictionary.MergedDictionaries>
-    <olympus:SharedResourceDictionary Source="/nGratis.Cop.Olympus.Theme;component/Cop.Icon.Control.xaml" />
-    <olympus:SharedResourceDictionary Source="/nGratis.Cop.Olympus.Theme;component/Cop.Style.AweScrollBar.xaml" />
+    <olympus:SharedResourceDictionary Source="/nGratis.Cop.Olympus.Wpf.Theme;component/Cop.Icon.Control.xaml" />
+    <olympus:SharedResourceDictionary Source="/nGratis.Cop.Olympus.Wpf.Theme;component/Cop.Style.AweScrollBar.xaml" />
   </ResourceDictionary.MergedDictionaries>
 
   <Style

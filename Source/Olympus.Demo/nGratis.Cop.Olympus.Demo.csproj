@@ -15,8 +15,8 @@
     <Compile Include="..\Olympus.Shared\GlobalAssemblyInfo.cs" Link="Properties\GlobalAssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Olympus.Theme\nGratis.Cop.Olympus.Theme.csproj" />
     <ProjectReference Include="..\Olympus.Wpf.Glue\nGratis.Cop.Olympus.Wpf.Glue.csproj" />
+    <ProjectReference Include="..\Olympus.Wpf.Theme\nGratis.Cop.Olympus.Wpf.Theme.csproj" />
     <ProjectReference Include="..\Olympus.Wpf\nGratis.Cop.Olympus.Wpf.csproj" />
   </ItemGroup>
   <Import Project="..\.paket\Paket.Restore.targets" />

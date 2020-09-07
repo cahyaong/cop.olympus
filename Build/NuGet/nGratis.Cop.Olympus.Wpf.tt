@@ -39,7 +39,7 @@
   <files>
     <file src="nGratis.Cop.Olympus.Wpf.dll" target="lib\net472\nGratis.Cop.Olympus.Wpf.dll" />
     <file src="nGratis.Cop.Olympus.Wpf.pdb" target="lib\net472\nGratis.Cop.Olympus.Wpf.pdb" />
-    <file src="nGratis.Cop.Olympus.Theme.dll" target="lib\net472\nGratis.Cop.Olympus.Theme.dll" />
-    <file src="nGratis.Cop.Olympus.Theme.pdb" target="lib\net472\nGratis.Cop.Olympus.Theme.pdb" />
+    <file src="nGratis.Cop.Olympus.Wpf.Theme.dll" target="lib\net472\nGratis.Cop.Olympus.Wpf.Theme.dll" />
+    <file src="nGratis.Cop.Olympus.Wpf.Theme.pdb" target="lib\net472\nGratis.Cop.Olympus.Wpf.Theme.pdb" />
   </files>
 </package>

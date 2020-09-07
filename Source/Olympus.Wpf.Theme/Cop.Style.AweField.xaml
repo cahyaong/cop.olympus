@@ -7,8 +7,8 @@
   xmlns:olympus="http://schemas.ngratis.com/2014/olympus"
   mc:Ignorable="d">
   <ResourceDictionary.MergedDictionaries>
-    <olympus:SharedResourceDictionary Source="/nGratis.Cop.Olympus.Theme;component/Cop.Style.TextBlock.xaml" />
-    <olympus:SharedResourceDictionary Source="/nGratis.Cop.Olympus.Theme;component/Cop.Style.TextBox.xaml" />
+    <olympus:SharedResourceDictionary Source="/nGratis.Cop.Olympus.Wpf.Theme;component/Cop.Style.TextBlock.xaml" />
+    <olympus:SharedResourceDictionary Source="/nGratis.Cop.Olympus.Wpf.Theme;component/Cop.Style.TextBox.xaml" />
     <olympus:SharedResourceDictionary Source="/nGratis.Cop.Olympus.Wpf;component/Cop.Converter.xaml" />
   </ResourceDictionary.MergedDictionaries>
 

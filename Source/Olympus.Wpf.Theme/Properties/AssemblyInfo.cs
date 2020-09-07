@@ -30,8 +30,8 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows;
 
-[assembly: AssemblyTitle("nGratis.Cop.Olympus.Theme")]
+[assembly: AssemblyTitle("nGratis.Cop.Olympus.Wpf.Theme")]
 [assembly: AssemblyDescription("")]
 [assembly: ComVisible(false)]
-[assembly: Guid("2b8de19c-be3d-4516-aecb-01fc709f8ed8")]
+[assembly: Guid("f73c70a2-fe84-4ed4-8606-b1559febee69")]
 [assembly: ThemeInfo(ResourceDictionaryLocation.SourceAssembly, ResourceDictionaryLocation.ExternalAssembly)]

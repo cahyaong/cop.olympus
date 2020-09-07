@@ -4,7 +4,7 @@
   xmlns:olympus="http://schemas.ngratis.com/2014/olympus"
   xmlns:system="clr-namespace:System;assembly=mscorlib">
   <ResourceDictionary.MergedDictionaries>
-    <olympus:SharedResourceDictionary Source="/nGratis.Cop.Olympus.Theme;component/Cop.Style.TextBlock.xaml" />
+    <olympus:SharedResourceDictionary Source="/nGratis.Cop.Olympus.Wpf.Theme;component/Cop.Style.TextBlock.xaml" />
   </ResourceDictionary.MergedDictionaries>
 
   <system:Double x:Key="Cop.StatusBar.Height">24</system:Double>

@@ -3,7 +3,7 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:olympus="http://schemas.ngratis.com/2014/olympus">
   <ResourceDictionary.MergedDictionaries>
-    <olympus:SharedResourceDictionary Source="/nGratis.Cop.Olympus.Theme;component/Cop.Icon.MaterialDesignIcon.xaml" />
+    <olympus:SharedResourceDictionary Source="/nGratis.Cop.Olympus.Wpf.Theme;component/Cop.Icon.MaterialDesignIcon.xaml" />
   </ResourceDictionary.MergedDictionaries>
 
   <ControlTemplate x:Key="Cop.AweScrollBar.Template.Default" TargetType="{x:Type ScrollBar}">

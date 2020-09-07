@@ -34,6 +34,6 @@ using System.Windows.Markup;
 [assembly: AssemblyTitle("nGratis.Cop.Olympus.Wpf")]
 [assembly: AssemblyDescription("")]
 [assembly: ComVisible(false)]
-[assembly: Guid("199487eb-64e4-4d48-9e9a-3afdddadf041")]
+[assembly: Guid("744aa92f-008e-41fd-b562-12e1c485126b")]
 [assembly: ThemeInfo(ResourceDictionaryLocation.None, ResourceDictionaryLocation.ExternalAssembly)]
 [assembly: XmlnsDefinition("http://schemas.ngratis.com/2014/olympus", "nGratis.Cop.Olympus.Wpf")]
