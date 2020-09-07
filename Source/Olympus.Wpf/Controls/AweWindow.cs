@@ -29,7 +29,6 @@
 namespace nGratis.Cop.Olympus.Wpf
 {
     using System;
-    using System.Reactive;
     using System.Threading.Tasks;
     using System.Windows;
     using System.Windows.Controls;
@@ -37,17 +36,9 @@ namespace nGratis.Cop.Olympus.Wpf
     using MahApps.Metro.Controls.Dialogs;
     using nGratis.Cop.Olympus.Contract;
     using nGratis.Cop.Olympus.Framework;
-    using ReactiveUI;
 
     public class AweWindow : MetroWindow, IDisposable
     {
-        private enum ExceptionSource
-        {
-            Unknown = 0,
-            Application,
-            Reactive
-        }
-
         private static readonly DependencyProperty LoggerProperty = DependencyProperty.Register(
             nameof(AweWindow.Logger),
             typeof(ILogger),
@@ -60,15 +51,6 @@ namespace nGratis.Cop.Olympus.Wpf
 
         public AweWindow()
         {
-            // TODO: Fix unhandled exception handler, so that dialog should be acknowledged before app is closed!
-            // FIXME: Need to wire unhandled exception handling once as part of static invocation!
-
-            AppDomain.CurrentDomain.UnhandledException += async (_, args) => await this
-                .OnUnhandledExceptionReceivedAsync(ExceptionSource.Application, args.ExceptionObject as Exception);
-
-            RxApp.DefaultExceptionHandler = Observer.Create<Exception>(async exception => await this
-                .OnUnhandledExceptionReceivedAsync(ExceptionSource.Reactive, exception));
-
             this.Closed += this.OnClosed;
         }
 
@@ -87,38 +69,8 @@ namespace nGratis.Cop.Olympus.Wpf
         {
             base.OnApplyTemplate();
 
-            if (this.GetTemplateChild("PART_Content") is MetroContentControl metroContent)
-            {
-                var grid = new Grid
-                {
-                    RowDefinitions =
-                    {
-                        new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
-                        new RowDefinition { Height = GridLength.Auto }
-                    }
-                };
-
-                if (metroContent.Content is FrameworkElement innerContent)
-                {
-                    metroContent.Content = default;
-                    innerContent.SetValue(Grid.RowProperty, 0);
-                    innerContent.Margin = new Thickness(8, 2, 8, 2);
-                    grid.Children.Add(innerContent);
-                }
-
-                this._statusBar = new AweStatusBar();
-                this._statusBar.SetValue(Grid.RowProperty, 1);
-                this._statusBar.VerticalAlignment = VerticalAlignment.Center;
-
-                if (this.Logger != null)
-                {
-                    this._statusBar.Logger = this.Logger;
-                }
-
-                grid.Children.Add(this._statusBar);
-
-                metroContent.Content = grid;
-            }
+            this.InitializeContentPart();
+            this.InitializeUnhandledExceptionHandler();
         }
 
         public void Dispose()
@@ -140,6 +92,52 @@ namespace nGratis.Cop.Olympus.Wpf
             }
 
             this._isDisposed = true;
+        }
+
+        private void InitializeContentPart()
+        {
+            if (!(this.GetTemplateChild("PART_Content") is MetroContentControl metroContent))
+            {
+                return;
+            }
+
+            var grid = new Grid
+            {
+                RowDefinitions =
+                {
+                    new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
+                    new RowDefinition { Height = GridLength.Auto }
+                }
+            };
+
+            if (metroContent.Content is FrameworkElement innerContent)
+            {
+                metroContent.Content = default;
+                innerContent.SetValue(Grid.RowProperty, 0);
+                innerContent.Margin = new Thickness(8, 2, 8, 2);
+                grid.Children.Add(innerContent);
+            }
+
+            this._statusBar = new AweStatusBar();
+            this._statusBar.SetValue(Grid.RowProperty, 1);
+            this._statusBar.VerticalAlignment = VerticalAlignment.Center;
+
+            if (this.Logger != null)
+            {
+                this._statusBar.Logger = this.Logger;
+            }
+
+            grid.Children.Add(this._statusBar);
+
+            metroContent.Content = grid;
+        }
+
+        private void InitializeUnhandledExceptionHandler()
+        {
+            // TODO: Fix unhandled exception handler, so that dialog should be acknowledged before app is closed!
+
+            CopBootstrapper.UnhandledExceptionTriggered += async (_, args) => await this
+                .OnUnhandledExceptionReceivedAsync(args.ExceptionSource, args.Exception);
         }
 
         private static void OnLoggerChanged(DependencyObject container, DependencyPropertyChangedEventArgs args)
@@ -165,7 +163,7 @@ namespace nGratis.Cop.Olympus.Wpf
             }
         }
 
-        private async Task OnUnhandledExceptionReceivedAsync(ExceptionSource exceptionSource, Exception exception)
+        private async Task OnUnhandledExceptionReceivedAsync(CopBootstrapper.ExceptionSource exceptionSource, Exception exception)
         {
             var dialogSettings = new MetroDialogSettings
             {
