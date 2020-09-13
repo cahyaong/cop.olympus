@@ -1,5 +1,5 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="BaseLogger.cs" company="nGratis">
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="LoggerBase.cs" company="nGratis">
 //  The MIT License (MIT)
 //
 //  Copyright (c) 2014 - 2020 Cahya Ong
@@ -31,34 +31,32 @@ namespace nGratis.Cop.Olympus.Framework
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Reactive.Linq;
     using System.Text;
     using nGratis.Cop.Olympus.Contract;
 
-    public abstract class BaseLogger : ILogger
+    public abstract class LoggerBase : ILogger
     {
-        protected BaseLogger(string id)
+        protected LoggerBase(string component)
         {
             Guard
-                .Require(id, nameof(id))
+                .Require(component, nameof(component))
                 .Is.Not.Empty();
 
-            this.Id = id;
+            this.Component = component;
         }
 
-        protected internal BaseLogger()
+        protected internal LoggerBase()
             : this("[_MOCK_ID_]")
         {
+            // NOTE: This constructor is required for creating a stub during unit testing!
         }
 
-        ~BaseLogger()
+        ~LoggerBase()
         {
             this.Dispose(false);
         }
 
-        public string Id { get; }
-
-        public abstract IEnumerable<string> Components { get; }
+        public string Component { get; }
 
         public abstract void Log(Verbosity verbosity, string message);
 
@@ -81,11 +79,6 @@ namespace nGratis.Cop.Olympus.Framework
         }
 
         public abstract void Log(Verbosity verbosity, string message, Exception exception);
-
-        public virtual IObservable<LogEntry> WhenEntryAdded()
-        {
-            return Observable.Empty<LogEntry>();
-        }
 
         public void Dispose()
         {

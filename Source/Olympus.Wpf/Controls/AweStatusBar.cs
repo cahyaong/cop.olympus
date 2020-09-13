@@ -38,11 +38,11 @@ namespace nGratis.Cop.Olympus.Wpf
     [TemplatePart(Name = "PART_ResponsivenessIndicator", Type = typeof(Grid))]
     public sealed class AweStatusBar : Control, IDisposable
     {
-        public static readonly DependencyProperty LoggerProperty = DependencyProperty.Register(
-            nameof(AweStatusBar.Logger),
-            typeof(ILogger),
+        public static readonly DependencyProperty LoggingNotifierProperty = DependencyProperty.Register(
+            nameof(AweStatusBar.LoggingNotifier),
+            typeof(ILoggingNotifier),
             typeof(AweStatusBar),
-            new PropertyMetadata(VoidLogger.Instance, AweStatusBar.OnLoggerChanged));
+            new PropertyMetadata(VoidLogger.Instance, AweStatusBar.OnLoggingNotifierChanged));
 
         public static readonly DependencyProperty IsBusyProperty = DependencyProperty.Register(
             nameof(AweStatusBar.IsBusy),
@@ -56,7 +56,7 @@ namespace nGratis.Cop.Olympus.Wpf
             typeof(AweStatusBar),
             new PropertyMetadata(string.Empty));
 
-        private IDisposable _onLogEntryAdded;
+        private IDisposable _onLoggingEntryAdded;
 
         private bool _isDisposed;
 
@@ -65,10 +65,10 @@ namespace nGratis.Cop.Olympus.Wpf
             this.Dispose(false);
         }
 
-        public ILogger Logger
+        public ILoggingNotifier LoggingNotifier
         {
-            get => (ILogger)this.GetValue(AweStatusBar.LoggerProperty);
-            set => this.SetValue(AweStatusBar.LoggerProperty, value ?? VoidLogger.Instance);
+            get => (ILoggingNotifier)this.GetValue(AweStatusBar.LoggingNotifierProperty);
+            set => this.SetValue(AweStatusBar.LoggingNotifierProperty, value ?? VoidLogger.Instance);
         }
 
         public bool IsBusy
@@ -96,33 +96,35 @@ namespace nGratis.Cop.Olympus.Wpf
 #endif
         }
 
-        private static void OnLoggerChanged(DependencyObject container, DependencyPropertyChangedEventArgs args)
+        private static void OnLoggingNotifierChanged(
+            DependencyObject container,
+            DependencyPropertyChangedEventArgs args)
         {
             if (!(container is AweStatusBar statusBar))
             {
                 return;
             }
 
-            statusBar._onLogEntryAdded?.Dispose();
+            statusBar._onLoggingEntryAdded?.Dispose();
 
-            var logger = (ILogger)args.NewValue;
+            var loggingNotifier = (ILoggingNotifier)args.NewValue;
 
-            if (logger != null)
+            if (loggingNotifier != null)
             {
-                statusBar._onLogEntryAdded = logger
-                    .WhenEntryAdded()?
+                statusBar._onLoggingEntryAdded = loggingNotifier
+                    .WhenEntryAdded?
                     .ObserveOnDispatcher()
                     .Subscribe(statusBar.UpdateMessage);
             }
         }
 
-        private void UpdateMessage(LogEntry logEntry)
+        private void UpdateMessage(LoggingEntry loggingEntry)
         {
             Guard
-                .Require(logEntry, nameof(logEntry))
+                .Require(loggingEntry, nameof(loggingEntry))
                 .Is.Not.Null();
 
-            this.Message = logEntry.Message;
+            this.Message = loggingEntry.Message;
         }
 
         public void Dispose()
@@ -140,7 +142,7 @@ namespace nGratis.Cop.Olympus.Wpf
 
             if (isDisposing)
             {
-                this._onLogEntryAdded?.Dispose();
+                this._onLoggingEntryAdded?.Dispose();
             }
 
             this._isDisposed = true;

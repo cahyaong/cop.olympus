@@ -50,7 +50,7 @@ namespace nGratis.Cop.Olympus.Framework
 
             this._loggingModes = loggingModes;
             this._loggerLookup = new ConcurrentDictionary<string, ILogger>();
-            this._aggregatingLogger = new CompositeLogger("*");
+            this._aggregatingLogger = new CompositeLogger();
         }
 
         ~LoggingProvider()
@@ -58,35 +58,20 @@ namespace nGratis.Cop.Olympus.Framework
             this.Dispose(false);
         }
 
-        public ILogger GetLoggerFor(Type type)
-        {
-            Guard
-                .Require(type, nameof(type))
-                .Is.Not.Null();
-
-            var logger = this
-                ._loggerLookup
-                .GetOrAdd($"TYP.{type.FullName}", key => this.CreateLogger(key));
-
-            this._aggregatingLogger.RegisterLoggers(logger);
-
-            return logger;
-        }
-
-        public ILogger GetLoggerFor(string component)
+        public ILogger GetLoggerFor(string component = Constant.AggregatingComponent)
         {
             Guard
                 .Require(component, nameof(component))
                 .Is.Not.Empty();
 
-            if (component == "*")
+            if (component == Constant.AggregatingComponent)
             {
                 return this._aggregatingLogger;
             }
 
             var logger = this
                 ._loggerLookup
-                .GetOrAdd($"COM.{component}", key => this.CreateLogger(key, component));
+                .GetOrAdd(component, key => this.CreateLogger(component));
 
             this._aggregatingLogger.RegisterLoggers(logger);
 
@@ -99,23 +84,23 @@ namespace nGratis.Cop.Olympus.Framework
             GC.SuppressFinalize(this);
         }
 
-        private ILogger CreateLogger(string id, string component = Text.Undefined)
+        private ILogger CreateLogger(string component = Text.Undefined)
         {
-            var logger = new CompositeLogger(id);
+            var logger = new CompositeLogger();
 
             if (this._loggingModes.HasFlag(LoggingModes.CommunityOfPractice))
             {
-                logger.RegisterLoggers(new CopLogger(id, component));
+                logger.RegisterLoggers(new CopLogger(component));
             }
 
             if (this._loggingModes.HasFlag(LoggingModes.NLogger))
             {
-                logger.RegisterLoggers(new NLogger(id, component));
+                logger.RegisterLoggers(new NLogger(component));
             }
 
             if (this._loggingModes.HasFlag(LoggingModes.Console))
             {
-                logger.RegisterLoggers(new ConsoleLogger(id, component));
+                logger.RegisterLoggers(new ConsoleLogger(component));
             }
 
             return logger;
@@ -134,6 +119,11 @@ namespace nGratis.Cop.Olympus.Framework
             }
 
             this._isDisposed = true;
+        }
+
+        private static class Constant
+        {
+            internal const string AggregatingComponent = "*";
         }
     }
 }

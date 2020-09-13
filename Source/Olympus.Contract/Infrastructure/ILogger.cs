@@ -29,20 +29,15 @@
 namespace nGratis.Cop.Olympus.Contract
 {
     using System;
-    using System.Collections.Generic;
 
     public interface ILogger : IDisposable
     {
-        string Id { get; }
-
-        IEnumerable<string> Components { get; }
+        string Component { get; }
 
         void Log(Verbosity verbosity, string message);
 
         void Log(Verbosity verbosity, string message, params string[] submessages);
 
         void Log(Verbosity verbosity, string message, Exception exception);
-
-        IObservable<LogEntry> WhenEntryAdded();
     }
 }

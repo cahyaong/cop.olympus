@@ -29,35 +29,33 @@
 namespace nGratis.Cop.Olympus.Framework
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Reactive.Subjects;
     using nGratis.Cop.Olympus.Contract;
 
-    public sealed class CopLogger : BaseLogger
+    public sealed class CopLogger : LoggerBase, ILoggingNotifier
     {
-        private readonly ReplaySubject<LogEntry> _whenEntryBuffered;
+        private readonly ReplaySubject<LoggingEntry> _whenEntryBuffered;
 
         private bool _isDisposed;
 
-        public CopLogger(string id, string component)
-            : base(id)
+        public CopLogger(string component)
+            : base(component)
         {
             Guard
                 .Require(component, nameof(component))
                 .Is.Not.Empty();
 
-            this._whenEntryBuffered = new ReplaySubject<LogEntry>();
-            this.Components = new[] { component };
+            this._whenEntryBuffered = new ReplaySubject<LoggingEntry>();
         }
 
-        public override IEnumerable<string> Components { get; }
+        public IObservable<LoggingEntry> WhenEntryAdded => this._whenEntryBuffered;
 
         public override void Log(Verbosity verbosity, string message)
         {
-            var entry = new LogEntry
+            var entry = new LoggingEntry
             {
-                Components = this.Components,
+                Component = this.Component,
                 Verbosity = verbosity,
                 Message = !string.IsNullOrEmpty(message)
                     ? message
@@ -69,9 +67,9 @@ namespace nGratis.Cop.Olympus.Framework
 
         public override void Log(Verbosity verbosity, string message, params string[] submessages)
         {
-            var entry = new LogEntry
+            var entry = new LoggingEntry
             {
-                Components = this.Components,
+                Component = this.Component,
                 Verbosity = verbosity,
                 Message = !string.IsNullOrEmpty(message)
                     ? message
@@ -88,9 +86,9 @@ namespace nGratis.Cop.Olympus.Framework
 
         public override void Log(Verbosity verbosity, string message, Exception exception)
         {
-            var entry = new LogEntry
+            var entry = new LoggingEntry
             {
-                Components = this.Components,
+                Component = this.Component,
                 Verbosity = verbosity,
                 Exception = exception,
                 Message = !string.IsNullOrEmpty(message)
@@ -99,11 +97,6 @@ namespace nGratis.Cop.Olympus.Framework
             };
 
             this._whenEntryBuffered.OnNext(entry);
-        }
-
-        public override IObservable<LogEntry> WhenEntryAdded()
-        {
-            return this._whenEntryBuffered;
         }
 
         protected override void Dispose(bool isDisposing)

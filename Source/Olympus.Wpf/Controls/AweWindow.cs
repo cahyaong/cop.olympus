@@ -39,11 +39,11 @@ namespace nGratis.Cop.Olympus.Wpf
 
     public class AweWindow : MetroWindow, IDisposable
     {
-        private static readonly DependencyProperty LoggerProperty = DependencyProperty.Register(
-            nameof(AweWindow.Logger),
-            typeof(ILogger),
+        private static readonly DependencyProperty LoggingNotifierProperty = DependencyProperty.Register(
+            nameof(AweWindow.LoggingNotifier),
+            typeof(ILoggingNotifier),
             typeof(AweWindow),
-            new PropertyMetadata(VoidLogger.Instance, AweWindow.OnLoggerChanged));
+            new PropertyMetadata(VoidLogger.Instance, AweWindow.OnLoggingNotifierChanged));
 
         private AweStatusBar _statusBar;
 
@@ -59,10 +59,10 @@ namespace nGratis.Cop.Olympus.Wpf
             this.Dispose(false);
         }
 
-        public ILogger Logger
+        public ILoggingNotifier LoggingNotifier
         {
-            get => (ILogger)this.GetValue(AweWindow.LoggerProperty);
-            set => this.SetValue(AweWindow.LoggerProperty, value ?? VoidLogger.Instance);
+            get => (ILoggingNotifier)this.GetValue(AweWindow.LoggingNotifierProperty);
+            set => this.SetValue(AweWindow.LoggingNotifierProperty, value ?? VoidLogger.Instance);
         }
 
         public override void OnApplyTemplate()
@@ -94,6 +94,21 @@ namespace nGratis.Cop.Olympus.Wpf
             this._isDisposed = true;
         }
 
+        private static void OnLoggingNotifierChanged(
+            DependencyObject container,
+            DependencyPropertyChangedEventArgs args)
+        {
+            if (!(container is AweWindow window))
+            {
+                return;
+            }
+
+            if (window._statusBar != null)
+            {
+                window._statusBar.LoggingNotifier = (ILoggingNotifier)args.NewValue ?? VoidLogger.Instance;
+            }
+        }
+
         private void InitializeContentPart()
         {
             if (!(this.GetTemplateChild("PART_Content") is MetroContentControl metroContent))
@@ -122,9 +137,9 @@ namespace nGratis.Cop.Olympus.Wpf
             this._statusBar.SetValue(Grid.RowProperty, 1);
             this._statusBar.VerticalAlignment = VerticalAlignment.Center;
 
-            if (this.Logger != null)
+            if (this.LoggingNotifier != null)
             {
-                this._statusBar.Logger = this.Logger;
+                this._statusBar.LoggingNotifier = this.LoggingNotifier;
             }
 
             grid.Children.Add(this._statusBar);
@@ -140,19 +155,6 @@ namespace nGratis.Cop.Olympus.Wpf
                 .OnUnhandledExceptionReceivedAsync(args.ExceptionSource, args.Exception);
         }
 
-        private static void OnLoggerChanged(DependencyObject container, DependencyPropertyChangedEventArgs args)
-        {
-            if (!(container is AweWindow window))
-            {
-                return;
-            }
-
-            if (window._statusBar != null)
-            {
-                window._statusBar.Logger = (ILogger)args.NewValue ?? VoidLogger.Instance;
-            }
-        }
-
         private void OnClosed(object sender, EventArgs args)
         {
             this.Closed -= this.OnClosed;
@@ -163,7 +165,9 @@ namespace nGratis.Cop.Olympus.Wpf
             }
         }
 
-        private async Task OnUnhandledExceptionReceivedAsync(CopBootstrapper.ExceptionSource exceptionSource, Exception exception)
+        private async Task OnUnhandledExceptionReceivedAsync(
+            CopBootstrapper.ExceptionSource exceptionSource,
+            Exception exception)
         {
             var dialogSettings = new MetroDialogSettings
             {

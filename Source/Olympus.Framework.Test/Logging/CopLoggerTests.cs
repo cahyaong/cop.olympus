@@ -45,12 +45,12 @@ namespace nGratis.Cop.Olympus.Framework.Test
             {
                 // Arrange.
 
-                var observedEntries = new List<LogEntry>();
+                var observedEntries = new List<LoggingEntry>();
 
-                var logger = new CopLogger("[_MOCK_ID_]", "[_MOCK_COMPONENT_]");
+                var logger = new CopLogger("[_MOCK_COMPONENT_]");
 
                 var onEntryAdded = logger
-                    .WhenEntryAdded()
+                    .WhenEntryAdded
                     .Subscribe(observedEntries.Add);
 
                 using (onEntryAdded)

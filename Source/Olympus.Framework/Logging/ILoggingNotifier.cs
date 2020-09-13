@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="LogEntry.cs" company="nGratis">
+// <copyright file="ILoggingNotifier.cs" company="nGratis">
 //  The MIT License (MIT)
 //
 //  Copyright (c) 2014 - 2020 Cahya Ong
@@ -23,39 +23,16 @@
 //  SOFTWARE.
 // </copyright>
 // <author>Cahya Ong - cahya.ong@gmail.com</author>
-// <creation_timestamp>Monday, 27 April 2015 1:53:07 PM UTC</creation_timestamp>
+// <creation_timestamp>Sunday, September 13, 2020 6:14:43 PM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Contract
+namespace nGratis.Cop.Olympus.Framework
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using JetBrains.Annotations;
+    using nGratis.Cop.Olympus.Contract;
 
-    [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
-    public class LogEntry
+    public interface ILoggingNotifier
     {
-        public LogEntry()
-        {
-            this.Timestamp = DateTimeOffset.UtcNow;
-            this.Components = Enumerable.Empty<string>();
-            this.Verbosity = Verbosity.None;
-            this.Exception = null;
-            this.Message = string.Empty;
-            this.Submessages = Enumerable.Empty<string>();
-        }
-
-        public DateTimeOffset Timestamp { get; set; }
-
-        public IEnumerable<string> Components { get; set; }
-
-        public Verbosity Verbosity { get; set; }
-
-        public Exception Exception { get; set; }
-
-        public string Message { get; set; }
-
-        public IEnumerable<string> Submessages { get; set; }
+        IObservable<LoggingEntry> WhenEntryAdded { get; }
     }
 }

@@ -35,9 +35,14 @@ namespace nGratis.Cop.Olympus.Demo
     {
         static App()
         {
-            App.Logger = new CopLogger("OLYMPUS.DEMO", "*");
+            var logger = new CopLogger(nameof(App));
+
+            App.Logger = logger;
+            App.LoggingNotifier = logger;
         }
 
         public static ILogger Logger { get; }
+
+        public static ILoggingNotifier LoggingNotifier { get; }
     }
 }

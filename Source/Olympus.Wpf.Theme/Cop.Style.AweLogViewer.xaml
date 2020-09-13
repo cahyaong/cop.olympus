@@ -6,14 +6,14 @@
   xmlns:olympus="http://schemas.ngratis.com/2014/olympus"
   mc:Ignorable="d">
   <Style
-    x:Key="{x:Type olympus:AweLogViewer}"
+    x:Key="{x:Type olympus:AweLoggingViewer}"
     BasedOn="{StaticResource {x:Type ContentControl}}"
-    TargetType="{x:Type olympus:AweLogViewer}">
+    TargetType="{x:Type olympus:AweLoggingViewer}">
     <Style.Setters>
       <Setter Property="Template">
         <Setter.Value>
-          <ControlTemplate TargetType="{x:Type olympus:AweLogViewer}">
-            <DataGrid AutoGenerateColumns="False" ItemsSource="{TemplateBinding LogEntries}">
+          <ControlTemplate TargetType="{x:Type olympus:AweLoggingViewer}">
+            <DataGrid AutoGenerateColumns="False" ItemsSource="{TemplateBinding LoggingEntries}">
               <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Timestamp, StringFormat={}{0:yyyy-MMM-dd HH:mm:ss.ff}}" Header="Timestamp" />
                 <DataGridTextColumn Binding="{Binding Verbosity, Mode=OneWay}" Header="Verbosity" />

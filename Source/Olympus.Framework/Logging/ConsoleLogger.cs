@@ -31,24 +31,20 @@ namespace nGratis.Cop.Olympus.Framework
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
-    using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
+    using System.Text;
     using nGratis.Cop.Olympus.Contract;
 
-    public class ConsoleLogger : BaseLogger
+    public class ConsoleLogger : LoggerBase
     {
-        public ConsoleLogger(string id, string component)
-            : base(id)
+        public ConsoleLogger(string component)
+            : base(component)
         {
             Guard
                 .Require(component, nameof(component))
                 .Is.Not.Empty();
-
-            this.Components = new[] { component };
         }
 
-        public override IEnumerable<string> Components { get; }
-
-        [SuppressMessage("Microsoft.Globalization", "CA1303:Do not pass literals as localized parameters")]
         public override void Log(Verbosity verbosity, [Localizable(false)] string message)
         {
             var line = $"{DateTimeOffset.Now:s} | {verbosity.ToConsoleText()} | {message}";
@@ -56,12 +52,29 @@ namespace nGratis.Cop.Olympus.Framework
             Console.WriteLine(line);
         }
 
-        [SuppressMessage("Microsoft.Globalization", "CA1303:Do not pass literals as localized parameters")]
         public override void Log(Verbosity verbosity, [Localizable(false)] string message, Exception exception)
         {
             var line = $"{DateTimeOffset.Now:s} | {verbosity.ToConsoleText()} | {message} {exception.Message}";
 
             Console.WriteLine(line);
+        }
+
+        public override void Log(Verbosity verbosity, string message, params string[] submessages)
+        {
+            var messageBuilder = new StringBuilder(!string.IsNullOrEmpty(message)
+                ? message
+                : Text.Empty);
+
+            submessages
+                .Select(submessage => !string.IsNullOrEmpty(submessage)
+                    ? submessage
+                    : Text.Empty)
+                .ForEach(submessage => messageBuilder.AppendFormat(
+                    "{0}  |_ {1}",
+                    Environment.NewLine,
+                    submessage));
+
+            this.Log(verbosity, messageBuilder.ToString());
         }
     }
 }

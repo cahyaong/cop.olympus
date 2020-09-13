@@ -34,7 +34,7 @@ namespace nGratis.Cop.Olympus.Demo
         {
             this.InitializeComponent();
 
-            this.Logger = App.Logger;
+            this.LoggingNotifier = App.LoggingNotifier;
         }
     }
 }

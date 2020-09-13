@@ -32,30 +32,18 @@ namespace nGratis.Cop.Olympus.Framework
     using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Reactive.Linq;
     using nGratis.Cop.Olympus.Contract;
 
-    public class CompositeLogger : BaseLogger
+    public class CompositeLogger : LoggerBase
     {
         private readonly ConcurrentDictionary<string, ILogger> _loggerLookup;
 
         private bool _isDisposed;
 
-        public CompositeLogger(string id)
-            : base(id)
+        public CompositeLogger()
+            : base("Composite")
         {
             this._loggerLookup = new ConcurrentDictionary<string, ILogger>();
-        }
-
-        public override IEnumerable<string> Components
-        {
-            get
-            {
-                return this
-                    ._loggerLookup.Values
-                    .SelectMany(logger => logger.Components)
-                    .Distinct();
-            }
         }
 
         public void RegisterLoggers(params ILogger[] loggers)
@@ -68,7 +56,7 @@ namespace nGratis.Cop.Olympus.Framework
                 .Where(logger => logger != null)
                 .Select(logger => new
                 {
-                    Key = $"{logger.Id}.{logger.GetType().Name}",
+                    Key = $"{this.Component}.{logger.Component}",
                     Logger = logger
                 })
                 .Where(anon => !this._loggerLookup.ContainsKey(anon.Key))
@@ -93,7 +81,7 @@ namespace nGratis.Cop.Olympus.Framework
                 .Where(logger => logger != null)
                 .Select(logger => new
                 {
-                    Key = $"{logger.Id}.{logger.GetType().Name}",
+                    Key = $"{this.Component}.{logger.Component}",
                     Logger = logger
                 })
                 .Where(anon => this._loggerLookup.ContainsKey(anon.Key))
@@ -115,19 +103,18 @@ namespace nGratis.Cop.Olympus.Framework
                 .ForEach(logger => logger.Log(verbosity, message));
         }
 
+        public override void Log(Verbosity verbosity, string message, params string[] submessages)
+        {
+            this
+                ._loggerLookup.Values
+                .ForEach(logger => logger.Log(verbosity, message, submessages));
+        }
+
         public override void Log(Verbosity verbosity, string message, Exception exception)
         {
             this
                 ._loggerLookup.Values
                 .ForEach(logger => logger.Log(verbosity, message, exception));
-        }
-
-        public override IObservable<LogEntry> WhenEntryAdded()
-        {
-            return this
-                ._loggerLookup.Values
-                .Select(logger => logger.WhenEntryAdded())
-                .Merge();
         }
 
         protected override void Dispose(bool isDisposing)

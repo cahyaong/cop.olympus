@@ -29,26 +29,22 @@
 namespace nGratis.Cop.Olympus.Framework
 {
     using System;
-    using System.Collections.Generic;
     using nGratis.Cop.Olympus.Contract;
     using NLog;
 
-    public sealed class NLogger : BaseLogger
+    public sealed class NLogger : LoggerBase
     {
         private readonly Logger _logger;
 
-        public NLogger(string id, string component)
-            : base(id)
+        public NLogger(string component)
+            : base(component)
         {
             Guard
                 .Require(component, nameof(component))
                 .Is.Not.Empty();
 
-            this._logger = LogManager.GetLogger(id);
-            this.Components = new[] { component };
+            this._logger = LogManager.GetLogger(component);
         }
-
-        public override IEnumerable<string> Components { get; }
 
         public override void Log(Verbosity verbosity, string message)
         {

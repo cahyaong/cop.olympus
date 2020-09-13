@@ -32,8 +32,6 @@ namespace nGratis.Cop.Olympus.Contract
 
     public interface ILoggingProvider : IDisposable
     {
-        ILogger GetLoggerFor(Type type);
-
         ILogger GetLoggerFor(string component);
     }
 }

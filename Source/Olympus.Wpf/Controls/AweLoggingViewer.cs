@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="AweLogViewer.cs" company="nGratis">
+// <copyright file="AweLoggingViewer.cs" company="nGratis">
 //  The MIT License (MIT)
 //
 //  Copyright (c) 2014 - 2020 Cahya Ong
@@ -34,47 +34,53 @@ namespace nGratis.Cop.Olympus.Wpf
     using System.Windows;
     using System.Windows.Controls;
     using nGratis.Cop.Olympus.Contract;
+    using nGratis.Cop.Olympus.Framework;
 
-    public class AweLogViewer : ContentControl
+    public class AweLoggingViewer : ContentControl
     {
-        public static readonly DependencyProperty LoggerProperty = DependencyProperty.Register(
-            "Logger",
-            typeof(ILogger),
-            typeof(AweLogViewer),
-            new PropertyMetadata(null, AweLogViewer.OnLoggerChanged));
+        public static readonly DependencyProperty LoggingNotifierProperty = DependencyProperty.Register(
+            "LoggingNotifier",
+            typeof(ILoggingNotifier),
+            typeof(AweLoggingViewer),
+            new PropertyMetadata(null, AweLoggingViewer.OnLoggingNotifierChanged));
 
-        public static readonly DependencyProperty LogEntriesProperty = DependencyProperty.Register(
-            "LogEntries",
-            typeof(IList<LogEntry>),
-            typeof(AweLogViewer),
-            new PropertyMetadata(new ObservableCollection<LogEntry>()));
+        public static readonly DependencyProperty LoggingEntriesProperty = DependencyProperty.Register(
+            "LoggingEntries",
+            typeof(IList<LoggingEntry>),
+            typeof(AweLoggingViewer),
+            new PropertyMetadata(new ObservableCollection<LoggingEntry>()));
 
-        private IDisposable _onLogEntryAdded;
+        private IDisposable _onLoggingEntryAdded;
 
-        public ILogger Logger
+        public ILoggingNotifier LoggingNotifier
         {
-            get => (ILogger)this.GetValue(AweLogViewer.LoggerProperty);
+            get => (ILoggingNotifier)this.GetValue(AweLoggingViewer.LoggingNotifierProperty);
 
             set
             {
-                this._onLogEntryAdded?.Dispose();
-                this.LogEntries.Clear();
+                this._onLoggingEntryAdded?.Dispose();
+                this.LoggingEntries.Clear();
 
-                this._onLogEntryAdded = value
-                    .WhenEntryAdded()
-                    .Subscribe(this.LogEntries.Add);
+                this._onLoggingEntryAdded = value
+                    .WhenEntryAdded
+                    .Subscribe(this.LoggingEntries.Add);
 
-                this.SetValue(AweLogViewer.LoggerProperty, value);
+                this.SetValue(AweLoggingViewer.LoggingNotifierProperty, value);
             }
         }
 
-        public IList<LogEntry> LogEntries => (IList<LogEntry>)this.GetValue(AweLogViewer.LogEntriesProperty);
-
-        private static void OnLoggerChanged(DependencyObject container, DependencyPropertyChangedEventArgs args)
+        public IList<LoggingEntry> LoggingEntries
         {
-            if (container is AweLogViewer logViewer && args.NewValue != null)
+            get => (IList<LoggingEntry>)this.GetValue(AweLoggingViewer.LoggingEntriesProperty);
+        }
+
+        private static void OnLoggingNotifierChanged(
+            DependencyObject container,
+            DependencyPropertyChangedEventArgs args)
+        {
+            if (container is AweLoggingViewer logViewer && args.NewValue != null)
             {
-                logViewer.Logger = (ILogger)args.NewValue;
+                logViewer.LoggingNotifier = (ILoggingNotifier)args.NewValue;
             }
         }
     }

@@ -29,20 +29,20 @@
 namespace nGratis.Cop.Olympus.Framework
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
+    using System.Reactive.Subjects;
     using nGratis.Cop.Olympus.Contract;
 
-    public sealed class VoidLogger : BaseLogger
+    public sealed class VoidLogger : LoggerBase, ILoggingNotifier
     {
         private VoidLogger()
             : base(Text.Void)
         {
+            this.WhenEntryAdded = new Subject<LoggingEntry>();
         }
 
-        public static ILogger Instance { get; } = new VoidLogger();
+        public static VoidLogger Instance { get; } = new VoidLogger();
 
-        public override IEnumerable<string> Components => Enumerable.Empty<string>();
+        public IObservable<LoggingEntry> WhenEntryAdded { get; }
 
         public override void Log(Verbosity verbosity, string message)
         {
