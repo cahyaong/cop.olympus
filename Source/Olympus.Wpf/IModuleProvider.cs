@@ -25,7 +25,7 @@
 // <author>Cahya Ong - cahya.ong@gmail.com</author>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Contract
+namespace nGratis.Cop.Olympus.Wpf
 {
     using System.Collections.Generic;
     using System.Reflection;

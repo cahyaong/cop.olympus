@@ -36,7 +36,7 @@ namespace nGratis.Cop.Olympus.Wpf
     {
         // TODO: Need to make this class thread-safe!
 
-        private static readonly Dictionary<Uri, ResourceDictionary> SharedDictionaries =
+        private static readonly Dictionary<Uri, ResourceDictionary> ResourceDictionaryLookup =
             new Dictionary<Uri, ResourceDictionary>();
 
         private Uri _source;
@@ -49,14 +49,14 @@ namespace nGratis.Cop.Olympus.Wpf
             {
                 this._source = value;
 
-                if (!SharedResourceDictionary.SharedDictionaries.ContainsKey(value))
+                if (!SharedResourceDictionary.ResourceDictionaryLookup.ContainsKey(value))
                 {
                     base.Source = value;
-                    SharedResourceDictionary.SharedDictionaries.Add(value, this);
+                    SharedResourceDictionary.ResourceDictionaryLookup.Add(value, this);
                 }
                 else
                 {
-                    this.MergedDictionaries.Add(SharedResourceDictionary.SharedDictionaries[value]);
+                    this.MergedDictionaries.Add(SharedResourceDictionary.ResourceDictionaryLookup[value]);
                 }
             }
         }
