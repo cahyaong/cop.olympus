@@ -261,8 +261,10 @@ namespace nGratis.Cop.Olympus.Wpf
                 {
                     PagingIndex = request.PagingIndex,
                     AccessedTimestamp = DateTimeOffset.MinValue,
-                    Items = this._dataProvider
-                        .GetItemsAsync(request.PagingIndex, this._pagingSize)
+                    Items = Task
+                        .Run(async () => await this
+                            ._dataProvider
+                            .GetItemsAsync(request.PagingIndex, this._pagingSize))
                         .GetAwaiter()
                         .GetResult()
                 };
