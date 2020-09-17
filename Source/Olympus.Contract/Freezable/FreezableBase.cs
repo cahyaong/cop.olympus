@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="BaseFreezable.cs" company="nGratis">
+// <copyright file="FreezableBase.cs" company="nGratis">
 //  The MIT License (MIT)
 //
 //  Copyright (c) 2014 - 2020 Cahya Ong
@@ -28,7 +28,7 @@
 
 namespace nGratis.Cop.Olympus.Contract
 {
-    public class BaseFreezable : IFreezable
+    public abstract class FreezableBase : IFreezable
     {
         public bool IsFrozen { get; private set; }
 

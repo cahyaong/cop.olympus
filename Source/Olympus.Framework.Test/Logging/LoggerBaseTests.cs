@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="BaseLoggerTests.cs" company="nGratis">
+// <copyright file="LoggerBaseTests.cs" company="nGratis">
 //  The MIT License (MIT)
 //
 //  Copyright (c) 2014 - 2020 Cahya Ong
@@ -32,7 +32,7 @@ namespace nGratis.Cop.Olympus.Framework.Test
     using nGratis.Cop.Olympus.Contract;
     using Xunit;
 
-    public class BaseLoggerTests
+    public class LoggerBaseTests
     {
         public class LogMethod
         {
