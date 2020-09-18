@@ -66,9 +66,10 @@ namespace nGratis.Cop.Olympus.Wpf
                     .Cast<object>()
                     .Any() == true;
 
-                template = field.Kind.IsMultipleValuesRequired() && !hasValues
-                    ? (DataTemplate)field.TryFindResource(Key.Empty)
-                    : this._templateLookup[key];
+                if (field.Kind.IsMultipleValuesRequired() && !hasValues)
+                {
+                    template = (DataTemplate)field.TryFindResource(Key.Empty);
+                }
             }
             else
             {

@@ -34,6 +34,7 @@ namespace nGratis.Cop.Olympus.Wpf
     using System.Windows.Controls;
     using nGratis.Cop.Olympus.Contract;
 
+    [TemplatePart(Name = "PART_ValuePresenter", Type = typeof(ContentPresenter))]
     public class AweField : Control
     {
         public static readonly DependencyProperty ModeProperty = DependencyProperty.Register(
@@ -58,7 +59,7 @@ namespace nGratis.Cop.Olympus.Wpf
             nameof(AweField.Value),
             typeof(object),
             typeof(AweField),
-            new PropertyMetadata(null, AweField.OnValueChanged));
+            new PropertyMetadata(default, AweField.OnValueChanged));
 
         public static readonly DependencyProperty FormattedValueProperty = DependencyProperty.Register(
             nameof(AweField.FormattedValue),
@@ -82,7 +83,9 @@ namespace nGratis.Cop.Olympus.Wpf
             nameof(AweField.CustomTemplate),
             typeof(DataTemplate),
             typeof(AweField),
-            new PropertyMetadata(null));
+            new PropertyMetadata(default));
+
+        private ContentPresenter _valuePresenter;
 
         public FieldMode Mode
         {
@@ -132,6 +135,13 @@ namespace nGratis.Cop.Olympus.Wpf
             set => this.SetValue(AweField.CustomTemplateProperty, value);
         }
 
+        public override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+
+            this._valuePresenter = (ContentPresenter)this.Template.FindName("PART_ValuePresenter", this);
+        }
+
         private static void OnValueChanged(DependencyObject container, DependencyPropertyChangedEventArgs args)
         {
             if (!(container is AweField field))
@@ -151,7 +161,23 @@ namespace nGratis.Cop.Olympus.Wpf
                 return;
             }
 
-            field.Value = null;
+            field.Value = default;
+            field.RefreshValuePresenterTemplate();
+        }
+
+        private void RefreshValuePresenterTemplate()
+        {
+            if (this._valuePresenter == null)
+            {
+                return;
+            }
+
+            // TODO: Find better way to trigger template selection when values changed after <AweField> is loaded!
+
+            var templateSelector = this._valuePresenter.ContentTemplateSelector;
+
+            this._valuePresenter.ContentTemplateSelector = null;
+            this._valuePresenter.ContentTemplateSelector = templateSelector;
         }
     }
 }

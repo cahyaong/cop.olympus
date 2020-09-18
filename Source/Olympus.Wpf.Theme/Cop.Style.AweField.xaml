@@ -114,6 +114,7 @@
               Style="{StaticResource Cop.TextBlock.Base}"
               Text="{Binding Header, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource Cop.Converter.AnyToUpperCaseConverter}}" />
             <ContentPresenter
+              x:Name="PART_ValuePresenter"
               Content="{Binding Mode=OneWay}"
               ContentTemplate="{TemplateBinding CustomTemplate}"
               ContentTemplateSelector="{StaticResource Cop.AweField.TemplateSelector}" />
