@@ -32,7 +32,7 @@ namespace nGratis.Cop.Olympus.Contract
 
     public class DataSpec
     {
-        public static DataSpec None = new DataSpec(Text.None, Mime.None);
+        public static readonly DataSpec None = new DataSpec(Text.None, Mime.None);
 
         public DataSpec(string name, Mime mime)
         {
