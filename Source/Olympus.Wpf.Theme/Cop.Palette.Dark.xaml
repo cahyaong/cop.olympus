@@ -39,6 +39,7 @@
   <SolidColorBrush x:Key="Cop.Brush.Shade8">#FFFFFFFF</SolidColorBrush>
 
   <SolidColorBrush x:Key="Cop.Brush.Application.Background">#FF252526</SolidColorBrush>
+  <SolidColorBrush x:Key="Cop.Brush.Application.Border.Inactive">Gray</SolidColorBrush>
 
   <SolidColorBrush x:Key="Cop.Brush.AweChart.Border">#FF404040</SolidColorBrush>
   <SolidColorBrush x:Key="Cop.Brush.AweChart.Text">#FFD1D1D1</SolidColorBrush>

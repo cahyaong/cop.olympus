@@ -14,7 +14,10 @@
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type olympus:AweStatusBar}">
-          <Border Height="{StaticResource Cop.StatusBar.Height}" Background="{DynamicResource Cop.Brush.Accent}">
+          <Border
+            x:Name="PART_Container"
+            Height="{StaticResource Cop.StatusBar.Height}"
+            Background="{DynamicResource Cop.Brush.Accent}">
             <Grid>
               <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
@@ -65,6 +68,11 @@
               </Grid>
             </Grid>
           </Border>
+          <ControlTemplate.Triggers>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=IsActive}" Value="False">
+              <Setter TargetName="PART_Container" Property="Background" Value="{DynamicResource Cop.Brush.Application.Border.Inactive}" />
+            </DataTrigger>
+          </ControlTemplate.Triggers>
         </ControlTemplate>
       </Setter.Value>
     </Setter>
