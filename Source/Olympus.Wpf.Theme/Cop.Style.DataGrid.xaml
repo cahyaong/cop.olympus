@@ -7,13 +7,24 @@
   </ResourceDictionary.MergedDictionaries>
   <Style
     x:Key="Cop.DataGrid.Virtualizing"
+    BasedOn="{StaticResource MahApps.Styles.DataGrid}"
+    TargetType="{x:Type DataGrid}">
+    <Setter Property="EnableRowVirtualization" Value="True" />
+    <Setter Property="ScrollViewer.CanContentScroll" Value="True" />
+    <Setter Property="ScrollViewer.IsDeferredScrollingEnabled" Value="True" />
+    <Setter Property="VirtualizingStackPanel.IsVirtualizing" Value="True" />
+    <Setter Property="VirtualizingStackPanel.IsContainerVirtualizable" Value="True" />
+    <Setter Property="VirtualizingStackPanel.VirtualizationMode" Value="Recycling" />
+  </Style>
+  <Style
+    x:Key="Cop.DataGrid.Azure.Virtualizing"
     BasedOn="{StaticResource MahApps.Styles.DataGrid.Azure}"
     TargetType="{x:Type DataGrid}">
     <Setter Property="EnableRowVirtualization" Value="True" />
     <Setter Property="ScrollViewer.CanContentScroll" Value="True" />
     <Setter Property="ScrollViewer.IsDeferredScrollingEnabled" Value="True" />
     <Setter Property="VirtualizingStackPanel.IsVirtualizing" Value="True" />
-    <Setter Property="VirtualizingStackPanel.ScrollUnit" Value="Pixel" />
+    <Setter Property="VirtualizingStackPanel.IsContainerVirtualizable" Value="True" />
     <Setter Property="VirtualizingStackPanel.VirtualizationMode" Value="Recycling" />
   </Style>
 </ResourceDictionary>
