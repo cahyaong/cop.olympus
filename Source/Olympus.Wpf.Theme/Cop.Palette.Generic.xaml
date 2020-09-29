@@ -1,6 +1,11 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <Color x:Key="Cop.Color.Accent">#FF7F7F7F</Color>
   <SolidColorBrush x:Key="Cop.Brush.Accent" Color="{DynamicResource Cop.Color.Accent}" />
+
   <SolidColorBrush x:Key="Cop.Brush.Error">#FF953734</SolidColorBrush>
   <SolidColorBrush x:Key="Cop.Brush.Warning">#FFE36C09</SolidColorBrush>
+
+  <SolidColorBrush x:Key="Cop.Brush.TrafficLight.Stop">#FFCC3232</SolidColorBrush>
+  <SolidColorBrush x:Key="Cop.Brush.TrafficLight.Caution">#FFE7B416</SolidColorBrush>
+  <SolidColorBrush x:Key="Cop.Brush.TrafficLight.Go">#FF2DC937</SolidColorBrush>
 </ResourceDictionary>
