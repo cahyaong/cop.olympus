@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FileSystemStorageManager.cs" company="nGratis">
+// <copyright file="FileStorageManager.cs" company="nGratis">
 //  The MIT License (MIT)
 //
 //  Copyright (c) 2014 - 2020 Cahya Ong
@@ -35,9 +35,9 @@ namespace nGratis.Cop.Olympus.Framework
     using System.Text;
     using nGratis.Cop.Olympus.Contract;
 
-    public class FileSystemStorageManager : IStorageManager
+    public class FileStorageManager : IStorageManager
     {
-        public FileSystemStorageManager(Uri rootUri)
+        public FileStorageManager(Uri rootUri)
         {
             Guard
                 .Require(rootUri, nameof(rootUri))

@@ -1,4 +1,4 @@
-<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	<s:Boolean x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=4A9582635890054E8FBEA7BC98EE5F13/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=4A9582635890054E8FBEA7BC98EE5F13/RelativePath/@EntryValue">..\Olympus.Wpf\nGratis.Cop.Olympus.Wpf.csproj.DotSettings</s:String>
 	<s:Boolean x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=4B82B915F5C45D42B6385CCC759D7D01/@KeyIndexDefined">True</s:Boolean>
@@ -127,4 +127,5 @@
     }&#xD;
 }&#xD;
 &#xD;
-$END$</s:String></wpf:ResourceDictionary>
+$END$</s:String>
+	<s:Boolean x:Key="/Default/UserDictionary/Words/=zipx/@EntryIndexedValue">True</s:Boolean></wpf:ResourceDictionary>
