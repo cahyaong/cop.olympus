@@ -50,6 +50,11 @@ namespace nGratis.Cop.Olympus.Framework
         private bool _isDisposed;
 
         public CompressedStorageManager(DataSpec archiveSpec, IStorageManager storageManager)
+            : this(archiveSpec, storageManager, false)
+        {
+        }
+
+        internal CompressedStorageManager(DataSpec archiveSpec, IStorageManager storageManager, bool shouldLeaveOpen)
         {
             Guard
                 .Require(archiveSpec, nameof(archiveSpec))
@@ -64,7 +69,7 @@ namespace nGratis.Cop.Olympus.Framework
             this._storageManager = storageManager;
 
             this._deferredArchive = new Lazy<ZipArchive>(
-                this.LoadArchive,
+                () => this.LoadArchive(shouldLeaveOpen),
                 LazyThreadSafetyMode.ExecutionAndPublication);
         }
 
@@ -204,12 +209,21 @@ namespace nGratis.Cop.Olympus.Framework
 
             try
             {
-                var createdEntry = this
+                var foundEntry = this
                     ._deferredArchive.Value
-                    .CreateEntry(key, CompressionLevel.Optimal);
+                    .Entries
+                    .SingleOrDefault(entry => entry.FullName == key);
 
-                using var entryStream = createdEntry.Open();
+                if (foundEntry == null)
+                {
+                    foundEntry = this
+                        ._deferredArchive.Value
+                        .CreateEntry(key, CompressionLevel.Optimal);
+                }
 
+                using var entryStream = foundEntry.Open();
+
+                entryStream.SetLength(dataStream.Length);
                 dataStream.CopyTo(entryStream);
                 entryStream.Flush();
             }
@@ -227,7 +241,7 @@ namespace nGratis.Cop.Olympus.Framework
             GC.SuppressFinalize(this);
         }
 
-        private ZipArchive LoadArchive()
+        private ZipArchive LoadArchive(bool shouldLeaveOpen)
         {
             if (!this._storageManager.HasEntry(this._archiveSpec))
             {
@@ -248,7 +262,7 @@ namespace nGratis.Cop.Olympus.Framework
 
             var dataStream = this._storageManager.LoadEntry(this._archiveSpec);
 
-            return new ZipArchive(dataStream, ZipArchiveMode.Update, false);
+            return new ZipArchive(dataStream, ZipArchiveMode.Update, shouldLeaveOpen);
         }
 
         private void Dispose(bool isDisposing)

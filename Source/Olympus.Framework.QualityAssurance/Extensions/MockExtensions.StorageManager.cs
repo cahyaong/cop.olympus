@@ -36,7 +36,7 @@ namespace nGratis.Cop.Olympus.Framework
 
     public static partial class MockExtensions
     {
-        public static Mock<IStorageManager> WithEntry(
+        public static Mock<IStorageManager> WithCompressedEntry(
             this Mock<IStorageManager> mockManager,
             DataSpec entrySpec,
             params (DataSpec ContentSpec, string Content)[] entries)
@@ -54,7 +54,7 @@ namespace nGratis.Cop.Olympus.Framework
                 .Is.Not.Null()
                 .Is.Not.Empty();
 
-            using var archiveStream = new MemoryStream();
+            var archiveStream = new MemoryStream();
 
             using (var archive = new ZipArchive(archiveStream, ZipArchiveMode.Create, true))
             {
@@ -70,11 +70,9 @@ namespace nGratis.Cop.Olympus.Framework
                 }
             }
 
-            var archiveBlob = archiveStream.GetBuffer();
-
             mockManager
                 .Setup(mock => mock.LoadEntry(entrySpec))
-                .Returns(() => new MemoryStream(archiveBlob))
+                .Returns(() => archiveStream)
                 .Verifiable();
 
             return mockManager

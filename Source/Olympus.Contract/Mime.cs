@@ -61,7 +61,9 @@ namespace nGratis.Cop.Olympus.Contract
 
         public static readonly Mime Xml = new Mime("text/xml", 3023, 0, "xml");
 
-        public static readonly Mime Zip = new Mime("application/zip", 0, 0, ".zip", ".zipx");
+        public static readonly Mime Yaml = new Mime("none/yaml", 0, 0, "yaml", "yml");
+
+        public static readonly Mime Zip = new Mime("application/zip", 0, 0, "zip", "zipx");
 
         private static readonly Dictionary<string, Mime> UniqueIdLookup;
 

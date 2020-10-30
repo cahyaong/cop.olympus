@@ -31,6 +31,7 @@
 namespace System
 {
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
     using System.Security.Cryptography;
     using System.Text;
@@ -67,6 +68,7 @@ namespace System
         public static string ToPrettifiedText(this IReadOnlyCollection<string> values)
         {
             // TODO: Update any similar code to use this method!
+            // TODO: Rename all To___(...) methods to As___(...) to make it consistent with .NET!
 
             if (!values.Any())
             {
@@ -80,6 +82,21 @@ namespace System
                 .ToArray();
 
             return string.Join(", ", prettifiedValues);
+        }
+
+        public static Stream AsStream(this string text)
+        {
+            var stream = new MemoryStream();
+
+            if (string.IsNullOrEmpty(text))
+            {
+                return stream;
+            }
+
+            stream.Write(Encoding.UTF8.GetBytes(text));
+            stream.Position = 0;
+
+            return stream;
         }
     }
 }

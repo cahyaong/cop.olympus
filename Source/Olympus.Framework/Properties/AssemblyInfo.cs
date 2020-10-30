@@ -28,6 +28,7 @@
 
 using System;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("nGratis.Cop.Olympus.Framework")]
@@ -35,3 +36,4 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 [assembly: Guid("d0fd9a30-d021-4091-aa93-8a0d569d46e9")]
 [assembly: CLSCompliant(false)]
+[assembly: InternalsVisibleTo("nGratis.Cop.Olympus.Framework.Test")]
