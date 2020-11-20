@@ -1,7 +1,6 @@
 framework: net5.0
 source https://api.nuget.org/v3/index.json
 
-nuget Humanizer.Core
 nuget JetBrains.Annotations
 nuget Newtonsoft.Json
 nuget NLog
@@ -16,6 +15,7 @@ group _UI
     source https://api.nuget.org/v3/index.json
 
     nuget Caliburn.Micro ~> 4.0.136-rc
+    nuget Humanizer.Core
     nuget MahApps.Metro
     nuget OxyPlot.Wpf
     nuget ReactiveUI ~> 11.5.17.0

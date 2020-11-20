@@ -1,7 +1,6 @@
 RESTRICTION: == net50
 NUGET
   remote: https://api.nuget.org/v3/index.json
-    Humanizer.Core (2.8.26)
     JetBrains.Annotations (2020.1)
     Newtonsoft.Json (12.0.3)
     NLog (4.7.5)
@@ -322,6 +321,7 @@ NUGET
       System.Text.Json (>= 4.7.2)
     DynamicData (6.17.14)
       System.Reactive (>= 4.4.1)
+    Humanizer.Core (2.8.26)
     MahApps.Metro (2.3.4)
       ControlzEx (>= 4.4)
     Microsoft.NETCore.Platforms (3.1.2)
