@@ -36,6 +36,8 @@ namespace nGratis.Cop.Olympus.Framework
 
     public static partial class MockExtensions
     {
+        // TODO: Replace tuple with C# 9 record!
+
         public static Mock<IStorageManager> WithCompressedEntry(
             this Mock<IStorageManager> mockManager,
             DataSpec entrySpec,
@@ -71,7 +73,7 @@ namespace nGratis.Cop.Olympus.Framework
             }
 
             mockManager
-                .Setup(mock => mock.LoadEntry(entrySpec))
+                .Setup(mock => mock.LoadEntry(Arg.DataSpec.Is(entrySpec.Name, entrySpec.Mime)))
                 .Returns(() => archiveStream)
                 .Verifiable();
 
@@ -94,7 +96,7 @@ namespace nGratis.Cop.Olympus.Framework
                 .Verifiable();
 
             mockManager
-                .Setup(mock => mock.HasEntry(entrySpec))
+                .Setup(mock => mock.HasEntry(Arg.DataSpec.Is(entrySpec.Name, entrySpec.Mime)))
                 .Returns(true)
                 .Verifiable();
 
