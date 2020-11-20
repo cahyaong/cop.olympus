@@ -1,5 +1,4 @@
-group _Support
-    JetBrains.Annotations
-    Newtonsoft.Json
-    NLog
-    System.Reactive.Linq
+JetBrains.Annotations
+Newtonsoft.Json
+NLog
+System.Reactive.Linq

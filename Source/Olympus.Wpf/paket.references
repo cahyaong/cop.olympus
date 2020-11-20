@@ -6,3 +6,4 @@ group _UI
     MahApps.Metro
     OxyPlot.Wpf
     ReactiveUI.WPF
+    System.Reactive

@@ -1,36 +1,30 @@
-framework: netcoreapp3.1
+framework: net5.0
 source https://api.nuget.org/v3/index.json
 
 nuget Humanizer.Core
 nuget JetBrains.Annotations
 nuget Newtonsoft.Json
+nuget NLog
+nuget System.Reactive ~> 4.4.1.0
+nuget System.Reactive.Linq ~> 4.4.1.0
 nuget System.Threading.Tasks.Extensions
 nuget YamlDotNet
 
 group _UI
 
-    framework: netcoreapp3.1
+    framework: net5.0-windows
     source https://api.nuget.org/v3/index.json
 
     nuget Caliburn.Micro ~> 4.0.136-rc
     nuget MahApps.Metro
     nuget OxyPlot.Wpf
-    nuget ReactiveUI
-    nuget ReactiveUI.WPF
-
-group _Support
-
-    framework: netstandard2.1
-    source https://api.nuget.org/v3/index.json
-
-    nuget JetBrains.Annotations
-    nuget Newtonsoft.Json
-    nuget NLog
-    nuget System.Reactive.Linq
+    nuget ReactiveUI ~> 11.5.17.0
+    nuget ReactiveUI.WPF ~> 11.5.17.0
+    nuget System.Reactive ~> 4.4.1.0
 
 group _Test
 
-    framework: netcoreapp3.1
+    framework: net5.0
     source https://api.nuget.org/v3/index.json
 
     nuget FluentAssertions
@@ -38,10 +32,3 @@ group _Test
     nuget Moq
     nuget xunit
     nuget xunit.runner.visualstudio ~> 2.4.1.0
-
-group _Test_Support
-
-    framework: netstandard2.1
-    source https://api.nuget.org/v3/index.json
-
-    nuget Moq
