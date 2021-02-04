@@ -14,24 +14,33 @@ steps:
   clean: true
   submodules: true
 
+- task: CmdLine@2
+  displayName: 'Restore .NET tools'
+  inputs:
+    script: 'dotnet tool restore'
+    workingDirectory: 'Source'
+
 - task: DotNetCoreCLI@2
+  displayName: 'Restore packages'
   inputs:
     command: 'restore'
-    projects: Source/nGratis.Cop.Olympus.sln
+    projects: 'Source/nGratis.Cop.Olympus.sln'
 
 - task: VSBuild@1
+  displayName: 'Build solution'
   inputs:
     solution: '$(solution)'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
 - task: VSTest@2
+  displayName: 'Run unit tests'
   inputs:
     testSelector: 'testAssemblies'
     testAssemblyVer2: |
       **/bin/$(buildConfiguration)/**/*Test.dll
       !**/bin/**/ref/**
     searchFolder: 'Source'
-    pathToCustomTestAdapters: 'Source/packages/_test/xunit.runner.visualstudio/build/_common'
+    pathToCustomTestAdapters: '$(UserProfile)/.nuget/packages/xunit.runner.visualstudio/2.4.1/build/_common'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
