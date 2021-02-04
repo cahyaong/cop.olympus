@@ -41,6 +41,6 @@ steps:
       **/bin/$(buildConfiguration)/**/*Test.dll
       !**/bin/**/ref/**
     searchFolder: 'Source'
-    pathToCustomTestAdapters: '$(UserProfile)/.nuget/packages/xunit.runner.visualstudio/2.4.1/build/_common'
+    pathToCustomTestAdapters: '$(UserProfile)/.nuget/packages/xunit.runner.visualstudio/2.4.3/build/netcoreapp2.1'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'

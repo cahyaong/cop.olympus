@@ -313,8 +313,7 @@ NUGET
     xunit.extensibility.execution (2.4.1)
       NETStandard.Library (>= 1.6.1)
       xunit.extensibility.core (2.4.1)
-    xunit.runner.visualstudio (2.4.1)
-      Microsoft.NET.Test.Sdk (>= 15.0)
+    xunit.runner.visualstudio (2.4.3)
 
 GROUP _UI
 STORAGE: NONE

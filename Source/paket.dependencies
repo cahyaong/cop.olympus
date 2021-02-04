@@ -35,4 +35,4 @@ group _Test
     nuget Microsoft.NET.Test.Sdk
     nuget Moq
     nuget xunit
-    nuget xunit.runner.visualstudio ~> 2.4.1.0
+    nuget xunit.runner.visualstudio
