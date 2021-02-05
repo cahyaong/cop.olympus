@@ -2,7 +2,7 @@
 // <copyright file="ReactiveScreen.cs" company="nGratis">
 //  The MIT License (MIT)
 //
-//  Copyright (c) 2014 - 2020 Cahya Ong
+//  Copyright (c) 2014 - 2021 Cahya Ong
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -112,7 +112,7 @@ namespace nGratis.Cop.Olympus.Wpf.Glue
             {
                 this.RaiseDeactivating(isClosed);
 
-                await this.DeactivateCoreAysnc(isClosed, cancellationToken);
+                await this.DeactivateCoreAsync(isClosed, cancellationToken);
 
                 this.IsActive = false;
                 this.RaisedDeactivated(isClosed);
@@ -161,7 +161,7 @@ namespace nGratis.Cop.Olympus.Wpf.Glue
             await Task.CompletedTask;
         }
 
-        protected virtual async Task DeactivateCoreAysnc(bool isClosed, CancellationToken cancellationToken)
+        protected virtual async Task DeactivateCoreAsync(bool isClosed, CancellationToken cancellationToken)
         {
             await Task.CompletedTask;
         }
