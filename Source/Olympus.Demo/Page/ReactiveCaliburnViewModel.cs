@@ -53,7 +53,7 @@ namespace nGratis.Cop.Olympus.Demo
             await Task.CompletedTask;
         }
 
-        protected override async Task DeactivateCoreAysnc(bool isClosed, CancellationToken cancellationToken)
+        protected override async Task DeactivateCoreAsync(bool isClosed, CancellationToken cancellationToken)
         {
             this._logger.Log(Verbosity.Info, "Deactivating <Reactive.Caliburn> screen...");
 
