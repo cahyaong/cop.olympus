@@ -30,29 +30,31 @@
 namespace System.Collections.Generic
 {
     using System;
+    using System.Collections.Immutable;
     using System.Diagnostics;
+    using System.Linq;
     using JetBrains.Annotations;
     using nGratis.Cop.Olympus.Contract;
 
     public static class EnumerableExtensions
     {
         [DebuggerStepThrough]
-        public static IEnumerable<T> AppendItem<T>(this IEnumerable<T> leftItems, T rightItem)
+        public static IEnumerable<T> Append<T>(this IEnumerable<T> items, T item)
         {
             Guard
-                .Require(leftItems, nameof(leftItems))
+                .Require(items, nameof(items))
                 .Is.Not.Null();
 
-            foreach (var leftItem in leftItems)
+            foreach (var leftItem in items)
             {
                 yield return leftItem;
             }
 
-            yield return rightItem;
+            yield return item;
         }
 
         [DebuggerStepThrough]
-        public static IEnumerable<T> AppendItems<T>(this IEnumerable<T> leftItems, IEnumerable<T> rightItems)
+        public static IEnumerable<T> Append<T>(this IEnumerable<T> leftItems, IEnumerable<T> rightItems)
         {
             Guard
                 .Require(leftItems, nameof(leftItems))
@@ -74,7 +76,14 @@ namespace System.Collections.Generic
         }
 
         [DebuggerStepThrough]
+        public static IEnumerable<T> Except<T>(this IEnumerable<T> items, T item)
+        {
+            return items.Except(ImmutableArray.Create(item));
+        }
+
+        [DebuggerStepThrough]
         public static void ForEach<T>(this IEnumerable<T> items, [InstantHandle] Action<T> apply)
+
         {
             Guard
                 .Require(items, nameof(items))
