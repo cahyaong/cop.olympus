@@ -85,7 +85,7 @@ namespace nGratis.Cop.Olympus.Wpf
 
         private static void OnValueChanged(DependencyObject container, DependencyPropertyChangedEventArgs args)
         {
-            if (!(container is Panel panel))
+            if (container is not Panel panel)
             {
                 return;
             }
@@ -96,7 +96,7 @@ namespace nGratis.Cop.Olympus.Wpf
 
         private static void OnPanelLoaded(object sender, RoutedEventArgs args)
         {
-            if (!(sender is Panel panel))
+            if (sender is not Panel panel)
             {
                 return;
             }
@@ -112,7 +112,7 @@ namespace nGratis.Cop.Olympus.Wpf
                 .ToArray();
 
             elements
-                .Where((element, index) => index < panel.Children.Count - 1)
+                .Where((_, index) => index < panel.Children.Count - 1)
                 .ForEach(element => element.UpdateMargin(value.Width, value.Height));
 
             if (elements.Any())
@@ -142,7 +142,7 @@ namespace nGratis.Cop.Olympus.Wpf
 
         private static void OnIsHorizontalExcludedChanged(DependencyObject container, DependencyPropertyChangedEventArgs args)
         {
-            if (!(container is FrameworkElement element))
+            if (container is not FrameworkElement element)
             {
                 return;
             }
@@ -161,7 +161,7 @@ namespace nGratis.Cop.Olympus.Wpf
 
         private static void OnIsVerticalExcludedChanged(DependencyObject container, DependencyPropertyChangedEventArgs args)
         {
-            if (!(container is FrameworkElement element))
+            if (container is not FrameworkElement element)
             {
                 return;
             }

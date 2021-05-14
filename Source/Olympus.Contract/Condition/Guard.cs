@@ -30,7 +30,6 @@ namespace nGratis.Cop.Olympus.Contract
 {
     using System;
     using System.Diagnostics;
-    using System.Diagnostics.CodeAnalysis;
     using JetBrains.Annotations;
 
     public static partial class Guard
@@ -39,28 +38,28 @@ namespace nGratis.Cop.Olympus.Contract
         [ContractAnnotation("actual:null => halt")]
         public static ValidationContinuation<T> Require<T>([NoEnumeration] T actual)
         {
-            return new ValidationContinuation<T>(Text.Unknown, actual, ValidatorKind.PreCondition);
+            return new(Text.Unknown, actual, ValidatorKind.PreCondition);
         }
 
         [DebuggerStepThrough]
         [ContractAnnotation("actual:null => halt")]
         public static ValidationContinuation<T> Ensure<T>([NoEnumeration] T actual)
         {
-            return new ValidationContinuation<T>(Text.Unknown, actual, ValidatorKind.PostCondition);
+            return new(Text.Unknown, actual, ValidatorKind.PostCondition);
         }
 
         [DebuggerStepThrough]
         [ContractAnnotation("actual:null => halt")]
         public static ValidationContinuation<T> Require<T>([NoEnumeration] T actual, string name)
         {
-            return new ValidationContinuation<T>(name, actual, ValidatorKind.PreCondition);
+            return new(name, actual, ValidatorKind.PreCondition);
         }
 
         [DebuggerStepThrough]
         [ContractAnnotation("actual:null => halt")]
         public static ValidationContinuation<T> Ensure<T>([NoEnumeration] T actual, string name)
         {
-            return new ValidationContinuation<T>(name, actual, ValidatorKind.PostCondition);
+            return new(name, actual, ValidatorKind.PostCondition);
         }
 
         [DebuggerStepThrough]
@@ -89,7 +88,6 @@ namespace nGratis.Cop.Olympus.Contract
         }
 
         [DebuggerStepThrough]
-        [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
         public static ValidationContinuation<T> OfType<T>(this ClassValidator<T> validator, Type expected)
         {
             return validator.Validate(

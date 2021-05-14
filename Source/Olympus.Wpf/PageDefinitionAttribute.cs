@@ -31,6 +31,8 @@ namespace nGratis.Cop.Olympus.Wpf
     using System;
     using nGratis.Cop.Olympus.Contract;
 
+    // ReSharper disable AutoPropertyCanBeMadeGetOnly.Global
+
     [AttributeUsage(AttributeTargets.Class, Inherited = false)]
     public sealed class PageDefinitionAttribute : Attribute
     {

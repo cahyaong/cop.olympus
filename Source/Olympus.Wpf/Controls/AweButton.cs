@@ -99,7 +99,7 @@ namespace nGratis.Cop.Olympus.Wpf
             typeof(AweButton),
             new PropertyMetadata(false));
 
-        private readonly DispatcherTimer _repeatingTimer = new DispatcherTimer();
+        private readonly DispatcherTimer _repeatingTimer = new();
 
         public AweButton()
         {

@@ -45,11 +45,11 @@ namespace nGratis.Cop.Olympus.Framework
             var stackFrames = stackTrace.GetFrames();
             var category = default(string);
 
-            if (stackFrames != null && stackFrames.Any())
+            if (stackFrames.Any())
             {
                 var loggingAttribute = stackFrames
                     .Select(frame => frame
-                        .GetMethod()
+                        .GetMethod()?
                         .DeclaringType?
                         .GetCustomAttributes<LoggingAttribute>()
                         .SingleOrDefault())

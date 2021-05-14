@@ -50,7 +50,7 @@ namespace nGratis.Cop.Olympus.Wpf
 
         public static RelayCommand Create(Action execute, Func<bool> canExecute = null)
         {
-            return new RelayCommand(execute, canExecute);
+            return new(execute, canExecute);
         }
 
         public event EventHandler CanExecuteChanged

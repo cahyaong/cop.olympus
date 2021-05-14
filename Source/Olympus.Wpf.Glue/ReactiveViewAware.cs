@@ -39,7 +39,7 @@ namespace nGratis.Cop.Olympus.Wpf.Glue
 
     public class ReactiveViewAware : ReactiveObject, IViewAware
     {
-        private static readonly object DefaultContext = new object();
+        private static readonly object DefaultContext = new();
 
         public ReactiveViewAware()
         {
@@ -65,9 +65,7 @@ namespace nGratis.Cop.Olympus.Wpf.Glue
             this.ExecuteOnViewAttached(nonGeneratedView, context);
             this.RaiseViewAttached(nonGeneratedView, context);
 
-            var outerActivation = this as IActivate;
-
-            if (outerActivation == null || outerActivation.IsActive)
+            if (this is not IActivate outerActivation || outerActivation.IsActive)
             {
                 PlatformProvider.Current.ExecuteOnLayoutUpdated(nonGeneratedView, this.ExecuteOnViewReady);
             }
@@ -77,7 +75,7 @@ namespace nGratis.Cop.Olympus.Wpf.Glue
 
                 var onActivated = default(EventHandler<ActivationEventArgs>);
 
-                onActivated = (sender, args) =>
+                onActivated = (sender, _) =>
                 {
                     if (sender is IActivate innerActivation)
                     {

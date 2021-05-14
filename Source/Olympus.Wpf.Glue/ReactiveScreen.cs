@@ -90,7 +90,7 @@ namespace nGratis.Cop.Olympus.Wpf.Glue
 
             if (!this.IsInitialized)
             {
-                await this.InitializeAysnc(cancellationToken);
+                await this.InitializeAsync(cancellationToken);
                 this.IsInitialized = true;
             }
 
@@ -151,7 +151,7 @@ namespace nGratis.Cop.Olympus.Wpf.Glue
             this.RaisePropertyChanged(propertyName);
         }
 
-        protected virtual async Task InitializeAysnc(CancellationToken cancellationToken)
+        protected virtual async Task InitializeAsync(CancellationToken cancellationToken)
         {
             await Task.CompletedTask;
         }

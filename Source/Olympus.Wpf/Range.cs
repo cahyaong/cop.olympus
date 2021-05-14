@@ -36,7 +36,7 @@ namespace nGratis.Cop.Olympus.Wpf
     {
         private double _currentValue;
 
-        private double _interval;
+        private readonly double _interval;
 
         public Range()
             : this(0.0, 100.0, 1.0)
@@ -72,7 +72,7 @@ namespace nGratis.Cop.Olympus.Wpf
         public double Interval
         {
             get => this._interval;
-            private set => this.RaiseAndSetIfChanged(ref this._interval, value);
+            private init => this.RaiseAndSetIfChanged(ref this._interval, value);
         }
     }
 }

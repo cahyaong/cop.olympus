@@ -48,7 +48,7 @@ namespace nGratis.Cop.Olympus.Contract
 
         internal ValidatorKind Kind { get; }
 
-        internal ValidationContinuation<T> Continuation { get; set; }
+        internal ValidationContinuation<T> Continuation { get; init; }
 
         protected bool IsNegated { get; set; }
 
@@ -65,17 +65,12 @@ namespace nGratis.Cop.Olympus.Contract
                     this.IsNegated ? "NOT " : string.Empty,
                     reason);
 
-                switch (this.Kind)
+                throw this.Kind switch
                 {
-                    case ValidatorKind.PreCondition:
-                        throw new CopPreConditionException(message);
-
-                    case ValidatorKind.PostCondition:
-                        throw new CopPostConditionException(message);
-
-                    default:
-                        throw new NotSupportedException($"Validator kind [{this.Kind}] is not supported!");
-                }
+                    ValidatorKind.PreCondition => new CopPreConditionException(message),
+                    ValidatorKind.PostCondition => new CopPostConditionException(message),
+                    _ => new NotSupportedException($"Validator kind [{this.Kind}] is not supported!")
+                };
             }
 
             this.IsNegated = false;

@@ -56,7 +56,7 @@ namespace nGratis.Cop.Olympus.Wpf
 
         public AweScrollBar()
         {
-            this.ValueChanged += (_, __) => this.UpdateButtonStates();
+            this.ValueChanged += (_, _) => this.UpdateButtonStates();
         }
 
         public double ContentWidth

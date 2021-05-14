@@ -30,13 +30,11 @@ namespace nGratis.Cop.Olympus.Contract
 {
     using System.Collections.Generic;
     using System.Diagnostics;
-    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
 
     public static partial class Guard
     {
         [DebuggerStepThrough]
-        [SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures")]
         public static ValidationContinuation<IEnumerable<T>> Empty<T>(this ClassValidator<IEnumerable<T>> validator)
         {
             return validator.Validate(
@@ -53,9 +51,27 @@ namespace nGratis.Cop.Olympus.Contract
         }
 
         [DebuggerStepThrough]
-        [SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures")]
-        public static ValidationContinuation<Dictionary<TKey, TValue>> Key<TKey, TValue>(
-            this PropertyValidator<Dictionary<TKey, TValue>> validator,
+        public static ValidationContinuation<IReadOnlyCollection<T>> Empty<T>(
+            this ClassValidator<IReadOnlyCollection<T>> validator)
+        {
+            return validator.Validate(
+                actual => actual.Count <= 0,
+                "be empty");
+        }
+
+        [DebuggerStepThrough]
+        public static ValidationContinuation<IDictionary<TKey, TValue>> Key<TKey, TValue>(
+            this PropertyValidator<IDictionary<TKey, TValue>> validator,
+            TKey key)
+        {
+            return validator.Validate(
+                actual => actual.ContainsKey(key),
+                $"have key [{key}]");
+        }
+
+        [DebuggerStepThrough]
+        public static ValidationContinuation<IReadOnlyDictionary<TKey, TValue>> Key<TKey, TValue>(
+            this PropertyValidator<IReadOnlyDictionary<TKey, TValue>> validator,
             TKey key)
         {
             return validator.Validate(

@@ -39,9 +39,9 @@ namespace nGratis.Cop.Olympus.Framework
         {
         }
 
-        public static VoidStorageManager Default { get; } = new VoidStorageManager();
+        public static VoidStorageManager Default { get; } = new();
 
-        public bool IsAvailable { get; } = false;
+        public bool IsAvailable => false;
 
         public IEnumerable<DataInfo> FindEntries(string pattern, Mime mime)
         {

@@ -35,13 +35,13 @@ namespace Moq
         public static Mock<T> CreateMock<T>(params object[] args)
             where T : class
         {
-            return new Mock<T>(args);
+            return new(args);
         }
 
         public static Mock<T> CreateStub<T>(params object[] args)
             where T : class
         {
-            return new Mock<T>(args)
+            return new(args)
             {
                 CallBase = true
             };

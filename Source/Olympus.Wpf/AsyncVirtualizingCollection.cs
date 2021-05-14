@@ -33,7 +33,6 @@ namespace nGratis.Cop.Olympus.Wpf
     using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Collections.Specialized;
-    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Reactive.Concurrency;
     using System.Reactive.Linq;
@@ -123,11 +122,15 @@ namespace nGratis.Cop.Olympus.Wpf
                 return this._count;
             }
 
+            // ReSharper disable PropertyCanBeMadeInitOnly.Local
+
             private set
             {
                 this.RaiseAndSetIfChanged(ref this._count, value);
                 this.RaiseCollectionChanged();
             }
+
+            // ReSharper restore PropertyCanBeMadeInitOnly.Local
         }
 
         public object SyncRoot => this;
@@ -257,7 +260,7 @@ namespace nGratis.Cop.Olympus.Wpf
         {
             CachingEntry CreateCachingEntry()
             {
-                return new CachingEntry
+                return new()
                 {
                     PagingIndex = request.PagingIndex,
                     AccessedTimestamp = DateTimeOffset.MinValue,
@@ -314,29 +317,31 @@ namespace nGratis.Cop.Olympus.Wpf
                 new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
         }
 
-        [SuppressMessage("ReSharper", "UnusedAutoPropertyAccessor.Local")]
+        // ReSharper disable UnusedAutoPropertyAccessor.Local
+
         private sealed class CachingEntry
         {
-            public int PagingIndex { get; set; }
+            public int PagingIndex { get; init; }
 
-            public IReadOnlyCollection<TItem> Items { get; set; }
+            public IReadOnlyCollection<TItem> Items { get; init; }
 
             public DateTimeOffset AccessedTimestamp { get; set; }
         }
 
-        private sealed class FetchingRequest
+        private sealed record FetchingRequest
         {
-            public int PagingIndex { get; set; }
+            public int PagingIndex { get; init; }
 
-            public bool IsNeeded { get; set; }
+            public bool IsNeeded { get; init; }
         }
 
-        [SuppressMessage("ReSharper", "UnusedAutoPropertyAccessor.Local")]
-        private sealed class RefreshingRequest
+        private sealed record RefreshingRequest
         {
-            public int PagingIndex { get; set; }
+            public int PagingIndex { get; init; }
 
-            public bool IsNeeded { get; set; }
+            public bool IsNeeded { get; init; }
         }
+
+        // ReSharper restore UnusedAutoPropertyAccessor.Local
     }
 }

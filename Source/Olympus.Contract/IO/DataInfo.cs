@@ -37,6 +37,6 @@ namespace nGratis.Cop.Olympus.Contract
         {
         }
 
-        public DateTimeOffset CreatedTimestamp { get; set; }
+        public DateTimeOffset CreatedTimestamp { get; init; }
     }
 }

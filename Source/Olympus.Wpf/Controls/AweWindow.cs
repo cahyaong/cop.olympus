@@ -62,7 +62,7 @@ namespace nGratis.Cop.Olympus.Wpf
         public ILoggingNotifier LoggingNotifier
         {
             get => (ILoggingNotifier)this.GetValue(AweWindow.LoggingNotifierProperty);
-            set => this.SetValue(AweWindow.LoggingNotifierProperty, value ?? VoidLogger.Instance);
+            init => this.SetValue(AweWindow.LoggingNotifierProperty, value ?? VoidLogger.Instance);
         }
 
         public override void OnApplyTemplate()
@@ -98,7 +98,7 @@ namespace nGratis.Cop.Olympus.Wpf
             DependencyObject container,
             DependencyPropertyChangedEventArgs args)
         {
-            if (!(container is AweWindow window))
+            if (container is not AweWindow window)
             {
                 return;
             }
@@ -111,7 +111,7 @@ namespace nGratis.Cop.Olympus.Wpf
 
         private void InitializeContentPart()
         {
-            if (!(this.GetTemplateChild("PART_Content") is MetroContentControl metroContent))
+            if (this.GetTemplateChild("PART_Content") is not MetroContentControl metroContent)
             {
                 return;
             }

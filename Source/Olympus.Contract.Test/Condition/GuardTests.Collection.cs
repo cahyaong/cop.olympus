@@ -138,7 +138,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             {
                 // Arrange.
 
-                var values = new int[0];
+                var values = Array.Empty<int>();
 
                 // Act.
 
@@ -185,7 +185,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             {
                 // Arrange.
 
-                var values = new int[0];
+                var values = Array.Empty<int>();
 
                 // Act.
 
@@ -235,7 +235,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             {
                 // Arrange.
 
-                var value = new Dictionary<string, string>
+                var value = (IDictionary<string, string>)new Dictionary<string, string>
                 {
                     ["[_MOCK_KEY_]"] = "[_MOCK_VALUE_]"
                 };
@@ -260,7 +260,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             {
                 // Arrange.
 
-                var value = new Dictionary<string, string>
+                var value = (IDictionary<string, string>)new Dictionary<string, string>
                 {
                     ["[_MOCK_KEY_]"] = "[_MOCK_VALUE_]"
                 };
@@ -286,7 +286,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             {
                 // Arrange.
 
-                var value = new Dictionary<string, string>
+                var value = (IDictionary<string, string>)new Dictionary<string, string>
                 {
                     ["[_MOCK_KEY_]"] = "[_MOCK_VALUE_]"
                 };
@@ -311,7 +311,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             {
                 // Arrange.
 
-                var value = new Dictionary<string, string>
+                var value = (IDictionary<string, string>)new Dictionary<string, string>
                 {
                     ["[_MOCK_KEY_]"] = "[_MOCK_VALUE_]"
                 };

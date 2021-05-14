@@ -71,7 +71,7 @@ namespace nGratis.Cop.Olympus.Framework
 
             var logger = this
                 ._loggerLookup
-                .GetOrAdd(component, key => this.CreateLogger(component));
+                .GetOrAdd(component, _ => this.CreateLogger(component));
 
             this._aggregatingLogger.RegisterLoggers(logger);
 

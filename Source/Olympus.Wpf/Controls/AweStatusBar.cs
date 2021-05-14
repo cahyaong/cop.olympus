@@ -100,7 +100,7 @@ namespace nGratis.Cop.Olympus.Wpf
             DependencyObject container,
             DependencyPropertyChangedEventArgs args)
         {
-            if (!(container is AweStatusBar statusBar))
+            if (container is not AweStatusBar statusBar)
             {
                 return;
             }

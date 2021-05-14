@@ -38,9 +38,9 @@ namespace nGratis.Cop.Olympus.Contract
                 .Require(task, nameof(task))
                 .Is.Not.Null();
 
-            task.RunSynchronously();
-
-            return task.Result;
+            return task
+                .GetAwaiter()
+                .GetResult();
         }
     }
 }

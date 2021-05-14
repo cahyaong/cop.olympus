@@ -29,48 +29,45 @@
 namespace nGratis.Cop.Olympus.Contract
 {
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Reflection;
 
     public class Mime
     {
-        public static readonly Mime Unknown = new Mime("cop/unknown", 0, 0, string.Empty);
+        public static readonly Mime Unknown = new("cop/unknown", 0, 0, string.Empty);
 
-        public static readonly Mime None = new Mime("cop/none", 0, 0, string.Empty);
+        public static readonly Mime None = new("cop/none", 0, 0, string.Empty);
 
-        public static readonly Mime Text = new Mime("text/plain", 0, 0, "txt");
+        public static readonly Mime Text = new("text/plain", 0, 0, "txt");
 
-        public static readonly Mime Csv = new Mime("text/csv", 4180, 0, "csv");
+        public static readonly Mime Csv = new("text/csv", 4180, 0, "csv");
 
-        public static readonly Mime Html = new Mime("text/html", 2854, 0, "html");
+        public static readonly Mime Html = new("text/html", 2854, 0, "html");
 
-        public static readonly Mime Json = new Mime("application/json", 4627, 0, "json");
+        public static readonly Mime Json = new("application/json", 4627, 0, "json");
 
-        public static readonly Mime Jpeg = new Mime("image/jpeg", 1341, 10918, "jpeg", "jpg");
+        public static readonly Mime Jpeg = new("image/jpeg", 1341, 10918, "jpeg", "jpg");
 
-        public static readonly Mime Mpeg4 = new Mime("video/mp4", 4337, 0, "mp4");
+        public static readonly Mime Mpeg4 = new("video/mp4", 4337, 0, "mp4");
 
-        public static readonly Mime Saz = new Mime("application/x-fiddler-session-archive", 0, 0, "saz");
+        public static readonly Mime Saz = new("application/x-fiddler-session-archive", 0, 0, "saz");
 
-        public static readonly Mime Png = new Mime("image/png", 2083, 15948, "png");
+        public static readonly Mime Png = new("image/png", 2083, 15948, "png");
 
-        public static readonly Mime Warc = new Mime("application/warc", 0, 28500, "warc");
+        public static readonly Mime Warc = new("application/warc", 0, 28500, "warc");
 
-        public static readonly Mime WebForm = new Mime("application/x-www-form-urlencoded", 0, 0, string.Empty);
+        public static readonly Mime WebForm = new("application/x-www-form-urlencoded", 0, 0, string.Empty);
 
-        public static readonly Mime Xml = new Mime("text/xml", 3023, 0, "xml");
+        public static readonly Mime Xml = new("text/xml", 3023, 0, "xml");
 
-        public static readonly Mime Yaml = new Mime("none/yaml", 0, 0, "yaml", "yml");
+        public static readonly Mime Yaml = new("none/yaml", 0, 0, "yaml", "yml");
 
-        public static readonly Mime Zip = new Mime("application/zip", 0, 0, "zip", "zipx");
+        public static readonly Mime Zip = new("application/zip", 0, 0, "zip", "zipx");
 
-        private static readonly Dictionary<string, Mime> UniqueIdLookup;
+        private static readonly IReadOnlyDictionary<string, Mime> ByUniqueIdLookup;
 
-        private static readonly Dictionary<string, Mime> NameLookup;
+        private static readonly IReadOnlyDictionary<string, Mime> ByNameLookup;
 
-        [SuppressMessage("Microsoft.Performance", "CA1810:InitializeReferenceTypeStaticFieldsInline")]
-        [SuppressMessage("Microsoft.Usage", "CA2207:InitializeValueTypeStaticFieldsInline")]
         static Mime()
         {
             var mimes = typeof(Mime)
@@ -79,10 +76,10 @@ namespace nGratis.Cop.Olympus.Contract
                 .OfType<Mime>()
                 .ToArray();
 
-            Mime.UniqueIdLookup = mimes
+            Mime.ByUniqueIdLookup = mimes
                 .ToDictionary(mime => mime.UniqueId, mime => mime);
 
-            Mime.NameLookup = mimes
+            Mime.ByNameLookup = mimes
                 .SelectMany(mime => mime
                     .Extensions
                     .Where(name => !string.IsNullOrEmpty(name))
@@ -102,7 +99,7 @@ namespace nGratis.Cop.Olympus.Contract
                 .Is.Not.Empty();
 
             Guard
-                .Require(Mime.UniqueIdLookup, nameof(Mime.UniqueIdLookup))
+                .Require(Mime.ByUniqueIdLookup, nameof(Mime.ByUniqueIdLookup))
                 .Has.No.Key(uniqueId);
 
             this.UniqueId = uniqueId;
@@ -149,10 +146,10 @@ namespace nGratis.Cop.Olympus.Contract
                 .Is.Not.Empty();
 
             Guard
-                .Require(Mime.UniqueIdLookup, nameof(Mime.UniqueIdLookup))
+                .Require(Mime.ByUniqueIdLookup, nameof(Mime.ByUniqueIdLookup))
                 .Has.Key(uniqueId);
 
-            return Mime.UniqueIdLookup[uniqueId];
+            return Mime.ByUniqueIdLookup[uniqueId];
         }
 
         public static Mime ParseByExtension(string extension)
@@ -164,10 +161,10 @@ namespace nGratis.Cop.Olympus.Contract
             extension = extension.Replace(".", string.Empty);
 
             Guard
-                .Require(Mime.NameLookup, nameof(Mime.NameLookup))
+                .Require(Mime.ByNameLookup, nameof(Mime.ByNameLookup))
                 .Has.Key(extension);
 
-            return Mime.NameLookup[extension];
+            return Mime.ByNameLookup[extension];
         }
 
         public static bool operator ==(Mime left, Mime right)

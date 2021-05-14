@@ -38,7 +38,7 @@ namespace System
 
     public static class StringExtensions
     {
-        private static readonly string DefaultHash = new string('0', 32);
+        private static readonly string DefaultHash = new('0', 32);
 
         public static string Coalesce(this string value, params string[] alternatives)
         {

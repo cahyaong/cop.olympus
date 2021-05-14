@@ -282,13 +282,13 @@ namespace nGratis.Cop.Olympus.Contract.Test
 
         public class MimeEquivalentTheory : CopTheory
         {
-            public Mime LeftMime { get; private set; }
+            public Mime LeftMime { get; private init; }
 
-            public Mime RightMime { get; private set; }
+            public Mime RightMime { get; private init; }
 
             public static MimeEquivalentTheory Create(Mime leftMime, Mime rightMime)
             {
-                return new MimeEquivalentTheory
+                return new()
                 {
                     LeftMime = leftMime,
                     RightMime = rightMime

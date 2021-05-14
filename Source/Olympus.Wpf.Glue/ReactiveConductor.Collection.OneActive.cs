@@ -214,7 +214,7 @@ namespace nGratis.Cop.Olympus.Wpf.Glue
                     {
                         case NotifyCollectionChangedAction.Add:
                             {
-                                args.NewItems
+                                args.NewItems?
                                     .OfType<IChild>()
                                     .Apply(child => child.Parent = this);
 
@@ -223,7 +223,7 @@ namespace nGratis.Cop.Olympus.Wpf.Glue
 
                         case NotifyCollectionChangedAction.Remove:
                             {
-                                args.OldItems
+                                args.OldItems?
                                     .OfType<IChild>()
                                     .Apply(child => child.Parent = null);
 
@@ -232,11 +232,11 @@ namespace nGratis.Cop.Olympus.Wpf.Glue
 
                         case NotifyCollectionChangedAction.Replace:
                             {
-                                args.NewItems
+                                args.NewItems?
                                     .OfType<IChild>()
                                     .Apply(child => child.Parent = this);
 
-                                args.OldItems
+                                args.OldItems?
                                     .OfType<IChild>()
                                     .Apply(child => child.Parent = null);
 

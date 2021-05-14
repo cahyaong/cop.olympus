@@ -34,16 +34,16 @@ namespace nGratis.Cop.Olympus.Wpf
         {
         }
 
-        public bool HasError { get; private set; }
+        public bool HasError { get; private init; }
 
         public static CallbackResult OnSuccessful()
         {
-            return new CallbackResult();
+            return new();
         }
 
         public static CallbackResult OnFailure()
         {
-            return new CallbackResult
+            return new()
             {
                 HasError = true
             };

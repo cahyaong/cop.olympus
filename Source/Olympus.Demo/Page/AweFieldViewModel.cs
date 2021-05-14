@@ -37,15 +37,15 @@ namespace nGratis.Cop.Olympus.Demo
     {
         private string _text;
 
-        private IEnumerable<int> _availableNumbers;
+        private readonly IEnumerable<int> _availableNumbers;
 
         private int _selectedNumber;
 
-        private IEnumerable<string> _messages;
+        private readonly IEnumerable<string> _messages;
 
         private string _customText;
 
-        private IEnumerable<string> _animals;
+        private readonly IEnumerable<string> _animals;
 
         public AweFieldViewModel()
         {
@@ -73,7 +73,7 @@ namespace nGratis.Cop.Olympus.Demo
         public IEnumerable<int> AvailableNumbers
         {
             get => this._availableNumbers;
-            private set => this.RaiseAndSetIfChanged(ref this._availableNumbers, value);
+            private init => this.RaiseAndSetIfChanged(ref this._availableNumbers, value);
         }
 
         public int SelectedNumber
@@ -85,7 +85,7 @@ namespace nGratis.Cop.Olympus.Demo
         public IEnumerable<string> Messages
         {
             get => this._messages;
-            private set => this.RaiseAndSetIfChanged(ref this._messages, value);
+            private init => this.RaiseAndSetIfChanged(ref this._messages, value);
         }
 
         public string CustomText
@@ -97,7 +97,7 @@ namespace nGratis.Cop.Olympus.Demo
         public IEnumerable<string> Animals
         {
             get => this._animals;
-            private set => this.RaiseAndSetIfChanged(ref this._animals, value);
+            private init => this.RaiseAndSetIfChanged(ref this._animals, value);
         }
     }
 }

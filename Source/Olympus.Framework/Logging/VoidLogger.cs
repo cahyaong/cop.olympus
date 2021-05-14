@@ -40,7 +40,7 @@ namespace nGratis.Cop.Olympus.Framework
             this.WhenEntryAdded = new Subject<LoggingEntry>();
         }
 
-        public static VoidLogger Instance { get; } = new VoidLogger();
+        public static VoidLogger Instance { get; } = new();
 
         public IObservable<LoggingEntry> WhenEntryAdded { get; }
 

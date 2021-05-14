@@ -39,21 +39,6 @@ namespace System.Collections.Generic
     public static class EnumerableExtensions
     {
         [DebuggerStepThrough]
-        public static IEnumerable<T> Append<T>(this IEnumerable<T> items, T item)
-        {
-            Guard
-                .Require(items, nameof(items))
-                .Is.Not.Null();
-
-            foreach (var leftItem in items)
-            {
-                yield return leftItem;
-            }
-
-            yield return item;
-        }
-
-        [DebuggerStepThrough]
         public static IEnumerable<T> Append<T>(this IEnumerable<T> leftItems, IEnumerable<T> rightItems)
         {
             Guard
