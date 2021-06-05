@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ChartConfigurationToPlotModelConverter.cs" company="nGratis">
+// <copyright file="ChartConfigToPlotModelConverter.cs" company="nGratis">
 //  The MIT License (MIT)
 //
 //  Copyright (c) 2014 - 2021 Cahya Ong
@@ -42,24 +42,24 @@ namespace nGratis.Cop.Olympus.Wpf
     using LineSeries = OxyPlot.Series.LineSeries;
     using LogarithmicAxis = OxyPlot.Axes.LogarithmicAxis;
 
-    [ValueConversion(typeof(ChartConfiguration), typeof(PlotModel))]
-    public class ChartConfigurationToPlotModelConverter : Freezable, IValueConverter
+    [ValueConversion(typeof(ChartConfig), typeof(PlotModel))]
+    public class ChartConfigToPlotModelConverter : Freezable, IValueConverter
     {
         public static readonly DependencyProperty ThemeManagerProperty = DependencyProperty.Register(
             "ThemeManager",
             typeof(IThemeManager),
-            typeof(ChartConfigurationToPlotModelConverter),
+            typeof(ChartConfigToPlotModelConverter),
             new PropertyMetadata(null));
 
         public IThemeManager ThemeManager
         {
-            get => (IThemeManager)this.GetValue(ChartConfigurationToPlotModelConverter.ThemeManagerProperty);
-            set => this.SetValue(ChartConfigurationToPlotModelConverter.ThemeManagerProperty, value);
+            get => (IThemeManager)this.GetValue(ChartConfigToPlotModelConverter.ThemeManagerProperty);
+            set => this.SetValue(ChartConfigToPlotModelConverter.ThemeManagerProperty, value);
         }
 
         public object Convert(object value, Type type, object parameter, CultureInfo culture)
         {
-            if (!(value is ChartConfiguration chartConfiguration))
+            if (value is not ChartConfig chartConfig)
             {
                 return null;
             }
@@ -70,8 +70,8 @@ namespace nGratis.Cop.Olympus.Wpf
                 .Require(themeManager, nameof(themeManager))
                 .Is.Not.Null();
 
-            var subcharts = chartConfiguration
-                .SeriesConfigurations
+            var subcharts = chartConfig
+                .SeriesConfigs
                 .Select(configuration => new { configuration.Category, configuration.Value })
                 .Distinct()
                 .ToList();
@@ -97,7 +97,7 @@ namespace nGratis.Cop.Olympus.Wpf
 
             var plotModel = new PlotModel
             {
-                Title = chartConfiguration.Title,
+                Title = chartConfig.Title,
                 TitleColor = textColor,
                 SubtitleColor = textColor,
                 LegendTextColor = textColor,
@@ -140,8 +140,8 @@ namespace nGratis.Cop.Olympus.Wpf
             plotModel.Axes.Add(horizontalAxis);
             plotModel.Axes.Add(verticalAxis);
 
-            chartConfiguration
-                .SeriesConfigurations
+            chartConfig
+                .SeriesConfigs
                 .Select(configuration => new LineSeries
                 {
                     Title = configuration.Title,
@@ -161,7 +161,7 @@ namespace nGratis.Cop.Olympus.Wpf
 
         protected override Freezable CreateInstanceCore()
         {
-            return new ChartConfigurationToPlotModelConverter();
+            return new ChartConfigToPlotModelConverter();
         }
     }
 }

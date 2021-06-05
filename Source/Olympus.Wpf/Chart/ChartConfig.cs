@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="SeriesConfiguration.cs" company="nGratis">
+// <copyright file="ChartConfig.cs" company="nGratis">
 //  The MIT License (MIT)
 //
 //  Copyright (c) 2014 - 2021 Cahya Ong
@@ -23,46 +23,34 @@
 //  SOFTWARE.
 // </copyright>
 // <author>Cahya Ong - cahya.ong@gmail.com</author>
-// <creation_timestamp>Saturday, 13 February 2016 12:30:15 AM UTC</creation_timestamp>
+// <creation_timestamp>Saturday, 13 February 2016 12:20:50 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace nGratis.Cop.Olympus.Wpf
 {
-    using System.Collections;
+    using System.Collections.Generic;
     using nGratis.Cop.Olympus.Contract;
+    using nGratis.Cop.Olympus.Framework;
 
-    public class SeriesConfiguration
+    public class ChartConfig : NotifyingObject
     {
-        public SeriesConfiguration(string title, ICollection points, string category, string value)
+        public ChartConfig(string title, IEnumerable<SeriesConfig> seriesConfigs)
         {
             Guard
                 .Require(title, nameof(title))
                 .Is.Not.Empty();
 
             Guard
-                .Require(points, nameof(points))
-                .Is.Not.Null();
-
-            Guard
-                .Require(category, nameof(category))
-                .Is.Not.Empty();
-
-            Guard
-                .Require(value, nameof(value))
+                .Require(seriesConfigs, nameof(seriesConfigs))
+                .Is.Not.Null()
                 .Is.Not.Empty();
 
             this.Title = title;
-            this.Points = points;
-            this.Category = category;
-            this.Value = value;
+            this.SeriesConfigs = seriesConfigs;
         }
 
         public string Title { get; }
 
-        public ICollection Points { get; }
-
-        public string Category { get; }
-
-        public string Value { get; }
+        public IEnumerable<SeriesConfig> SeriesConfigs { get; }
     }
 }

@@ -33,16 +33,16 @@ namespace nGratis.Cop.Olympus.Wpf
 
     public class AweChart : ItemsControl
     {
-        public static readonly DependencyProperty ConfigurationProperty = DependencyProperty.Register(
-            "Configuration",
-            typeof(ChartConfiguration),
+        public static readonly DependencyProperty ConfigProperty = DependencyProperty.Register(
+            "Config",
+            typeof(ChartConfig),
             typeof(AweChart),
             new PropertyMetadata(null));
 
-        public ChartConfiguration Configuration
+        public ChartConfig Config
         {
-            get => (ChartConfiguration)this.GetValue(AweChart.ConfigurationProperty);
-            set => this.SetValue(AweChart.ConfigurationProperty, value);
+            get => (ChartConfig)this.GetValue(AweChart.ConfigProperty);
+            set => this.SetValue(AweChart.ConfigProperty, value);
         }
     }
 }
