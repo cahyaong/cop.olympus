@@ -114,7 +114,7 @@ namespace nGratis.Cop.Olympus.Wpf
 
         private static void OnIsActiveChanged(DependencyObject container, DependencyPropertyChangedEventArgs args)
         {
-            if (!(container is AweProgressIndicator indicator))
+            if (container is not AweProgressIndicator indicator)
             {
                 return;
             }
@@ -126,10 +126,8 @@ namespace nGratis.Cop.Olympus.Wpf
                 indicator.Visibility = Visibility.Hidden;
                 return;
             }
-            else
-            {
-                indicator.Visibility = Visibility.Visible;
-            }
+
+            indicator.Visibility = Visibility.Visible;
 
             switch ((VisualizationMode)Enum.Parse(typeof(VisualizationMode), indicator.VisualizationMode.ToString()))
             {

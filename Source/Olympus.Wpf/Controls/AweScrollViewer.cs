@@ -78,7 +78,7 @@ namespace nGratis.Cop.Olympus.Wpf
 
         private static void OnOrientationChanged(DependencyObject container, DependencyPropertyChangedEventArgs args)
         {
-            if (!(container is AweScrollViewer scrollViewer))
+            if (container is not AweScrollViewer scrollViewer)
             {
                 return;
             }

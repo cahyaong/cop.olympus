@@ -84,7 +84,7 @@ namespace nGratis.Cop.Olympus.Wpf
 
         private static void OnValueChanged(DependencyObject container, DependencyPropertyChangedEventArgs args)
         {
-            if (!(container is AweTile tile))
+            if (container is not AweTile tile)
             {
                 return;
             }

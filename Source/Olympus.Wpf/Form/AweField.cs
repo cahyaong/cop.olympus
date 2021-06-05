@@ -144,7 +144,7 @@ namespace nGratis.Cop.Olympus.Wpf
 
         private static void OnValueChanged(DependencyObject container, DependencyPropertyChangedEventArgs args)
         {
-            if (!(container is AweField field))
+            if (container is not AweField field)
             {
                 return;
             }
@@ -156,7 +156,7 @@ namespace nGratis.Cop.Olympus.Wpf
 
         private static void OnValuesChanged(DependencyObject container, DependencyPropertyChangedEventArgs args)
         {
-            if (!(container is AweField field))
+            if (container is not AweField field)
             {
                 return;
             }

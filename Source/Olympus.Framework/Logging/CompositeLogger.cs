@@ -64,7 +64,7 @@ namespace nGratis.Cop.Olympus.Framework
                 {
                     this._loggerLookup.TryAdd(anon.Key, anon.Logger);
 
-                    if (!(anon.Logger is CompositeLogger))
+                    if (anon.Logger is not CompositeLogger)
                     {
                         anon.Logger.LogDebug("Registered to composite logger.");
                     }
@@ -89,7 +89,7 @@ namespace nGratis.Cop.Olympus.Framework
                 {
                     this._loggerLookup.TryRemove(anon.Key, out var logger);
 
-                    if (!(logger is CompositeLogger))
+                    if (logger is not CompositeLogger)
                     {
                         logger.LogDebug("Unregistered from composite logger.");
                     }

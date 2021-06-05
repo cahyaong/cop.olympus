@@ -110,11 +110,11 @@ namespace nGratis.Cop.Olympus.Wpf
                 {
                     SelectedPath = !string.IsNullOrEmpty(this.SelectedPath)
                         ? this.SelectedPath
-                        : Environment.GetFolderPath(Environment.SpecialFolder.Personal),
+                        : Environment.GetFolderPath(Environment.SpecialFolder.Personal)
                 };
 
                 var result = folderDialog.ShowDialog();
-                isOkPressed = result == DialogResult.OK || result == DialogResult.Yes;
+                isOkPressed = result is DialogResult.OK or DialogResult.Yes;
                 selectedPath = folderDialog.SelectedPath;
             }
 

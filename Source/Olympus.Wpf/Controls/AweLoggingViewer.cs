@@ -69,10 +69,8 @@ namespace nGratis.Cop.Olympus.Wpf
             }
         }
 
-        public IList<LoggingEntry> LoggingEntries
-        {
-            get => (IList<LoggingEntry>)this.GetValue(AweLoggingViewer.LoggingEntriesProperty);
-        }
+        public IList<LoggingEntry> LoggingEntries => (IList<LoggingEntry>)this
+            .GetValue(AweLoggingViewer.LoggingEntriesProperty);
 
         private static void OnLoggingNotifierChanged(
             DependencyObject container,

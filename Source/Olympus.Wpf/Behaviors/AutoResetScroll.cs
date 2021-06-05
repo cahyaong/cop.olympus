@@ -55,7 +55,7 @@ namespace nGratis.Cop.Olympus.Wpf
 
         private static void OnIsEnabledChanged(DependencyObject container, DependencyPropertyChangedEventArgs args)
         {
-            if (!(container is ItemsControl itemsControl))
+            if (container is not ItemsControl itemsControl)
             {
                 return;
             }
@@ -76,7 +76,7 @@ namespace nGratis.Cop.Olympus.Wpf
 
         private static void OnItemsSourceChanged(object sender, EventArgs args)
         {
-            if (!(sender is ItemsControl itemsControl))
+            if (sender is not ItemsControl itemsControl)
             {
                 return;
             }

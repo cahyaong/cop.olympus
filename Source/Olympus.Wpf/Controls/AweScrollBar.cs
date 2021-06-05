@@ -89,28 +89,26 @@ namespace nGratis.Cop.Olympus.Wpf
             {
                 throw new NotImplementedException();
             }
+
+            if (this._leftButton == null || this._rightButton == null)
+            {
+                return;
+            }
+
+            if (value <= 0)
+            {
+                this._leftButton.IsEnabled = false;
+                this._rightButton.IsEnabled = true;
+            }
+            else if (value + this.ActualWidth >= this.ContentWidth)
+            {
+                this._leftButton.IsEnabled = true;
+                this._rightButton.IsEnabled = false;
+            }
             else
             {
-                if (this._leftButton == null || this._rightButton == null)
-                {
-                    return;
-                }
-
-                if (value <= 0)
-                {
-                    this._leftButton.IsEnabled = false;
-                    this._rightButton.IsEnabled = true;
-                }
-                else if (value + this.ActualWidth >= this.ContentWidth)
-                {
-                    this._leftButton.IsEnabled = true;
-                    this._rightButton.IsEnabled = false;
-                }
-                else
-                {
-                    this._leftButton.IsEnabled = true;
-                    this._rightButton.IsEnabled = true;
-                }
+                this._leftButton.IsEnabled = true;
+                this._rightButton.IsEnabled = true;
             }
         }
     }

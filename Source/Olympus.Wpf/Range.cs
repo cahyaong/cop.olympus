@@ -48,20 +48,20 @@ namespace nGratis.Cop.Olympus.Wpf
         {
         }
 
-        public Range(double minimumValue, double maximumValue, double interval)
+        public Range(double minValue, double maxValue, double interval)
         {
             Guard
-                .Require(minimumValue, nameof(minimumValue))
-                .Is.LessThan(maximumValue);
+                .Require(minValue, nameof(minValue))
+                .Is.LessThan(maxValue);
 
-            this.MinimumValue = minimumValue;
-            this.MaximumValue = maximumValue;
+            this.MinValue = minValue;
+            this.MaxValue = maxValue;
             this.Interval = Math.Max(interval, 1.0);
         }
 
-        public double MinimumValue { get; }
+        public double MinValue { get; }
 
-        public double MaximumValue { get; }
+        public double MaxValue { get; }
 
         public double CurrentValue
         {

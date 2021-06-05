@@ -1,4 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="VerbosityExtensions.cs" company="nGratis">
 //  The MIT License (MIT)
 //
@@ -41,29 +41,16 @@ namespace nGratis.Cop.Olympus.Contract
                 .Require(verbosity, nameof(verbosity))
                 .Is.Not.EqualTo(Verbosity.None);
 
-            switch (verbosity)
+            return verbosity switch
             {
-                case Verbosity.Trace:
-                    return LogLevel.Trace;
-
-                case Verbosity.Debug:
-                    return LogLevel.Debug;
-
-                case Verbosity.Info:
-                    return LogLevel.Info;
-
-                case Verbosity.Warning:
-                    return LogLevel.Warn;
-
-                case Verbosity.Error:
-                    return LogLevel.Error;
-
-                case Verbosity.Fatal:
-                    return LogLevel.Fatal;
-
-                default:
-                    throw new NotSupportedException($"Verbosity [{verbosity}] is not supported.");
-            }
+                Verbosity.Trace => LogLevel.Trace,
+                Verbosity.Debug => LogLevel.Debug,
+                Verbosity.Info => LogLevel.Info,
+                Verbosity.Warning => LogLevel.Warn,
+                Verbosity.Error => LogLevel.Error,
+                Verbosity.Fatal => LogLevel.Fatal,
+                _ => throw new NotSupportedException($"Verbosity [{verbosity}] is not supported.")
+            };
         }
 
         public static string ToConsoleText(this Verbosity verbosity)
@@ -72,29 +59,16 @@ namespace nGratis.Cop.Olympus.Contract
                 .Require(verbosity, nameof(verbosity))
                 .Is.Not.EqualTo(Verbosity.None);
 
-            switch (verbosity)
+            return verbosity switch
             {
-                case Verbosity.Trace:
-                    return "TRC";
-
-                case Verbosity.Debug:
-                    return "DBG";
-
-                case Verbosity.Info:
-                    return "INF";
-
-                case Verbosity.Warning:
-                    return "WRN";
-
-                case Verbosity.Error:
-                    return "ERR";
-
-                case Verbosity.Fatal:
-                    return "FTL";
-
-                default:
-                    throw new NotSupportedException($"Verbosity [{verbosity}] is not supported.");
-            }
+                Verbosity.Trace => "TRC",
+                Verbosity.Debug => "DBG",
+                Verbosity.Info => "INF",
+                Verbosity.Warning => "WRN",
+                Verbosity.Error => "ERR",
+                Verbosity.Fatal => "FTL",
+                _ => throw new NotSupportedException($"Verbosity [{verbosity}] is not supported.")
+            };
         }
     }
 }
