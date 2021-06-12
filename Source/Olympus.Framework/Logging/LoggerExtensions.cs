@@ -1,4 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="LoggerExtensions.cs" company="nGratis">
 //  The MIT License (MIT)
 //
@@ -30,63 +30,34 @@
 
 namespace nGratis.Cop.Olympus.Contract
 {
-    using System;
-    using System.ComponentModel;
+    using System.Linq;
 
-    public static class LoggerExtensions
+    public static partial class LoggerExtensions
     {
-        public static void LogTrace(this ILogger logger, string message)
+        public static void LogWithDetails(
+            this ILogger logger,
+            Verbosity verbosity,
+            string message,
+            params (string Key, object Value)[] details)
         {
             Guard
                 .Require(logger, nameof(logger))
                 .Is.Not.Null();
 
-            logger.Log(Verbosity.Trace, message);
-        }
-
-        public static void LogDebug(this ILogger logger, [Localizable(false)] string message)
-        {
             Guard
-                .Require(logger, nameof(logger))
-                .Is.Not.Null();
+                .Require(details, nameof(details))
+                .Is.Not.Empty();
 
-            logger.Log(Verbosity.Debug, message);
-        }
+            var submessages = details
+                .Select(detail => new
+                {
+                    Key = !string.IsNullOrEmpty(detail.Key) ? detail.Key : Text.Undefined,
+                    Value = detail.Value?.ToString() ?? Text.Undefined,
+                })
+                .Select(anon => $"{anon.Key}: [{anon.Value}]")
+                .ToArray();
 
-        public static void LogInfo(this ILogger logger, string message)
-        {
-            Guard
-                .Require(logger, nameof(logger))
-                .Is.Not.Null();
-
-            logger.Log(Verbosity.Info, message);
-        }
-
-        public static void LogWarning(this ILogger logger, string message)
-        {
-            Guard
-                .Require(logger, nameof(logger))
-                .Is.Not.Null();
-
-            logger.Log(Verbosity.Warning, message);
-        }
-
-        public static void LogError(this ILogger logger, string message)
-        {
-            Guard
-                .Require(logger, nameof(logger))
-                .Is.Not.Null();
-
-            logger.Log(Verbosity.Error, message);
-        }
-
-        public static void LogFatal(this ILogger logger, Exception exception, string message)
-        {
-            Guard
-                .Require(logger, nameof(logger))
-                .Is.Not.Null();
-
-            logger.Log(Verbosity.Fatal, message, exception);
+            logger.Log(verbosity, message, submessages);
         }
     }
 }

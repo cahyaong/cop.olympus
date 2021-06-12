@@ -16,5 +16,21 @@
   <ItemGroup>
     <ProjectReference Include="..\Olympus.Contract\nGratis.Cop.Olympus.Contract.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <None Update="Logging\LoggerExtensions.Auto.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>LoggerExtensions.Auto.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Logging\LoggerExtensions.Auto.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>LoggerExtensions.Auto.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
   <Import Project="..\.paket\Paket.Restore.targets" />
 </Project>

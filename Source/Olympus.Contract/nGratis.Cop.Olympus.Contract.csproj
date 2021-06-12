@@ -7,27 +7,26 @@
     <Authors>Cahya Ong</Authors>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="Condition\Guard.Numerical.tt" />
     <None Remove="nGratis.Cop.Olympus.Contract.csproj.DotSettings" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\Olympus.Shared\GlobalAssemblyInfo.cs" Link="Properties\GlobalAssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Condition\Guard.Numerical.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Guard.Numerical.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Condition\Guard.Numerical.cs">
+    <Compile Update="Condition\Guard.Numerical.Auto.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>Guard.Numerical.tt</DependentUpon>
+      <DependentUpon>Guard.Numerical.Auto.tt</DependentUpon>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Condition\Guard.Numerical.Auto.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Guard.Numerical.Auto.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="..\.paket\Paket.Restore.targets" />
 </Project>

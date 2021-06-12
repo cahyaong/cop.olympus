@@ -14,8 +14,33 @@
     <Compile Include="..\Olympus.Shared\GlobalAssemblyInfo.cs" Link="Properties\GlobalAssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Update="Condition\ConditionValidatorTests.Auto.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ConditionValidatorTests.Auto.cs</LastGenOutput>
+    </None>
+    <None Update="Condition\GuardTests.Numerical.Auto.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GuardTests.Numerical.Auto.cs</LastGenOutput>
+    </None>    
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Olympus.Contract\nGratis.Cop.Olympus.Contract.csproj" />
     <ProjectReference Include="..\Olympus.Framework.QualityAssurance\nGratis.Cop.Olympus.Framework.QualityAssurance.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Condition\ConditionValidatorTests.Auto.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ConditionValidatorTests.Auto.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Condition\GuardTests.Numerical.Auto.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GuardTests.Numerical.Auto.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="..\.paket\Paket.Restore.targets" />
 </Project>

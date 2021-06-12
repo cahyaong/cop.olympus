@@ -30,7 +30,6 @@
 
 namespace System.IO
 {
-    using System.Collections.Generic;
     using System.Text;
     using nGratis.Cop.Olympus.Contract;
 
@@ -38,7 +37,7 @@ namespace System.IO
     {
         private const int BufferSize = 4 * 1024;
 
-        public static IEnumerable<byte> ReadBlob(this Stream stream)
+        public static byte[] ReadBlob(this Stream stream)
         {
             Guard
                 .Require(stream, nameof(stream))

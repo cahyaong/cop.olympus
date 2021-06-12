@@ -269,7 +269,7 @@ namespace nGratis.Cop.Olympus.Contract
         public static ValidationContinuation<float> Zero(this ClassValidator<float> validator)
         {
             return validator.Validate(
-                actual => actual is >= -float.Epsilon and <= float.Epsilon,
+                actual => actual >= -float.Epsilon && actual <= float.Epsilon,
                 "be zero");
         }
 
@@ -349,7 +349,7 @@ namespace nGratis.Cop.Olympus.Contract
         public static ValidationContinuation<double> Zero(this ClassValidator<double> validator)
         {
             return validator.Validate(
-                actual => actual is >= -double.Epsilon and <= double.Epsilon,
+                actual => actual >= -double.Epsilon && actual <= double.Epsilon,
                 "be zero");
         }
 
