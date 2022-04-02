@@ -76,10 +76,7 @@ namespace nGratis.Cop.Olympus.Contract
             logger.Log(Verbosity.<#=verbosity#>, message, submessages);
         }
 
-        public static void Log<#=verbosity#>WithDetails(
-            this ILogger logger, 
-            string message, 
-            params (string Key, object Value)[] details)
+        public static void Log<#=verbosity#>(this ILogger logger, string message, params (string Key, object Value)[] details)
         {
             Guard
                 .Require(logger, nameof(logger))

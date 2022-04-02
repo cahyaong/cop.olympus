@@ -34,7 +34,7 @@ namespace nGratis.Cop.Olympus.Contract
 
     public static partial class LoggerExtensions
     {
-        public static void LogWithDetails(
+        public static void Log(
             this ILogger logger,
             Verbosity verbosity,
             string message,

@@ -60,16 +60,13 @@ namespace nGratis.Cop.Olympus.Contract
             logger.Log(Verbosity.Trace, message, submessages);
         }
 
-        public static void LogTraceWithDetails(
-            this ILogger logger, 
-            string message, 
-            params (string Key, object Value)[] details)
+        public static void LogTrace(this ILogger logger, string message, params (string Key, object Value)[] details)
         {
             Guard
                 .Require(logger, nameof(logger))
                 .Is.Not.Null();
 
-            logger.LogWithDetails(Verbosity.Trace, message, details);
+            logger.Log(Verbosity.Trace, message, details);
         }
 
         public static void LogDebug(this ILogger logger, string message)
@@ -90,16 +87,13 @@ namespace nGratis.Cop.Olympus.Contract
             logger.Log(Verbosity.Debug, message, submessages);
         }
 
-        public static void LogDebugWithDetails(
-            this ILogger logger, 
-            string message, 
-            params (string Key, object Value)[] details)
+        public static void LogDebug(this ILogger logger, string message, params (string Key, object Value)[] details)
         {
             Guard
                 .Require(logger, nameof(logger))
                 .Is.Not.Null();
 
-            logger.LogWithDetails(Verbosity.Debug, message, details);
+            logger.Log(Verbosity.Debug, message, details);
         }
 
         public static void LogInfo(this ILogger logger, string message)
@@ -120,16 +114,13 @@ namespace nGratis.Cop.Olympus.Contract
             logger.Log(Verbosity.Info, message, submessages);
         }
 
-        public static void LogInfoWithDetails(
-            this ILogger logger, 
-            string message, 
-            params (string Key, object Value)[] details)
+        public static void LogInfo(this ILogger logger, string message, params (string Key, object Value)[] details)
         {
             Guard
                 .Require(logger, nameof(logger))
                 .Is.Not.Null();
 
-            logger.LogWithDetails(Verbosity.Info, message, details);
+            logger.Log(Verbosity.Info, message, details);
         }
 
         public static void LogWarning(this ILogger logger, string message)
@@ -150,16 +141,13 @@ namespace nGratis.Cop.Olympus.Contract
             logger.Log(Verbosity.Warning, message, submessages);
         }
 
-        public static void LogWarningWithDetails(
-            this ILogger logger, 
-            string message, 
-            params (string Key, object Value)[] details)
+        public static void LogWarning(this ILogger logger, string message, params (string Key, object Value)[] details)
         {
             Guard
                 .Require(logger, nameof(logger))
                 .Is.Not.Null();
 
-            logger.LogWithDetails(Verbosity.Warning, message, details);
+            logger.Log(Verbosity.Warning, message, details);
         }
 
         public static void LogError(this ILogger logger, string message)
@@ -180,16 +168,13 @@ namespace nGratis.Cop.Olympus.Contract
             logger.Log(Verbosity.Error, message, submessages);
         }
 
-        public static void LogErrorWithDetails(
-            this ILogger logger, 
-            string message, 
-            params (string Key, object Value)[] details)
+        public static void LogError(this ILogger logger, string message, params (string Key, object Value)[] details)
         {
             Guard
                 .Require(logger, nameof(logger))
                 .Is.Not.Null();
 
-            logger.LogWithDetails(Verbosity.Error, message, details);
+            logger.Log(Verbosity.Error, message, details);
         }
 
         public static void LogError(this ILogger logger, string message, Exception exception)
@@ -219,16 +204,13 @@ namespace nGratis.Cop.Olympus.Contract
             logger.Log(Verbosity.Fatal, message, submessages);
         }
 
-        public static void LogFatalWithDetails(
-            this ILogger logger, 
-            string message, 
-            params (string Key, object Value)[] details)
+        public static void LogFatal(this ILogger logger, string message, params (string Key, object Value)[] details)
         {
             Guard
                 .Require(logger, nameof(logger))
                 .Is.Not.Null();
 
-            logger.LogWithDetails(Verbosity.Fatal, message, details);
+            logger.Log(Verbosity.Fatal, message, details);
         }
 
         public static void LogFatal(this ILogger logger, string message, Exception exception)
