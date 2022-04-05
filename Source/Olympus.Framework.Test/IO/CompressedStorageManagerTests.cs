@@ -106,7 +106,7 @@ namespace nGratis.Cop.Olympus.Framework.Test
 
                 var matchedEntries = compressedManager
                     .FindEntries(@"ZIP_NAME", Mime.Zip)?
-                    .ToImmutableArray();
+                    .ToList();
 
                 // Assert.
 

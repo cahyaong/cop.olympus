@@ -1,11 +1,12 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29519.181
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32319.34
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{BDBE8B1D-A745-4FCA-8B65-BE1A7A0DCE04}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{9A82E807-F092-488D-AB1F-79D7ADE622E7}"
 	ProjectSection(SolutionItems) = preProject
+		..\azure-pipelines.yml = ..\azure-pipelines.yml
 		Olympus.Shared\GlobalAssemblyInfo.tt = Olympus.Shared\GlobalAssemblyInfo.tt
 		paket.dependencies = paket.dependencies
 	EndProjectSection

@@ -100,7 +100,6 @@ namespace nGratis.Cop.Olympus.Wpf
                 Title = chartConfig.Title,
                 TitleColor = textColor,
                 SubtitleColor = textColor,
-                LegendTextColor = textColor,
                 IsLegendVisible = false,
                 PlotAreaBorderColor = borderColor
             };

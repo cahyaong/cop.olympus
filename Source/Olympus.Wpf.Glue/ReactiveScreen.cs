@@ -79,7 +79,7 @@ namespace nGratis.Cop.Olympus.Wpf.Glue
 
         public event EventHandler<DeactivationEventArgs> AttemptingDeactivation;
 
-        public event EventHandler<DeactivationEventArgs> Deactivated;
+        public event AsyncEventHandler<DeactivationEventArgs> Deactivated;
 
         public async Task ActivateAsync(CancellationToken cancellationToken)
         {
