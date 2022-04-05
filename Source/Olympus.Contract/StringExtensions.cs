@@ -28,75 +28,74 @@
 
 // ReSharper disable once CheckNamespace
 
-namespace System
+namespace System;
+
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
+
+public static class StringExtensions
 {
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
-    using System.Security.Cryptography;
-    using System.Text;
+    private static readonly string DefaultHash = new('0', 32);
 
-    public static class StringExtensions
+    public static string Coalesce(this string value, params string[] alternatives)
     {
-        private static readonly string DefaultHash = new('0', 32);
+        return string.IsNullOrWhiteSpace(value)
+            ? alternatives.FirstOrDefault(alternative => !string.IsNullOrWhiteSpace(alternative))
+            : value;
+    }
 
-        public static string Coalesce(this string value, params string[] alternatives)
+    public static string CalculateMd5Hash(this string text)
+    {
+        if (string.IsNullOrEmpty(text))
         {
-            return string.IsNullOrWhiteSpace(value)
-                ? alternatives.FirstOrDefault(alternative => !string.IsNullOrWhiteSpace(alternative))
-                : value;
+            return StringExtensions.DefaultHash;
         }
 
-        public static string CalculateMd5Hash(this string text)
+        using var md5 = MD5.Create();
+        var hashBuilder = new StringBuilder();
+
+        md5
+            .ComputeHash(Encoding.UTF8.GetBytes(text))
+            .ToList()
+            .ForEach(chunk => hashBuilder.Append(chunk.ToString("x2")));
+
+        return hashBuilder.ToString();
+    }
+
+    public static string ToPrettifiedText(this IReadOnlyCollection<string> values)
+    {
+        // TODO: Update any similar code to use this method!
+        // TODO: Rename all To___(...) methods to As___(...) to make it consistent with .NET!
+
+        if (!values.Any())
         {
-            if (string.IsNullOrEmpty(text))
-            {
-                return StringExtensions.DefaultHash;
-            }
-
-            using var md5 = MD5.Create();
-            var hashBuilder = new StringBuilder();
-
-            md5
-                .ComputeHash(Encoding.UTF8.GetBytes(text))
-                .ToList()
-                .ForEach(chunk => hashBuilder.Append(chunk.ToString("x2")));
-
-            return hashBuilder.ToString();
+            return nGratis.Cop.Olympus.Contract.Text.Empty;
         }
 
-        public static string ToPrettifiedText(this IReadOnlyCollection<string> values)
+        var prettifiedValues = values
+            .Select(value => !string.IsNullOrEmpty(value)
+                ? $"[{value}]"
+                : @"[/]")
+            .ToArray();
+
+        return string.Join(", ", prettifiedValues);
+    }
+
+    public static Stream AsStream(this string text)
+    {
+        var stream = new MemoryStream();
+
+        if (string.IsNullOrEmpty(text))
         {
-            // TODO: Update any similar code to use this method!
-            // TODO: Rename all To___(...) methods to As___(...) to make it consistent with .NET!
-
-            if (!values.Any())
-            {
-                return nGratis.Cop.Olympus.Contract.Text.Empty;
-            }
-
-            var prettifiedValues = values
-                .Select(value => !string.IsNullOrEmpty(value)
-                    ? $"[{value}]"
-                    : @"[/]")
-                .ToArray();
-
-            return string.Join(", ", prettifiedValues);
-        }
-
-        public static Stream AsStream(this string text)
-        {
-            var stream = new MemoryStream();
-
-            if (string.IsNullOrEmpty(text))
-            {
-                return stream;
-            }
-
-            stream.Write(Encoding.UTF8.GetBytes(text));
-            stream.Position = 0;
-
             return stream;
         }
+
+        stream.Write(Encoding.UTF8.GetBytes(text));
+        stream.Position = 0;
+
+        return stream;
     }
 }

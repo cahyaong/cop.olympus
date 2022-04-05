@@ -26,270 +26,269 @@
 // <creation_timestamp>Thursday, October 8, 2020 6:23:49 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Framework
+namespace nGratis.Cop.Olympus.Framework;
+
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.IO.Compression;
+using System.Linq;
+using System.Text.RegularExpressions;
+using System.Threading;
+using nGratis.Cop.Olympus.Contract;
+
+public class CompressedStorageManager : IStorageManager, IDisposable
 {
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.IO.Compression;
-    using System.Linq;
-    using System.Text.RegularExpressions;
-    using System.Threading;
-    using nGratis.Cop.Olympus.Contract;
+    private readonly DataSpec _archiveSpec;
 
-    public class CompressedStorageManager : IStorageManager, IDisposable
+    private readonly ReaderWriterLockSlim _archiveLock;
+
+    private readonly IStorageManager _storageManager;
+
+    private readonly Lazy<ZipArchive> _deferredArchive;
+
+    private bool _isDisposed;
+
+    public CompressedStorageManager(DataSpec archiveSpec, IStorageManager storageManager)
+        : this(archiveSpec, storageManager, false)
     {
-        private readonly DataSpec _archiveSpec;
+    }
 
-        private readonly ReaderWriterLockSlim _archiveLock;
+    internal CompressedStorageManager(DataSpec archiveSpec, IStorageManager storageManager, bool shouldLeaveOpen)
+    {
+        Guard
+            .Require(archiveSpec, nameof(archiveSpec))
+            .Is.Not.Null();
 
-        private readonly IStorageManager _storageManager;
+        Guard
+            .Require(storageManager, nameof(storageManager))
+            .Is.Not.Null();
 
-        private readonly Lazy<ZipArchive> _deferredArchive;
+        this._archiveSpec = archiveSpec;
+        this._archiveLock = new ReaderWriterLockSlim();
+        this._storageManager = storageManager;
 
-        private bool _isDisposed;
+        this._deferredArchive = new Lazy<ZipArchive>(
+            () => this.LoadArchive(shouldLeaveOpen),
+            LazyThreadSafetyMode.ExecutionAndPublication);
+    }
 
-        public CompressedStorageManager(DataSpec archiveSpec, IStorageManager storageManager)
-            : this(archiveSpec, storageManager, false)
+    ~CompressedStorageManager()
+    {
+        this.Dispose(false);
+    }
+
+    public bool IsAvailable => true;
+
+    public IEnumerable<DataInfo> FindEntries(string pattern, Mime mime)
+    {
+        // TODO: Need to standardize pattern across different storage managers!
+
+        Guard
+            .Require(pattern, nameof(pattern))
+            .Is.Not.Empty();
+
+        Guard
+            .Require(mime, nameof(mime))
+            .Is.Not.EqualTo(Mime.Unknown);
+
+        var regex = new Regex($".*{pattern}.*{mime.FileExtension}$", RegexOptions.IgnoreCase);
+
+        this._archiveLock.EnterReadLock();
+
+        try
         {
+            return this
+                ._deferredArchive.Value
+                .Entries
+                .Where(entry => regex.IsMatch(entry.Name))
+                .Select(entry => new DataInfo(Path.GetFileNameWithoutExtension(entry.Name), mime)
+                {
+                    CreatedTimestamp = DateTimeOffset.MinValue
+                })
+                .ToArray();
+        }
+        finally
+        {
+            this._archiveLock.ExitReadLock();
+        }
+    }
+
+    public bool HasEntry(DataSpec dataSpec)
+    {
+        Guard
+            .Require(dataSpec, nameof(dataSpec))
+            .Is.Not.Null();
+
+        if (this._isDisposed)
+        {
+            return false;
         }
 
-        internal CompressedStorageManager(DataSpec archiveSpec, IStorageManager storageManager, bool shouldLeaveOpen)
+        var key = $"{dataSpec.Name}{dataSpec.Mime.FileExtension}";
+
+        this._archiveLock.EnterReadLock();
+
+        try
         {
-            Guard
-                .Require(archiveSpec, nameof(archiveSpec))
-                .Is.Not.Null();
+            return this
+                ._deferredArchive.Value
+                .Entries
+                .Any(entry => entry.Name == key);
+        }
+        finally
+        {
+            this._archiveLock.ExitReadLock();
+        }
+    }
 
-            Guard
-                .Require(storageManager, nameof(storageManager))
-                .Is.Not.Null();
+    public Stream LoadEntry(DataSpec dataSpec)
+    {
+        Guard
+            .Require(dataSpec, nameof(dataSpec))
+            .Is.Not.Null();
 
-            this._archiveSpec = archiveSpec;
-            this._archiveLock = new ReaderWriterLockSlim();
-            this._storageManager = storageManager;
-
-            this._deferredArchive = new Lazy<ZipArchive>(
-                () => this.LoadArchive(shouldLeaveOpen),
-                LazyThreadSafetyMode.ExecutionAndPublication);
+        if (this._isDisposed)
+        {
+            return new MemoryStream();
         }
 
-        ~CompressedStorageManager()
+        var key = $"{dataSpec.Name}{dataSpec.Mime.FileExtension}";
+
+        var foundEntry = default(ZipArchiveEntry);
+
+        this._archiveLock.EnterReadLock();
+
+        try
         {
-            this.Dispose(false);
+            foundEntry = this
+                ._deferredArchive.Value
+                .Entries
+                .SingleOrDefault(entry => entry.FullName == key);
+        }
+        finally
+        {
+            this._archiveLock.ExitReadLock();
         }
 
-        public bool IsAvailable => true;
+        return
+            foundEntry?.Open() ??
+            new MemoryStream();
+    }
 
-        public IEnumerable<DataInfo> FindEntries(string pattern, Mime mime)
+    public void SaveEntry(DataSpec dataSpec, Stream dataStream, bool canOverride)
+    {
+        Guard
+            .Require(dataSpec, nameof(dataSpec))
+            .Is.Not.Null();
+
+        Guard
+            .Require(dataStream, nameof(dataStream))
+            .Is.Not.Null()
+            .Is.Not.Empty();
+
+        if (this._isDisposed)
         {
-            // TODO: Need to standardize pattern across different storage managers!
-
-            Guard
-                .Require(pattern, nameof(pattern))
-                .Is.Not.Empty();
-
-            Guard
-                .Require(mime, nameof(mime))
-                .Is.Not.EqualTo(Mime.Unknown);
-
-            var regex = new Regex($".*{pattern}.*{mime.FileExtension}$", RegexOptions.IgnoreCase);
-
-            this._archiveLock.EnterReadLock();
-
-            try
-            {
-                return this
-                    ._deferredArchive.Value
-                    .Entries
-                    .Where(entry => regex.IsMatch(entry.Name))
-                    .Select(entry => new DataInfo(Path.GetFileNameWithoutExtension(entry.Name), mime)
-                    {
-                        CreatedTimestamp = DateTimeOffset.MinValue
-                    })
-                    .ToArray();
-            }
-            finally
-            {
-                this._archiveLock.ExitReadLock();
-            }
+            return;
         }
 
-        public bool HasEntry(DataSpec dataSpec)
+        var canSave =
+            canOverride ||
+            !this.HasEntry(dataSpec);
+
+        var key = $"{dataSpec.Name}{dataSpec.Mime.FileExtension}";
+
+        if (!canSave)
         {
-            Guard
-                .Require(dataSpec, nameof(dataSpec))
-                .Is.Not.Null();
-
-            if (this._isDisposed)
-            {
-                return false;
-            }
-
-            var key = $"{dataSpec.Name}{dataSpec.Mime.FileExtension}";
-
-            this._archiveLock.EnterReadLock();
-
-            try
-            {
-                return this
-                    ._deferredArchive.Value
-                    .Entries
-                    .Any(entry => entry.Name == key);
-            }
-            finally
-            {
-                this._archiveLock.ExitReadLock();
-            }
+            throw new CopException($"Entry [{key}] found in archive, but overriding is not allowed!");
         }
 
-        public Stream LoadEntry(DataSpec dataSpec)
+        dataStream.Position = 0;
+
+        this._archiveLock.EnterWriteLock();
+
+        try
         {
-            Guard
-                .Require(dataSpec, nameof(dataSpec))
-                .Is.Not.Null();
+            var foundEntry = this
+                ._deferredArchive.Value
+                .Entries
+                .SingleOrDefault(entry => entry.FullName == key);
 
-            if (this._isDisposed)
-            {
-                return new MemoryStream();
-            }
-
-            var key = $"{dataSpec.Name}{dataSpec.Mime.FileExtension}";
-
-            var foundEntry = default(ZipArchiveEntry);
-
-            this._archiveLock.EnterReadLock();
-
-            try
+            if (foundEntry == null)
             {
                 foundEntry = this
                     ._deferredArchive.Value
-                    .Entries
-                    .SingleOrDefault(entry => entry.FullName == key);
-            }
-            finally
-            {
-                this._archiveLock.ExitReadLock();
+                    .CreateEntry(key, CompressionLevel.Optimal);
             }
 
-            return
-                foundEntry?.Open() ??
-                new MemoryStream();
+            using var entryStream = foundEntry.Open();
+
+            entryStream.SetLength(dataStream.Length);
+            dataStream.CopyTo(entryStream);
+            entryStream.Flush();
+        }
+        finally
+        {
+            this._archiveLock.ExitWriteLock();
         }
 
-        public void SaveEntry(DataSpec dataSpec, Stream dataStream, bool canOverride)
+        dataStream.Position = 0;
+    }
+
+    public void Dispose()
+    {
+        this.Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+
+    private ZipArchive LoadArchive(bool shouldLeaveOpen)
+    {
+        if (!this._storageManager.HasEntry(this._archiveSpec))
         {
-            Guard
-                .Require(dataSpec, nameof(dataSpec))
-                .Is.Not.Null();
-
-            Guard
-                .Require(dataStream, nameof(dataStream))
-                .Is.Not.Null()
-                .Is.Not.Empty();
-
-            if (this._isDisposed)
-            {
-                return;
-            }
-
-            var canSave =
-                canOverride ||
-                !this.HasEntry(dataSpec);
-
-            var key = $"{dataSpec.Name}{dataSpec.Mime.FileExtension}";
-
-            if (!canSave)
-            {
-                throw new CopException($"Entry [{key}] found in archive, but overriding is not allowed!");
-            }
-
-            dataStream.Position = 0;
-
-            this._archiveLock.EnterWriteLock();
+            var archiveStream = new MemoryStream();
 
             try
             {
-                var foundEntry = this
-                    ._deferredArchive.Value
-                    .Entries
-                    .SingleOrDefault(entry => entry.FullName == key);
+                var archive = new ZipArchive(archiveStream, ZipArchiveMode.Create, true);
+                archive.Dispose();
 
-                if (foundEntry == null)
-                {
-                    foundEntry = this
-                        ._deferredArchive.Value
-                        .CreateEntry(key, CompressionLevel.Optimal);
-                }
-
-                using var entryStream = foundEntry.Open();
-
-                entryStream.SetLength(dataStream.Length);
-                dataStream.CopyTo(entryStream);
-                entryStream.Flush();
+                this._storageManager.SaveEntry(this._archiveSpec, archiveStream, false);
             }
             finally
             {
-                this._archiveLock.ExitWriteLock();
+                archiveStream.Dispose();
             }
-
-            dataStream.Position = 0;
         }
 
-        public void Dispose()
+        var dataStream = this._storageManager.LoadEntry(this._archiveSpec);
+
+        return new ZipArchive(dataStream, ZipArchiveMode.Update, shouldLeaveOpen);
+    }
+
+    private void Dispose(bool isDisposing)
+    {
+        if (this._isDisposed)
         {
-            this.Dispose(true);
-            GC.SuppressFinalize(this);
+            return;
         }
 
-        private ZipArchive LoadArchive(bool shouldLeaveOpen)
+        if (isDisposing)
         {
-            if (!this._storageManager.HasEntry(this._archiveSpec))
+            if (this._deferredArchive.IsValueCreated)
             {
-                var archiveStream = new MemoryStream();
+                this._archiveLock.EnterWriteLock();
 
                 try
                 {
-                    var archive = new ZipArchive(archiveStream, ZipArchiveMode.Create, true);
-                    archive.Dispose();
-
-                    this._storageManager.SaveEntry(this._archiveSpec, archiveStream, false);
+                    this._deferredArchive.Value.Dispose();
                 }
                 finally
                 {
-                    archiveStream.Dispose();
+                    this._archiveLock.ExitWriteLock();
                 }
             }
-
-            var dataStream = this._storageManager.LoadEntry(this._archiveSpec);
-
-            return new ZipArchive(dataStream, ZipArchiveMode.Update, shouldLeaveOpen);
         }
 
-        private void Dispose(bool isDisposing)
-        {
-            if (this._isDisposed)
-            {
-                return;
-            }
-
-            if (isDisposing)
-            {
-                if (this._deferredArchive.IsValueCreated)
-                {
-                    this._archiveLock.EnterWriteLock();
-
-                    try
-                    {
-                        this._deferredArchive.Value.Dispose();
-                    }
-                    finally
-                    {
-                        this._archiveLock.ExitWriteLock();
-                    }
-                }
-            }
-
-            this._isDisposed = true;
-        }
+        this._isDisposed = true;
     }
 }

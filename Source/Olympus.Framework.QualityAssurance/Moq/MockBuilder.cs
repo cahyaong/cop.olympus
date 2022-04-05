@@ -28,23 +28,22 @@
 
 // ReSharper disable once CheckNamespace
 
-namespace Moq
-{
-    public class MockBuilder
-    {
-        public static Mock<T> CreateMock<T>(params object[] args)
-            where T : class
-        {
-            return new(args);
-        }
+namespace Moq;
 
-        public static Mock<T> CreateStub<T>(params object[] args)
-            where T : class
+public class MockBuilder
+{
+    public static Mock<T> CreateMock<T>(params object[] args)
+        where T : class
+    {
+        return new(args);
+    }
+
+    public static Mock<T> CreateStub<T>(params object[] args)
+        where T : class
+    {
+        return new(args)
         {
-            return new(args)
-            {
-                CallBase = true
-            };
-        }
+            CallBase = true
+        };
     }
 }

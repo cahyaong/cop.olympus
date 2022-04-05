@@ -26,27 +26,26 @@
 // <creation_timestamp>Thursday, September 17, 2020 2:05:37 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Wpf
+namespace nGratis.Cop.Olympus.Wpf;
+
+using System;
+using nGratis.Cop.Olympus.Contract;
+
+// ReSharper disable AutoPropertyCanBeMadeGetOnly.Global
+
+[AttributeUsage(AttributeTargets.Class, Inherited = false)]
+public sealed class PageDefinitionAttribute : Attribute
 {
-    using System;
-    using nGratis.Cop.Olympus.Contract;
-
-    // ReSharper disable AutoPropertyCanBeMadeGetOnly.Global
-
-    [AttributeUsage(AttributeTargets.Class, Inherited = false)]
-    public sealed class PageDefinitionAttribute : Attribute
+    public PageDefinitionAttribute(string displayText)
     {
-        public PageDefinitionAttribute(string displayText)
-        {
-            this.DisplayText = !string.IsNullOrEmpty(displayText)
-                ? displayText
-                : Text.Undefined;
+        this.DisplayText = !string.IsNullOrEmpty(displayText)
+            ? displayText
+            : Text.Undefined;
 
-            this.Ordering = int.MaxValue;
-        }
-
-        public string DisplayText { get; }
-
-        public int Ordering { get; set; }
+        this.Ordering = int.MaxValue;
     }
+
+    public string DisplayText { get; }
+
+    public int Ordering { get; set; }
 }

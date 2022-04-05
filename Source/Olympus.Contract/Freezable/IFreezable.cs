@@ -26,14 +26,13 @@
 // <creation_timestamp>Tuesday, 5 May 2015 1:38:54 PM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Contract
+namespace nGratis.Cop.Olympus.Contract;
+
+public interface IFreezable
 {
-    public interface IFreezable
-    {
-        bool IsFrozen { get; }
+    bool IsFrozen { get; }
 
-        void Freeze();
+    void Freeze();
 
-        void Thaw();
-    }
+    void Thaw();
 }

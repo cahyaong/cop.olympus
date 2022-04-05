@@ -26,46 +26,45 @@
 // <creation_timestamp>Thursday, September 3, 2020 2:16:25 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Wpf.Glue
+namespace nGratis.Cop.Olympus.Wpf.Glue;
+
+using System.Threading;
+using System.Threading.Tasks;
+using Caliburn.Micro;
+using ReactiveUI;
+
+public abstract class ReactiveConductorBaseWithActiveItem<T> : ReactiveConductorBase<T>, IConductActiveItem
+    where T : class
 {
-    using System.Threading;
-    using System.Threading.Tasks;
-    using Caliburn.Micro;
-    using ReactiveUI;
+    private T _activeItem;
 
-    public abstract class ReactiveConductorBaseWithActiveItem<T> : ReactiveConductorBase<T>, IConductActiveItem
-        where T : class
+    public T ActiveItem
     {
-        private T _activeItem;
+        get => this._activeItem;
+        set => this.ActivateItemAsync(value, CancellationToken.None);
+    }
 
-        public T ActiveItem
+    object IHaveActiveItem.ActiveItem
+    {
+        get => this.ActiveItem;
+        set => this.ActiveItem = (T)value;
+    }
+
+    protected virtual async Task ChangeActiveItemAsync(
+        T item,
+        bool isClosingCurrent,
+        CancellationToken cancellationToken)
+    {
+        await ScreenExtensions.TryDeactivateAsync(this._activeItem, isClosingCurrent, cancellationToken);
+
+        item = this.EnsureItem(item);
+        this.RaiseAndSetIfChanged(ref this._activeItem, item, nameof(this.ActiveItem));
+
+        if (this.IsActive)
         {
-            get => this._activeItem;
-            set => this.ActivateItemAsync(value, CancellationToken.None);
+            await ScreenExtensions.TryActivateAsync(item, cancellationToken);
         }
 
-        object IHaveActiveItem.ActiveItem
-        {
-            get => this.ActiveItem;
-            set => this.ActiveItem = (T)value;
-        }
-
-        protected virtual async Task ChangeActiveItemAsync(
-            T item,
-            bool isClosingCurrent,
-            CancellationToken cancellationToken)
-        {
-            await ScreenExtensions.TryDeactivateAsync(this._activeItem, isClosingCurrent, cancellationToken);
-
-            item = this.EnsureItem(item);
-            this.RaiseAndSetIfChanged(ref this._activeItem, item, nameof(this.ActiveItem));
-
-            if (this.IsActive)
-            {
-                await ScreenExtensions.TryActivateAsync(item, cancellationToken);
-            }
-
-            this.RaisedActivationProcessed(this._activeItem, true);
-        }
+        this.RaisedActivationProcessed(this._activeItem, true);
     }
 }

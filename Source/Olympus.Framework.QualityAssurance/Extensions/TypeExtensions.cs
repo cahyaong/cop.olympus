@@ -28,33 +28,32 @@
 
 // ReSharper disable once CheckNamespace
 
-namespace System
+namespace System;
+
+using System.IO;
+using nGratis.Cop.Olympus.Contract;
+
+public static class TypeExtensions
 {
-    using System.IO;
-    using nGratis.Cop.Olympus.Contract;
-
-    public static class TypeExtensions
+    public static Stream LoadEmbeddedResource<T>(this T instance, string resourcePath)
+        where T : class
     {
-        public static Stream LoadEmbeddedResource<T>(this T instance, string resourcePath)
-            where T : class
-        {
-            Guard
-                .Require(instance, nameof(instance))
-                .Is.Not.Null();
+        Guard
+            .Require(instance, nameof(instance))
+            .Is.Not.Null();
 
-            Guard
-                .Require(resourcePath, nameof(resourcePath))
-                .Is.Not.Empty();
+        Guard
+            .Require(resourcePath, nameof(resourcePath))
+            .Is.Not.Empty();
 
-            var assembly = typeof(T).Assembly;
-            resourcePath = $"{assembly.GetName().Name}.{resourcePath.Replace("\\", ".")}";
-            var stream = assembly.GetManifestResourceStream(resourcePath);
+        var assembly = typeof(T).Assembly;
+        resourcePath = $"{assembly.GetName().Name}.{resourcePath.Replace("\\", ".")}";
+        var stream = assembly.GetManifestResourceStream(resourcePath);
 
-            Guard
-                .Ensure(stream, nameof(stream))
-                .Is.Not.Null();
+        Guard
+            .Ensure(stream, nameof(stream))
+            .Is.Not.Null();
 
-            return stream;
-        }
+        return stream;
     }
 }

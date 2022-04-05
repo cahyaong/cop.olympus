@@ -26,90 +26,89 @@
 // <creation_timestamp>Saturday, 26 March 2016 9:36:09 PM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Wpf
+namespace nGratis.Cop.Olympus.Wpf;
+
+using System;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
+
+[TemplatePart(Name = "PART_UpButton", Type = typeof(ButtonBase))]
+[TemplatePart(Name = "PART_DownButton", Type = typeof(ButtonBase))]
+[TemplatePart(Name = "PART_LeftButton", Type = typeof(ButtonBase))]
+[TemplatePart(Name = "PART_RightButton", Type = typeof(ButtonBase))]
+public class AweScrollBar : ScrollBar
 {
-    using System;
-    using System.Windows;
-    using System.Windows.Controls;
-    using System.Windows.Controls.Primitives;
+    public static readonly DependencyProperty ContentWidthProperty = DependencyProperty.Register(
+        "ContentWidth",
+        typeof(double),
+        typeof(AweScrollBar),
+        new PropertyMetadata(double.MaxValue));
 
-    [TemplatePart(Name = "PART_UpButton", Type = typeof(ButtonBase))]
-    [TemplatePart(Name = "PART_DownButton", Type = typeof(ButtonBase))]
-    [TemplatePart(Name = "PART_LeftButton", Type = typeof(ButtonBase))]
-    [TemplatePart(Name = "PART_RightButton", Type = typeof(ButtonBase))]
-    public class AweScrollBar : ScrollBar
+    public static readonly DependencyProperty ContentHeightProperty = DependencyProperty.Register(
+        "ContentHeight",
+        typeof(double),
+        typeof(AweScrollBar),
+        new PropertyMetadata(double.MaxValue));
+
+    private ButtonBase _leftButton;
+    private ButtonBase _rightButton;
+
+    public AweScrollBar()
     {
-        public static readonly DependencyProperty ContentWidthProperty = DependencyProperty.Register(
-            "ContentWidth",
-            typeof(double),
-            typeof(AweScrollBar),
-            new PropertyMetadata(double.MaxValue));
+        this.ValueChanged += (_, _) => this.UpdateButtonStates();
+    }
 
-        public static readonly DependencyProperty ContentHeightProperty = DependencyProperty.Register(
-            "ContentHeight",
-            typeof(double),
-            typeof(AweScrollBar),
-            new PropertyMetadata(double.MaxValue));
+    public double ContentWidth
+    {
+        get => (double)this.GetValue(AweScrollBar.ContentWidthProperty);
+        set => this.SetValue(AweScrollBar.ContentWidthProperty, value);
+    }
 
-        private ButtonBase _leftButton;
-        private ButtonBase _rightButton;
+    public double ContentHeight
+    {
+        get => (double)this.GetValue(AweScrollBar.ContentHeightProperty);
+        set => this.SetValue(AweScrollBar.ContentHeightProperty, value);
+    }
 
-        public AweScrollBar()
+    public override void OnApplyTemplate()
+    {
+        base.OnApplyTemplate();
+
+        this._leftButton = (ButtonBase)this.Template.FindName("PART_LeftButton", this);
+        this._rightButton = (ButtonBase)this.Template.FindName("PART_RightButton", this);
+
+        this.UpdateButtonStates();
+    }
+
+    private void UpdateButtonStates()
+    {
+        var value = this.Value;
+
+        if (this.Orientation == Orientation.Vertical)
         {
-            this.ValueChanged += (_, _) => this.UpdateButtonStates();
+            throw new NotImplementedException();
         }
 
-        public double ContentWidth
+        if (this._leftButton == null || this._rightButton == null)
         {
-            get => (double)this.GetValue(AweScrollBar.ContentWidthProperty);
-            set => this.SetValue(AweScrollBar.ContentWidthProperty, value);
+            return;
         }
 
-        public double ContentHeight
+        if (value <= 0)
         {
-            get => (double)this.GetValue(AweScrollBar.ContentHeightProperty);
-            set => this.SetValue(AweScrollBar.ContentHeightProperty, value);
+            this._leftButton.IsEnabled = false;
+            this._rightButton.IsEnabled = true;
         }
-
-        public override void OnApplyTemplate()
+        else if (value + this.ActualWidth >= this.ContentWidth)
         {
-            base.OnApplyTemplate();
-
-            this._leftButton = (ButtonBase)this.Template.FindName("PART_LeftButton", this);
-            this._rightButton = (ButtonBase)this.Template.FindName("PART_RightButton", this);
-
-            this.UpdateButtonStates();
+            this._leftButton.IsEnabled = true;
+            this._rightButton.IsEnabled = false;
         }
-
-        private void UpdateButtonStates()
+        else
         {
-            var value = this.Value;
-
-            if (this.Orientation == Orientation.Vertical)
-            {
-                throw new NotImplementedException();
-            }
-
-            if (this._leftButton == null || this._rightButton == null)
-            {
-                return;
-            }
-
-            if (value <= 0)
-            {
-                this._leftButton.IsEnabled = false;
-                this._rightButton.IsEnabled = true;
-            }
-            else if (value + this.ActualWidth >= this.ContentWidth)
-            {
-                this._leftButton.IsEnabled = true;
-                this._rightButton.IsEnabled = false;
-            }
-            else
-            {
-                this._leftButton.IsEnabled = true;
-                this._rightButton.IsEnabled = true;
-            }
+            this._leftButton.IsEnabled = true;
+            this._rightButton.IsEnabled = true;
         }
     }
 }

@@ -28,20 +28,19 @@
 
 // ReSharper disable once CheckNamespace
 
-namespace System
-{
-    public static class TypeExtensions
-    {
-        public static string GetGenericName(this Type type)
-        {
-            if (type == null)
-            {
-                return null;
-            }
+namespace System;
 
-            return type.IsGenericType
-                ? type.Name.Remove(type.Name.IndexOf('`'))
-                : type.Name;
+public static class TypeExtensions
+{
+    public static string GetGenericName(this Type type)
+    {
+        if (type == null)
+        {
+            return null;
         }
+
+        return type.IsGenericType
+            ? type.Name.Remove(type.Name.IndexOf('`'))
+            : type.Name;
     }
 }

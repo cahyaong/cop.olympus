@@ -26,30 +26,29 @@
 // <creation_timestamp>Tuesday, 5 May 2015 2:01:21 PM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Contract
+namespace nGratis.Cop.Olympus.Contract;
+
+public abstract class FreezableBase : IFreezable
 {
-    public abstract class FreezableBase : IFreezable
+    public bool IsFrozen { get; private set; }
+
+    public virtual void Freeze()
     {
-        public bool IsFrozen { get; private set; }
-
-        public virtual void Freeze()
+        if (this.IsFrozen)
         {
-            if (this.IsFrozen)
-            {
-                return;
-            }
-
-            this.IsFrozen = true;
+            return;
         }
 
-        public virtual void Thaw()
-        {
-            if (!this.IsFrozen)
-            {
-                return;
-            }
+        this.IsFrozen = true;
+    }
 
-            this.IsFrozen = false;
+    public virtual void Thaw()
+    {
+        if (!this.IsFrozen)
+        {
+            return;
         }
+
+        this.IsFrozen = false;
     }
 }

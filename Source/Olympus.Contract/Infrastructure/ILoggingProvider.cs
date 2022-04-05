@@ -26,12 +26,11 @@
 // <creation_timestamp>Saturday, 25 April 2015 12:18:38 PM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Contract
-{
-    using System;
+namespace nGratis.Cop.Olympus.Contract;
 
-    public interface ILoggingProvider : IDisposable
-    {
-        ILogger GetLoggerFor(string component);
-    }
+using System;
+
+public interface ILoggingProvider : IDisposable
+{
+    ILogger GetLoggerFor(string component);
 }

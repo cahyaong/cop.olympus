@@ -25,28 +25,27 @@
 // <author>Cahya Ong - cahya.ong@gmail.com</author>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Wpf
+namespace nGratis.Cop.Olympus.Wpf;
+
+using System;
+using System.Globalization;
+using System.Windows.Data;
+using nGratis.Cop.Olympus.Contract;
+
+[ValueConversion(typeof(object), typeof(string))]
+public class AnyToTypeNameConverter : IValueConverter
 {
-    using System;
-    using System.Globalization;
-    using System.Windows.Data;
-    using nGratis.Cop.Olympus.Contract;
-
-    [ValueConversion(typeof(object), typeof(string))]
-    public class AnyToTypeNameConverter : IValueConverter
+    public object Convert(object value, Type type, object parameter, CultureInfo cultureInfo)
     {
-        public object Convert(object value, Type type, object parameter, CultureInfo cultureInfo)
-        {
-            Guard
-                .Require(type, nameof(type))
-                .Is.EqualTo(typeof(string));
+        Guard
+            .Require(type, nameof(type))
+            .Is.EqualTo(typeof(string));
 
-            return value != null ? value.GetType().FullName : Text.Null;
-        }
+        return value != null ? value.GetType().FullName : Text.Null;
+    }
 
-        public object ConvertBack(object value, Type type, object parameter, CultureInfo cultureInfo)
-        {
-            throw new NotSupportedException();
-        }
+    public object ConvertBack(object value, Type type, object parameter, CultureInfo cultureInfo)
+    {
+        throw new NotSupportedException();
     }
 }

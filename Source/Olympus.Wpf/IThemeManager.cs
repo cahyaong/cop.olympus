@@ -26,20 +26,19 @@
 // <creation_timestamp>Friday, 19 February 2016 9:04:10 PM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Wpf
+namespace nGratis.Cop.Olympus.Wpf;
+
+using System.Windows.Media;
+
+public interface IThemeManager
 {
-    using System.Windows.Media;
+    Brush AccentBrush { get; }
 
-    public interface IThemeManager
-    {
-        Brush AccentBrush { get; }
+    Brush ApplicationBackgroundBrush { get; }
 
-        Brush ApplicationBackgroundBrush { get; }
+    Color FindColor(string key);
 
-        Color FindColor(string key);
+    Brush FindBrush(string key);
 
-        Brush FindBrush(string key);
-
-        TValue FindResource<TValue>(string key, TValue defaultValue);
-    }
+    TValue FindResource<TValue>(string key, TValue defaultValue);
 }

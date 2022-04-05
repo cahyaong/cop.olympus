@@ -26,30 +26,29 @@
 // <creation_timestamp>Thursday, September 3, 2020 6:01:49 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Demo
-{
-    using Caliburn.Micro;
-    using nGratis.Cop.Olympus.Wpf.Glue;
+namespace nGratis.Cop.Olympus.Demo;
 
-    internal class AppViewModel : ReactiveConductor<IScreen>.Collection.OneActive
+using Caliburn.Micro;
+using nGratis.Cop.Olympus.Wpf.Glue;
+
+internal class AppViewModel : ReactiveConductor<IScreen>.Collection.OneActive
+{
+    public AppViewModel()
     {
-        public AppViewModel()
+        this.Items.AddRange(new ReactiveScreen[]
         {
-            this.Items.AddRange(new ReactiveScreen[]
+            new AweWindowViewModel(App.Logger)
             {
-                new AweWindowViewModel(App.Logger)
-                {
-                    DisplayName = "window"
-                },
-                new AweFieldViewModel
-                {
-                    DisplayName = "field"
-                },
-                new ReactiveCaliburnViewModel(App.Logger)
-                {
-                    DisplayName = "reactive-caliburn"
-                }
-            });
-        }
+                DisplayName = "window"
+            },
+            new AweFieldViewModel
+            {
+                DisplayName = "field"
+            },
+            new ReactiveCaliburnViewModel(App.Logger)
+            {
+                DisplayName = "reactive-caliburn"
+            }
+        });
     }
 }

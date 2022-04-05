@@ -26,30 +26,29 @@
 // <creation_timestamp>Friday, 1 May 2015 1:44:25 PM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Framework
+namespace nGratis.Cop.Olympus.Framework;
+
+using System;
+using System.Reactive.Subjects;
+using nGratis.Cop.Olympus.Contract;
+
+public sealed class VoidLogger : LoggerBase, ILoggingNotifier
 {
-    using System;
-    using System.Reactive.Subjects;
-    using nGratis.Cop.Olympus.Contract;
-
-    public sealed class VoidLogger : LoggerBase, ILoggingNotifier
+    private VoidLogger()
+        : base(Text.Void)
     {
-        private VoidLogger()
-            : base(Text.Void)
-        {
-            this.WhenEntryAdded = new Subject<LoggingEntry>();
-        }
+        this.WhenEntryAdded = new Subject<LoggingEntry>();
+    }
 
-        public static VoidLogger Instance { get; } = new();
+    public static VoidLogger Instance { get; } = new();
 
-        public IObservable<LoggingEntry> WhenEntryAdded { get; }
+    public IObservable<LoggingEntry> WhenEntryAdded { get; }
 
-        public override void Log(Verbosity verbosity, string message)
-        {
-        }
+    public override void Log(Verbosity verbosity, string message)
+    {
+    }
 
-        public override void Log(Verbosity verbosity, string message, Exception exception)
-        {
-        }
+    public override void Log(Verbosity verbosity, string message, Exception exception)
+    {
     }
 }

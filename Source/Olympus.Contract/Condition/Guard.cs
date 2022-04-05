@@ -26,108 +26,106 @@
 // <creation_timestamp>Tuesday, 14 June 2016 9:35:08 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Contract
+namespace nGratis.Cop.Olympus.Contract;
+
+using System;
+using System.Diagnostics;
+using JetBrains.Annotations;
+
+public static partial class Guard
 {
-    using System;
-    using System.Diagnostics;
-    using JetBrains.Annotations;
-
-    public static partial class Guard
+    [DebuggerStepThrough]
+    [ContractAnnotation("actual:null => halt")]
+    public static ValidationContinuation<T> Require<T>([NoEnumeration] T actual)
     {
-        [DebuggerStepThrough]
-        [ContractAnnotation("actual:null => halt")]
-        public static ValidationContinuation<T> Require<T>([NoEnumeration] T actual)
-        {
-            return new(Text.Unknown, actual, ValidatorKind.PreCondition);
-        }
+        return new(Text.Unknown, actual, ValidatorKind.PreCondition);
+    }
 
-        [DebuggerStepThrough]
-        [ContractAnnotation("actual:null => halt")]
-        public static ValidationContinuation<T> Ensure<T>([NoEnumeration] T actual)
-        {
-            return new(Text.Unknown, actual, ValidatorKind.PostCondition);
-        }
+    [DebuggerStepThrough]
+    [ContractAnnotation("actual:null => halt")]
+    public static ValidationContinuation<T> Ensure<T>([NoEnumeration] T actual)
+    {
+        return new(Text.Unknown, actual, ValidatorKind.PostCondition);
+    }
 
-        [DebuggerStepThrough]
-        [ContractAnnotation("actual:null => halt")]
-        public static ValidationContinuation<T> Require<T>([NoEnumeration] T actual, string name)
-        {
-            return new(name, actual, ValidatorKind.PreCondition);
-        }
+    [DebuggerStepThrough]
+    [ContractAnnotation("actual:null => halt")]
+    public static ValidationContinuation<T> Require<T>([NoEnumeration] T actual, string name)
+    {
+        return new(name, actual, ValidatorKind.PreCondition);
+    }
 
-        [DebuggerStepThrough]
-        [ContractAnnotation("actual:null => halt")]
-        public static ValidationContinuation<T> Ensure<T>([NoEnumeration] T actual, string name)
-        {
-            return new(name, actual, ValidatorKind.PostCondition);
-        }
+    [DebuggerStepThrough]
+    [ContractAnnotation("actual:null => halt")]
+    public static ValidationContinuation<T> Ensure<T>([NoEnumeration] T actual, string name)
+    {
+        return new(name, actual, ValidatorKind.PostCondition);
+    }
 
-        [DebuggerStepThrough]
-        public static ValidationContinuation<T> Null<T>(this ClassValidator<T> validator)
-             where T : class
-        {
-            return validator.Validate(
-                actual => actual == null,
-                $"be {Text.Null}");
-        }
+    [DebuggerStepThrough]
+    public static ValidationContinuation<T> Null<T>(this ClassValidator<T> validator)
+        where T : class
+    {
+        return validator.Validate(
+            actual => actual == null,
+            $"be {Text.Null}");
+    }
 
-        [DebuggerStepThrough]
-        public static ValidationContinuation<T> Default<T>(this ConditionValidator<T> validator)
-        {
-            return validator.Validate(
-                actual => object.Equals(actual, default(T)),
-                $"be {Text.Default}");
-        }
+    [DebuggerStepThrough]
+    public static ValidationContinuation<T> Default<T>(this ConditionValidator<T> validator)
+    {
+        return validator.Validate(
+            actual => object.Equals(actual, default(T)),
+            $"be {Text.Default}");
+    }
 
-        [DebuggerStepThrough]
-        public static ValidationContinuation<T> EqualTo<T>(this ClassValidator<T> validator, T expected)
-        {
-            return validator.Validate(
-                actual => object.Equals(actual, expected),
-                $"be equal to [{expected}]");
-        }
+    [DebuggerStepThrough]
+    public static ValidationContinuation<T> EqualTo<T>(this ClassValidator<T> validator, T expected)
+    {
+        return validator.Validate(
+            actual => object.Equals(actual, expected),
+            $"be equal to [{expected}]");
+    }
 
-        [DebuggerStepThrough]
-        public static ValidationContinuation<T> OfType<T>(this ClassValidator<T> validator, Type expected)
-        {
-            return validator.Validate(
-                actual => actual.GetType() == expected || expected.IsInstanceOfType(actual),
-                $"be of type [{expected.FullName}]");
-        }
+    [DebuggerStepThrough]
+    public static ValidationContinuation<T> OfType<T>(this ClassValidator<T> validator, Type expected)
+    {
+        return validator.Validate(
+            actual => actual.GetType() == expected || expected.IsInstanceOfType(actual),
+            $"be of type [{expected.FullName}]");
+    }
 
-        [DebuggerStepThrough]
-        public static ValidationContinuation<Type> Interface(this ConditionValidator<Type> validator)
-        {
-            return validator.Validate(
-                actual => actual.IsInterface,
-                "be an interface");
-        }
+    [DebuggerStepThrough]
+    public static ValidationContinuation<Type> Interface(this ConditionValidator<Type> validator)
+    {
+        return validator.Validate(
+            actual => actual.IsInterface,
+            "be an interface");
+    }
 
-        [DebuggerStepThrough]
-        public static ValidationContinuation<Type> AssignableFrom(
-            this ClassValidator<Type> validator,
-            Type expected)
-        {
-            return validator.Validate(
-                actual => actual.IsAssignableFrom(expected),
-                $"be assignable from [{expected.FullName}]");
-        }
+    [DebuggerStepThrough]
+    public static ValidationContinuation<Type> AssignableFrom(
+        this ClassValidator<Type> validator,
+        Type expected)
+    {
+        return validator.Validate(
+            actual => actual.IsAssignableFrom(expected),
+            $"be assignable from [{expected.FullName}]");
+    }
 
-        [DebuggerStepThrough]
-        public static ValidationContinuation<bool> True(this ClassValidator<bool> validator)
-        {
-            // ReSharper disable once RedundantBoolCompare
-            return validator.Validate(
-                actual => actual == true,
-                $"be {Text.True}");
-        }
+    [DebuggerStepThrough]
+    public static ValidationContinuation<bool> True(this ClassValidator<bool> validator)
+    {
+        return validator.Validate(
+            actual => actual,
+            $"be {Text.True}");
+    }
 
-        [DebuggerStepThrough]
-        public static ValidationContinuation<bool> False(this ClassValidator<bool> validator)
-        {
-            return validator.Validate(
-                actual => actual == false,
-                $"be {Text.False}");
-        }
+    [DebuggerStepThrough]
+    public static ValidationContinuation<bool> False(this ClassValidator<bool> validator)
+    {
+        return validator.Validate(
+            actual => !actual,
+            $"be {Text.False}");
     }
 }

@@ -26,21 +26,20 @@
 // <creation_timestamp>Thursday, 24 March 2016 9:04:41 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Wpf
+namespace nGratis.Cop.Olympus.Wpf;
+
+using System.Windows;
+using System.Windows.Media;
+using nGratis.Cop.Olympus.Contract;
+
+public static class ApplicationExtensions
 {
-    using System.Windows;
-    using System.Windows.Media;
-    using nGratis.Cop.Olympus.Contract;
-
-    public static class ApplicationExtensions
+    public static void AdjustAccentColor(this Application application, Color accentColor)
     {
-        public static void AdjustAccentColor(this Application application, Color accentColor)
-        {
-            Guard
-                .Require(application, nameof(application))
-                .Is.Not.Null();
+        Guard
+            .Require(application, nameof(application))
+            .Is.Not.Null();
 
-            application.Resources["Cop.Color.Accent"] = accentColor;
-        }
+        application.Resources["Cop.Color.Accent"] = accentColor;
     }
 }

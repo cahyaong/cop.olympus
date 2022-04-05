@@ -26,21 +26,20 @@
 // <creation_timestamp>Saturday, May 1, 2021 7:03:50 PM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Contract
+namespace nGratis.Cop.Olympus.Contract;
+
+using System.Threading.Tasks;
+
+public static class TaskExtensions
 {
-    using System.Threading.Tasks;
-
-    public static class TaskExtensions
+    public static T RunSynchronously<T>(this Task<T> task)
     {
-        public static T RunSynchronously<T>(this Task<T> task)
-        {
-            Guard
-                .Require(task, nameof(task))
-                .Is.Not.Null();
+        Guard
+            .Require(task, nameof(task))
+            .Is.Not.Null();
 
-            return task
-                .GetAwaiter()
-                .GetResult();
-        }
+        return task
+            .GetAwaiter()
+            .GetResult();
     }
 }

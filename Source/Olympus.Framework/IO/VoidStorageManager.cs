@@ -26,40 +26,39 @@
 // <creation_timestamp>Friday, 3 April 2015 9:22:12 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Framework
+namespace nGratis.Cop.Olympus.Framework;
+
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using nGratis.Cop.Olympus.Contract;
+
+public class VoidStorageManager : IStorageManager
 {
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
-    using nGratis.Cop.Olympus.Contract;
-
-    public class VoidStorageManager : IStorageManager
+    private VoidStorageManager()
     {
-        private VoidStorageManager()
-        {
-        }
+    }
 
-        public static VoidStorageManager Default { get; } = new();
+    public static VoidStorageManager Default { get; } = new();
 
-        public bool IsAvailable => false;
+    public bool IsAvailable => false;
 
-        public IEnumerable<DataInfo> FindEntries(string pattern, Mime mime)
-        {
-            return Enumerable.Empty<DataInfo>();
-        }
+    public IEnumerable<DataInfo> FindEntries(string pattern, Mime mime)
+    {
+        return Enumerable.Empty<DataInfo>();
+    }
 
-        public bool HasEntry(DataSpec dataSpec)
-        {
-            return false;
-        }
+    public bool HasEntry(DataSpec dataSpec)
+    {
+        return false;
+    }
 
-        public Stream LoadEntry(DataSpec dataSpec)
-        {
-            return new MemoryStream();
-        }
+    public Stream LoadEntry(DataSpec dataSpec)
+    {
+        return new MemoryStream();
+    }
 
-        public void SaveEntry(DataSpec dataSpec, Stream dataStream, bool canOverride)
-        {
-        }
+    public void SaveEntry(DataSpec dataSpec, Stream dataStream, bool canOverride)
+    {
     }
 }

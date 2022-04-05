@@ -26,105 +26,104 @@
 // <creation_timestamp>Monday, 9 April 2018 9:46:28 PM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Contract.Test
+namespace nGratis.Cop.Olympus.Contract.Test;
+
+using System;
+using FluentAssertions;
+using Xunit;
+
+public partial class GuardTests
 {
-    using System;
-    using FluentAssertions;
-    using Xunit;
-
-    public partial class GuardTests
+    public class EmptyMethod
     {
-        public class EmptyMethod
+        [Fact]
+        public void WhenGettingValidPreCondition_ShouldNotThrowException()
         {
-            [Fact]
-            public void WhenGettingValidPreCondition_ShouldNotThrowException()
+            // Arrange.
+
+            var value = string.Empty;
+
+            // Act.
+
+            var action = new Action(() =>
             {
-                // Arrange.
+                Guard
+                    .Require(value, nameof(value))
+                    .Is.Empty();
+            });
 
-                var value = string.Empty;
+            // Assert.
 
-                // Act.
+            action
+                .Should().NotThrow();
+        }
 
-                var action = new Action(() =>
-                {
-                    Guard
-                        .Require(value, nameof(value))
-                        .Is.Empty();
-                });
+        [Fact]
+        public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+        {
+            // Arrange.
 
-                // Assert.
+            var value = "[_MOCK_VALUE_]";
 
-                action
-                    .Should().NotThrow();
-            }
+            // Act.
 
-            [Fact]
-            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+            var action = new Action(() =>
             {
-                // Arrange.
+                Guard
+                    .Require(value, nameof(value))
+                    .Is.Empty();
+            });
 
-                var value = "[_MOCK_VALUE_]";
+            // Assert.
 
-                // Act.
+            action
+                .Should().Throw<CopPreConditionException>()
+                .WithMessage("PRE-CONDITION: Variable [value] should be empty!");
+        }
 
-                var action = new Action(() =>
-                {
-                    Guard
-                        .Require(value, nameof(value))
-                        .Is.Empty();
-                });
+        [Fact]
+        public void WhenGettingValidPostCondition_ShouldNotThrowException()
+        {
+            // Arrange.
 
-                // Assert.
+            var value = string.Empty;
 
-                action
-                    .Should().Throw<CopPreConditionException>()
-                    .WithMessage("PRE-CONDITION: Variable [value] should be empty!");
-            }
+            // Act.
 
-            [Fact]
-            public void WhenGettingValidPostCondition_ShouldNotThrowException()
+            var action = new Action(() =>
             {
-                // Arrange.
+                Guard
+                    .Ensure(value, nameof(value))
+                    .Is.Empty();
+            });
 
-                var value = string.Empty;
+            // Assert.
 
-                // Act.
+            action
+                .Should().NotThrow();
+        }
 
-                var action = new Action(() =>
-                {
-                    Guard
-                        .Ensure(value, nameof(value))
-                        .Is.Empty();
-                });
+        [Fact]
+        public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+        {
+            // Arrange.
 
-                // Assert.
+            var value = "[_MOCK_VALUE_]";
 
-                action
-                    .Should().NotThrow();
-            }
+            // Act.
 
-            [Fact]
-            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+            var action = new Action(() =>
             {
-                // Arrange.
+                Guard
+                    .Ensure(value, nameof(value))
+                    .Is.Empty();
+            });
 
-                var value = "[_MOCK_VALUE_]";
+            // Assert.
 
-                // Act.
-
-                var action = new Action(() =>
-                {
-                    Guard
-                        .Ensure(value, nameof(value))
-                        .Is.Empty();
-                });
-
-                // Assert.
-
-                action
-                    .Should().Throw<CopPostConditionException>()
-                    .WithMessage("POST-CONDITION: Variable [value] should be empty!");
-            }
+            action
+                .Should().Throw<CopPostConditionException>()
+                .WithMessage("POST-CONDITION: Variable [value] should be empty!");
         }
     }
 }

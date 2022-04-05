@@ -26,13 +26,12 @@
 // <creation_timestamp>Sunday, September 13, 2020 6:14:43 PM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Framework
-{
-    using System;
-    using nGratis.Cop.Olympus.Contract;
+namespace nGratis.Cop.Olympus.Framework;
 
-    public interface ILoggingNotifier
-    {
-        IObservable<LoggingEntry> WhenEntryAdded { get; }
-    }
+using System;
+using nGratis.Cop.Olympus.Contract;
+
+public interface ILoggingNotifier
+{
+    IObservable<LoggingEntry> WhenEntryAdded { get; }
 }

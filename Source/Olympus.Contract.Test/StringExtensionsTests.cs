@@ -26,75 +26,74 @@
 // <creation_timestamp>Wednesday, July 8, 2020 6:11:54 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Contract.Test
+namespace nGratis.Cop.Olympus.Contract.Test;
+
+using System;
+using FluentAssertions;
+using Xunit;
+
+public class StringExtensionsTests
 {
-    using System;
-    using FluentAssertions;
-    using Xunit;
-
-    public class StringExtensionsTests
+    public class ToPrettifiedText
     {
-        public class ToPrettifiedText
+        [Fact]
+        public void WhenGettingEmptyValues_ShouldReturnText()
         {
-            [Fact]
-            public void WhenGettingEmptyValues_ShouldReturnText()
+            // Arrange.
+
+            var values = new string[0];
+
+            // Act.
+
+            var text = values.ToPrettifiedText();
+
+            // Assert.
+
+            text
+                .Should().Be("<empty>");
+        }
+
+        [Fact]
+        public void WhenGettingNullOrEmptyValue_ShouldReturnText()
+        {
+            // Arrange.
+
+            var values = new[]
             {
-                // Arrange.
+                default,
+                string.Empty
+            };
 
-                var values = new string[0];
+            // Act.
 
-                // Act.
+            var text = values.ToPrettifiedText();
 
-                var text = values.ToPrettifiedText();
+            // Assert.
 
-                // Assert.
+            text
+                .Should().Be("[/], [/]");
+        }
 
-                text
-                    .Should().Be("<empty>");
-            }
+        [Fact]
+        public void WhenGettingMultipleValues_ShouldKeepOrdering()
+        {
+            // Arrange.
 
-            [Fact]
-            public void WhenGettingNullOrEmptyValue_ShouldReturnText()
+            var values = new[]
             {
-                // Arrange.
+                "[_MOCK_VALUE_01_]",
+                string.Empty,
+                "[_MOCK_VALUE_02_]"
+            };
 
-                var values = new[]
-                {
-                    default,
-                    string.Empty
-                };
+            // Act.
 
-                // Act.
+            var text = values.ToPrettifiedText();
 
-                var text = values.ToPrettifiedText();
+            // Assert.
 
-                // Assert.
-
-                text
-                    .Should().Be("[/], [/]");
-            }
-
-            [Fact]
-            public void WhenGettingMultipleValues_ShouldKeepOrdering()
-            {
-                // Arrange.
-
-                var values = new[]
-                {
-                    "[_MOCK_VALUE_01_]",
-                    string.Empty,
-                    "[_MOCK_VALUE_02_]"
-                };
-
-                // Act.
-
-                var text = values.ToPrettifiedText();
-
-                // Assert.
-
-                text
-                    .Should().Be("[[_MOCK_VALUE_01_]], [/], [[_MOCK_VALUE_02_]]");
-            }
+            text
+                .Should().Be("[[_MOCK_VALUE_01_]], [/], [[_MOCK_VALUE_02_]]");
         }
     }
 }

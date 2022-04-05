@@ -26,36 +26,35 @@
 // <creation_timestamp>Monday, 27 April 2015 1:53:07 PM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Contract
+namespace nGratis.Cop.Olympus.Contract;
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using JetBrains.Annotations;
+
+[UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
+public class LoggingEntry
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using JetBrains.Annotations;
-
-    [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
-    public class LoggingEntry
+    public LoggingEntry()
     {
-        public LoggingEntry()
-        {
-            this.Timestamp = DateTimeOffset.UtcNow;
-            this.Component = Text.Undefined;
-            this.Verbosity = Verbosity.None;
-            this.Exception = null;
-            this.Message = string.Empty;
-            this.Submessages = Enumerable.Empty<string>();
-        }
-
-        public DateTimeOffset Timestamp { get; set; }
-
-        public string Component { get; set; }
-
-        public Verbosity Verbosity { get; set; }
-
-        public Exception Exception { get; set; }
-
-        public string Message { get; set; }
-
-        public IEnumerable<string> Submessages { get; set; }
+        this.Timestamp = DateTimeOffset.UtcNow;
+        this.Component = Text.Undefined;
+        this.Verbosity = Verbosity.None;
+        this.Exception = null;
+        this.Message = string.Empty;
+        this.Submessages = Enumerable.Empty<string>();
     }
+
+    public DateTimeOffset Timestamp { get; set; }
+
+    public string Component { get; set; }
+
+    public Verbosity Verbosity { get; set; }
+
+    public Exception Exception { get; set; }
+
+    public string Message { get; set; }
+
+    public IEnumerable<string> Submessages { get; set; }
 }

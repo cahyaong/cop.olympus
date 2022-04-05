@@ -26,16 +26,15 @@
 // <creation_timestamp>Saturday, 25 April 2015 11:36:55 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Contract
+namespace nGratis.Cop.Olympus.Contract;
+
+public enum Verbosity
 {
-    public enum Verbosity
-    {
-        None = 0,
-        Trace,
-        Debug,
-        Info,
-        Warning,
-        Error,
-        Fatal
-    }
+    None = 0,
+    Trace,
+    Debug,
+    Info,
+    Warning,
+    Error,
+    Fatal
 }

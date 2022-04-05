@@ -26,162 +26,161 @@
 // <creation_timestamp>Thursday, 29 November 2018 9:32:18 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Wpf
+namespace nGratis.Cop.Olympus.Wpf;
+
+using System;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using MahApps.Metro.Controls;
+using MahApps.Metro.Controls.Dialogs;
+using nGratis.Cop.Olympus.Contract;
+using nGratis.Cop.Olympus.Framework;
+
+public class AweWindow : MetroWindow, IDisposable
 {
-    using System;
-    using System.Threading.Tasks;
-    using System.Windows;
-    using System.Windows.Controls;
-    using MahApps.Metro.Controls;
-    using MahApps.Metro.Controls.Dialogs;
-    using nGratis.Cop.Olympus.Contract;
-    using nGratis.Cop.Olympus.Framework;
+    private static readonly DependencyProperty LoggingNotifierProperty = DependencyProperty.Register(
+        nameof(AweWindow.LoggingNotifier),
+        typeof(ILoggingNotifier),
+        typeof(AweWindow),
+        new PropertyMetadata(VoidLogger.Instance, AweWindow.OnLoggingNotifierChanged));
 
-    public class AweWindow : MetroWindow, IDisposable
+    private AweStatusBar _statusBar;
+
+    private bool _isDisposed;
+
+    public AweWindow()
     {
-        private static readonly DependencyProperty LoggingNotifierProperty = DependencyProperty.Register(
-            nameof(AweWindow.LoggingNotifier),
-            typeof(ILoggingNotifier),
-            typeof(AweWindow),
-            new PropertyMetadata(VoidLogger.Instance, AweWindow.OnLoggingNotifierChanged));
+        this.Closed += this.OnClosed;
+    }
 
-        private AweStatusBar _statusBar;
+    ~AweWindow()
+    {
+        this.Dispose(false);
+    }
 
-        private bool _isDisposed;
+    public ILoggingNotifier LoggingNotifier
+    {
+        get => (ILoggingNotifier)this.GetValue(AweWindow.LoggingNotifierProperty);
+        init => this.SetValue(AweWindow.LoggingNotifierProperty, value ?? VoidLogger.Instance);
+    }
 
-        public AweWindow()
+    public override void OnApplyTemplate()
+    {
+        base.OnApplyTemplate();
+
+        this.InitializeContentPart();
+        this.InitializeUnhandledExceptionHandler();
+    }
+
+    public void Dispose()
+    {
+        this.Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+
+    protected virtual void Dispose(bool isDisposing)
+    {
+        if (this._isDisposed)
         {
-            this.Closed += this.OnClosed;
+            return;
         }
 
-        ~AweWindow()
+        if (isDisposing)
         {
-            this.Dispose(false);
+            this._statusBar?.Dispose();
         }
 
-        public ILoggingNotifier LoggingNotifier
+        this._isDisposed = true;
+    }
+
+    private static void OnLoggingNotifierChanged(
+        DependencyObject container,
+        DependencyPropertyChangedEventArgs args)
+    {
+        if (container is not AweWindow window)
         {
-            get => (ILoggingNotifier)this.GetValue(AweWindow.LoggingNotifierProperty);
-            init => this.SetValue(AweWindow.LoggingNotifierProperty, value ?? VoidLogger.Instance);
+            return;
         }
 
-        public override void OnApplyTemplate()
+        if (window._statusBar != null)
         {
-            base.OnApplyTemplate();
+            window._statusBar.LoggingNotifier = (ILoggingNotifier)args.NewValue ?? VoidLogger.Instance;
+        }
+    }
 
-            this.InitializeContentPart();
-            this.InitializeUnhandledExceptionHandler();
+    private void InitializeContentPart()
+    {
+        if (this.GetTemplateChild("PART_Content") is not MetroContentControl metroContent)
+        {
+            return;
         }
 
-        public void Dispose()
+        var grid = new Grid
         {
-            this.Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool isDisposing)
-        {
-            if (this._isDisposed)
+            RowDefinitions =
             {
-                return;
+                new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
+                new RowDefinition { Height = GridLength.Auto }
             }
+        };
 
-            if (isDisposing)
-            {
-                this._statusBar?.Dispose();
-            }
-
-            this._isDisposed = true;
-        }
-
-        private static void OnLoggingNotifierChanged(
-            DependencyObject container,
-            DependencyPropertyChangedEventArgs args)
+        if (metroContent.Content is FrameworkElement innerContent)
         {
-            if (container is not AweWindow window)
-            {
-                return;
-            }
-
-            if (window._statusBar != null)
-            {
-                window._statusBar.LoggingNotifier = (ILoggingNotifier)args.NewValue ?? VoidLogger.Instance;
-            }
+            metroContent.Content = default;
+            innerContent.SetValue(Grid.RowProperty, 0);
+            innerContent.Margin = new Thickness(8, 2, 8, 2);
+            grid.Children.Add(innerContent);
         }
 
-        private void InitializeContentPart()
+        this._statusBar = new AweStatusBar();
+        this._statusBar.SetValue(Grid.RowProperty, 1);
+        this._statusBar.VerticalAlignment = VerticalAlignment.Center;
+
+        if (this.LoggingNotifier != null)
         {
-            if (this.GetTemplateChild("PART_Content") is not MetroContentControl metroContent)
-            {
-                return;
-            }
-
-            var grid = new Grid
-            {
-                RowDefinitions =
-                {
-                    new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
-                    new RowDefinition { Height = GridLength.Auto }
-                }
-            };
-
-            if (metroContent.Content is FrameworkElement innerContent)
-            {
-                metroContent.Content = default;
-                innerContent.SetValue(Grid.RowProperty, 0);
-                innerContent.Margin = new Thickness(8, 2, 8, 2);
-                grid.Children.Add(innerContent);
-            }
-
-            this._statusBar = new AweStatusBar();
-            this._statusBar.SetValue(Grid.RowProperty, 1);
-            this._statusBar.VerticalAlignment = VerticalAlignment.Center;
-
-            if (this.LoggingNotifier != null)
-            {
-                this._statusBar.LoggingNotifier = this.LoggingNotifier;
-            }
-
-            grid.Children.Add(this._statusBar);
-
-            metroContent.Content = grid;
+            this._statusBar.LoggingNotifier = this.LoggingNotifier;
         }
 
-        private void InitializeUnhandledExceptionHandler()
+        grid.Children.Add(this._statusBar);
+
+        metroContent.Content = grid;
+    }
+
+    private void InitializeUnhandledExceptionHandler()
+    {
+        // TODO: Fix unhandled exception handler, so that dialog should be acknowledged before app is closed!
+
+        CopBootstrapper.UnhandledExceptionTriggered += async (_, args) => await this
+            .OnUnhandledExceptionReceivedAsync(args.ExceptionSource, args.Exception);
+    }
+
+    private void OnClosed(object sender, EventArgs args)
+    {
+        this.Closed -= this.OnClosed;
+
+        if (Application.Current.Resources["Bootstrapper"] is IDisposable disposable)
         {
-            // TODO: Fix unhandled exception handler, so that dialog should be acknowledged before app is closed!
-
-            CopBootstrapper.UnhandledExceptionTriggered += async (_, args) => await this
-                .OnUnhandledExceptionReceivedAsync(args.ExceptionSource, args.Exception);
+            disposable.Dispose();
         }
+    }
 
-        private void OnClosed(object sender, EventArgs args)
+    private async Task OnUnhandledExceptionReceivedAsync(
+        CopBootstrapper.ExceptionSource exceptionSource,
+        Exception exception)
+    {
+        var dialogSettings = new MetroDialogSettings
         {
-            this.Closed -= this.OnClosed;
+            AffirmativeButtonText = "OK",
+            ColorScheme = MetroDialogColorScheme.Theme,
+            DialogButtonFontSize = 11,
+            MaximumBodyHeight = this.Height * 0.3
+        };
 
-            if (Application.Current.Resources["Bootstrapper"] is IDisposable disposable)
-            {
-                disposable.Dispose();
-            }
-        }
-
-        private async Task OnUnhandledExceptionReceivedAsync(
-            CopBootstrapper.ExceptionSource exceptionSource,
-            Exception exception)
-        {
-            var dialogSettings = new MetroDialogSettings
-            {
-                AffirmativeButtonText = "OK",
-                ColorScheme = MetroDialogColorScheme.Theme,
-                DialogButtonFontSize = 11,
-                MaximumBodyHeight = this.Height * 0.3
-            };
-
-            await this.ShowMessageAsync(
-                 $"Unhandled Exception ({exceptionSource})",
-                 exception?.ToString() ?? Text.Unknown,
-                 MessageDialogStyle.Affirmative,
-                 dialogSettings);
-        }
+        await this.ShowMessageAsync(
+            $"Unhandled Exception ({exceptionSource})",
+            exception?.ToString() ?? Text.Unknown,
+            MessageDialogStyle.Affirmative,
+            dialogSettings);
     }
 }

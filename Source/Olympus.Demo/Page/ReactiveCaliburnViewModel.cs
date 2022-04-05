@@ -26,38 +26,37 @@
 // <creation_timestamp>Thursday, September 3, 2020 6:07:11 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Demo
+namespace nGratis.Cop.Olympus.Demo;
+
+using System.Threading;
+using System.Threading.Tasks;
+using nGratis.Cop.Olympus.Contract;
+using nGratis.Cop.Olympus.Wpf.Glue;
+
+public class ReactiveCaliburnViewModel : ReactiveScreen
 {
-    using System.Threading;
-    using System.Threading.Tasks;
-    using nGratis.Cop.Olympus.Contract;
-    using nGratis.Cop.Olympus.Wpf.Glue;
+    private readonly ILogger _logger;
 
-    public class ReactiveCaliburnViewModel : ReactiveScreen
+    public ReactiveCaliburnViewModel(ILogger logger)
     {
-        private readonly ILogger _logger;
+        Guard
+            .Require(logger, nameof(logger))
+            .Is.Not.Null();
 
-        public ReactiveCaliburnViewModel(ILogger logger)
-        {
-            Guard
-                .Require(logger, nameof(logger))
-                .Is.Not.Null();
+        this._logger = logger;
+    }
 
-            this._logger = logger;
-        }
+    protected override async Task ActivateCoreAsync(CancellationToken cancellationToken)
+    {
+        this._logger.Log(Verbosity.Info, "Activating <Reactive.Caliburn> screen...");
 
-        protected override async Task ActivateCoreAsync(CancellationToken cancellationToken)
-        {
-            this._logger.Log(Verbosity.Info, "Activating <Reactive.Caliburn> screen...");
+        await Task.CompletedTask;
+    }
 
-            await Task.CompletedTask;
-        }
+    protected override async Task DeactivateCoreAsync(bool isClosed, CancellationToken cancellationToken)
+    {
+        this._logger.Log(Verbosity.Info, "Deactivating <Reactive.Caliburn> screen...");
 
-        protected override async Task DeactivateCoreAsync(bool isClosed, CancellationToken cancellationToken)
-        {
-            this._logger.Log(Verbosity.Info, "Deactivating <Reactive.Caliburn> screen...");
-
-            await Task.CompletedTask;
-        }
+        await Task.CompletedTask;
     }
 }

@@ -26,18 +26,17 @@
 // <creation_timestamp>Saturday, 25 April 2015 11:33:09 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Contract
+namespace nGratis.Cop.Olympus.Contract;
+
+using System;
+
+public interface ILogger : IDisposable
 {
-    using System;
+    string Component { get; }
 
-    public interface ILogger : IDisposable
-    {
-        string Component { get; }
+    void Log(Verbosity verbosity, string message);
 
-        void Log(Verbosity verbosity, string message);
+    void Log(Verbosity verbosity, string message, params string[] submessages);
 
-        void Log(Verbosity verbosity, string message, params string[] submessages);
-
-        void Log(Verbosity verbosity, string message, Exception exception);
-    }
+    void Log(Verbosity verbosity, string message, Exception exception);
 }

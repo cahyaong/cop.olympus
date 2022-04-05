@@ -26,9 +26,8 @@
 // <creation_timestamp>Saturday, October 10, 2020 5:32:07 PM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Framework
+namespace nGratis.Cop.Olympus.Framework;
+
+public static partial class MockExtensions
 {
-    public static partial class MockExtensions
-    {
-    }
 }

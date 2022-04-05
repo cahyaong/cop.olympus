@@ -26,104 +26,103 @@
 // <creation_timestamp>Saturday, 25 April 2015 12:21:18 PM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Framework
+namespace nGratis.Cop.Olympus.Framework;
+
+using System;
+using System.Collections.Concurrent;
+using nGratis.Cop.Olympus.Contract;
+
+internal class LoggingProvider : ILoggingProvider
 {
-    using System;
-    using System.Collections.Concurrent;
-    using nGratis.Cop.Olympus.Contract;
+    private readonly LoggingModes _loggingModes;
 
-    internal class LoggingProvider : ILoggingProvider
+    private readonly ConcurrentDictionary<string, ILogger> _loggerLookup;
+
+    private readonly CompositeLogger _aggregatingLogger;
+
+    private bool _isDisposed;
+
+    public LoggingProvider(LoggingModes loggingModes)
     {
-        private readonly LoggingModes _loggingModes;
+        Guard
+            .Require(loggingModes, nameof(loggingModes))
+            .Is.Not.EqualTo(LoggingModes.None);
 
-        private readonly ConcurrentDictionary<string, ILogger> _loggerLookup;
+        this._loggingModes = loggingModes;
+        this._loggerLookup = new ConcurrentDictionary<string, ILogger>();
+        this._aggregatingLogger = new CompositeLogger();
+    }
 
-        private readonly CompositeLogger _aggregatingLogger;
+    ~LoggingProvider()
+    {
+        this.Dispose(false);
+    }
 
-        private bool _isDisposed;
+    public ILogger GetLoggerFor(string component = Constant.AggregatingComponent)
+    {
+        Guard
+            .Require(component, nameof(component))
+            .Is.Not.Empty();
 
-        public LoggingProvider(LoggingModes loggingModes)
+        if (component == Constant.AggregatingComponent)
         {
-            Guard
-                .Require(loggingModes, nameof(loggingModes))
-                .Is.Not.EqualTo(LoggingModes.None);
-
-            this._loggingModes = loggingModes;
-            this._loggerLookup = new ConcurrentDictionary<string, ILogger>();
-            this._aggregatingLogger = new CompositeLogger();
+            return this._aggregatingLogger;
         }
 
-        ~LoggingProvider()
+        var logger = this
+            ._loggerLookup
+            .GetOrAdd(component, _ => this.CreateLogger(component));
+
+        this._aggregatingLogger.RegisterLoggers(logger);
+
+        return logger;
+    }
+
+    public void Dispose()
+    {
+        this.Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+
+    private ILogger CreateLogger(string component = Text.Undefined)
+    {
+        var logger = new CompositeLogger();
+
+        if (this._loggingModes.HasFlag(LoggingModes.CommunityOfPractice))
         {
-            this.Dispose(false);
+            logger.RegisterLoggers(new CopLogger(component));
         }
 
-        public ILogger GetLoggerFor(string component = Constant.AggregatingComponent)
+        if (this._loggingModes.HasFlag(LoggingModes.NLogger))
         {
-            Guard
-                .Require(component, nameof(component))
-                .Is.Not.Empty();
-
-            if (component == Constant.AggregatingComponent)
-            {
-                return this._aggregatingLogger;
-            }
-
-            var logger = this
-                ._loggerLookup
-                .GetOrAdd(component, _ => this.CreateLogger(component));
-
-            this._aggregatingLogger.RegisterLoggers(logger);
-
-            return logger;
+            logger.RegisterLoggers(new NLogger(component));
         }
 
-        public void Dispose()
+        if (this._loggingModes.HasFlag(LoggingModes.Console))
         {
-            this.Dispose(true);
-            GC.SuppressFinalize(this);
+            logger.RegisterLoggers(new ConsoleLogger(component));
         }
 
-        private ILogger CreateLogger(string component = Text.Undefined)
+        return logger;
+    }
+
+    private void Dispose(bool isDisposing)
+    {
+        if (this._isDisposed)
         {
-            var logger = new CompositeLogger();
-
-            if (this._loggingModes.HasFlag(LoggingModes.CommunityOfPractice))
-            {
-                logger.RegisterLoggers(new CopLogger(component));
-            }
-
-            if (this._loggingModes.HasFlag(LoggingModes.NLogger))
-            {
-                logger.RegisterLoggers(new NLogger(component));
-            }
-
-            if (this._loggingModes.HasFlag(LoggingModes.Console))
-            {
-                logger.RegisterLoggers(new ConsoleLogger(component));
-            }
-
-            return logger;
+            return;
         }
 
-        private void Dispose(bool isDisposing)
+        if (isDisposing)
         {
-            if (this._isDisposed)
-            {
-                return;
-            }
-
-            if (isDisposing)
-            {
-                this._aggregatingLogger.Dispose();
-            }
-
-            this._isDisposed = true;
+            this._aggregatingLogger.Dispose();
         }
 
-        private static class Constant
-        {
-            internal const string AggregatingComponent = "*";
-        }
+        this._isDisposed = true;
+    }
+
+    private static class Constant
+    {
+        internal const string AggregatingComponent = "*";
     }
 }

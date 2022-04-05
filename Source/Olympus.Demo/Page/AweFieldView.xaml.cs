@@ -26,13 +26,12 @@
 // <creation_timestamp>Wednesday, 2 January 2019 5:49:43 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Demo
+namespace nGratis.Cop.Olympus.Demo;
+
+public partial class AweFieldView
 {
-    public partial class AweFieldView
+    public AweFieldView()
     {
-        public AweFieldView()
-        {
-            this.InitializeComponent();
-        }
+        this.InitializeComponent();
     }
 }

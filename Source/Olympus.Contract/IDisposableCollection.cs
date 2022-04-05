@@ -26,12 +26,11 @@
 // <creation_timestamp>Wednesday, 12 December 2018 9:07:10 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Contract
-{
-    using System;
-    using System.Collections.Generic;
+namespace nGratis.Cop.Olympus.Contract;
 
-    public interface IDisposableCollection<TItem> : IList<TItem>, IDisposable
-    {
-    }
+using System;
+using System.Collections.Generic;
+
+public interface IDisposableCollection<TItem> : IList<TItem>, IDisposable
+{
 }

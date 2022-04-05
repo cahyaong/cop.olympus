@@ -28,40 +28,39 @@
 
 // ReSharper disable once CheckNamespace
 
-namespace Moq
+namespace Moq;
+
+using System.IO;
+
+public static partial class MockExtensions
 {
-    using System.IO;
-
-    public static partial class MockExtensions
+    public static Mock<Stream> WithReadable(this Mock<Stream> mockStream)
     {
-        public static Mock<Stream> WithReadable(this Mock<Stream> mockStream)
-        {
-            mockStream
-                .SetupGet(mock => mock.CanRead)
-                .Returns(true)
-                .Verifiable();
+        mockStream
+            .SetupGet(mock => mock.CanRead)
+            .Returns(true)
+            .Verifiable();
 
-            return mockStream;
-        }
+        return mockStream;
+    }
 
-        public static Mock<Stream> WithWritable(this Mock<Stream> mockStream)
-        {
-            mockStream
-                .SetupGet(mock => mock.CanWrite)
-                .Returns(true)
-                .Verifiable();
+    public static Mock<Stream> WithWritable(this Mock<Stream> mockStream)
+    {
+        mockStream
+            .SetupGet(mock => mock.CanWrite)
+            .Returns(true)
+            .Verifiable();
 
-            return mockStream;
-        }
+        return mockStream;
+    }
 
-        public static Mock<Stream> WithContent(this Mock<Stream> mockStream, string content)
-        {
-            mockStream
-                .SetupGet(mock => mock.Length)
-                .Returns(content.Length)
-                .Verifiable();
+    public static Mock<Stream> WithContent(this Mock<Stream> mockStream, string content)
+    {
+        mockStream
+            .SetupGet(mock => mock.Length)
+            .Returns(content.Length)
+            .Verifiable();
 
-            return mockStream;
-        }
+        return mockStream;
     }
 }

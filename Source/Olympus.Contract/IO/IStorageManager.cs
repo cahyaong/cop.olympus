@@ -26,21 +26,20 @@
 // <creation_timestamp>Sunday, 29 March 2015 7:01:18 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Contract
+namespace nGratis.Cop.Olympus.Contract;
+
+using System.Collections.Generic;
+using System.IO;
+
+public interface IStorageManager
 {
-    using System.Collections.Generic;
-    using System.IO;
+    bool IsAvailable { get; }
 
-    public interface IStorageManager
-    {
-        bool IsAvailable { get; }
+    IEnumerable<DataInfo> FindEntries(string pattern, Mime mime);
 
-        IEnumerable<DataInfo> FindEntries(string pattern, Mime mime);
+    bool HasEntry(DataSpec dataSpec);
 
-        bool HasEntry(DataSpec dataSpec);
+    Stream LoadEntry(DataSpec dataSpec);
 
-        Stream LoadEntry(DataSpec dataSpec);
-
-        void SaveEntry(DataSpec dataSpec, Stream dataStream, bool canOverride);
-    }
+    void SaveEntry(DataSpec dataSpec, Stream dataStream, bool canOverride);
 }

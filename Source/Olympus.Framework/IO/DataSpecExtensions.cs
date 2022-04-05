@@ -26,24 +26,23 @@
 // <creation_timestamp>Friday, 17 November 2017 11:04:03 PM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Framework
+namespace nGratis.Cop.Olympus.Framework;
+
+using System.Linq;
+using nGratis.Cop.Olympus.Contract;
+
+public static class DataSpecExtensions
 {
-    using System.Linq;
-    using nGratis.Cop.Olympus.Contract;
-
-    public static class DataSpecExtensions
+    public static string GetFileName(this DataSpec dataSpec)
     {
-        public static string GetFileName(this DataSpec dataSpec)
-        {
-            Guard
-                .Require(dataSpec, nameof(dataSpec))
-                .Is.Not.Null();
+        Guard
+            .Require(dataSpec, nameof(dataSpec))
+            .Is.Not.Null();
 
-            Guard
-                .Require(dataSpec.Mime.Extensions, nameof(dataSpec))
-                .Is.Not.Empty();
+        Guard
+            .Require(dataSpec.Mime.Extensions, nameof(dataSpec))
+            .Is.Not.Empty();
 
-            return $"{dataSpec.Name}.{dataSpec.Mime.Extensions.First()}";
-        }
+        return $"{dataSpec.Name}.{dataSpec.Mime.Extensions.First()}";
     }
 }

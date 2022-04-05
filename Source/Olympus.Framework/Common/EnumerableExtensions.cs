@@ -27,80 +27,79 @@
 
 // ReSharper disable once CheckNamespace
 
-namespace System.Collections.Generic
+namespace System.Collections.Generic;
+
+using System;
+using System.Collections.Immutable;
+using System.Diagnostics;
+using System.Linq;
+using JetBrains.Annotations;
+using nGratis.Cop.Olympus.Contract;
+
+public static class EnumerableExtensions
 {
-    using System;
-    using System.Collections.Immutable;
-    using System.Diagnostics;
-    using System.Linq;
-    using JetBrains.Annotations;
-    using nGratis.Cop.Olympus.Contract;
-
-    public static class EnumerableExtensions
+    [DebuggerStepThrough]
+    public static IEnumerable<T> Append<T>(this IEnumerable<T> leftItems, IEnumerable<T> rightItems)
     {
-        [DebuggerStepThrough]
-        public static IEnumerable<T> Append<T>(this IEnumerable<T> leftItems, IEnumerable<T> rightItems)
+        Guard
+            .Require(leftItems, nameof(leftItems))
+            .Is.Not.Null();
+
+        Guard
+            .Require(rightItems, nameof(rightItems))
+            .Is.Not.Null();
+
+        foreach (var leftItem in leftItems)
         {
-            Guard
-                .Require(leftItems, nameof(leftItems))
-                .Is.Not.Null();
-
-            Guard
-                .Require(rightItems, nameof(rightItems))
-                .Is.Not.Null();
-
-            foreach (var leftItem in leftItems)
-            {
-                yield return leftItem;
-            }
-
-            foreach (var rightItem in rightItems)
-            {
-                yield return rightItem;
-            }
+            yield return leftItem;
         }
 
-        [DebuggerStepThrough]
-        public static IEnumerable<T> Except<T>(this IEnumerable<T> items, T item)
+        foreach (var rightItem in rightItems)
         {
-            return items.Except(ImmutableArray.Create(item));
+            yield return rightItem;
         }
+    }
 
-        [DebuggerStepThrough]
-        public static void ForEach<T>(this IEnumerable<T> items, [InstantHandle] Action<T> apply)
+    [DebuggerStepThrough]
+    public static IEnumerable<T> Except<T>(this IEnumerable<T> items, T item)
+    {
+        return items.Except(ImmutableArray.Create(item));
+    }
 
+    [DebuggerStepThrough]
+    public static void ForEach<T>(this IEnumerable<T> items, [InstantHandle] Action<T> apply)
+
+    {
+        Guard
+            .Require(items, nameof(items))
+            .Is.Not.Null();
+
+        Guard
+            .Require(apply, nameof(apply))
+            .Is.Not.Null();
+
+        foreach (var item in items)
         {
-            Guard
-                .Require(items, nameof(items))
-                .Is.Not.Null();
-
-            Guard
-                .Require(apply, nameof(apply))
-                .Is.Not.Null();
-
-            foreach (var item in items)
-            {
-                apply(item);
-            }
+            apply(item);
         }
+    }
 
-        [DebuggerStepThrough]
-        public static void ForEach<T>(this IEnumerable<T> items, [InstantHandle] Action<T, int> apply)
+    [DebuggerStepThrough]
+    public static void ForEach<T>(this IEnumerable<T> items, [InstantHandle] Action<T, int> apply)
+    {
+        Guard
+            .Require(items, nameof(items))
+            .Is.Not.Null();
+
+        Guard
+            .Require(apply, nameof(apply))
+            .Is.Not.Null();
+
+        var index = 0;
+
+        foreach (var item in items)
         {
-            Guard
-                .Require(items, nameof(items))
-                .Is.Not.Null();
-
-            Guard
-                .Require(apply, nameof(apply))
-                .Is.Not.Null();
-
-            var index = 0;
-
-            foreach (var item in items)
-            {
-                apply(item, index++);
-            }
+            apply(item, index++);
         }
     }
 }

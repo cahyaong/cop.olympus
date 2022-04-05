@@ -26,31 +26,30 @@
 // <creation_timestamp>Tuesday, 5 May 2015 2:15:19 PM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Contract
+namespace nGratis.Cop.Olympus.Contract;
+
+using System;
+using System.Runtime.Serialization;
+
+[Serializable]
+public class CopException : Exception
 {
-    using System;
-    using System.Runtime.Serialization;
-
-    [Serializable]
-    public class CopException : Exception
+    public CopException()
     {
-        public CopException()
-        {
-        }
+    }
 
-        public CopException(string message)
-            : base(message)
-        {
-        }
+    public CopException(string message)
+        : base(message)
+    {
+    }
 
-        public CopException(string message, Exception exception)
-            : base(message, exception)
-        {
-        }
+    public CopException(string message, Exception exception)
+        : base(message, exception)
+    {
+    }
 
-        protected CopException(SerializationInfo info, StreamingContext context)
-            : base(info, context)
-        {
-        }
+    protected CopException(SerializationInfo info, StreamingContext context)
+        : base(info, context)
+    {
     }
 }

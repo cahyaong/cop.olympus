@@ -26,29 +26,28 @@
 // <creation_timestamp>Thursday, September 3, 2020 6:33:56 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Demo
+namespace nGratis.Cop.Olympus.Demo;
+
+using System.Windows;
+using nGratis.Cop.Olympus.Wpf;
+
+public class AppBootstrapper : CopBootstrapper
 {
-    using System.Windows;
-    using nGratis.Cop.Olympus.Wpf;
-
-    public class AppBootstrapper : CopBootstrapper
+    public AppBootstrapper()
     {
-        public AppBootstrapper()
+        this.Initialize();
+    }
+
+    protected override void OnStartup(object sender, StartupEventArgs __)
+    {
+        // TODO: Make theme adjustable dynamically!
+
+        if (sender is Application app)
         {
-            this.Initialize();
+            var theme = ControlzEx.Theming.ThemeManager.Current.ChangeTheme(app, "Dark.Green");
+            app.AdjustAccentColor(theme.PrimaryAccentColor);
         }
 
-        protected override void OnStartup(object sender, StartupEventArgs __)
-        {
-            // TODO: Make theme adjustable dynamically!
-
-            if (sender is Application app)
-            {
-                var theme = ControlzEx.Theming.ThemeManager.Current.ChangeTheme(app, "Dark.Green");
-                app.AdjustAccentColor(theme.PrimaryAccentColor);
-            }
-
-            this.DisplayRootViewFor<AppViewModel>();
-        }
+        this.DisplayRootViewFor<AppViewModel>();
     }
 }

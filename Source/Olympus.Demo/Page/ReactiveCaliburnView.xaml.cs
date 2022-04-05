@@ -26,13 +26,12 @@
 // <creation_timestamp>Friday, September 4, 2020 5:47:25 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Demo
+namespace nGratis.Cop.Olympus.Demo;
+
+public partial class ReactiveCaliburnView
 {
-    public partial class ReactiveCaliburnView
+    public ReactiveCaliburnView()
     {
-        public ReactiveCaliburnView()
-        {
-            this.InitializeComponent();
-        }
+        this.InitializeComponent();
     }
 }

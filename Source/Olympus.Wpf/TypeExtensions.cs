@@ -28,55 +28,54 @@
 
 // ReSharper disable once CheckNamespace
 
-namespace System
+namespace System;
+
+using System.Windows;
+using nGratis.Cop.Olympus.Contract;
+
+public static class TypeExtensions
 {
-    using System.Windows;
-    using nGratis.Cop.Olympus.Contract;
-
-    public static class TypeExtensions
+    public static void AddEventHandler<TInstance, TArgs>(
+        this TInstance instance,
+        string eventName,
+        EventHandler<TArgs> handler)
+        where TInstance : class
+        where TArgs : EventArgs
     {
-        public static void AddEventHandler<TInstance, TArgs>(
-            this TInstance instance,
-            string eventName,
-            EventHandler<TArgs> handler)
-            where TInstance : class
-            where TArgs : EventArgs
-        {
-            Guard
-                .Require(instance, nameof(instance))
-                .Is.Not.Null();
+        Guard
+            .Require(instance, nameof(instance))
+            .Is.Not.Null();
 
-            Guard
-                .Require(eventName, nameof(eventName))
-                .Is.Not.Empty();
+        Guard
+            .Require(eventName, nameof(eventName))
+            .Is.Not.Empty();
 
-            Guard
-                .Require(handler, nameof(handler))
-                .Is.Not.Null();
+        Guard
+            .Require(handler, nameof(handler))
+            .Is.Not.Null();
 
-            WeakEventManager<TInstance, TArgs>.AddHandler(instance, eventName, handler);
-        }
+        WeakEventManager<TInstance, TArgs>.AddHandler(instance, eventName, handler);
+    }
 
-        public static void RemoveEventHandler<TInstance, TArgs>(
-            this TInstance instance,
-            string eventName,
-            EventHandler<TArgs> handler)
-            where TInstance : class
-            where TArgs : EventArgs
-        {
-            Guard
-                .Require(instance, nameof(instance))
-                .Is.Not.Null();
+    public static void RemoveEventHandler<TInstance, TArgs>(
+        this TInstance instance,
+        string eventName,
+        EventHandler<TArgs> handler)
+        where TInstance : class
+        where TArgs : EventArgs
+    {
+        Guard
+            .Require(instance, nameof(instance))
+            .Is.Not.Null();
 
-            Guard
-                .Require(eventName, nameof(eventName))
-                .Is.Not.Empty();
+        Guard
+            .Require(eventName, nameof(eventName))
+            .Is.Not.Empty();
 
-            Guard
-                .Require(handler, nameof(handler))
-                .Is.Not.Null();
+        Guard
+            .Require(handler, nameof(handler))
+            .Is.Not.Null();
 
-            WeakEventManager<TInstance, TArgs>.RemoveHandler(instance, eventName, handler);
-        }
+        WeakEventManager<TInstance, TArgs>.RemoveHandler(instance, eventName, handler);
     }
 }

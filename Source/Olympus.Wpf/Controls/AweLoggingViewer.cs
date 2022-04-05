@@ -26,60 +26,59 @@
 // <creation_timestamp>Monday, 27 April 2015 2:19:34 PM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Wpf
+namespace nGratis.Cop.Olympus.Wpf;
+
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Windows;
+using System.Windows.Controls;
+using nGratis.Cop.Olympus.Contract;
+using nGratis.Cop.Olympus.Framework;
+
+public class AweLoggingViewer : ContentControl
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.Windows;
-    using System.Windows.Controls;
-    using nGratis.Cop.Olympus.Contract;
-    using nGratis.Cop.Olympus.Framework;
+    public static readonly DependencyProperty LoggingNotifierProperty = DependencyProperty.Register(
+        "LoggingNotifier",
+        typeof(ILoggingNotifier),
+        typeof(AweLoggingViewer),
+        new PropertyMetadata(null, AweLoggingViewer.OnLoggingNotifierChanged));
 
-    public class AweLoggingViewer : ContentControl
+    public static readonly DependencyProperty LoggingEntriesProperty = DependencyProperty.Register(
+        "LoggingEntries",
+        typeof(IList<LoggingEntry>),
+        typeof(AweLoggingViewer),
+        new PropertyMetadata(new ObservableCollection<LoggingEntry>()));
+
+    private IDisposable _onLoggingEntryAdded;
+
+    public ILoggingNotifier LoggingNotifier
     {
-        public static readonly DependencyProperty LoggingNotifierProperty = DependencyProperty.Register(
-            "LoggingNotifier",
-            typeof(ILoggingNotifier),
-            typeof(AweLoggingViewer),
-            new PropertyMetadata(null, AweLoggingViewer.OnLoggingNotifierChanged));
+        get => (ILoggingNotifier)this.GetValue(AweLoggingViewer.LoggingNotifierProperty);
 
-        public static readonly DependencyProperty LoggingEntriesProperty = DependencyProperty.Register(
-            "LoggingEntries",
-            typeof(IList<LoggingEntry>),
-            typeof(AweLoggingViewer),
-            new PropertyMetadata(new ObservableCollection<LoggingEntry>()));
-
-        private IDisposable _onLoggingEntryAdded;
-
-        public ILoggingNotifier LoggingNotifier
+        set
         {
-            get => (ILoggingNotifier)this.GetValue(AweLoggingViewer.LoggingNotifierProperty);
+            this._onLoggingEntryAdded?.Dispose();
+            this.LoggingEntries.Clear();
 
-            set
-            {
-                this._onLoggingEntryAdded?.Dispose();
-                this.LoggingEntries.Clear();
+            this._onLoggingEntryAdded = value
+                .WhenEntryAdded
+                .Subscribe(this.LoggingEntries.Add);
 
-                this._onLoggingEntryAdded = value
-                    .WhenEntryAdded
-                    .Subscribe(this.LoggingEntries.Add);
-
-                this.SetValue(AweLoggingViewer.LoggingNotifierProperty, value);
-            }
+            this.SetValue(AweLoggingViewer.LoggingNotifierProperty, value);
         }
+    }
 
-        public IList<LoggingEntry> LoggingEntries => (IList<LoggingEntry>)this
-            .GetValue(AweLoggingViewer.LoggingEntriesProperty);
+    public IList<LoggingEntry> LoggingEntries => (IList<LoggingEntry>)this
+        .GetValue(AweLoggingViewer.LoggingEntriesProperty);
 
-        private static void OnLoggingNotifierChanged(
-            DependencyObject container,
-            DependencyPropertyChangedEventArgs args)
+    private static void OnLoggingNotifierChanged(
+        DependencyObject container,
+        DependencyPropertyChangedEventArgs args)
+    {
+        if (container is AweLoggingViewer logViewer && args.NewValue != null)
         {
-            if (container is AweLoggingViewer logViewer && args.NewValue != null)
-            {
-                logViewer.LoggingNotifier = (ILoggingNotifier)args.NewValue;
-            }
+            logViewer.LoggingNotifier = (ILoggingNotifier)args.NewValue;
         }
     }
 }

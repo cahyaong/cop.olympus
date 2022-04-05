@@ -26,32 +26,31 @@
 // <creation_timestamp>Wednesday, 24 December 2014 12:08:32 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Wpf
+namespace nGratis.Cop.Olympus.Wpf;
+
+using System;
+using System.Collections;
+using System.Globalization;
+using System.Linq;
+using System.Windows.Data;
+
+[ValueConversion(typeof(IEnumerable), typeof(int))]
+public class EnumerableToCountConverter : IValueConverter
 {
-    using System;
-    using System.Collections;
-    using System.Globalization;
-    using System.Linq;
-    using System.Windows.Data;
-
-    [ValueConversion(typeof(IEnumerable), typeof(int))]
-    public class EnumerableToCountConverter : IValueConverter
+    public object Convert(object value, Type type, object parameter, CultureInfo cultureInfo)
     {
-        public object Convert(object value, Type type, object parameter, CultureInfo cultureInfo)
+        if (value is IEnumerable enumerable)
         {
-            if (value is IEnumerable enumerable)
-            {
-                return enumerable
-                    .Cast<object>()
-                    .Count();
-            }
-
-            return 0;
+            return enumerable
+                .Cast<object>()
+                .Count();
         }
 
-        public object ConvertBack(object value, Type type, object parameter, CultureInfo cultureInfo)
-        {
-            throw new NotSupportedException();
-        }
+        return 0;
+    }
+
+    public object ConvertBack(object value, Type type, object parameter, CultureInfo cultureInfo)
+    {
+        throw new NotSupportedException();
     }
 }

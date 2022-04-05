@@ -26,12 +26,11 @@
 // <creation_timestamp>Tuesday, 8 January 2019 11:18:06 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Wpf
-{
-    using System;
+namespace nGratis.Cop.Olympus.Wpf;
 
-    [AttributeUsage(AttributeTargets.Enum | AttributeTargets.Field)]
-    public class MultipleValuesRequiredAttribute : Attribute
-    {
-    }
+using System;
+
+[AttributeUsage(AttributeTargets.Enum | AttributeTargets.Field)]
+public class MultipleValuesRequiredAttribute : Attribute
+{
 }

@@ -26,23 +26,22 @@
 // <creation_timestamp>Saturday, 6 February 2016 12:26:05 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Wpf
+namespace nGratis.Cop.Olympus.Wpf;
+
+using System.Windows;
+using System.Windows.Controls;
+
+public class AweChart : ItemsControl
 {
-    using System.Windows;
-    using System.Windows.Controls;
+    public static readonly DependencyProperty ConfigProperty = DependencyProperty.Register(
+        "Config",
+        typeof(ChartConfig),
+        typeof(AweChart),
+        new PropertyMetadata(null));
 
-    public class AweChart : ItemsControl
+    public ChartConfig Config
     {
-        public static readonly DependencyProperty ConfigProperty = DependencyProperty.Register(
-            "Config",
-            typeof(ChartConfig),
-            typeof(AweChart),
-            new PropertyMetadata(null));
-
-        public ChartConfig Config
-        {
-            get => (ChartConfig)this.GetValue(AweChart.ConfigProperty);
-            set => this.SetValue(AweChart.ConfigProperty, value);
-        }
+        get => (ChartConfig)this.GetValue(AweChart.ConfigProperty);
+        set => this.SetValue(AweChart.ConfigProperty, value);
     }
 }

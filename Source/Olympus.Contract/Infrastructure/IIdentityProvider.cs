@@ -26,16 +26,15 @@
 // <creation_timestamp>Saturday, 25 April 2015 12:59:14 PM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Contract
+namespace nGratis.Cop.Olympus.Contract;
+
+using System;
+
+public interface IIdentityProvider
 {
-    using System;
+    Guid CreateGuid();
 
-    public interface IIdentityProvider
-    {
-        Guid CreateGuid();
+    Guid CreateGuid(string content);
 
-        Guid CreateGuid(string content);
-
-        string CreateId();
-    }
+    string CreateId();
 }

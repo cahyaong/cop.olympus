@@ -28,79 +28,78 @@
 
 // ReSharper disable once CheckNamespace
 
-namespace System.IO
+namespace System.IO;
+
+using System.Text;
+using nGratis.Cop.Olympus.Contract;
+
+public static class StreamExtensions
 {
-    using System.Text;
-    using nGratis.Cop.Olympus.Contract;
+    private const int BufferSize = 4 * 1024;
 
-    public static class StreamExtensions
+    public static byte[] ReadBlob(this Stream stream)
     {
-        private const int BufferSize = 4 * 1024;
+        Guard
+            .Require(stream, nameof(stream))
+            .Is.Not.Null()
+            .Is.Readable();
 
-        public static byte[] ReadBlob(this Stream stream)
+        if (stream.CanSeek)
         {
-            Guard
-                .Require(stream, nameof(stream))
-                .Is.Not.Null()
-                .Is.Readable();
-
-            if (stream.CanSeek)
-            {
-                stream.Position = 0;
-            }
-
-            var blob = default(byte[]);
-
-            using (var cachingStream = new MemoryStream())
-            {
-                stream.CopyTo(cachingStream, StreamExtensions.BufferSize);
-                cachingStream.Position = 0;
-
-                blob = cachingStream.ToArray();
-            }
-
-            if (stream.CanSeek)
-            {
-                stream.Position = 0;
-            }
-
-            return blob;
+            stream.Position = 0;
         }
 
-        public static string ReadText(this Stream stream)
-        {
-            Guard
-                .Require(stream, nameof(stream))
-                .Is.Not.Null();
+        var blob = default(byte[]);
 
-            return stream.ReadText(Encoding.UTF8);
+        using (var cachingStream = new MemoryStream())
+        {
+            stream.CopyTo(cachingStream, StreamExtensions.BufferSize);
+            cachingStream.Position = 0;
+
+            blob = cachingStream.ToArray();
         }
 
-        public static string ReadText(this Stream stream, Encoding encoding)
+        if (stream.CanSeek)
         {
-            Guard
-                .Require(stream, nameof(stream))
-                .Is.Not.Null()
-                .Is.Readable();
-
-            Guard
-                .Require(encoding, nameof(encoding))
-                .Is.Not.Null();
-
-            if (stream.CanSeek)
-            {
-                stream.Position = 0;
-            }
-
-            using var reader = new StreamReader(stream, encoding, true, StreamExtensions.BufferSize, true);
-            var content = reader.ReadToEnd();
-
-            if (stream.CanSeek)
-            {
-                stream.Position = 0;
-            }
-
-            return content;
+            stream.Position = 0;
         }
+
+        return blob;
+    }
+
+    public static string ReadText(this Stream stream)
+    {
+        Guard
+            .Require(stream, nameof(stream))
+            .Is.Not.Null();
+
+        return stream.ReadText(Encoding.UTF8);
+    }
+
+    public static string ReadText(this Stream stream, Encoding encoding)
+    {
+        Guard
+            .Require(stream, nameof(stream))
+            .Is.Not.Null()
+            .Is.Readable();
+
+        Guard
+            .Require(encoding, nameof(encoding))
+            .Is.Not.Null();
+
+        if (stream.CanSeek)
+        {
+            stream.Position = 0;
+        }
+
+        using var reader = new StreamReader(stream, encoding, true, StreamExtensions.BufferSize, true);
+        var content = reader.ReadToEnd();
+
+        if (stream.CanSeek)
+        {
+            stream.Position = 0;
+        }
+
+        return content;
     }
 }

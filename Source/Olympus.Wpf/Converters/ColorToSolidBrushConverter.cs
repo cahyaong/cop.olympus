@@ -26,24 +26,23 @@
 // <creation_timestamp>Friday, 11 March 2016 11:43:22 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Wpf
+namespace nGratis.Cop.Olympus.Wpf;
+
+using System;
+using System.Globalization;
+using System.Windows.Data;
+using System.Windows.Media;
+
+[ValueConversion(typeof(Color), typeof(SolidColorBrush))]
+public class ColorToSolidBrushConverter : IValueConverter
 {
-    using System;
-    using System.Globalization;
-    using System.Windows.Data;
-    using System.Windows.Media;
-
-    [ValueConversion(typeof(Color), typeof(SolidColorBrush))]
-    public class ColorToSolidBrushConverter : IValueConverter
+    public object Convert(object value, Type targetType, object parameter, CultureInfo cultureInfo)
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo cultureInfo)
-        {
-            return new SolidColorBrush((Color)(value ?? Colors.Gray));
-        }
+        return new SolidColorBrush((Color)(value ?? Colors.Gray));
+    }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo cultureInfo)
-        {
-            return (value as SolidColorBrush)?.Color ?? Colors.Gray;
-        }
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo cultureInfo)
+    {
+        return (value as SolidColorBrush)?.Color ?? Colors.Gray;
     }
 }

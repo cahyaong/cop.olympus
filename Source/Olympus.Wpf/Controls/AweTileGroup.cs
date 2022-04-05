@@ -26,24 +26,23 @@
 // <creation_timestamp>Friday, 14 December 2018 10:34:29 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Wpf
+namespace nGratis.Cop.Olympus.Wpf;
+
+using System.Windows;
+using System.Windows.Controls;
+using nGratis.Cop.Olympus.Contract;
+
+public class AweTileGroup : ContentControl
 {
-    using System.Windows;
-    using System.Windows.Controls;
-    using nGratis.Cop.Olympus.Contract;
+    public static readonly DependencyProperty HeaderProperty = DependencyProperty.Register(
+        nameof(AweTileGroup.Header),
+        typeof(string),
+        typeof(AweTileGroup),
+        new PropertyMetadata(Text.Undefined));
 
-    public class AweTileGroup : ContentControl
+    public string Header
     {
-        public static readonly DependencyProperty HeaderProperty = DependencyProperty.Register(
-            nameof(AweTileGroup.Header),
-            typeof(string),
-            typeof(AweTileGroup),
-            new PropertyMetadata(Text.Undefined));
-
-        public string Header
-        {
-            get => (string)this.GetValue(AweTileGroup.HeaderProperty);
-            set => this.SetValue(AweTileGroup.HeaderProperty, value);
-        }
+        get => (string)this.GetValue(AweTileGroup.HeaderProperty);
+        set => this.SetValue(AweTileGroup.HeaderProperty, value);
     }
 }

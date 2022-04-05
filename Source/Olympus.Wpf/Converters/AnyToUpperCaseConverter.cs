@@ -25,25 +25,24 @@
 // <author>Cahya Ong - cahya.ong@gmail.com</author>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Wpf
+namespace nGratis.Cop.Olympus.Wpf;
+
+using System;
+using System.Globalization;
+using System.Windows.Data;
+
+[ValueConversion(typeof(object), typeof(string))]
+public class AnyToUpperCaseConverter : IValueConverter
 {
-    using System;
-    using System.Globalization;
-    using System.Windows.Data;
-
-    [ValueConversion(typeof(object), typeof(string))]
-    public class AnyToUpperCaseConverter : IValueConverter
+    public object Convert(object value, Type type, object parameter, CultureInfo cultureInfo)
     {
-        public object Convert(object value, Type type, object parameter, CultureInfo cultureInfo)
-        {
-            return value?
-                .ToString()?
-                .ToUpper(cultureInfo) ?? string.Empty;
-        }
+        return value?
+            .ToString()?
+            .ToUpper(cultureInfo) ?? string.Empty;
+    }
 
-        public object ConvertBack(object value, Type type, object parameter, CultureInfo cultureInfo)
-        {
-            throw new NotSupportedException();
-        }
+    public object ConvertBack(object value, Type type, object parameter, CultureInfo cultureInfo)
+    {
+        throw new NotSupportedException();
     }
 }

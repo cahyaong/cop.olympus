@@ -26,48 +26,47 @@
 // <creation_timestamp>Sunday, 9 April 2017 2:25:09 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Wpf
+namespace nGratis.Cop.Olympus.Wpf;
+
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
+
+public class AweFileChooser : ContentControl
 {
-    using System.Windows;
-    using System.Windows.Controls;
-    using System.Windows.Input;
+    public static readonly DependencyProperty SelectedFilePathProperty = DependencyProperty.Register(
+        nameof(AweFileChooser.SelectedFilePath),
+        typeof(string),
+        typeof(AweFileChooser),
+        new PropertyMetadata(null));
 
-    public class AweFileChooser : ContentControl
+    public static readonly DependencyProperty AuxiliaryTextProperty = DependencyProperty.Register(
+        nameof(AweFileChooser.AuxiliaryText),
+        typeof(string),
+        typeof(AweFileChooser),
+        new PropertyMetadata("<AUX>"));
+
+    public static readonly DependencyProperty AuxiliaryCommandProperty = DependencyProperty.Register(
+        nameof(AweFileChooser.AuxiliaryCommand),
+        typeof(ICommand),
+        typeof(AweFileChooser),
+        new PropertyMetadata(null));
+
+    public string SelectedFilePath
     {
-        public static readonly DependencyProperty SelectedFilePathProperty = DependencyProperty.Register(
-            nameof(AweFileChooser.SelectedFilePath),
-            typeof(string),
-            typeof(AweFileChooser),
-            new PropertyMetadata(null));
+        get => (string)this.GetValue(AweFileChooser.SelectedFilePathProperty);
+        set => this.SetValue(AweFileChooser.SelectedFilePathProperty, value);
+    }
 
-        public static readonly DependencyProperty AuxiliaryTextProperty = DependencyProperty.Register(
-            nameof(AweFileChooser.AuxiliaryText),
-            typeof(string),
-            typeof(AweFileChooser),
-            new PropertyMetadata("<AUX>"));
+    public string AuxiliaryText
+    {
+        get => (string)this.GetValue(AweFileChooser.AuxiliaryTextProperty);
+        set => this.SetValue(AweFileChooser.AuxiliaryTextProperty, value);
+    }
 
-        public static readonly DependencyProperty AuxiliaryCommandProperty = DependencyProperty.Register(
-            nameof(AweFileChooser.AuxiliaryCommand),
-            typeof(ICommand),
-            typeof(AweFileChooser),
-            new PropertyMetadata(null));
-
-        public string SelectedFilePath
-        {
-            get => (string)this.GetValue(AweFileChooser.SelectedFilePathProperty);
-            set => this.SetValue(AweFileChooser.SelectedFilePathProperty, value);
-        }
-
-        public string AuxiliaryText
-        {
-            get => (string)this.GetValue(AweFileChooser.AuxiliaryTextProperty);
-            set => this.SetValue(AweFileChooser.AuxiliaryTextProperty, value);
-        }
-
-        public ICommand AuxiliaryCommand
-        {
-            get => (ICommand)this.GetValue(AweFileChooser.AuxiliaryCommandProperty);
-            set => this.SetValue(AweFileChooser.AuxiliaryCommandProperty, value);
-        }
+    public ICommand AuxiliaryCommand
+    {
+        get => (ICommand)this.GetValue(AweFileChooser.AuxiliaryCommandProperty);
+        set => this.SetValue(AweFileChooser.AuxiliaryCommandProperty, value);
     }
 }

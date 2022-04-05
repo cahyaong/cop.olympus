@@ -26,31 +26,30 @@
 // <creation_timestamp>Saturday, 4 June 2016 12:09:46 PM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Contract
+namespace nGratis.Cop.Olympus.Contract;
+
+using System;
+using System.Runtime.Serialization;
+
+[Serializable]
+public sealed class CopPostConditionException : CopException
 {
-    using System;
-    using System.Runtime.Serialization;
-
-    [Serializable]
-    public sealed class CopPostConditionException : CopException
+    public CopPostConditionException()
     {
-        public CopPostConditionException()
-        {
-        }
+    }
 
-        public CopPostConditionException(string message)
-            : base($"POST-CONDITION: {message}")
-        {
-        }
+    public CopPostConditionException(string message)
+        : base($"POST-CONDITION: {message}")
+    {
+    }
 
-        public CopPostConditionException(string message, Exception exception)
-            : base($"POST-CONDITION: {message}", exception)
-        {
-        }
+    public CopPostConditionException(string message, Exception exception)
+        : base($"POST-CONDITION: {message}", exception)
+    {
+    }
 
-        private CopPostConditionException(SerializationInfo info, StreamingContext context)
-            : base(info, context)
-        {
-        }
+    private CopPostConditionException(SerializationInfo info, StreamingContext context)
+        : base(info, context)
+    {
     }
 }

@@ -26,62 +26,61 @@
 // <creation_timestamp>Friday, August 14, 2020 10:32:42 PM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Wpf
+namespace nGratis.Cop.Olympus.Wpf;
+
+using System;
+using System.Windows.Input;
+using nGratis.Cop.Olympus.Contract;
+
+public class RelayCommand : ICommand
 {
-    using System;
-    using System.Windows.Input;
-    using nGratis.Cop.Olympus.Contract;
+    private readonly Action _execute;
 
-    public class RelayCommand : ICommand
+    private readonly Func<bool> _canExecute;
+
+    private RelayCommand(Action execute, Func<bool> canExecute)
     {
-        private readonly Action _execute;
+        Guard
+            .Require(execute, nameof(execute))
+            .Is.Not.Null();
 
-        private readonly Func<bool> _canExecute;
+        this._execute = execute;
+        this._canExecute = canExecute;
+    }
 
-        private RelayCommand(Action execute, Func<bool> canExecute)
+    public static RelayCommand Create(Action execute, Func<bool> canExecute = null)
+    {
+        return new(execute, canExecute);
+    }
+
+    public event EventHandler CanExecuteChanged
+    {
+        add
         {
-            Guard
-                .Require(execute, nameof(execute))
-                .Is.Not.Null();
-
-            this._execute = execute;
-            this._canExecute = canExecute;
-        }
-
-        public static RelayCommand Create(Action execute, Func<bool> canExecute = null)
-        {
-            return new(execute, canExecute);
-        }
-
-        public event EventHandler CanExecuteChanged
-        {
-            add
+            if (this._canExecute != null)
             {
-                if (this._canExecute != null)
-                {
-                    CommandManager.RequerySuggested += value;
-                }
-            }
-
-            remove
-            {
-                if (this._canExecute != null)
-                {
-                    CommandManager.RequerySuggested -= value;
-                }
+                CommandManager.RequerySuggested += value;
             }
         }
 
-        public bool CanExecute(object parameter)
+        remove
         {
-            return
-                this._canExecute == null ||
-                this._canExecute();
+            if (this._canExecute != null)
+            {
+                CommandManager.RequerySuggested -= value;
+            }
         }
+    }
 
-        public void Execute(object parameter)
-        {
-            this._execute();
-        }
+    public bool CanExecute(object parameter)
+    {
+        return
+            this._canExecute == null ||
+            this._canExecute();
+    }
+
+    public void Execute(object parameter)
+    {
+        this._execute();
     }
 }

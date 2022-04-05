@@ -26,12 +26,11 @@
 // <creation_timestamp>Saturday, 30 January 2016 1:48:45 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Wpf
+namespace nGratis.Cop.Olympus.Wpf;
+
+public enum VisualizationMode
 {
-    public enum VisualizationMode
-    {
-        None,
-        Ring,
-        Bar
-    }
+    None,
+    Ring,
+    Bar
 }

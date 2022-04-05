@@ -26,29 +26,28 @@
 // <creation_timestamp>Saturday, 31 March 2018 7:25:01 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Contract.Test
+namespace nGratis.Cop.Olympus.Contract.Test;
+
+internal class StubPreConditionValidator : ConditionValidator<string>
 {
-    internal class StubPreConditionValidator : ConditionValidator<string>
+    public StubPreConditionValidator(string value)
+        : base("[_MOCK_NAME_]", value, ValidatorKind.PreCondition)
     {
-        public StubPreConditionValidator(string value)
-            : base("[_MOCK_NAME_]", value, ValidatorKind.PreCondition)
-        {
-        }
     }
+}
 
-    internal class StubPostConditionValidator : ConditionValidator<string>
+internal class StubPostConditionValidator : ConditionValidator<string>
+{
+    public StubPostConditionValidator(string value)
+        : base("[_MOCK_NAME_]", value, ValidatorKind.PostCondition)
     {
-        public StubPostConditionValidator(string value)
-            : base("[_MOCK_NAME_]", value, ValidatorKind.PostCondition)
-        {
-        }
     }
+}
 
-    internal class StubUnknownConditionValidator : ConditionValidator<string>
+internal class StubUnknownConditionValidator : ConditionValidator<string>
+{
+    public StubUnknownConditionValidator(string value)
+        : base("[_MOCK_NAME_]", value, ValidatorKind.Unknown)
     {
-        public StubUnknownConditionValidator(string value)
-            : base("[_MOCK_NAME_]", value, ValidatorKind.Unknown)
-        {
-        }
     }
 }

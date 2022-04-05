@@ -26,32 +26,31 @@
 // <creation_timestamp>Friday, 19 October 2018 10:28:44 PM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Framework
+namespace nGratis.Cop.Olympus.Framework;
+
+using nGratis.Cop.Olympus.Contract;
+
+public abstract class CopTheory
 {
-    using nGratis.Cop.Olympus.Contract;
+    public string Label { get; private set; }
 
-    public abstract class CopTheory
+    public CopTheory WithLabel(ushort caseNumber, string description)
     {
-        public string Label { get; private set; }
+        Guard
+            .Require(description, nameof(description))
+            .Is.Not.Empty();
 
-        public CopTheory WithLabel(ushort caseNumber, string description)
-        {
-            Guard
-                .Require(description, nameof(description))
-                .Is.Not.Empty();
+        this.Label = $"CASE {caseNumber:000} -> {description}";
 
-            this.Label = $"CASE {caseNumber:000} -> {description}";
-
-            return this;
-        }
-
-        public object[] ToXunitTheory()
-        {
-            return new object[] { this };
-        }
-
-        public override string ToString() => !string.IsNullOrEmpty(this.Label)
-            ? $"[ {this.Label} ]"
-            : base.ToString();
+        return this;
     }
+
+    public object[] ToXunitTheory()
+    {
+        return new object[] { this };
+    }
+
+    public override string ToString() => !string.IsNullOrEmpty(this.Label)
+        ? $"[ {this.Label} ]"
+        : base.ToString();
 }

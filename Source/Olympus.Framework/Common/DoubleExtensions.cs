@@ -27,18 +27,17 @@
 
 // ReSharper disable once CheckNamespace
 
-namespace System
-{
-    public static class DoubleExtensions
-    {
-        public static bool IsCloseTo(this double firstValue, double secondValue)
-        {
-            return firstValue.IsCloseTo(secondValue, 0.00001);
-        }
+namespace System;
 
-        public static bool IsCloseTo(this double firstValue, double secondValue, double tolerance)
-        {
-            return Math.Abs(firstValue - secondValue) <= tolerance;
-        }
+public static class DoubleExtensions
+{
+    public static bool IsCloseTo(this double firstValue, double secondValue)
+    {
+        return firstValue.IsCloseTo(secondValue, 0.00001);
+    }
+
+    public static bool IsCloseTo(this double firstValue, double secondValue, double tolerance)
+    {
+        return Math.Abs(firstValue - secondValue) <= tolerance;
     }
 }

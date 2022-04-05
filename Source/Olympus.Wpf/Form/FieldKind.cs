@@ -25,38 +25,37 @@
 // <author>Cahya Ong - cahya.ong@gmail.com</author>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Wpf
+namespace nGratis.Cop.Olympus.Wpf;
+
+using System.Linq;
+using System.Reflection;
+using nGratis.Cop.Olympus.Contract;
+
+public enum FieldKind
 {
-    using System.Linq;
-    using System.Reflection;
-    using nGratis.Cop.Olympus.Contract;
+    Unknown,
+    Text,
+    DropDown,
 
-    public enum FieldKind
+    [MultipleValuesRequired]
+    List,
+
+    [MultipleValuesRequired]
+    Chips
+}
+
+public static class FieldKindExtensions
+{
+    public static bool IsMultipleValuesRequired(this FieldKind fieldKind)
     {
-        Unknown,
-        Text,
-        DropDown,
+        Guard
+            .Require(fieldKind, nameof(fieldKind))
+            .Is.Not.Default();
 
-        [MultipleValuesRequired]
-        List,
-
-        [MultipleValuesRequired]
-        Chips
-    }
-
-    public static class FieldKindExtensions
-    {
-        public static bool IsMultipleValuesRequired(this FieldKind fieldKind)
-        {
-            Guard
-                .Require(fieldKind, nameof(fieldKind))
-                .Is.Not.Default();
-
-            return typeof(FieldKind)
-                .GetMember(fieldKind.ToString())
-                .Single()
-                .GetCustomAttributes<MultipleValuesRequiredAttribute>()
-                .Any();
-        }
+        return typeof(FieldKind)
+            .GetMember(fieldKind.ToString())
+            .Single()
+            .GetCustomAttributes<MultipleValuesRequiredAttribute>()
+            .Any();
     }
 }

@@ -26,60 +26,59 @@
 // <creation_timestamp>Saturday, 25 April 2015 1:01:42 PM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Framework
+namespace nGratis.Cop.Olympus.Framework;
+
+using System;
+using System.Diagnostics.CodeAnalysis;
+using nGratis.Cop.Olympus.Contract;
+
+public sealed class InfrastructureManager : IInfrastructureManager, IDisposable
 {
-    using System;
-    using System.Diagnostics.CodeAnalysis;
-    using nGratis.Cop.Olympus.Contract;
+    private bool _isDisposed;
 
-    public sealed class InfrastructureManager : IInfrastructureManager, IDisposable
+    public InfrastructureManager(LoggingModes loggingModes)
     {
-        private bool _isDisposed;
+        this.IdentityProvider = Framework.IdentityProvider.Instance;
+        this.LoggingProvider = new LoggingProvider(loggingModes);
+        this.TemporalProvider = Framework.TemporalProvider.Instance;
+    }
 
-        public InfrastructureManager(LoggingModes loggingModes)
+    ~InfrastructureManager()
+    {
+        this.Dispose(false);
+    }
+
+    public static IInfrastructureManager Instance { get; } = new InfrastructureManager(LoggingModes.All);
+
+    public IIdentityProvider IdentityProvider { get; }
+
+    public ITemporalProvider TemporalProvider { get; }
+
+    public ILoggingProvider LoggingProvider { get; }
+
+    public void Dispose()
+    {
+        this.Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+
+    [SuppressMessage(
+        "Microsoft.Usage",
+        "CA2213:DisposableFieldsShouldBeDisposed",
+        MessageId = "<LoggingProvider>k__BackingField",
+        Justification = "Does not work with NULL propagation syntax.")]
+    private void Dispose(bool isDisposing)
+    {
+        if (this._isDisposed)
         {
-            this.IdentityProvider = Framework.IdentityProvider.Instance;
-            this.LoggingProvider = new LoggingProvider(loggingModes);
-            this.TemporalProvider = Framework.TemporalProvider.Instance;
+            return;
         }
 
-        ~InfrastructureManager()
+        if (isDisposing)
         {
-            this.Dispose(false);
+            this.LoggingProvider?.Dispose();
         }
 
-        public static IInfrastructureManager Instance { get; } = new InfrastructureManager(LoggingModes.All);
-
-        public IIdentityProvider IdentityProvider { get; }
-
-        public ITemporalProvider TemporalProvider { get; }
-
-        public ILoggingProvider LoggingProvider { get; }
-
-        public void Dispose()
-        {
-            this.Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        [SuppressMessage(
-            "Microsoft.Usage",
-            "CA2213:DisposableFieldsShouldBeDisposed",
-            MessageId = "<LoggingProvider>k__BackingField",
-            Justification = "Does not work with NULL propagation syntax.")]
-        private void Dispose(bool isDisposing)
-        {
-            if (this._isDisposed)
-            {
-                return;
-            }
-
-            if (isDisposing)
-            {
-                this.LoggingProvider?.Dispose();
-            }
-
-            this._isDisposed = true;
-        }
+        this._isDisposed = true;
     }
 }

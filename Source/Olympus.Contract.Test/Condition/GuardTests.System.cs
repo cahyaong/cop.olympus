@@ -29,555 +29,554 @@
 // ReSharper disable InconsistentNaming
 // ReSharper disable ExpressionIsAlwaysNull
 
-namespace nGratis.Cop.Olympus.Contract.Test
+namespace nGratis.Cop.Olympus.Contract.Test;
+
+using System;
+using System.IO;
+using FluentAssertions;
+using Moq;
+using Xunit;
+
+public partial class GuardTests
 {
-    using System;
-    using System.IO;
-    using FluentAssertions;
-    using Moq;
-    using Xunit;
-
-    public partial class GuardTests
+    public class UrlMethod
     {
-        public class UrlMethod
+        [Fact]
+        public void WhenGettingValidHttpPreCondition_ShouldNotThrowException()
         {
-            [Fact]
-            public void WhenGettingValidHttpPreCondition_ShouldNotThrowException()
+            // Arrange.
+
+            var value = new Uri("http://www.mock-url.com");
+
+            // Act.
+
+            var action = new Action(() =>
             {
-                // Arrange.
+                Guard
+                    .Require(value, nameof(value))
+                    .Is.Url();
+            });
 
-                var value = new Uri("http://www.mock-url.com");
+            // Assert.
 
-                // Act.
-
-                var action = new Action(() =>
-                {
-                    Guard
-                        .Require(value, nameof(value))
-                        .Is.Url();
-                });
-
-                // Assert.
-
-                action
-                    .Should().NotThrow();
-            }
-
-            [Fact]
-            public void WhenGettingValidHttpsPreCondition_ShouldNotThrowException()
-            {
-                // Arrange.
-
-                var value = new Uri("https://www.mock-url.com");
-
-                // Act.
-
-                var action = new Action(() =>
-                {
-                    Guard
-                        .Require(value, nameof(value))
-                        .Is.Url();
-                });
-
-                // Assert.
-
-                action
-                    .Should().NotThrow();
-            }
-
-            [Fact]
-            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
-            {
-                // Arrange.
-
-                var value = new Uri(@"C:\[_MOCK_LOCAL_PATH_]");
-
-                // Act.
-
-                var action = new Action(() =>
-                {
-                    Guard
-                        .Require(value, nameof(value))
-                        .Is.Url();
-                });
-
-                // Assert.
-
-                action
-                    .Should().Throw<CopPreConditionException>()
-                    .WithMessage("PRE-CONDITION: Variable [value] should be an URL!");
-            }
-
-            [Fact]
-            public void WhenGettingValidHttpPostCondition_ShouldNotThrowException()
-            {
-                // Arrange.
-
-                var value = new Uri("http://www.mock-url.com");
-
-                // Act.
-
-                var action = new Action(() =>
-                {
-                    Guard
-                        .Ensure(value, nameof(value))
-                        .Is.Url();
-                });
-
-                // Assert.
-
-                action
-                    .Should().NotThrow();
-            }
-
-            [Fact]
-            public void WhenGettingValidHttpsPostCondition_ShouldNotThrowException()
-            {
-                // Arrange.
-
-                var value = new Uri("https://www.mock-url.com");
-
-                // Act.
-
-                var action = new Action(() =>
-                {
-                    Guard
-                        .Ensure(value, nameof(value))
-                        .Is.Url();
-                });
-
-                // Assert.
-
-                action
-                    .Should().NotThrow();
-            }
-
-            [Fact]
-            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
-            {
-                // Arrange.
-
-                var value = new Uri(@"C:\[_MOCK_LOCAL_PATH_]");
-
-                // Act.
-
-                var action = new Action(() =>
-                {
-                    Guard
-                        .Ensure(value, nameof(value))
-                        .Is.Url();
-                });
-
-                // Assert.
-
-                action
-                    .Should().Throw<CopPostConditionException>()
-                    .WithMessage("POST-CONDITION: Variable [value] should be an URL!");
-            }
+            action
+                .Should().NotThrow();
         }
 
-        public class ReadableMethod
+        [Fact]
+        public void WhenGettingValidHttpsPreCondition_ShouldNotThrowException()
         {
-            [Fact]
-            public void WhenGettingValidPreCondition_ShouldNotThrowException()
+            // Arrange.
+
+            var value = new Uri("https://www.mock-url.com");
+
+            // Act.
+
+            var action = new Action(() =>
             {
-                // Arrange.
+                Guard
+                    .Require(value, nameof(value))
+                    .Is.Url();
+            });
 
-                var value = MockBuilder
-                    .CreateMock<Stream>()
-                    .WithReadable()
-                    .Object;
+            // Assert.
 
-                // Act.
-
-                var action = new Action(() =>
-                {
-                    Guard
-                        .Require(value, nameof(value))
-                        .Is.Readable();
-                });
-
-                // Assert.
-
-                action
-                    .Should().NotThrow();
-            }
-
-            [Fact]
-            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
-            {
-                // Arrange.
-
-                var value = MockBuilder
-                    .CreateMock<Stream>()
-                    .Object;
-
-                // Act.
-
-                var action = new Action(() =>
-                {
-                    Guard
-                        .Require(value, nameof(value))
-                        .Is.Readable();
-                });
-
-                // Assert.
-
-                action
-                    .Should().Throw<CopPreConditionException>()
-                    .WithMessage("PRE-CONDITION: Variable [value] should be readable!");
-            }
-
-            [Fact]
-            public void WhenGettingValidPostCondition_ShouldNotThrowException()
-            {
-                // Arrange.
-
-                var value = MockBuilder
-                    .CreateMock<Stream>()
-                    .WithReadable()
-                    .Object;
-
-                // Act.
-
-                var action = new Action(() =>
-                {
-                    Guard
-                        .Ensure(value, nameof(value))
-                        .Is.Readable();
-                });
-
-                // Assert.
-
-                action
-                    .Should().NotThrow();
-            }
-
-            [Fact]
-            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
-            {
-                // Arrange.
-
-                var value = MockBuilder
-                    .CreateMock<Stream>()
-                    .Object;
-
-                // Act.
-
-                var action = new Action(() =>
-                {
-                    Guard
-                        .Ensure(value, nameof(value))
-                        .Is.Readable();
-                });
-
-                // Assert.
-
-                action
-                    .Should().Throw<CopPostConditionException>()
-                    .WithMessage("POST-CONDITION: Variable [value] should be readable!");
-            }
+            action
+                .Should().NotThrow();
         }
 
-        public class WritableMethod
+        [Fact]
+        public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
         {
-            [Fact]
-            public void WhenGettingValidPreCondition_ShouldNotThrowException()
+            // Arrange.
+
+            var value = new Uri(@"C:\[_MOCK_LOCAL_PATH_]");
+
+            // Act.
+
+            var action = new Action(() =>
             {
-                // Arrange.
+                Guard
+                    .Require(value, nameof(value))
+                    .Is.Url();
+            });
 
-                var value = MockBuilder
-                    .CreateMock<Stream>()
-                    .WithWritable()
-                    .Object;
+            // Assert.
 
-                // Act.
-
-                var action = new Action(() =>
-                {
-                    Guard
-                        .Require(value, nameof(value))
-                        .Is.Writable();
-                });
-
-                // Assert.
-
-                action
-                    .Should().NotThrow();
-            }
-
-            [Fact]
-            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
-            {
-                // Arrange.
-
-                var value = MockBuilder
-                    .CreateMock<Stream>()
-                    .Object;
-
-                // Act.
-
-                var action = new Action(() =>
-                {
-                    Guard
-                        .Require(value, nameof(value))
-                        .Is.Writable();
-                });
-
-                // Assert.
-
-                action
-                    .Should().Throw<CopPreConditionException>()
-                    .WithMessage("PRE-CONDITION: Variable [value] should be writable!");
-            }
-
-            [Fact]
-            public void WhenGettingValidPostCondition_ShouldNotThrowException()
-            {
-                // Arrange.
-
-                var value = MockBuilder
-                    .CreateMock<Stream>()
-                    .WithWritable()
-                    .Object;
-
-                // Act.
-
-                var action = new Action(() =>
-                {
-                    Guard
-                        .Ensure(value, nameof(value))
-                        .Is.Writable();
-                });
-
-                // Assert.
-
-                action
-                    .Should().NotThrow();
-            }
-
-            [Fact]
-            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
-            {
-                // Arrange.
-
-                var value = MockBuilder
-                    .CreateMock<Stream>()
-                    .Object;
-
-                // Act.
-
-                var action = new Action(() =>
-                {
-                    Guard
-                        .Ensure(value, nameof(value))
-                        .Is.Writable();
-                });
-
-                // Assert.
-
-                action
-                    .Should().Throw<CopPostConditionException>()
-                    .WithMessage("POST-CONDITION: Variable [value] should be writable!");
-            }
+            action
+                .Should().Throw<CopPreConditionException>()
+                .WithMessage("PRE-CONDITION: Variable [value] should be an URL!");
         }
 
-        public class EmptyMethod_Stream
+        [Fact]
+        public void WhenGettingValidHttpPostCondition_ShouldNotThrowException()
         {
-            [Fact]
-            public void WhenGettingValidPreCondition_ShouldNotThrowException()
+            // Arrange.
+
+            var value = new Uri("http://www.mock-url.com");
+
+            // Act.
+
+            var action = new Action(() =>
             {
-                // Arrange.
+                Guard
+                    .Ensure(value, nameof(value))
+                    .Is.Url();
+            });
 
-                var value = MockBuilder
-                    .CreateMock<Stream>()
-                    .WithContent(string.Empty)
-                    .Object;
+            // Assert.
 
-                // Act.
-
-                var action = new Action(() =>
-                {
-                    Guard
-                        .Require(value, nameof(value))
-                        .Is.Empty();
-                });
-
-                // Assert.
-
-                action
-                    .Should().NotThrow();
-            }
-
-            [Fact]
-            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
-            {
-                // Arrange.
-
-                var value = MockBuilder
-                    .CreateMock<Stream>()
-                    .WithContent("[_MOCK_CONTENT_]")
-                    .Object;
-
-                // Act.
-
-                var action = new Action(() =>
-                {
-                    Guard
-                        .Require(value, nameof(value))
-                        .Is.Empty();
-                });
-
-                // Assert.
-
-                action
-                    .Should().Throw<CopPreConditionException>()
-                    .WithMessage("PRE-CONDITION: Variable [value] should be empty!");
-            }
-
-            [Fact]
-            public void WhenGettingValidPostCondition_ShouldNotThrowException()
-            {
-                // Arrange.
-
-                var value = MockBuilder
-                    .CreateMock<Stream>()
-                    .WithContent(string.Empty)
-                    .Object;
-
-                // Act.
-
-                var action = new Action(() =>
-                {
-                    Guard
-                        .Ensure(value, nameof(value))
-                        .Is.Empty();
-                });
-
-                // Assert.
-
-                action
-                    .Should().NotThrow();
-            }
-
-            [Fact]
-            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
-            {
-                // Arrange.
-
-                var value = MockBuilder
-                    .CreateMock<Stream>()
-                    .WithContent("[_MOCK_CONTENT_]")
-                    .Object;
-
-                // Act.
-
-                var action = new Action(() =>
-                {
-                    Guard
-                        .Ensure(value, nameof(value))
-                        .Is.Empty();
-                });
-
-                // Assert.
-
-                action
-                    .Should().Throw<CopPostConditionException>()
-                    .WithMessage("POST-CONDITION: Variable [value] should be empty!");
-            }
+            action
+                .Should().NotThrow();
         }
 
-        public class ValueMethod
+        [Fact]
+        public void WhenGettingValidHttpsPostCondition_ShouldNotThrowException()
         {
-            [Fact]
-            public void WhenGettingValidPreCondition_ShouldNotThrowException()
+            // Arrange.
+
+            var value = new Uri("https://www.mock-url.com");
+
+            // Act.
+
+            var action = new Action(() =>
             {
-                // Arrange.
+                Guard
+                    .Ensure(value, nameof(value))
+                    .Is.Url();
+            });
 
-                var value = (int?)42;
+            // Assert.
 
-                // Act.
+            action
+                .Should().NotThrow();
+        }
 
-                var action = new Action(() =>
-                {
-                    Guard
-                        .Require(value, nameof(value))
-                        .Has.Value();
-                });
+        [Fact]
+        public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+        {
+            // Arrange.
 
-                // Assert.
+            var value = new Uri(@"C:\[_MOCK_LOCAL_PATH_]");
 
-                action
-                    .Should().NotThrow();
-            }
+            // Act.
 
-            [Fact]
-            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+            var action = new Action(() =>
             {
-                // Arrange.
+                Guard
+                    .Ensure(value, nameof(value))
+                    .Is.Url();
+            });
 
-                var value = default(int?);
+            // Assert.
 
-                // Act.
+            action
+                .Should().Throw<CopPostConditionException>()
+                .WithMessage("POST-CONDITION: Variable [value] should be an URL!");
+        }
+    }
 
-                var action = new Action(() =>
-                {
-                    Guard
-                        .Require(value, nameof(value))
-                        .Has.Value();
-                });
+    public class ReadableMethod
+    {
+        [Fact]
+        public void WhenGettingValidPreCondition_ShouldNotThrowException()
+        {
+            // Arrange.
 
-                // Assert.
+            var value = MockBuilder
+                .CreateMock<Stream>()
+                .WithReadable()
+                .Object;
 
-                action
-                    .Should().Throw<CopPreConditionException>()
-                    .WithMessage("PRE-CONDITION: Variable [value] should have value!");
-            }
+            // Act.
 
-            [Fact]
-            public void WhenGettingValidPostCondition_ShouldNotThrowException()
+            var action = new Action(() =>
             {
-                // Arrange.
+                Guard
+                    .Require(value, nameof(value))
+                    .Is.Readable();
+            });
 
-                var value = (int?)42;
+            // Assert.
 
-                // Act.
+            action
+                .Should().NotThrow();
+        }
 
-                var action = new Action(() =>
-                {
-                    Guard
-                        .Ensure(value, nameof(value))
-                        .Has.Value();
-                });
+        [Fact]
+        public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+        {
+            // Arrange.
 
-                // Assert.
+            var value = MockBuilder
+                .CreateMock<Stream>()
+                .Object;
 
-                action
-                    .Should().NotThrow();
-            }
+            // Act.
 
-            [Fact]
-            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+            var action = new Action(() =>
             {
-                // Arrange.
+                Guard
+                    .Require(value, nameof(value))
+                    .Is.Readable();
+            });
 
-                var value = default(int?);
+            // Assert.
 
-                // Act.
+            action
+                .Should().Throw<CopPreConditionException>()
+                .WithMessage("PRE-CONDITION: Variable [value] should be readable!");
+        }
 
-                var action = new Action(() =>
-                {
-                    Guard
-                        .Ensure(value, nameof(value))
-                        .Has.Value();
-                });
+        [Fact]
+        public void WhenGettingValidPostCondition_ShouldNotThrowException()
+        {
+            // Arrange.
 
-                // Assert.
+            var value = MockBuilder
+                .CreateMock<Stream>()
+                .WithReadable()
+                .Object;
 
-                action
-                    .Should().Throw<CopPostConditionException>()
-                    .WithMessage("POST-CONDITION: Variable [value] should have value!");
-            }
+            // Act.
+
+            var action = new Action(() =>
+            {
+                Guard
+                    .Ensure(value, nameof(value))
+                    .Is.Readable();
+            });
+
+            // Assert.
+
+            action
+                .Should().NotThrow();
+        }
+
+        [Fact]
+        public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+        {
+            // Arrange.
+
+            var value = MockBuilder
+                .CreateMock<Stream>()
+                .Object;
+
+            // Act.
+
+            var action = new Action(() =>
+            {
+                Guard
+                    .Ensure(value, nameof(value))
+                    .Is.Readable();
+            });
+
+            // Assert.
+
+            action
+                .Should().Throw<CopPostConditionException>()
+                .WithMessage("POST-CONDITION: Variable [value] should be readable!");
+        }
+    }
+
+    public class WritableMethod
+    {
+        [Fact]
+        public void WhenGettingValidPreCondition_ShouldNotThrowException()
+        {
+            // Arrange.
+
+            var value = MockBuilder
+                .CreateMock<Stream>()
+                .WithWritable()
+                .Object;
+
+            // Act.
+
+            var action = new Action(() =>
+            {
+                Guard
+                    .Require(value, nameof(value))
+                    .Is.Writable();
+            });
+
+            // Assert.
+
+            action
+                .Should().NotThrow();
+        }
+
+        [Fact]
+        public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+        {
+            // Arrange.
+
+            var value = MockBuilder
+                .CreateMock<Stream>()
+                .Object;
+
+            // Act.
+
+            var action = new Action(() =>
+            {
+                Guard
+                    .Require(value, nameof(value))
+                    .Is.Writable();
+            });
+
+            // Assert.
+
+            action
+                .Should().Throw<CopPreConditionException>()
+                .WithMessage("PRE-CONDITION: Variable [value] should be writable!");
+        }
+
+        [Fact]
+        public void WhenGettingValidPostCondition_ShouldNotThrowException()
+        {
+            // Arrange.
+
+            var value = MockBuilder
+                .CreateMock<Stream>()
+                .WithWritable()
+                .Object;
+
+            // Act.
+
+            var action = new Action(() =>
+            {
+                Guard
+                    .Ensure(value, nameof(value))
+                    .Is.Writable();
+            });
+
+            // Assert.
+
+            action
+                .Should().NotThrow();
+        }
+
+        [Fact]
+        public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+        {
+            // Arrange.
+
+            var value = MockBuilder
+                .CreateMock<Stream>()
+                .Object;
+
+            // Act.
+
+            var action = new Action(() =>
+            {
+                Guard
+                    .Ensure(value, nameof(value))
+                    .Is.Writable();
+            });
+
+            // Assert.
+
+            action
+                .Should().Throw<CopPostConditionException>()
+                .WithMessage("POST-CONDITION: Variable [value] should be writable!");
+        }
+    }
+
+    public class EmptyMethod_Stream
+    {
+        [Fact]
+        public void WhenGettingValidPreCondition_ShouldNotThrowException()
+        {
+            // Arrange.
+
+            var value = MockBuilder
+                .CreateMock<Stream>()
+                .WithContent(string.Empty)
+                .Object;
+
+            // Act.
+
+            var action = new Action(() =>
+            {
+                Guard
+                    .Require(value, nameof(value))
+                    .Is.Empty();
+            });
+
+            // Assert.
+
+            action
+                .Should().NotThrow();
+        }
+
+        [Fact]
+        public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+        {
+            // Arrange.
+
+            var value = MockBuilder
+                .CreateMock<Stream>()
+                .WithContent("[_MOCK_CONTENT_]")
+                .Object;
+
+            // Act.
+
+            var action = new Action(() =>
+            {
+                Guard
+                    .Require(value, nameof(value))
+                    .Is.Empty();
+            });
+
+            // Assert.
+
+            action
+                .Should().Throw<CopPreConditionException>()
+                .WithMessage("PRE-CONDITION: Variable [value] should be empty!");
+        }
+
+        [Fact]
+        public void WhenGettingValidPostCondition_ShouldNotThrowException()
+        {
+            // Arrange.
+
+            var value = MockBuilder
+                .CreateMock<Stream>()
+                .WithContent(string.Empty)
+                .Object;
+
+            // Act.
+
+            var action = new Action(() =>
+            {
+                Guard
+                    .Ensure(value, nameof(value))
+                    .Is.Empty();
+            });
+
+            // Assert.
+
+            action
+                .Should().NotThrow();
+        }
+
+        [Fact]
+        public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+        {
+            // Arrange.
+
+            var value = MockBuilder
+                .CreateMock<Stream>()
+                .WithContent("[_MOCK_CONTENT_]")
+                .Object;
+
+            // Act.
+
+            var action = new Action(() =>
+            {
+                Guard
+                    .Ensure(value, nameof(value))
+                    .Is.Empty();
+            });
+
+            // Assert.
+
+            action
+                .Should().Throw<CopPostConditionException>()
+                .WithMessage("POST-CONDITION: Variable [value] should be empty!");
+        }
+    }
+
+    public class ValueMethod
+    {
+        [Fact]
+        public void WhenGettingValidPreCondition_ShouldNotThrowException()
+        {
+            // Arrange.
+
+            var value = (int?)42;
+
+            // Act.
+
+            var action = new Action(() =>
+            {
+                Guard
+                    .Require(value, nameof(value))
+                    .Has.Value();
+            });
+
+            // Assert.
+
+            action
+                .Should().NotThrow();
+        }
+
+        [Fact]
+        public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+        {
+            // Arrange.
+
+            var value = default(int?);
+
+            // Act.
+
+            var action = new Action(() =>
+            {
+                Guard
+                    .Require(value, nameof(value))
+                    .Has.Value();
+            });
+
+            // Assert.
+
+            action
+                .Should().Throw<CopPreConditionException>()
+                .WithMessage("PRE-CONDITION: Variable [value] should have value!");
+        }
+
+        [Fact]
+        public void WhenGettingValidPostCondition_ShouldNotThrowException()
+        {
+            // Arrange.
+
+            var value = (int?)42;
+
+            // Act.
+
+            var action = new Action(() =>
+            {
+                Guard
+                    .Ensure(value, nameof(value))
+                    .Has.Value();
+            });
+
+            // Assert.
+
+            action
+                .Should().NotThrow();
+        }
+
+        [Fact]
+        public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+        {
+            // Arrange.
+
+            var value = default(int?);
+
+            // Act.
+
+            var action = new Action(() =>
+            {
+                Guard
+                    .Ensure(value, nameof(value))
+                    .Has.Value();
+            });
+
+            // Assert.
+
+            action
+                .Should().Throw<CopPostConditionException>()
+                .WithMessage("POST-CONDITION: Variable [value] should have value!");
         }
     }
 }

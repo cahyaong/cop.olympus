@@ -26,15 +26,14 @@
 // <creation_timestamp>Saturday, 14 October 2017 11:24:46 PM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Demo
-{
-    public partial class AppView
-    {
-        public AppView()
-        {
-            this.InitializeComponent();
+namespace nGratis.Cop.Olympus.Demo;
 
-            this.LoggingNotifier = App.LoggingNotifier;
-        }
+public partial class AppView
+{
+    public AppView()
+    {
+        this.InitializeComponent();
+
+        this.LoggingNotifier = App.LoggingNotifier;
     }
 }

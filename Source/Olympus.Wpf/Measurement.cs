@@ -26,20 +26,18 @@
 // <creation_timestamp>Sunday, 10 May 2015 1:01:55 PM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Wpf
+namespace nGratis.Cop.Olympus.Wpf;
+
+// ReSharper disable InconsistentNaming
+public enum Measurement
 {
-    // ReSharper disable InconsistentNaming
-
-    public enum Measurement
-    {
-        Unknown,
-        XS,
-        S,
-        M,
-        L,
-        XL,
-        XXL
-    }
-
-    // ReSharper restore InconsistentNaming
+    Unknown,
+    XS,
+    S,
+    M,
+    L,
+    XL,
+    XXL
 }
+
+// ReSharper restore InconsistentNaming

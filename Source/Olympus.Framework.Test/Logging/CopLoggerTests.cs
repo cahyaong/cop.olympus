@@ -26,64 +26,63 @@
 // <creation_timestamp>Tuesday, April 14, 2020 6:03:15 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Framework.Test
+namespace nGratis.Cop.Olympus.Framework.Test;
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using FluentAssertions;
+using FluentAssertions.Execution;
+using nGratis.Cop.Olympus.Contract;
+using Xunit;
+
+public class CopLoggerTests
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using FluentAssertions;
-    using FluentAssertions.Execution;
-    using nGratis.Cop.Olympus.Contract;
-    using Xunit;
-
-    public class CopLoggerTests
+    public class LogMethod
     {
-        public class LogMethod
+        [Fact]
+        public void WhenGettingSubmessages_ShouldIncludeThemInLogEntry()
         {
-            [Fact]
-            public void WhenGettingSubmessages_ShouldIncludeThemInLogEntry()
+            // Arrange.
+
+            var observedEntries = new List<LoggingEntry>();
+
+            var logger = new CopLogger("[_MOCK_COMPONENT_]");
+
+            var onEntryAdded = logger
+                .WhenEntryAdded
+                .Subscribe(observedEntries.Add);
+
+            using (onEntryAdded)
             {
-                // Arrange.
+                // Act.
 
-                var observedEntries = new List<LoggingEntry>();
+                logger.Log(
+                    Verbosity.Info,
+                    "[_MOCK_MESSAGE_]",
+                    "[_MOCK_SUBMESSAGE_01_]", "[_MOCK_SUBMESSAGE_02_]");
 
-                var logger = new CopLogger("[_MOCK_COMPONENT_]");
+                // Assert.
 
-                var onEntryAdded = logger
-                    .WhenEntryAdded
-                    .Subscribe(observedEntries.Add);
+                observedEntries
+                    .Should().HaveCount(1);
 
-                using (onEntryAdded)
+                var observedEntry = observedEntries.Single();
+
+                observedEntry
+                    .Should().NotBeNull();
+
+                using (new AssertionScope())
                 {
-                    // Act.
-
-                    logger.Log(
-                        Verbosity.Info,
-                        "[_MOCK_MESSAGE_]",
-                        "[_MOCK_SUBMESSAGE_01_]", "[_MOCK_SUBMESSAGE_02_]");
-
-                    // Assert.
-
-                    observedEntries
-                        .Should().HaveCount(1);
-
-                    var observedEntry = observedEntries.Single();
+                    observedEntry
+                        .Message
+                        .Should().Be("[_MOCK_MESSAGE_]");
 
                     observedEntry
-                        .Should().NotBeNull();
-
-                    using (new AssertionScope())
-                    {
-                        observedEntry
-                            .Message
-                            .Should().Be("[_MOCK_MESSAGE_]");
-
-                        observedEntry
-                            .Submessages
-                            .Should().NotBeNull()
-                            .And.HaveCount(2)
-                            .And.Contain("[_MOCK_SUBMESSAGE_01_]", "[_MOCK_SUBMESSAGE_02_]");
-                    }
+                        .Submessages
+                        .Should().NotBeNull()
+                        .And.HaveCount(2)
+                        .And.Contain("[_MOCK_SUBMESSAGE_01_]", "[_MOCK_SUBMESSAGE_02_]");
                 }
             }
         }

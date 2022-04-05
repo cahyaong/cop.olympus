@@ -28,36 +28,35 @@
 
 // ReSharper disable once CheckNamespace
 
-namespace nGratis.Cop.Olympus.Contract
+namespace nGratis.Cop.Olympus.Contract;
+
+using System.Linq;
+
+public static partial class LoggerExtensions
 {
-    using System.Linq;
-
-    public static partial class LoggerExtensions
+    public static void Log(
+        this ILogger logger,
+        Verbosity verbosity,
+        string message,
+        params (string Key, object Value)[] details)
     {
-        public static void Log(
-            this ILogger logger,
-            Verbosity verbosity,
-            string message,
-            params (string Key, object Value)[] details)
-        {
-            Guard
-                .Require(logger, nameof(logger))
-                .Is.Not.Null();
+        Guard
+            .Require(logger, nameof(logger))
+            .Is.Not.Null();
 
-            Guard
-                .Require(details, nameof(details))
-                .Is.Not.Empty();
+        Guard
+            .Require(details, nameof(details))
+            .Is.Not.Empty();
 
-            var submessages = details
-                .Select(detail => new
-                {
-                    Key = !string.IsNullOrEmpty(detail.Key) ? detail.Key : Text.Undefined,
-                    Value = detail.Value?.ToString() ?? Text.Undefined,
-                })
-                .Select(anon => $"{anon.Key}: [{anon.Value}]")
-                .ToArray();
+        var submessages = details
+            .Select(detail => new
+            {
+                Key = !string.IsNullOrEmpty(detail.Key) ? detail.Key : Text.Undefined,
+                Value = detail.Value?.ToString() ?? Text.Undefined,
+            })
+            .Select(anon => $"{anon.Key}: [{anon.Value}]")
+            .ToArray();
 
-            logger.Log(verbosity, message, submessages);
-        }
+        logger.Log(verbosity, message, submessages);
     }
 }

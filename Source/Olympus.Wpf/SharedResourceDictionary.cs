@@ -26,37 +26,36 @@
 // <creation_timestamp>Wednesday, 24 December 2014 12:14:47 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Wpf
+namespace nGratis.Cop.Olympus.Wpf;
+
+using System;
+using System.Collections.Generic;
+using System.Windows;
+
+public class SharedResourceDictionary : ResourceDictionary
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Windows;
+    // TODO: Need to make this class thread-safe!
 
-    public class SharedResourceDictionary : ResourceDictionary
+    private static readonly Dictionary<Uri, ResourceDictionary> ByUriLookup = new();
+
+    private Uri _source;
+
+    public new Uri Source
     {
-        // TODO: Need to make this class thread-safe!
+        get => this._source;
 
-        private static readonly Dictionary<Uri, ResourceDictionary> ByUriLookup = new();
-
-        private Uri _source;
-
-        public new Uri Source
+        set
         {
-            get => this._source;
+            this._source = value;
 
-            set
+            if (!SharedResourceDictionary.ByUriLookup.ContainsKey(value))
             {
-                this._source = value;
-
-                if (!SharedResourceDictionary.ByUriLookup.ContainsKey(value))
-                {
-                    base.Source = value;
-                    SharedResourceDictionary.ByUriLookup.Add(value, this);
-                }
-                else
-                {
-                    this.MergedDictionaries.Add(SharedResourceDictionary.ByUriLookup[value]);
-                }
+                base.Source = value;
+                SharedResourceDictionary.ByUriLookup.Add(value, this);
+            }
+            else
+            {
+                this.MergedDictionaries.Add(SharedResourceDictionary.ByUriLookup[value]);
             }
         }
     }

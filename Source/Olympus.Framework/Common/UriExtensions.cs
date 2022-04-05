@@ -28,28 +28,27 @@
 
 // ReSharper disable once CheckNamespace
 
-namespace System
+namespace System;
+
+using System.IO;
+using nGratis.Cop.Olympus.Contract;
+
+public static class UriExtensions
 {
-    using System.IO;
-    using nGratis.Cop.Olympus.Contract;
-
-    public static class UriExtensions
+    public static DataSpec ToDataSpec(this Uri uri)
     {
-        public static DataSpec ToDataSpec(this Uri uri)
+        Guard
+            .Require(uri, nameof(uri))
+            .Is.Not.Null();
+
+        if (uri.IsFile)
         {
-            Guard
-                .Require(uri, nameof(uri))
-                .Is.Not.Null();
+            var name = Path.GetFileNameWithoutExtension(uri.AbsoluteUri);
+            var contentMime = Mime.ParseByExtension(Path.GetExtension(uri.AbsoluteUri));
 
-            if (uri.IsFile)
-            {
-                var name = Path.GetFileNameWithoutExtension(uri.AbsoluteUri);
-                var contentMime = Mime.ParseByExtension(Path.GetExtension(uri.AbsoluteUri));
-
-                return new DataSpec(name, contentMime);
-            }
-
-            throw new NotSupportedException();
+            return new DataSpec(name, contentMime);
         }
+
+        throw new NotSupportedException();
     }
 }

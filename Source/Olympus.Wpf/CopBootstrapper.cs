@@ -26,53 +26,52 @@
 // <creation_timestamp>Thursday, 6 December 2018 8:41:48 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Wpf
+namespace nGratis.Cop.Olympus.Wpf;
+
+using System;
+using System.Reactive;
+using Caliburn.Micro;
+using ReactiveUI;
+
+public class CopBootstrapper : BootstrapperBase
 {
-    using System;
-    using System.Reactive;
-    using Caliburn.Micro;
-    using ReactiveUI;
+    // TODO: Add DI and IoC registration!
 
-    public class CopBootstrapper : BootstrapperBase
+    public enum ExceptionSource
     {
-        // TODO: Add DI and IoC registration!
+        Unknown = 0,
+        Application,
+        Reactive
+    }
 
-        public enum ExceptionSource
+    static CopBootstrapper()
+    {
+        AppDomain.CurrentDomain.UnhandledException += (_, args) => CopBootstrapper
+            .RaisedUnhandledExceptionTriggered(ExceptionSource.Application, args.ExceptionObject as Exception);
+
+        RxApp.DefaultExceptionHandler = Observer.Create<Exception>(exception => CopBootstrapper
+            .RaisedUnhandledExceptionTriggered(ExceptionSource.Reactive, exception));
+    }
+
+    public static event EventHandler<UnhandledExceptionEventArgs> UnhandledExceptionTriggered;
+
+    private static void RaisedUnhandledExceptionTriggered(ExceptionSource exceptionSource, Exception exception)
+    {
+        CopBootstrapper.UnhandledExceptionTriggered?.Invoke(
+            typeof(CopBootstrapper).FullName,
+            new UnhandledExceptionEventArgs(exceptionSource, exception));
+    }
+
+    public class UnhandledExceptionEventArgs
+    {
+        internal UnhandledExceptionEventArgs(ExceptionSource exceptionSource, Exception exception)
         {
-            Unknown = 0,
-            Application,
-            Reactive
+            this.ExceptionSource = exceptionSource;
+            this.Exception = exception;
         }
 
-        static CopBootstrapper()
-        {
-            AppDomain.CurrentDomain.UnhandledException += (_, args) => CopBootstrapper
-                .RaisedUnhandledExceptionTriggered(ExceptionSource.Application, args.ExceptionObject as Exception);
+        public ExceptionSource ExceptionSource { get; }
 
-            RxApp.DefaultExceptionHandler = Observer.Create<Exception>(exception => CopBootstrapper
-                .RaisedUnhandledExceptionTriggered(ExceptionSource.Reactive, exception));
-        }
-
-        public static event EventHandler<UnhandledExceptionEventArgs> UnhandledExceptionTriggered;
-
-        private static void RaisedUnhandledExceptionTriggered(ExceptionSource exceptionSource, Exception exception)
-        {
-            CopBootstrapper.UnhandledExceptionTriggered?.Invoke(
-                typeof(CopBootstrapper).FullName,
-                new UnhandledExceptionEventArgs(exceptionSource, exception));
-        }
-
-        public class UnhandledExceptionEventArgs
-        {
-            internal UnhandledExceptionEventArgs(ExceptionSource exceptionSource, Exception exception)
-            {
-                this.ExceptionSource = exceptionSource;
-                this.Exception = exception;
-            }
-
-            public ExceptionSource ExceptionSource { get; }
-
-            public Exception Exception { get; }
-        }
+        public Exception Exception { get; }
     }
 }

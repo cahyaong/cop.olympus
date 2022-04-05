@@ -26,21 +26,20 @@
 // <creation_timestamp>Monday, 20 July 2015 2:22:28 PM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Framework
+namespace nGratis.Cop.Olympus.Framework;
+
+using System;
+
+[Flags]
+public enum LoggingModes
 {
-    using System;
+    None = 0,
 
-    [Flags]
-    public enum LoggingModes
-    {
-        None = 0,
+    CommunityOfPractice = 1,
 
-        CommunityOfPractice = 1,
+    NLogger = 1 << 1,
 
-        NLogger = 1 << 1,
+    Console = 1 << 2,
 
-        Console = 1 << 2,
-
-        All = LoggingModes.CommunityOfPractice | LoggingModes.NLogger | LoggingModes.Console
-    }
+    All = LoggingModes.CommunityOfPractice | LoggingModes.NLogger | LoggingModes.Console
 }

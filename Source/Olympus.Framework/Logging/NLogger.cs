@@ -26,34 +26,33 @@
 // <creation_timestamp>Saturday, 25 April 2015 11:41:23 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Framework
+namespace nGratis.Cop.Olympus.Framework;
+
+using System;
+using nGratis.Cop.Olympus.Contract;
+using NLog;
+
+public sealed class NLogger : LoggerBase
 {
-    using System;
-    using nGratis.Cop.Olympus.Contract;
-    using NLog;
+    private readonly Logger _logger;
 
-    public sealed class NLogger : LoggerBase
+    public NLogger(string component)
+        : base(component)
     {
-        private readonly Logger _logger;
+        Guard
+            .Require(component, nameof(component))
+            .Is.Not.Empty();
 
-        public NLogger(string component)
-            : base(component)
-        {
-            Guard
-                .Require(component, nameof(component))
-                .Is.Not.Empty();
+        this._logger = LogManager.GetLogger(component);
+    }
 
-            this._logger = LogManager.GetLogger(component);
-        }
+    public override void Log(Verbosity verbosity, string message)
+    {
+        this._logger.Log(verbosity.ToLogLevel(), message);
+    }
 
-        public override void Log(Verbosity verbosity, string message)
-        {
-            this._logger.Log(verbosity.ToLogLevel(), message);
-        }
-
-        public override void Log(Verbosity verbosity, string message, Exception exception)
-        {
-            this._logger.Log(verbosity.ToLogLevel(), exception, message);
-        }
+    public override void Log(Verbosity verbosity, string message, Exception exception)
+    {
+        this._logger.Log(verbosity.ToLogLevel(), exception, message);
     }
 }

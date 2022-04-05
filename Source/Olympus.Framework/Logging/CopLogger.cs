@@ -26,94 +26,93 @@
 // <creation_timestamp>Monday, 20 July 2015 1:58:42 PM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Framework
+namespace nGratis.Cop.Olympus.Framework;
+
+using System;
+using System.Linq;
+using System.Reactive.Subjects;
+using nGratis.Cop.Olympus.Contract;
+
+public sealed class CopLogger : LoggerBase, ILoggingNotifier
 {
-    using System;
-    using System.Linq;
-    using System.Reactive.Subjects;
-    using nGratis.Cop.Olympus.Contract;
+    private readonly ReplaySubject<LoggingEntry> _whenEntryBuffered;
 
-    public sealed class CopLogger : LoggerBase, ILoggingNotifier
+    private bool _isDisposed;
+
+    public CopLogger(string component)
+        : base(component)
     {
-        private readonly ReplaySubject<LoggingEntry> _whenEntryBuffered;
+        Guard
+            .Require(component, nameof(component))
+            .Is.Not.Empty();
 
-        private bool _isDisposed;
+        this._whenEntryBuffered = new ReplaySubject<LoggingEntry>();
+    }
 
-        public CopLogger(string component)
-            : base(component)
+    public IObservable<LoggingEntry> WhenEntryAdded => this._whenEntryBuffered;
+
+    public override void Log(Verbosity verbosity, string message)
+    {
+        var entry = new LoggingEntry
         {
-            Guard
-                .Require(component, nameof(component))
-                .Is.Not.Empty();
+            Component = this.Component,
+            Verbosity = verbosity,
+            Message = !string.IsNullOrEmpty(message)
+                ? message
+                : Text.Empty
+        };
 
-            this._whenEntryBuffered = new ReplaySubject<LoggingEntry>();
+        this._whenEntryBuffered.OnNext(entry);
+    }
+
+    public override void Log(Verbosity verbosity, string message, params string[] submessages)
+    {
+        var entry = new LoggingEntry
+        {
+            Component = this.Component,
+            Verbosity = verbosity,
+            Message = !string.IsNullOrEmpty(message)
+                ? message
+                : Text.Empty,
+            Submessages = submessages
+                .Select(submessage => !string.IsNullOrEmpty(submessage)
+                    ? submessage
+                    : Text.Empty)
+                .ToArray()
+        };
+
+        this._whenEntryBuffered.OnNext(entry);
+    }
+
+    public override void Log(Verbosity verbosity, string message, Exception exception)
+    {
+        var entry = new LoggingEntry
+        {
+            Component = this.Component,
+            Verbosity = verbosity,
+            Exception = exception,
+            Message = !string.IsNullOrEmpty(message)
+                ? message
+                : Text.Empty
+        };
+
+        this._whenEntryBuffered.OnNext(entry);
+    }
+
+    protected override void Dispose(bool isDisposing)
+    {
+        if (this._isDisposed)
+        {
+            return;
         }
 
-        public IObservable<LoggingEntry> WhenEntryAdded => this._whenEntryBuffered;
-
-        public override void Log(Verbosity verbosity, string message)
+        if (isDisposing)
         {
-            var entry = new LoggingEntry
-            {
-                Component = this.Component,
-                Verbosity = verbosity,
-                Message = !string.IsNullOrEmpty(message)
-                    ? message
-                    : Text.Empty
-            };
-
-            this._whenEntryBuffered.OnNext(entry);
+            this._whenEntryBuffered.Dispose();
         }
 
-        public override void Log(Verbosity verbosity, string message, params string[] submessages)
-        {
-            var entry = new LoggingEntry
-            {
-                Component = this.Component,
-                Verbosity = verbosity,
-                Message = !string.IsNullOrEmpty(message)
-                    ? message
-                    : Text.Empty,
-                Submessages = submessages
-                    .Select(submessage => !string.IsNullOrEmpty(submessage)
-                        ? submessage
-                        : Text.Empty)
-                    .ToArray()
-            };
+        base.Dispose(isDisposing);
 
-            this._whenEntryBuffered.OnNext(entry);
-        }
-
-        public override void Log(Verbosity verbosity, string message, Exception exception)
-        {
-            var entry = new LoggingEntry
-            {
-                Component = this.Component,
-                Verbosity = verbosity,
-                Exception = exception,
-                Message = !string.IsNullOrEmpty(message)
-                    ? message
-                    : Text.Empty
-            };
-
-            this._whenEntryBuffered.OnNext(entry);
-        }
-
-        protected override void Dispose(bool isDisposing)
-        {
-            if (this._isDisposed)
-            {
-                return;
-            }
-
-            if (isDisposing)
-            {
-                this._whenEntryBuffered.Dispose();
-            }
-
-            base.Dispose(isDisposing);
-
-            this._isDisposed = true;
-        }
+        this._isDisposed = true;
     }
 }

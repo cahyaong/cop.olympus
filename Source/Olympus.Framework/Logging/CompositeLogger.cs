@@ -26,114 +26,113 @@
 // <creation_timestamp>Wednesday, 29 April 2015 1:41:08 PM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Framework
+namespace nGratis.Cop.Olympus.Framework;
+
+using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Linq;
+using nGratis.Cop.Olympus.Contract;
+
+public class CompositeLogger : LoggerBase
 {
-    using System;
-    using System.Collections.Concurrent;
-    using System.Collections.Generic;
-    using System.Linq;
-    using nGratis.Cop.Olympus.Contract;
+    private readonly ConcurrentDictionary<string, ILogger> _loggerLookup;
 
-    public class CompositeLogger : LoggerBase
+    private bool _isDisposed;
+
+    public CompositeLogger()
+        : base("Composite")
     {
-        private readonly ConcurrentDictionary<string, ILogger> _loggerLookup;
+        this._loggerLookup = new ConcurrentDictionary<string, ILogger>();
+    }
 
-        private bool _isDisposed;
+    public void RegisterLoggers(params ILogger[] loggers)
+    {
+        Guard
+            .Require(loggers, nameof(loggers))
+            .Is.Not.Null();
 
-        public CompositeLogger()
-            : base("Composite")
-        {
-            this._loggerLookup = new ConcurrentDictionary<string, ILogger>();
-        }
-
-        public void RegisterLoggers(params ILogger[] loggers)
-        {
-            Guard
-                .Require(loggers, nameof(loggers))
-                .Is.Not.Null();
-
-            loggers
-                .Where(logger => logger != null)
-                .Select(logger => new
-                {
-                    Key = $"{this.Component}.{logger.Component}",
-                    Logger = logger
-                })
-                .Where(anon => !this._loggerLookup.ContainsKey(anon.Key))
-                .ForEach(anon =>
-                {
-                    this._loggerLookup.TryAdd(anon.Key, anon.Logger);
-
-                    if (anon.Logger is not CompositeLogger)
-                    {
-                        anon.Logger.LogDebug("Registered to composite logger.");
-                    }
-                });
-        }
-
-        public void UnregisterLoggers(params ILogger[] loggers)
-        {
-            Guard
-                .Require(loggers, nameof(loggers))
-                .Is.Not.Null();
-
-            loggers
-                .Where(logger => logger != null)
-                .Select(logger => new
-                {
-                    Key = $"{this.Component}.{logger.Component}",
-                    Logger = logger
-                })
-                .Where(anon => this._loggerLookup.ContainsKey(anon.Key))
-                .ForEach(anon =>
-                {
-                    this._loggerLookup.TryRemove(anon.Key, out var logger);
-
-                    if (logger is not CompositeLogger)
-                    {
-                        logger.LogDebug("Unregistered from composite logger.");
-                    }
-                });
-        }
-
-        public override void Log(Verbosity verbosity, string message)
-        {
-            this
-                ._loggerLookup.Values
-                .ForEach(logger => logger.Log(verbosity, message));
-        }
-
-        public override void Log(Verbosity verbosity, string message, params string[] submessages)
-        {
-            this
-                ._loggerLookup.Values
-                .ForEach(logger => logger.Log(verbosity, message, submessages));
-        }
-
-        public override void Log(Verbosity verbosity, string message, Exception exception)
-        {
-            this
-                ._loggerLookup.Values
-                .ForEach(logger => logger.Log(verbosity, message, exception));
-        }
-
-        protected override void Dispose(bool isDisposing)
-        {
-            if (this._isDisposed)
+        loggers
+            .Where(logger => logger != null)
+            .Select(logger => new
             {
-                return;
-            }
-
-            if (isDisposing)
+                Key = $"{this.Component}.{logger.Component}",
+                Logger = logger
+            })
+            .Where(anon => !this._loggerLookup.ContainsKey(anon.Key))
+            .ForEach(anon =>
             {
-                this
-                    ._loggerLookup.Values
-                    .ForEach(logger => logger.Dispose());
-            }
+                this._loggerLookup.TryAdd(anon.Key, anon.Logger);
 
-            base.Dispose(isDisposing);
+                if (anon.Logger is not CompositeLogger)
+                {
+                    anon.Logger.LogDebug("Registered to composite logger.");
+                }
+            });
+    }
 
-            this._isDisposed = true;
+    public void UnregisterLoggers(params ILogger[] loggers)
+    {
+        Guard
+            .Require(loggers, nameof(loggers))
+            .Is.Not.Null();
+
+        loggers
+            .Where(logger => logger != null)
+            .Select(logger => new
+            {
+                Key = $"{this.Component}.{logger.Component}",
+                Logger = logger
+            })
+            .Where(anon => this._loggerLookup.ContainsKey(anon.Key))
+            .ForEach(anon =>
+            {
+                this._loggerLookup.TryRemove(anon.Key, out var logger);
+
+                if (logger is not CompositeLogger)
+                {
+                    logger.LogDebug("Unregistered from composite logger.");
+                }
+            });
+    }
+
+    public override void Log(Verbosity verbosity, string message)
+    {
+        this
+            ._loggerLookup.Values
+            .ForEach(logger => logger.Log(verbosity, message));
+    }
+
+    public override void Log(Verbosity verbosity, string message, params string[] submessages)
+    {
+        this
+            ._loggerLookup.Values
+            .ForEach(logger => logger.Log(verbosity, message, submessages));
+    }
+
+    public override void Log(Verbosity verbosity, string message, Exception exception)
+    {
+        this
+            ._loggerLookup.Values
+            .ForEach(logger => logger.Log(verbosity, message, exception));
+    }
+
+    protected override void Dispose(bool isDisposing)
+    {
+        if (this._isDisposed)
+        {
+            return;
         }
+
+        if (isDisposing)
+        {
+            this
+                ._loggerLookup.Values
+                .ForEach(logger => logger.Dispose());
+        }
+
+        base.Dispose(isDisposing);
+
+        this._isDisposed = true;
     }
 }

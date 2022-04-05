@@ -25,15 +25,14 @@
 // <author>Cahya Ong - cahya.ong@gmail.com</author>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Wpf
+namespace nGratis.Cop.Olympus.Wpf;
+
+using System.Collections.Generic;
+using System.Reflection;
+
+public interface IModuleProvider
 {
-    using System.Collections.Generic;
-    using System.Reflection;
+    IEnumerable<Assembly> FindModuleAssemblies();
 
-    public interface IModuleProvider
-    {
-        IEnumerable<Assembly> FindModuleAssemblies();
-
-        IEnumerable<Assembly> FindInternalAssemblies();
-    }
+    IEnumerable<Assembly> FindInternalAssemblies();
 }

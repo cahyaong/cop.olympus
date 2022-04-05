@@ -26,92 +26,91 @@
 // <creation_timestamp>Thursday, September 3, 2020 2:27:53 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Wpf.Glue
+namespace nGratis.Cop.Olympus.Wpf.Glue;
+
+using System.Collections.Generic;
+using System.Reactive.Concurrency;
+using System.Threading;
+using System.Threading.Tasks;
+using Caliburn.Micro;
+using ReactiveUI;
+
+public partial class ReactiveConductor<T> : ReactiveConductorBaseWithActiveItem<T>
+    where T : class
 {
-    using System.Collections.Generic;
-    using System.Reactive.Concurrency;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using Caliburn.Micro;
-    using ReactiveUI;
-
-    public partial class ReactiveConductor<T> : ReactiveConductorBaseWithActiveItem<T>
-        where T : class
+    public override IEnumerable<T> GetChildren()
     {
-        public override IEnumerable<T> GetChildren()
+        yield return this.ActiveItem;
+    }
+
+    public override async Task ActivateItemAsync(T item, CancellationToken cancellationToken)
+    {
+        if (item != null && item == this.ActiveItem)
         {
-            yield return this.ActiveItem;
-        }
-
-        public override async Task ActivateItemAsync(T item, CancellationToken cancellationToken)
-        {
-            if (item != null && item == this.ActiveItem)
+            if (this.IsActive)
             {
-                if (this.IsActive)
-                {
-                    await ScreenExtensions.TryActivateAsync(item, cancellationToken);
-                    this.RaisedActivationProcessed(item, true);
+                await ScreenExtensions.TryActivateAsync(item, cancellationToken);
+                this.RaisedActivationProcessed(item, true);
 
-                    return;
-                }
-            }
-
-            var closingResult = await this.ClosingStrategy.ExecuteAsync(new[] { this.ActiveItem }, cancellationToken);
-
-            if (closingResult.CloseCanOccur)
-            {
-                await this.ChangeActiveItemAsync(item, true, cancellationToken);
-            }
-            else
-            {
-                this.RaisedActivationProcessed(item, false);
-            }
-        }
-
-        public override async Task DeactivateItemAsync(T item, bool isClosed, CancellationToken cancellationToken)
-        {
-            if (item == null || item != this.ActiveItem)
-            {
                 return;
             }
-
-            var closingResult = await this.ClosingStrategy.ExecuteAsync(
-                new[] { this.ActiveItem },
-                CancellationToken.None);
-
-            if (closingResult.CloseCanOccur)
-            {
-                await this.ChangeActiveItemAsync(default, isClosed, cancellationToken);
-            }
         }
 
-        public override async Task<bool> CanCloseAsync(CancellationToken cancellationToken)
+        var closingResult = await this.ClosingStrategy.ExecuteAsync(new[] { this.ActiveItem }, cancellationToken);
+
+        if (closingResult.CloseCanOccur)
         {
-            var closingResult = await this.ClosingStrategy.ExecuteAsync(new[] { this.ActiveItem }, cancellationToken);
-
-            return closingResult.CloseCanOccur;
+            await this.ChangeActiveItemAsync(item, true, cancellationToken);
         }
-
-        public override async Task TryCloseAsync(bool? dialogResult)
+        else
         {
-            if (this.Parent is IConductor conductor)
-            {
-                await conductor.CloseItemAsync(this, CancellationToken.None);
-            }
-
-            var closeAsync = PlatformProvider.Current.GetViewCloseAction(this, this.Views.Values, dialogResult);
-
-            RxApp.MainThreadScheduler.Schedule(async () => await closeAsync(CancellationToken.None));
+            this.RaisedActivationProcessed(item, false);
         }
+    }
 
-        protected override Task ActivateCoreAsync(CancellationToken cancellationToken)
+    public override async Task DeactivateItemAsync(T item, bool isClosed, CancellationToken cancellationToken)
+    {
+        if (item == null || item != this.ActiveItem)
         {
-            return ScreenExtensions.TryActivateAsync(this.ActiveItem, cancellationToken);
+            return;
         }
 
-        protected override Task DeactivateCoreAsync(bool isClosed, CancellationToken cancellationToken)
+        var closingResult = await this.ClosingStrategy.ExecuteAsync(
+            new[] { this.ActiveItem },
+            CancellationToken.None);
+
+        if (closingResult.CloseCanOccur)
         {
-            return ScreenExtensions.TryDeactivateAsync(this.ActiveItem, isClosed, cancellationToken);
+            await this.ChangeActiveItemAsync(default, isClosed, cancellationToken);
         }
+    }
+
+    public override async Task<bool> CanCloseAsync(CancellationToken cancellationToken)
+    {
+        var closingResult = await this.ClosingStrategy.ExecuteAsync(new[] { this.ActiveItem }, cancellationToken);
+
+        return closingResult.CloseCanOccur;
+    }
+
+    public override async Task TryCloseAsync(bool? dialogResult)
+    {
+        if (this.Parent is IConductor conductor)
+        {
+            await conductor.CloseItemAsync(this, CancellationToken.None);
+        }
+
+        var closeAsync = PlatformProvider.Current.GetViewCloseAction(this, this.Views.Values, dialogResult);
+
+        RxApp.MainThreadScheduler.Schedule(async () => await closeAsync(CancellationToken.None));
+    }
+
+    protected override Task ActivateCoreAsync(CancellationToken cancellationToken)
+    {
+        return ScreenExtensions.TryActivateAsync(this.ActiveItem, cancellationToken);
+    }
+
+    protected override Task DeactivateCoreAsync(bool isClosed, CancellationToken cancellationToken)
+    {
+        return ScreenExtensions.TryDeactivateAsync(this.ActiveItem, isClosed, cancellationToken);
     }
 }

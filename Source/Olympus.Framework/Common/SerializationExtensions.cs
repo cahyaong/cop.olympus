@@ -28,53 +28,52 @@
 
 // ReSharper disable once CheckNamespace
 
-namespace Newtonsoft.Json
+namespace Newtonsoft.Json;
+
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.IO;
+using System.Linq;
+using System.Text;
+using nGratis.Cop.Olympus.Contract;
+
+public static class SerializationExtensions
 {
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.IO;
-    using System.Linq;
-    using System.Text;
-    using nGratis.Cop.Olympus.Contract;
-
-    public static class SerializationExtensions
+    public static Stream SerializeManyToJson<T>(this IEnumerable<T> instances)
     {
-        public static Stream SerializeManyToJson<T>(this IEnumerable<T> instances)
+        Guard
+            .Require(instances, nameof(instances))
+            .Is.Not.Null();
+
+        return instances
+            .ToArray()
+            .SerializeToJson();
+    }
+
+    [SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times")]
+    public static Stream SerializeToJson<T>(this T instance)
+        where T : class
+    {
+        Guard
+            .Require(instance, nameof(instance))
+            .Is.Not.Null();
+
+        var serializer = new JsonSerializer();
+        var stream = new MemoryStream();
+
+        using var streamWriter = new StreamWriter(stream, Encoding.UTF8, 4096, true);
+
+        using var jsonWriter = new JsonTextWriter(streamWriter)
         {
-            Guard
-                .Require(instances, nameof(instances))
-                .Is.Not.Null();
+            Formatting = Formatting.Indented,
+            IndentChar = ' ',
+            Indentation = 2
+        };
 
-            return instances
-                .ToArray()
-                .SerializeToJson();
-        }
+        serializer.Serialize(jsonWriter, instance, typeof(T));
+        jsonWriter.Flush();
+        stream.Position = 0;
 
-        [SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times")]
-        public static Stream SerializeToJson<T>(this T instance)
-            where T : class
-        {
-            Guard
-                .Require(instance, nameof(instance))
-                .Is.Not.Null();
-
-            var serializer = new JsonSerializer();
-            var stream = new MemoryStream();
-
-            using var streamWriter = new StreamWriter(stream, Encoding.UTF8, 4096, true);
-
-            using var jsonWriter = new JsonTextWriter(streamWriter)
-            {
-                Formatting = Formatting.Indented,
-                IndentChar = ' ',
-                Indentation = 2
-            };
-
-            serializer.Serialize(jsonWriter, instance, typeof(T));
-            jsonWriter.Flush();
-            stream.Position = 0;
-
-            return stream;
-        }
+        return stream;
     }
 }

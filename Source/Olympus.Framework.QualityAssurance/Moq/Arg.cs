@@ -28,59 +28,58 @@
 
 // ReSharper disable once CheckNamespace
 
-namespace Moq
+namespace Moq;
+
+using System.Text.RegularExpressions;
+using nGratis.Cop.Olympus.Contract;
+
+using Contract = nGratis.Cop.Olympus.Contract;
+
+public class Arg
 {
-    using System.Text.RegularExpressions;
-    using nGratis.Cop.Olympus.Contract;
-
-    using Contract = nGratis.Cop.Olympus.Contract;
-
-    public class Arg
+    public static TValue IsAny<TValue>()
     {
-        public static TValue IsAny<TValue>()
+        return It.IsAny<TValue>();
+    }
+
+    public class DataSpec
+    {
+        public static Contract.DataSpec Is(string name, Mime mime)
         {
-            return It.IsAny<TValue>();
+            Guard
+                .Require(name, nameof(name))
+                .Is.Not.Empty();
+
+            Guard
+                .Require(mime, nameof(mime))
+                .Is.Not.Null();
+
+            return Match.Create<Contract.DataSpec>(spec =>
+                spec.Name == name &&
+                spec.Mime == mime);
         }
 
-        public class DataSpec
+        public static Contract.DataSpec IsHtml()
         {
-            public static Contract.DataSpec Is(string name, Mime mime)
-            {
-                Guard
-                    .Require(name, nameof(name))
-                    .Is.Not.Empty();
-
-                Guard
-                    .Require(mime, nameof(mime))
-                    .Is.Not.Null();
-
-                return Match.Create<Contract.DataSpec>(spec =>
-                    spec.Name == name &&
-                    spec.Mime == mime);
-            }
-
-            public static Contract.DataSpec IsHtml()
-            {
-                return Match.Create<Contract.DataSpec>(spec => spec.Mime == Mime.Html);
-            }
+            return Match.Create<Contract.DataSpec>(spec => spec.Mime == Mime.Html);
         }
+    }
 
-        public class Stream
+    public class Stream
+    {
+        public static System.IO.Stream IsHtml()
         {
-            public static System.IO.Stream IsHtml()
+            return Match.Create<System.IO.Stream>(stream =>
             {
-                return Match.Create<System.IO.Stream>(stream =>
-                {
-                    stream.Position = 0;
+                stream.Position = 0;
 
-                    var reader = new System.IO.StreamReader(stream);
-                    var content = reader.ReadToEnd();
+                var reader = new System.IO.StreamReader(stream);
+                var content = reader.ReadToEnd();
 
-                    stream.Position = 0;
+                stream.Position = 0;
 
-                    return Regex.IsMatch(content.Trim(), @".*?<html>.*?</html>", RegexOptions.Singleline);
-                });
-            }
+                return Regex.IsMatch(content.Trim(), @".*?<html>.*?</html>", RegexOptions.Singleline);
+            });
         }
     }
 }

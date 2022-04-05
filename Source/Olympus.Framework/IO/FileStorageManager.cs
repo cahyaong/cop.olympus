@@ -26,124 +26,123 @@
 // <creation_timestamp>Friday, 3 April 2015 12:10:59 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Framework
+namespace nGratis.Cop.Olympus.Framework;
+
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using nGratis.Cop.Olympus.Contract;
+
+public class FileStorageManager : IStorageManager
 {
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
-    using System.Text;
-    using nGratis.Cop.Olympus.Contract;
-
-    public class FileStorageManager : IStorageManager
+    public FileStorageManager(Uri rootUri)
     {
-        public FileStorageManager(Uri rootUri)
+        Guard
+            .Require(rootUri, nameof(rootUri))
+            .Is.Folder();
+
+        this.RootUri = rootUri;
+
+        if (!Directory.Exists(rootUri.LocalPath))
         {
-            Guard
-                .Require(rootUri, nameof(rootUri))
-                .Is.Folder();
+            Directory.CreateDirectory(rootUri.LocalPath);
+        }
+    }
 
-            this.RootUri = rootUri;
+    public Uri RootUri { get; }
 
-            if (!Directory.Exists(rootUri.LocalPath))
-            {
-                Directory.CreateDirectory(rootUri.LocalPath);
-            }
+    public bool IsAvailable => Directory.Exists(this.RootUri.LocalPath);
+
+    public IEnumerable<DataInfo> FindEntries(string pattern, Mime mime)
+    {
+        Guard
+            .Require(mime, nameof(mime))
+            .Is.Not.Null();
+
+        if (string.IsNullOrEmpty(pattern))
+        {
+            pattern = "*";
         }
 
-        public Uri RootUri { get; }
-
-        public bool IsAvailable => Directory.Exists(this.RootUri.LocalPath);
-
-        public IEnumerable<DataInfo> FindEntries(string pattern, Mime mime)
-        {
-            Guard
-                .Require(mime, nameof(mime))
-                .Is.Not.Null();
-
-            if (string.IsNullOrEmpty(pattern))
+        return Directory
+            .GetFiles(this.RootUri.LocalPath, $"{pattern}{mime.FileExtension}", SearchOption.TopDirectoryOnly)
+            .Select(path => new FileInfo(path))
+            .Select(info => new DataInfo(Path.GetFileNameWithoutExtension(info.Name), mime)
             {
-                pattern = "*";
-            }
+                CreatedTimestamp = new DateTimeOffset(info.CreationTimeUtc, TimeSpan.Zero)
+            });
+    }
 
-            return Directory
-                .GetFiles(this.RootUri.LocalPath, $"{pattern}{mime.FileExtension}", SearchOption.TopDirectoryOnly)
-                .Select(path => new FileInfo(path))
-                .Select(info => new DataInfo(Path.GetFileNameWithoutExtension(info.Name), mime)
-                {
-                    CreatedTimestamp = new DateTimeOffset(info.CreationTimeUtc, TimeSpan.Zero)
-                });
+    public bool HasEntry(DataSpec dataSpec)
+    {
+        Guard
+            .Require(dataSpec, nameof(dataSpec))
+            .Is.Not.Null();
+
+        var filePath = Path.Combine(this.RootUri.LocalPath, dataSpec.GetFileName());
+
+        return File.Exists(filePath);
+    }
+
+    public Stream LoadEntry(DataSpec dataSpec)
+    {
+        Guard
+            .Require(dataSpec, nameof(dataSpec))
+            .Is.Not.Null();
+
+        var fileStream = File.Open(
+            Path.Combine(this.RootUri.LocalPath, dataSpec.GetFileName()),
+            FileMode.Open);
+
+        if (fileStream.CanSeek)
+        {
+            fileStream.Position = 0;
         }
 
-        public bool HasEntry(DataSpec dataSpec)
+        return fileStream;
+    }
+
+    public void SaveEntry(DataSpec dataSpec, Stream dataStream, bool canOverride)
+    {
+        Guard
+            .Require(dataSpec, nameof(dataSpec))
+            .Is.Not.Null();
+
+        Guard
+            .Require(dataStream, nameof(dataStream))
+            .Is.Not.Null()
+            .Is.Readable();
+
+        var fileUri = new Uri(Path.Combine(this.RootUri.LocalPath, dataSpec.GetFileName()));
+
+        if (!canOverride)
         {
             Guard
-                .Require(dataSpec, nameof(dataSpec))
-                .Is.Not.Null();
-
-            var filePath = Path.Combine(this.RootUri.LocalPath, dataSpec.GetFileName());
-
-            return File.Exists(filePath);
+                .Require(fileUri, nameof(fileUri))
+                .Is.Not.Exist();
         }
 
-        public Stream LoadEntry(DataSpec dataSpec)
+        if (dataStream.CanSeek)
         {
-            Guard
-                .Require(dataSpec, nameof(dataSpec))
-                .Is.Not.Null();
-
-            var fileStream = File.Open(
-                Path.Combine(this.RootUri.LocalPath, dataSpec.GetFileName()),
-                FileMode.Open);
-
-            if (fileStream.CanSeek)
-            {
-                fileStream.Position = 0;
-            }
-
-            return fileStream;
+            dataStream.Position = 0;
         }
 
-        public void SaveEntry(DataSpec dataSpec, Stream dataStream, bool canOverride)
+        if (dataSpec.Mime.IsText)
         {
-            Guard
-                .Require(dataSpec, nameof(dataSpec))
-                .Is.Not.Null();
+            using var reader = new StreamReader(dataStream);
+            using var writer = new StreamWriter(File.OpenWrite(fileUri.LocalPath), Encoding.UTF8);
 
-            Guard
-                .Require(dataStream, nameof(dataStream))
-                .Is.Not.Null()
-                .Is.Readable();
+            writer.Write(reader.ReadToEnd());
+            writer.Flush();
+        }
+        else
+        {
+            using var fileStream = new FileStream(fileUri.LocalPath, FileMode.Create);
 
-            var fileUri = new Uri(Path.Combine(this.RootUri.LocalPath, dataSpec.GetFileName()));
-
-            if (!canOverride)
-            {
-                Guard
-                    .Require(fileUri, nameof(fileUri))
-                    .Is.Not.Exist();
-            }
-
-            if (dataStream.CanSeek)
-            {
-                dataStream.Position = 0;
-            }
-
-            if (dataSpec.Mime.IsText)
-            {
-                using var reader = new StreamReader(dataStream);
-                using var writer = new StreamWriter(File.OpenWrite(fileUri.LocalPath), Encoding.UTF8);
-
-                writer.Write(reader.ReadToEnd());
-                writer.Flush();
-            }
-            else
-            {
-                using var fileStream = new FileStream(fileUri.LocalPath, FileMode.Create);
-
-                dataStream.CopyTo(fileStream);
-                fileStream.Flush();
-            }
+            dataStream.CopyTo(fileStream);
+            fileStream.Flush();
         }
     }
 }

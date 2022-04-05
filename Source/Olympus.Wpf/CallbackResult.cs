@@ -26,27 +26,26 @@
 // <creation_timestamp>Sunday, 31 January 2016 7:00:05 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Wpf
+namespace nGratis.Cop.Olympus.Wpf;
+
+public class CallbackResult
 {
-    public class CallbackResult
+    private CallbackResult()
     {
-        private CallbackResult()
-        {
-        }
+    }
 
-        public bool HasError { get; private init; }
+    public bool HasError { get; private init; }
 
-        public static CallbackResult OnSuccessful()
-        {
-            return new();
-        }
+    public static CallbackResult OnSuccessful()
+    {
+        return new();
+    }
 
-        public static CallbackResult OnFailure()
+    public static CallbackResult OnFailure()
+    {
+        return new()
         {
-            return new()
-            {
-                HasError = true
-            };
-        }
+            HasError = true
+        };
     }
 }

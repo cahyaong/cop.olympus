@@ -26,231 +26,230 @@
 // <creation_timestamp>Thursday, September 3, 2020 5:00:31 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Wpf.Glue
+namespace nGratis.Cop.Olympus.Wpf.Glue;
+
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using Caliburn.Micro;
+
+public partial class ReactiveConductor<T>
 {
-    using System.Collections.Generic;
-    using System.Collections.Specialized;
-    using System.Linq;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using Caliburn.Micro;
-
-    public partial class ReactiveConductor<T>
+    public class Collection
     {
-        public class Collection
+        public class OneActive : ReactiveConductorBaseWithActiveItem<T>
         {
-            public class OneActive : ReactiveConductorBaseWithActiveItem<T>
+            private readonly BindableCollection<T> _items;
+
+            public OneActive()
             {
-                private readonly BindableCollection<T> _items;
+                this._items = new BindableCollection<T>();
+                this._items.CollectionChanged += this.OnItemsChanged;
+            }
 
-                public OneActive()
+            public IObservableCollection<T> Items => this._items;
+
+            public override IEnumerable<T> GetChildren() => this._items;
+
+            public override async Task ActivateItemAsync(T item, CancellationToken cancellationToken)
+            {
+                if (item != null && item == this.ActiveItem)
                 {
-                    this._items = new BindableCollection<T>();
-                    this._items.CollectionChanged += this.OnItemsChanged;
+                    if (this.IsActive)
+                    {
+                        await ScreenExtensions.TryActivateAsync(item, cancellationToken);
+                        this.RaisedActivationProcessed(item, true);
+                    }
+
+                    return;
                 }
 
-                public IObservableCollection<T> Items => this._items;
+                await this.ChangeActiveItemAsync(item, false, cancellationToken);
+            }
 
-                public override IEnumerable<T> GetChildren() => this._items;
-
-                public override async Task ActivateItemAsync(T item, CancellationToken cancellationToken)
+            public override async Task DeactivateItemAsync(T item, bool isClosed, CancellationToken cancellationToken)
+            {
+                if (item == null)
                 {
-                    if (item != null && item == this.ActiveItem)
+                    return;
+                }
+
+                if (!isClosed)
+                {
+                    await ScreenExtensions.TryDeactivateAsync(item, false, cancellationToken);
+                }
+                else
+                {
+                    var closingResult = await this.ClosingStrategy.ExecuteAsync(
+                        new[] { item },
+                        CancellationToken.None);
+
+                    if (closingResult.CloseCanOccur)
                     {
-                        if (this.IsActive)
+                        if (item == this.ActiveItem)
                         {
-                            await ScreenExtensions.TryActivateAsync(item, cancellationToken);
-                            this.RaisedActivationProcessed(item, true);
+                            var index = this._items.IndexOf(item);
+
+                            await this.ChangeActiveItemAsync(
+                                OneActive.DetermineNextItemToActivate(this._items, index),
+                                true,
+                                cancellationToken);
+                        }
+                        else
+                        {
+                            await ScreenExtensions.TryDeactivateAsync(item, true, cancellationToken);
                         }
 
-                        return;
+                        this._items.Remove(item);
                     }
-
-                    await this.ChangeActiveItemAsync(item, false, cancellationToken);
                 }
+            }
 
-                public override async Task DeactivateItemAsync(T item, bool isClosed, CancellationToken cancellationToken)
+            public override async Task<bool> CanCloseAsync(CancellationToken cancellationToken)
+            {
+                var closingResult = await this.ClosingStrategy.ExecuteAsync(this._items, cancellationToken);
+
+                if (!closingResult.CloseCanOccur && closingResult.Children.Any())
                 {
-                    if (item == null)
-                    {
-                        return;
-                    }
+                    var closingItems = closingResult
+                        .Children?
+                        .ToList();
 
-                    if (!isClosed)
+                    if (closingItems.Contains(this.ActiveItem))
                     {
-                        await ScreenExtensions.TryDeactivateAsync(item, false, cancellationToken);
-                    }
-                    else
-                    {
-                        var closingResult = await this.ClosingStrategy.ExecuteAsync(
-                            new[] { item },
-                            CancellationToken.None);
+                        var items = this._items.ToList();
+                        var nextItem = this.ActiveItem;
 
-                        if (closingResult.CloseCanOccur)
+                        do
                         {
-                            if (item == this.ActiveItem)
-                            {
-                                var index = this._items.IndexOf(item);
+                            var previousItem = nextItem;
 
-                                await this.ChangeActiveItemAsync(
-                                    OneActive.DetermineNextItemToActivate(this._items, index),
-                                    true,
-                                    cancellationToken);
-                            }
-                            else
-                            {
-                                await ScreenExtensions.TryDeactivateAsync(item, true, cancellationToken);
-                            }
-
-                            this._items.Remove(item);
+                            nextItem = OneActive.DetermineNextItemToActivate(items, items.IndexOf(previousItem));
+                            items.Remove(previousItem);
                         }
+                        while (closingItems.Contains(nextItem));
+
+                        var previousActiveItem = this.ActiveItem;
+
+                        await this.ChangeActiveItemAsync(nextItem, true, CancellationToken.None);
+
+                        this._items.Remove(previousActiveItem);
+                        closingItems.Remove(previousActiveItem);
                     }
+
+                    closingItems
+                        .OfType<IDeactivate>()
+                        .Apply(async item => await item.DeactivateAsync(true, cancellationToken));
+
+                    this._items.RemoveRange(closingItems);
                 }
 
-                public override async Task<bool> CanCloseAsync(CancellationToken cancellationToken)
-                {
-                    var closingResult = await this.ClosingStrategy.ExecuteAsync(this._items, cancellationToken);
+                return closingResult.CloseCanOccur;
+            }
 
-                    if (!closingResult.CloseCanOccur && closingResult.Children.Any())
+            protected override async Task ActivateCoreAsync(CancellationToken cancellationToken)
+            {
+                await ScreenExtensions.TryActivateAsync(this.ActiveItem, cancellationToken);
+            }
+
+            protected override async Task DeactivateCoreAsync(bool isClosed, CancellationToken cancellationToken)
+            {
+                if (isClosed)
+                {
+                    this._items
+                        .OfType<IDeactivate>()
+                        .Apply(async item => await item.DeactivateAsync(true, cancellationToken));
+
+                    this._items.Clear();
+                }
+                else
+                {
+                    await ScreenExtensions.TryDeactivateAsync(this.ActiveItem, false, cancellationToken);
+                }
+            }
+
+            protected override T EnsureItem(T item)
+            {
+                if (item == null)
+                {
+                    item = OneActive.DetermineNextItemToActivate(
+                        this._items,
+                        this.ActiveItem != null ? this._items.IndexOf(this.ActiveItem) : 0);
+                }
+                else
+                {
+                    var index = this._items.IndexOf(item);
+
+                    if (index <= -1)
                     {
-                        var closingItems = closingResult
-                            .Children?
-                            .ToList();
+                        this._items.Add(item);
+                    }
+                }
 
-                        if (closingItems.Contains(this.ActiveItem))
-                        {
-                            var items = this._items.ToList();
-                            var nextItem = this.ActiveItem;
+                return base.EnsureItem(item);
+            }
 
-                            do
-                            {
-                                var previousItem = nextItem;
+            private static T DetermineNextItemToActivate(IReadOnlyList<T> items, int index)
+            {
+                var removalIndex = index - 1;
 
-                                nextItem = OneActive.DetermineNextItemToActivate(items, items.IndexOf(previousItem));
-                                items.Remove(previousItem);
-                            }
-                            while (closingItems.Contains(nextItem));
+                if (removalIndex <= -1 && items.Count > 1)
+                {
+                    return items[1];
+                }
 
-                            var previousActiveItem = this.ActiveItem;
+                if (removalIndex > -1 && removalIndex < items.Count - 1)
+                {
+                    return items[removalIndex];
+                }
 
-                            await this.ChangeActiveItemAsync(nextItem, true, CancellationToken.None);
+                return default;
+            }
 
-                            this._items.Remove(previousActiveItem);
-                            closingItems.Remove(previousActiveItem);
-                        }
+            private void OnItemsChanged(object _, NotifyCollectionChangedEventArgs args)
+            {
+                switch (args.Action)
+                {
+                    case NotifyCollectionChangedAction.Add:
+                    {
+                        args.NewItems?
+                            .OfType<IChild>()
+                            .Apply(child => child.Parent = this);
 
-                        closingItems
-                            .OfType<IDeactivate>()
-                            .Apply(async item => await item.DeactivateAsync(true, cancellationToken));
-
-                        this._items.RemoveRange(closingItems);
+                        break;
                     }
 
-                    return closingResult.CloseCanOccur;
-                }
+                    case NotifyCollectionChangedAction.Remove:
+                    {
+                        args.OldItems?
+                            .OfType<IChild>()
+                            .Apply(child => child.Parent = null);
 
-                protected override async Task ActivateCoreAsync(CancellationToken cancellationToken)
-                {
-                    await ScreenExtensions.TryActivateAsync(this.ActiveItem, cancellationToken);
-                }
+                        break;
+                    }
 
-                protected override async Task DeactivateCoreAsync(bool isClosed, CancellationToken cancellationToken)
-                {
-                    if (isClosed)
+                    case NotifyCollectionChangedAction.Replace:
+                    {
+                        args.NewItems?
+                            .OfType<IChild>()
+                            .Apply(child => child.Parent = this);
+
+                        args.OldItems?
+                            .OfType<IChild>()
+                            .Apply(child => child.Parent = null);
+
+                        break;
+                    }
+
+                    case NotifyCollectionChangedAction.Reset:
                     {
                         this._items
-                            .OfType<IDeactivate>()
-                            .Apply(async item => await item.DeactivateAsync(true, cancellationToken));
+                            .OfType<IChild>()
+                            .Apply(child => child.Parent = this);
 
-                        this._items.Clear();
-                    }
-                    else
-                    {
-                        await ScreenExtensions.TryDeactivateAsync(this.ActiveItem, false, cancellationToken);
-                    }
-                }
-
-                protected override T EnsureItem(T item)
-                {
-                    if (item == null)
-                    {
-                        item = OneActive.DetermineNextItemToActivate(
-                            this._items,
-                            this.ActiveItem != null ? this._items.IndexOf(this.ActiveItem) : 0);
-                    }
-                    else
-                    {
-                        var index = this._items.IndexOf(item);
-
-                        if (index <= -1)
-                        {
-                            this._items.Add(item);
-                        }
-                    }
-
-                    return base.EnsureItem(item);
-                }
-
-                private static T DetermineNextItemToActivate(IReadOnlyList<T> items, int index)
-                {
-                    var removalIndex = index - 1;
-
-                    if (removalIndex <= -1 && items.Count > 1)
-                    {
-                        return items[1];
-                    }
-
-                    if (removalIndex > -1 && removalIndex < items.Count - 1)
-                    {
-                        return items[removalIndex];
-                    }
-
-                    return default;
-                }
-
-                private void OnItemsChanged(object _, NotifyCollectionChangedEventArgs args)
-                {
-                    switch (args.Action)
-                    {
-                        case NotifyCollectionChangedAction.Add:
-                            {
-                                args.NewItems?
-                                    .OfType<IChild>()
-                                    .Apply(child => child.Parent = this);
-
-                                break;
-                            }
-
-                        case NotifyCollectionChangedAction.Remove:
-                            {
-                                args.OldItems?
-                                    .OfType<IChild>()
-                                    .Apply(child => child.Parent = null);
-
-                                break;
-                            }
-
-                        case NotifyCollectionChangedAction.Replace:
-                            {
-                                args.NewItems?
-                                    .OfType<IChild>()
-                                    .Apply(child => child.Parent = this);
-
-                                args.OldItems?
-                                    .OfType<IChild>()
-                                    .Apply(child => child.Parent = null);
-
-                                break;
-                            }
-
-                        case NotifyCollectionChangedAction.Reset:
-                            {
-                                this._items
-                                    .OfType<IChild>()
-                                    .Apply(child => child.Parent = this);
-
-                                break;
-                            }
+                        break;
                     }
                 }
             }

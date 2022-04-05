@@ -26,55 +26,54 @@
 // <creation_timestamp>Monday, 20 July 2015 2:25:29 PM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Framework
+namespace nGratis.Cop.Olympus.Framework;
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Text;
+using nGratis.Cop.Olympus.Contract;
+
+public class ConsoleLogger : LoggerBase
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.Linq;
-    using System.Text;
-    using nGratis.Cop.Olympus.Contract;
-
-    public class ConsoleLogger : LoggerBase
+    public ConsoleLogger(string component)
+        : base(component)
     {
-        public ConsoleLogger(string component)
-            : base(component)
-        {
-            Guard
-                .Require(component, nameof(component))
-                .Is.Not.Empty();
-        }
+        Guard
+            .Require(component, nameof(component))
+            .Is.Not.Empty();
+    }
 
-        public override void Log(Verbosity verbosity, [Localizable(false)] string message)
-        {
-            var line = $"{DateTimeOffset.Now:s} | {verbosity.ToConsoleText()} | {message}";
+    public override void Log(Verbosity verbosity, [Localizable(false)] string message)
+    {
+        var line = $"{DateTimeOffset.Now:s} | {verbosity.ToConsoleText()} | {message}";
 
-            Console.WriteLine(line);
-        }
+        Console.WriteLine(line);
+    }
 
-        public override void Log(Verbosity verbosity, [Localizable(false)] string message, Exception exception)
-        {
-            var line = $"{DateTimeOffset.Now:s} | {verbosity.ToConsoleText()} | {message} {exception.Message}";
+    public override void Log(Verbosity verbosity, [Localizable(false)] string message, Exception exception)
+    {
+        var line = $"{DateTimeOffset.Now:s} | {verbosity.ToConsoleText()} | {message} {exception.Message}";
 
-            Console.WriteLine(line);
-        }
+        Console.WriteLine(line);
+    }
 
-        public override void Log(Verbosity verbosity, string message, params string[] submessages)
-        {
-            var messageBuilder = new StringBuilder(!string.IsNullOrEmpty(message)
-                ? message
-                : Text.Empty);
+    public override void Log(Verbosity verbosity, string message, params string[] submessages)
+    {
+        var messageBuilder = new StringBuilder(!string.IsNullOrEmpty(message)
+            ? message
+            : Text.Empty);
 
-            submessages
-                .Select(submessage => !string.IsNullOrEmpty(submessage)
-                    ? submessage
-                    : Text.Empty)
-                .ForEach(submessage => messageBuilder.AppendFormat(
-                    "{0}  |_ {1}",
-                    Environment.NewLine,
-                    submessage));
+        submessages
+            .Select(submessage => !string.IsNullOrEmpty(submessage)
+                ? submessage
+                : Text.Empty)
+            .ForEach(submessage => messageBuilder.AppendFormat(
+                "{0}  |_ {1}",
+                Environment.NewLine,
+                submessage));
 
-            this.Log(verbosity, messageBuilder.ToString());
-        }
+        this.Log(verbosity, messageBuilder.ToString());
     }
 }

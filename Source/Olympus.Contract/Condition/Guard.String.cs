@@ -26,18 +26,17 @@
 // <creation_timestamp>Friday, 2 March 2018 9:46:32 PM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Contract
-{
-    using System.Diagnostics;
+namespace nGratis.Cop.Olympus.Contract;
 
-    public static partial class Guard
+using System.Diagnostics;
+
+public static partial class Guard
+{
+    [DebuggerStepThrough]
+    public static ValidationContinuation<string> Empty(this ClassValidator<string> validator)
     {
-        [DebuggerStepThrough]
-        public static ValidationContinuation<string> Empty(this ClassValidator<string> validator)
-        {
-            return validator.Validate(
-                string.IsNullOrEmpty,
-                "be empty");
-        }
+        return validator.Validate(
+            string.IsNullOrEmpty,
+            "be empty");
     }
 }

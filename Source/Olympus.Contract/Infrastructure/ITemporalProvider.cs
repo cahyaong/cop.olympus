@@ -26,12 +26,11 @@
 // <creation_timestamp>Saturday, 25 April 2015 12:59:14 PM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Contract
-{
-    using System;
+namespace nGratis.Cop.Olympus.Contract;
 
-    public interface ITemporalProvider
-    {
-        DateTimeOffset UtcNow { get; }
-    }
+using System;
+
+public interface ITemporalProvider
+{
+    DateTimeOffset UtcNow { get; }
 }

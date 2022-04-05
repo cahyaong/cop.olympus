@@ -26,14 +26,13 @@
 // <creation_timestamp>Saturday, 25 April 2015 12:59:14 PM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Contract
+namespace nGratis.Cop.Olympus.Contract;
+
+public interface IInfrastructureManager
 {
-    public interface IInfrastructureManager
-    {
-        IIdentityProvider IdentityProvider { get; }
+    IIdentityProvider IdentityProvider { get; }
 
-        ITemporalProvider TemporalProvider { get; }
+    ITemporalProvider TemporalProvider { get; }
 
-        ILoggingProvider LoggingProvider { get; }
-    }
+    ILoggingProvider LoggingProvider { get; }
 }

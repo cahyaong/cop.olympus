@@ -26,79 +26,78 @@
 // <creation_timestamp>Monday, 26 November 2018 11:32:38 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Wpf
+namespace nGratis.Cop.Olympus.Wpf;
+
+using System;
+using System.Collections.Generic;
+using System.Windows;
+using System.Windows.Controls;
+using nGratis.Cop.Olympus.Contract;
+
+public class AweTile : Control
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Windows;
-    using System.Windows.Controls;
-    using nGratis.Cop.Olympus.Contract;
+    private static readonly IReadOnlyDictionary<Type, Func<object, string>> FormatterLookup;
 
-    public class AweTile : Control
+    public static readonly DependencyProperty HeaderProperty = DependencyProperty.Register(
+        nameof(AweTile.Header),
+        typeof(string),
+        typeof(AweTile),
+        new PropertyMetadata(Text.Undefined));
+
+    public static readonly DependencyProperty ValueProperty = DependencyProperty.Register(
+        nameof(AweTile.Value),
+        typeof(object),
+        typeof(AweTile),
+        new PropertyMetadata(null, AweTile.OnValueChanged));
+
+    static AweTile()
     {
-        private static readonly IReadOnlyDictionary<Type, Func<object, string>> FormatterLookup;
-
-        public static readonly DependencyProperty HeaderProperty = DependencyProperty.Register(
-            nameof(AweTile.Header),
-            typeof(string),
-            typeof(AweTile),
-            new PropertyMetadata(Text.Undefined));
-
-        public static readonly DependencyProperty ValueProperty = DependencyProperty.Register(
-            nameof(AweTile.Value),
-            typeof(object),
-            typeof(AweTile),
-            new PropertyMetadata(null, AweTile.OnValueChanged));
-
-        static AweTile()
+        AweTile.FormatterLookup = new Dictionary<Type, Func<object, string>>
         {
-            AweTile.FormatterLookup = new Dictionary<Type, Func<object, string>>
-            {
-                [typeof(int)] = value => ((int)value).ToString("N0")
-            };
+            [typeof(int)] = value => ((int)value).ToString("N0")
+        };
+    }
+
+    public static readonly DependencyProperty FormattedValueProperty = DependencyProperty.Register(
+        nameof(AweTile.FormattedValue),
+        typeof(string),
+        typeof(AweTile),
+        new PropertyMetadata("-"));
+
+    public string Header
+    {
+        get => (string)this.GetValue(AweTile.HeaderProperty);
+        set => this.SetValue(AweTile.HeaderProperty, value);
+    }
+
+    public object Value
+    {
+        get => this.GetValue(AweTile.ValueProperty);
+        set => this.SetValue(AweTile.ValueProperty, value);
+    }
+
+    public string FormattedValue
+    {
+        get => (string)this.GetValue(AweTile.FormattedValueProperty);
+        private set => this.SetValue(AweTile.FormattedValueProperty, value);
+    }
+
+    private static void OnValueChanged(DependencyObject container, DependencyPropertyChangedEventArgs args)
+    {
+        if (container is not AweTile tile)
+        {
+            return;
         }
 
-        public static readonly DependencyProperty FormattedValueProperty = DependencyProperty.Register(
-            nameof(AweTile.FormattedValue),
-            typeof(string),
-            typeof(AweTile),
-            new PropertyMetadata("-"));
-
-        public string Header
+        if (args.NewValue == null)
         {
-            get => (string)this.GetValue(AweTile.HeaderProperty);
-            set => this.SetValue(AweTile.HeaderProperty, value);
+            tile.FormattedValue = "-";
         }
-
-        public object Value
+        else
         {
-            get => this.GetValue(AweTile.ValueProperty);
-            set => this.SetValue(AweTile.ValueProperty, value);
-        }
-
-        public string FormattedValue
-        {
-            get => (string)this.GetValue(AweTile.FormattedValueProperty);
-            private set => this.SetValue(AweTile.FormattedValueProperty, value);
-        }
-
-        private static void OnValueChanged(DependencyObject container, DependencyPropertyChangedEventArgs args)
-        {
-            if (container is not AweTile tile)
-            {
-                return;
-            }
-
-            if (args.NewValue == null)
-            {
-                tile.FormattedValue = "-";
-            }
-            else
-            {
-                tile.FormattedValue = AweTile.FormatterLookup.TryGetValue(args.NewValue.GetType(), out var format)
-                    ? format(args.NewValue)
-                    : args.ToString();
-            }
+            tile.FormattedValue = AweTile.FormatterLookup.TryGetValue(args.NewValue.GetType(), out var format)
+                ? format(args.NewValue)
+                : args.ToString();
         }
     }
 }

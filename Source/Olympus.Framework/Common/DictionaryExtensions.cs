@@ -28,29 +28,28 @@
 
 // ReSharper disable once CheckNamespace
 
-namespace System.Collections.Generic
+namespace System.Collections.Generic;
+
+using nGratis.Cop.Olympus.Contract;
+
+public static class DictionaryExtensions
 {
-    using nGratis.Cop.Olympus.Contract;
-
-    public static class DictionaryExtensions
+    public static void UpdateOrInsert<TKey, TValue>(
+        this IDictionary<TKey, TValue> dictionary,
+        TKey key,
+        TValue value)
     {
-        public static void UpdateOrInsert<TKey, TValue>(
-            this IDictionary<TKey, TValue> dictionary,
-            TKey key,
-            TValue value)
-        {
-            Guard
-                .Require(dictionary, nameof(dictionary))
-                .Is.Not.Null();
+        Guard
+            .Require(dictionary, nameof(dictionary))
+            .Is.Not.Null();
 
-            if (dictionary.ContainsKey(key))
-            {
-                dictionary[key] = value;
-            }
-            else
-            {
-                dictionary.Add(key, value);
-            }
+        if (dictionary.ContainsKey(key))
+        {
+            dictionary[key] = value;
+        }
+        else
+        {
+            dictionary.Add(key, value);
         }
     }
 }

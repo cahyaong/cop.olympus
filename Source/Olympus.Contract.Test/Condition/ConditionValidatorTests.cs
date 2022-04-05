@@ -26,111 +26,110 @@
 // <creation_timestamp>Monday, 26 March 2018 7:51:29 PM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Contract.Test
+namespace nGratis.Cop.Olympus.Contract.Test;
+
+using System;
+using FluentAssertions;
+using Xunit;
+
+public class ConditionValidatorTests
 {
-    using System;
-    using FluentAssertions;
-    using Xunit;
-
-    public class ConditionValidatorTests
+    public class ValidateMethod
     {
-        public class ValidateMethod
+        [Fact]
+        public void WhenGettingValidPreConditionValue_ShouldNotThrowException()
         {
-            [Fact]
-            public void WhenGettingValidPreConditionValue_ShouldNotThrowException()
-            {
-                // Arrange.
+            // Arrange.
 
-                var stubValidator = new StubPreConditionValidator("[_MOCK_VALUE_]");
+            var stubValidator = new StubPreConditionValidator("[_MOCK_VALUE_]");
 
-                // Act.
+            // Act.
 
-                var validate = new Action(() => stubValidator.Validate(
-                    value => value == "[_MOCK_VALUE_]",
-                    "[_MOCK_REASON_]"));
+            var validate = new Action(() => stubValidator.Validate(
+                value => value == "[_MOCK_VALUE_]",
+                "[_MOCK_REASON_]"));
 
-                // Assert.
+            // Assert.
 
-                validate.Should().NotThrow();
-            }
+            validate.Should().NotThrow();
+        }
 
-            [Fact]
-            public void WhenGettingInvalidPreConditionValue_ShouldThrowCopPreConditionException()
-            {
-                // Arrange.
+        [Fact]
+        public void WhenGettingInvalidPreConditionValue_ShouldThrowCopPreConditionException()
+        {
+            // Arrange.
 
-                var stubValidator = new StubPreConditionValidator("[_MOCK_VALUE_]");
+            var stubValidator = new StubPreConditionValidator("[_MOCK_VALUE_]");
 
-                // Act.
+            // Act.
 
-                var validate = new Action(() => stubValidator.Validate(
-                    value => value == "[_MOCK_ANOTHER_VALUE_]",
-                    "[_MOCK_REASON_]"));
+            var validate = new Action(() => stubValidator.Validate(
+                value => value == "[_MOCK_ANOTHER_VALUE_]",
+                "[_MOCK_REASON_]"));
 
-                // Assert.
+            // Assert.
 
-                validate
-                    .Should().Throw<CopPreConditionException>()
-                    .WithMessage("PRE-CONDITION: Variable [[_MOCK_NAME_]] should [_MOCK_REASON_]!");
-            }
+            validate
+                .Should().Throw<CopPreConditionException>()
+                .WithMessage("PRE-CONDITION: Variable [[_MOCK_NAME_]] should [_MOCK_REASON_]!");
+        }
 
-            [Fact]
-            public void WhenGettingValidPostConditionValue_ShouldNotThrowException()
-            {
-                // Arrange.
+        [Fact]
+        public void WhenGettingValidPostConditionValue_ShouldNotThrowException()
+        {
+            // Arrange.
 
-                var stubValidator = new StubPostConditionValidator("[_MOCK_VALUE_]");
+            var stubValidator = new StubPostConditionValidator("[_MOCK_VALUE_]");
 
-                // Act.
+            // Act.
 
-                var validate = new Action(() => stubValidator.Validate(
-                    value => value == "[_MOCK_VALUE_]",
-                    "[_MOCK_REASON_]"));
+            var validate = new Action(() => stubValidator.Validate(
+                value => value == "[_MOCK_VALUE_]",
+                "[_MOCK_REASON_]"));
 
-                // Assert.
+            // Assert.
 
-                validate.Should().NotThrow();
-            }
+            validate.Should().NotThrow();
+        }
 
-            [Fact]
-            public void WhenGettingInvalidPostConditionValue_ShouldThrowCopPostConditionException()
-            {
-                // Arrange.
+        [Fact]
+        public void WhenGettingInvalidPostConditionValue_ShouldThrowCopPostConditionException()
+        {
+            // Arrange.
 
-                var stubValidator = new StubPostConditionValidator("[_MOCK_VALUE_]");
+            var stubValidator = new StubPostConditionValidator("[_MOCK_VALUE_]");
 
-                // Act.
+            // Act.
 
-                var validate = new Action(() => stubValidator.Validate(
-                    value => value == "[_MOCK_ANOTHER_VALUE_]",
-                    "[_MOCK_REASON_]"));
+            var validate = new Action(() => stubValidator.Validate(
+                value => value == "[_MOCK_ANOTHER_VALUE_]",
+                "[_MOCK_REASON_]"));
 
-                // Assert.
+            // Assert.
 
-                validate
-                    .Should().Throw<CopPostConditionException>()
-                    .WithMessage("POST-CONDITION: Variable [[_MOCK_NAME_]] should [_MOCK_REASON_]!");
-            }
+            validate
+                .Should().Throw<CopPostConditionException>()
+                .WithMessage("POST-CONDITION: Variable [[_MOCK_NAME_]] should [_MOCK_REASON_]!");
+        }
 
-            [Fact]
-            public void WhenGettingInvalidValueWithUnsupportedValidatorKind_ShouldThrowNotSupportedException()
-            {
-                // Arrange.
+        [Fact]
+        public void WhenGettingInvalidValueWithUnsupportedValidatorKind_ShouldThrowNotSupportedException()
+        {
+            // Arrange.
 
-                var stubValidator = new StubUnknownConditionValidator("[_MOCK_VALUE_]");
+            var stubValidator = new StubUnknownConditionValidator("[_MOCK_VALUE_]");
 
-                // Act.
+            // Act.
 
-                var validate = new Action(() => stubValidator.Validate(
-                    value => value == "[_MOCK_ANOTHER_VALUE_]",
-                    "[_MOCK_REASON_]"));
+            var validate = new Action(() => stubValidator.Validate(
+                value => value == "[_MOCK_ANOTHER_VALUE_]",
+                "[_MOCK_REASON_]"));
 
-                // Assert.
+            // Assert.
 
-                validate
-                    .Should().Throw<NotSupportedException>()
-                    .WithMessage("Validator kind [Unknown] is not supported!");
-            }
+            validate
+                .Should().Throw<NotSupportedException>()
+                .WithMessage("Validator kind [Unknown] is not supported!");
         }
     }
 }

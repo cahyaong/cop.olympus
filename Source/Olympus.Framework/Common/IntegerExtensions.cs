@@ -28,28 +28,27 @@
 
 // ReSharper disable once CheckNamespace
 
-namespace System
+namespace System;
+
+using nGratis.Cop.Olympus.Contract;
+
+public static class IntegerExtensions
 {
-    using nGratis.Cop.Olympus.Contract;
-
-    public static class IntegerExtensions
+    public static int Clamp(this int value, int min, int max)
     {
-        public static int Clamp(this int value, int min, int max)
+        Guard
+            .Require(min, nameof(min))
+            .Is.LessThan(max);
+
+        if (value < min)
         {
-            Guard
-                .Require(min, nameof(min))
-                .Is.LessThan(max);
-
-            if (value < min)
-            {
-                value = min;
-            }
-            else if (value > max)
-            {
-                value = max;
-            }
-
-            return value;
+            value = min;
         }
+        else if (value > max)
+        {
+            value = max;
+        }
+
+        return value;
     }
 }

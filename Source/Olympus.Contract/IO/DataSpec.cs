@@ -26,34 +26,33 @@
 // <creation_timestamp>Friday, 3 April 2015 12:03:14 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Contract
+namespace nGratis.Cop.Olympus.Contract;
+
+using System.Linq;
+
+public class DataSpec
 {
-    using System.Linq;
+    public static readonly DataSpec None = new(Text.None, Mime.None);
 
-    public class DataSpec
+    public DataSpec(string name, Mime mime)
     {
-        public static readonly DataSpec None = new(Text.None, Mime.None);
+        Guard
+            .Require(name, nameof(name))
+            .Is.Not.Empty();
 
-        public DataSpec(string name, Mime mime)
-        {
-            Guard
-                .Require(name, nameof(name))
-                .Is.Not.Empty();
+        Guard.Require(mime, nameof(mime))
+            .Is.Not.EqualTo(Mime.Unknown);
 
-            Guard.Require(mime, nameof(mime))
-                .Is.Not.EqualTo(Mime.Unknown);
+        this.Mime = mime;
+        this.Name = name;
+    }
 
-            this.Mime = mime;
-            this.Name = name;
-        }
+    public Mime Mime { get; }
 
-        public Mime Mime { get; }
+    public string Name { get; }
 
-        public string Name { get; }
-
-        public override string ToString()
-        {
-            return $"ngds://./{this.Name}.{this.Mime.Extensions.First()}";
-        }
+    public override string ToString()
+    {
+        return $"ngds://./{this.Name}.{this.Mime.Extensions.First()}";
     }
 }
