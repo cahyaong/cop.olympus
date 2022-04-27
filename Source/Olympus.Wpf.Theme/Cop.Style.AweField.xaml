@@ -19,7 +19,7 @@
       <TextBlock
         FontStyle="Italic"
         Style="{StaticResource Cop.TextBlock.Body}"
-        Text="{x:Static contract:Text.Unsupported}" />
+        Text="{x:Static contract:DefinedText.Unsupported}" />
     </Border>
   </DataTemplate>
 
@@ -31,7 +31,7 @@
       <TextBlock
         FontStyle="Italic"
         Style="{StaticResource Cop.TextBlock.Body}"
-        Text="{x:Static contract:Text.Empty}" />
+        Text="{x:Static contract:DefinedText.Empty}" />
     </Border>
   </DataTemplate>
 

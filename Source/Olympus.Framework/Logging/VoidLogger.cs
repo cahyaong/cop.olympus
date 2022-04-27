@@ -35,7 +35,7 @@ using nGratis.Cop.Olympus.Contract;
 public sealed class VoidLogger : LoggerBase, ILoggingNotifier
 {
     private VoidLogger()
-        : base(Text.Void)
+        : base(DefinedText.Void)
     {
         this.WhenEntryAdded = new Subject<LoggingEntry>();
     }

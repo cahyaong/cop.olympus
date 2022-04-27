@@ -51,8 +51,8 @@ public static partial class LoggerExtensions
         var submessages = details
             .Select(detail => new
             {
-                Key = !string.IsNullOrEmpty(detail.Key) ? detail.Key : Text.Undefined,
-                Value = detail.Value?.ToString() ?? Text.Undefined,
+                Key = !string.IsNullOrEmpty(detail.Key) ? detail.Key : DefinedText.Unknown,
+                Value = detail.Value?.ToString() ?? DefinedText.Unknown,
             })
             .Select(anon => $"{anon.Key}: [{anon.Value}]")
             .ToArray();

@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Text.cs" company="nGratis">
+// <copyright file="DefinedText.cs" company="nGratis">
 //  The MIT License (MIT)
 //
 //  Copyright (c) 2014 - 2021 Cahya Ong
@@ -28,7 +28,7 @@
 
 namespace nGratis.Cop.Olympus.Contract;
 
-public static class Text
+public static class DefinedText
 {
     public const string Null = "<null>";
 
@@ -41,8 +41,6 @@ public static class Text
     public const string Empty = "<empty>";
 
     public const string Unknown = "<unknown>";
-
-    public const string Undefined = "<undefined>";
 
     public const string Unsupported = "<unsupported>";
 

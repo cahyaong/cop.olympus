@@ -84,7 +84,7 @@ internal class LoggingProvider : ILoggingProvider
         GC.SuppressFinalize(this);
     }
 
-    private ILogger CreateLogger(string component = Text.Undefined)
+    private ILogger CreateLogger(string component = DefinedText.Unknown)
     {
         var logger = new CompositeLogger();
 

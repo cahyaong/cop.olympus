@@ -61,7 +61,7 @@ public abstract class ConditionValidator<T>
             var message = string.Format(
                 CultureInfo.InvariantCulture,
                 "Variable {0} should {1}{2}!",
-                this.Name != Text.Unknown ? $"[{this.Name}]" : Text.Unknown,
+                this.Name != DefinedText.Unknown ? $"[{this.Name}]" : DefinedText.Unknown,
                 this.IsNegated ? "NOT " : string.Empty,
                 reason);
 

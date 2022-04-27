@@ -35,6 +35,7 @@ using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using nGratis.Cop.Olympus.Contract;
 
 public static class StringExtensions
 {
@@ -72,7 +73,7 @@ public static class StringExtensions
 
         if (!values.Any())
         {
-            return nGratis.Cop.Olympus.Contract.Text.Empty;
+            return DefinedText.Empty;
         }
 
         var prettifiedValues = values

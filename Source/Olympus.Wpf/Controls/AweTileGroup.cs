@@ -38,7 +38,7 @@ public class AweTileGroup : ContentControl
         nameof(AweTileGroup.Header),
         typeof(string),
         typeof(AweTileGroup),
-        new PropertyMetadata(Text.Undefined));
+        new PropertyMetadata(DefinedText.Unknown));
 
     public string Header
     {

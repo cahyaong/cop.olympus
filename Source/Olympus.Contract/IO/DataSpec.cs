@@ -32,7 +32,7 @@ using System.Linq;
 
 public class DataSpec
 {
-    public static readonly DataSpec None = new(Text.None, Mime.None);
+    public static readonly DataSpec None = new(DefinedText.None, Mime.None);
 
     public DataSpec(string name, Mime mime)
     {

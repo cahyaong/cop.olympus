@@ -59,7 +59,7 @@ public sealed class CopLogger : LoggerBase, ILoggingNotifier
             Verbosity = verbosity,
             Message = !string.IsNullOrEmpty(message)
                 ? message
-                : Text.Empty
+                : DefinedText.Empty
         };
 
         this._whenEntryBuffered.OnNext(entry);
@@ -73,11 +73,11 @@ public sealed class CopLogger : LoggerBase, ILoggingNotifier
             Verbosity = verbosity,
             Message = !string.IsNullOrEmpty(message)
                 ? message
-                : Text.Empty,
+                : DefinedText.Empty,
             Submessages = submessages
                 .Select(submessage => !string.IsNullOrEmpty(submessage)
                     ? submessage
-                    : Text.Empty)
+                    : DefinedText.Empty)
                 .ToArray()
         };
 
@@ -93,7 +93,7 @@ public sealed class CopLogger : LoggerBase, ILoggingNotifier
             Exception = exception,
             Message = !string.IsNullOrEmpty(message)
                 ? message
-                : Text.Empty
+                : DefinedText.Empty
         };
 
         this._whenEntryBuffered.OnNext(entry);

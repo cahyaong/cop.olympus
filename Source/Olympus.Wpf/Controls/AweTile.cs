@@ -42,7 +42,7 @@ public class AweTile : Control
         nameof(AweTile.Header),
         typeof(string),
         typeof(AweTile),
-        new PropertyMetadata(Text.Undefined));
+        new PropertyMetadata(DefinedText.Unknown));
 
     public static readonly DependencyProperty ValueProperty = DependencyProperty.Register(
         nameof(AweTile.Value),

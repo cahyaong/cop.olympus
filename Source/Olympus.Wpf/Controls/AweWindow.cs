@@ -179,7 +179,7 @@ public class AweWindow : MetroWindow, IDisposable
 
         await this.ShowMessageAsync(
             $"Unhandled Exception ({exceptionSource})",
-            exception?.ToString() ?? Text.Unknown,
+            exception?.ToString() ?? DefinedText.Unknown,
             MessageDialogStyle.Affirmative,
             dialogSettings);
     }

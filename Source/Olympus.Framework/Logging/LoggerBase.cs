@@ -64,12 +64,12 @@ public abstract class LoggerBase : ILogger
     {
         var messageBuilder = new StringBuilder(!string.IsNullOrEmpty(message)
             ? message
-            : Text.Empty);
+            : DefinedText.Empty);
 
         submessages
             .Select(submessage => !string.IsNullOrEmpty(submessage)
                 ? submessage
-                : Text.Empty)
+                : DefinedText.Empty)
             .ForEach(submessage => messageBuilder.AppendFormat(
                 "{0}  |_ {1}",
                 Environment.NewLine,

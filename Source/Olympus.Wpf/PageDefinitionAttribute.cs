@@ -40,7 +40,7 @@ public sealed class PageDefinitionAttribute : Attribute
     {
         this.DisplayText = !string.IsNullOrEmpty(displayText)
             ? displayText
-            : Text.Undefined;
+            : DefinedText.Unknown;
 
         this.Ordering = int.MaxValue;
     }

@@ -33,6 +33,7 @@ using System;
 using System.Collections.Immutable;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
 using JetBrains.Annotations;
 using nGratis.Cop.Olympus.Contract;
 
@@ -85,6 +86,23 @@ public static class EnumerableExtensions
     }
 
     [DebuggerStepThrough]
+    public static void ForEachAsync<T>(this IEnumerable<T> items, [InstantHandle] Func<T, Task> applyAsync)
+
+    {
+        Guard
+            .Require(items, nameof(items))
+            .Is.Not.Null();
+
+        Guard
+            .Require(applyAsync, nameof(applyAsync))
+            .Is.Not.Null();
+
+        Task.WaitAll(items
+            .Select(applyAsync)
+            .ToArray());
+    }
+
+    [DebuggerStepThrough]
     public static void ForEach<T>(this IEnumerable<T> items, [InstantHandle] Action<T, int> apply)
     {
         Guard
@@ -101,5 +119,21 @@ public static class EnumerableExtensions
         {
             apply(item, index++);
         }
+    }
+
+    [DebuggerStepThrough]
+    public static void ForEachAsync<T>(this IEnumerable<T> items, [InstantHandle] Func<T, int, Task> applyAsync)
+    {
+        Guard
+            .Require(items, nameof(items))
+            .Is.Not.Null();
+
+        Guard
+            .Require(applyAsync, nameof(applyAsync))
+            .Is.Not.Null();
+
+        Task.WaitAll(items
+            .Select(applyAsync)
+            .ToArray());
     }
 }

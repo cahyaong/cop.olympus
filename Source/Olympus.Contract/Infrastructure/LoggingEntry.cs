@@ -39,7 +39,7 @@ public class LoggingEntry
     public LoggingEntry()
     {
         this.Timestamp = DateTimeOffset.UtcNow;
-        this.Component = Text.Undefined;
+        this.Component = DefinedText.Unknown;
         this.Verbosity = Verbosity.None;
         this.Exception = null;
         this.Message = string.Empty;

@@ -38,14 +38,14 @@ public static partial class Guard
     [ContractAnnotation("actual:null => halt")]
     public static ValidationContinuation<T> Require<T>([NoEnumeration] T actual)
     {
-        return new(Text.Unknown, actual, ValidatorKind.PreCondition);
+        return new(DefinedText.Unknown, actual, ValidatorKind.PreCondition);
     }
 
     [DebuggerStepThrough]
     [ContractAnnotation("actual:null => halt")]
     public static ValidationContinuation<T> Ensure<T>([NoEnumeration] T actual)
     {
-        return new(Text.Unknown, actual, ValidatorKind.PostCondition);
+        return new(DefinedText.Unknown, actual, ValidatorKind.PostCondition);
     }
 
     [DebuggerStepThrough]
@@ -68,7 +68,7 @@ public static partial class Guard
     {
         return validator.Validate(
             actual => actual == null,
-            $"be {Text.Null}");
+            $"be {DefinedText.Null}");
     }
 
     [DebuggerStepThrough]
@@ -76,7 +76,7 @@ public static partial class Guard
     {
         return validator.Validate(
             actual => object.Equals(actual, default(T)),
-            $"be {Text.Default}");
+            $"be {DefinedText.Default}");
     }
 
     [DebuggerStepThrough]
@@ -118,7 +118,7 @@ public static partial class Guard
     {
         return validator.Validate(
             actual => actual,
-            $"be {Text.True}");
+            $"be {DefinedText.True}");
     }
 
     [DebuggerStepThrough]
@@ -126,6 +126,6 @@ public static partial class Guard
     {
         return validator.Validate(
             actual => !actual,
-            $"be {Text.False}");
+            $"be {DefinedText.False}");
     }
 }

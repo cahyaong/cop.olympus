@@ -35,13 +35,13 @@ public class MockBuilder
     public static Mock<T> CreateMock<T>(params object[] args)
         where T : class
     {
-        return new(args);
+        return new Mock<T>(args);
     }
 
     public static Mock<T> CreateStub<T>(params object[] args)
         where T : class
     {
-        return new(args)
+        return new Mock<T>(args)
         {
             CallBase = true
         };

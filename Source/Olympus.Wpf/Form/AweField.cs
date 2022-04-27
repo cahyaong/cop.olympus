@@ -53,7 +53,7 @@ public class AweField : Control
         nameof(AweField.Header),
         typeof(string),
         typeof(AweField),
-        new PropertyMetadata(Text.Undefined));
+        new PropertyMetadata(DefinedText.Unknown));
 
     public static readonly DependencyProperty ValueProperty = DependencyProperty.Register(
         nameof(AweField.Value),

@@ -41,7 +41,7 @@ public class AnyToTypeNameConverter : IValueConverter
             .Require(type, nameof(type))
             .Is.EqualTo(typeof(string));
 
-        return value != null ? value.GetType().FullName : Text.Null;
+        return value != null ? value.GetType().FullName : DefinedText.Null;
     }
 
     public object ConvertBack(object value, Type type, object parameter, CultureInfo cultureInfo)
