@@ -73,7 +73,7 @@ internal class LoggingProvider : ILoggingProvider
             ._loggerLookup
             .GetOrAdd(component, _ => this.CreateLogger(component));
 
-        this._aggregatingLogger.RegisterLoggers(logger);
+        this._aggregatingLogger.RegisterLogger(logger);
 
         return logger;
     }
@@ -90,17 +90,17 @@ internal class LoggingProvider : ILoggingProvider
 
         if (this._loggingModes.HasFlag(LoggingModes.CommunityOfPractice))
         {
-            logger.RegisterLoggers(new CopLogger(component));
+            logger.RegisterLogger(new CopLogger(component));
         }
 
         if (this._loggingModes.HasFlag(LoggingModes.NLogger))
         {
-            logger.RegisterLoggers(new NLogger(component));
+            logger.RegisterLogger(new NLogger(component));
         }
 
         if (this._loggingModes.HasFlag(LoggingModes.Console))
         {
-            logger.RegisterLoggers(new ConsoleLogger(component));
+            logger.RegisterLogger(new ConsoleLogger(component));
         }
 
         return logger;

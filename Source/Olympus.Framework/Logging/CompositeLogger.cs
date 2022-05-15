@@ -46,7 +46,7 @@ public class CompositeLogger : LoggerBase
         this._loggerLookup = new ConcurrentDictionary<string, ILogger>();
     }
 
-    public void RegisterLoggers(params ILogger[] loggers)
+    public void RegisterLogger(params ILogger[] loggers)
     {
         Guard
             .Require(loggers, nameof(loggers))
@@ -71,7 +71,7 @@ public class CompositeLogger : LoggerBase
             });
     }
 
-    public void UnregisterLoggers(params ILogger[] loggers)
+    public void UnregisterLogger(params ILogger[] loggers)
     {
         Guard
             .Require(loggers, nameof(loggers))

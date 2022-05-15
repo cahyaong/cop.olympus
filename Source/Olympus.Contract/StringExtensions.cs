@@ -31,6 +31,7 @@
 namespace System;
 
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
@@ -71,7 +72,7 @@ public static class StringExtensions
         // TODO: Update any similar code to use this method!
         // TODO: Rename all To___(...) methods to As___(...) to make it consistent with .NET!
 
-        if (!values.Any())
+        if (values?.Any() != true)
         {
             return DefinedText.Empty;
         }
@@ -83,6 +84,33 @@ public static class StringExtensions
             .ToArray();
 
         return string.Join(", ", prettifiedValues);
+    }
+
+    public static string ToPrettifiedText(this IEnumerable<string> values)
+    {
+        if (values == null)
+        {
+            return DefinedText.Empty;
+        }
+
+        return values
+            .ToImmutableArray()
+            .ToPrettifiedText();
+    }
+
+    public static string ToPrettifiedText<TItem>(this IEnumerable<TItem> items, Func<TItem, string> selectValue = null)
+    {
+        if (items == null)
+        {
+            return DefinedText.Empty;
+        }
+
+        var values = selectValue != null
+            ? items.Select(selectValue)
+            : items.Select(item => item.ToString());
+
+        return values
+            .ToPrettifiedText();
     }
 
     public static Stream AsStream(this string text)

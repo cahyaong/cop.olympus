@@ -41,7 +41,7 @@ public class StringExtensionsTests
         {
             // Arrange.
 
-            var values = new string[0];
+            var values = Array.Empty<string>();
 
             // Act.
 
@@ -94,6 +94,45 @@ public class StringExtensionsTests
 
             text
                 .Should().Be("[[_MOCK_VALUE_01_]], [/], [[_MOCK_VALUE_02_]]");
+        }
+
+        [Fact]
+        public void WhenGettingMultipleItemsWithoutValueSelector_ShouldKeepOrdering()
+        {
+            // Arrange.
+
+            var numbers = new[] { 42, 21, 84 };
+
+            // Act.
+
+            var text = numbers.ToPrettifiedText();
+
+            // Assert.
+
+            text
+                .Should().Be("[42], [21], [84]");
+        }
+
+        [Fact]
+        public void WhenGettingMultipleItemsWithValueSelector_ShouldKeepOrderingAndSelectValue()
+        {
+            // Arrange.
+
+            var dates = new[]
+            {
+                new DateTime(2022, 5, 1, 12, 00, 00),
+                new DateTime(2000, 1, 1, 12, 15, 00),
+                new DateTime(3000, 12, 31, 12, 45, 00)
+            };
+
+            // Act.
+
+            var text = dates.ToPrettifiedText(date => date.ToString("MM/dd/yyyy"));
+
+            // Assert.
+
+            text
+                .Should().Be("[05/01/2022], [01/01/2000], [12/31/3000]");
         }
     }
 }
