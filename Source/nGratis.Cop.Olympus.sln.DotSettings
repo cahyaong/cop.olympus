@@ -1,32 +1,12 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	<s:Boolean x:Key="/Default/Environment/Filtering/ExcludeCoverageFilters/=_002A_002EDemo_003B_002A_003B_002A_003B_002A/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/Environment/Filtering/ExcludeCoverageFilters/=_002A_002ETest_003B_002A_003B_002A_003B_002A/@EntryIndexedValue">True</s:Boolean>
-	
-	
-	
-	
-	
-	
-	
-	
 	<s:Boolean x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=F3E2D81F77981C4F9A8A9B8F698E9877/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=F3E2D81F77981C4F9A8A9B8F698E9877/RelativePath/@EntryValue">..\Olympus.Shared\nGratis.Shared.DotSettings</s:String>
-	
-	
 	<s:Boolean x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=FDD98B0FC0F34F469E7661676B2CEB5B/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=FDD98B0FC0F34F469E7661676B2CEB5B/RelativePath/@EntryValue">..\Olympus.Shared\nGratis.Cop.Shared.DotSettings</s:String>
-	
-	
-	
-	
-	
-	
-	
-	
 	<s:Boolean x:Key="/Default/Environment/InjectedLayers/InjectedLayerCustomization/=FileF3E2D81F77981C4F9A8A9B8F698E9877/@KeyIndexDefined">True</s:Boolean>
 	<s:Double x:Key="/Default/Environment/InjectedLayers/InjectedLayerCustomization/=FileF3E2D81F77981C4F9A8A9B8F698E9877/RelativePriority/@EntryValue">1</s:Double>
-	
-	
 	<s:Boolean x:Key="/Default/Environment/InjectedLayers/InjectedLayerCustomization/=FileFDD98B0FC0F34F469E7661676B2CEB5B/@KeyIndexDefined">True</s:Boolean>
 	<s:Double x:Key="/Default/Environment/InjectedLayers/InjectedLayerCustomization/=FileFDD98B0FC0F34F469E7661676B2CEB5B/RelativePriority/@EntryValue">1.5</s:Double>
 	<s:Boolean x:Key="/Default/Environment/SettingsMigration/IsMigratorApplied/=JetBrains_002EdotCover_002EIde_002ECore_002EFilterManagement_002EModel_002ESolutionFilterSettingsManagerMigrateSettings/@EntryIndexedValue">True</s:Boolean>

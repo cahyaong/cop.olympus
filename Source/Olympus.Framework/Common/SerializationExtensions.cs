@@ -35,11 +35,12 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Text;
+using Newtonsoft.Json.Converters;
 using nGratis.Cop.Olympus.Contract;
 
 public static class SerializationExtensions
 {
-    public static Stream SerializeManyToJson<T>(this IEnumerable<T> instances)
+    public static Stream SerializeManyToJson<TItem>(this IEnumerable<TItem> instances)
     {
         Guard
             .Require(instances, nameof(instances))
@@ -51,16 +52,17 @@ public static class SerializationExtensions
     }
 
     [SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times")]
-    public static Stream SerializeToJson<T>(this T instance)
-        where T : class
+    public static Stream SerializeToJson<TInstance>(this TInstance instance)
+        where TInstance : class
     {
         Guard
             .Require(instance, nameof(instance))
             .Is.Not.Null();
 
         var serializer = new JsonSerializer();
-        var stream = new MemoryStream();
+        serializer.Converters.Add(new StringEnumConverter());
 
+        var stream = new MemoryStream();
         using var streamWriter = new StreamWriter(stream, Encoding.UTF8, 4096, true);
 
         using var jsonWriter = new JsonTextWriter(streamWriter)
@@ -70,7 +72,7 @@ public static class SerializationExtensions
             Indentation = 2
         };
 
-        serializer.Serialize(jsonWriter, instance, typeof(T));
+        serializer.Serialize(jsonWriter, instance, typeof(TInstance));
         jsonWriter.Flush();
         stream.Position = 0;
 
