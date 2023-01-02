@@ -104,12 +104,18 @@ public static partial class Guard
     }
 
     [DebuggerStepThrough]
-    public static ValidationContinuation<Type> AssignableFrom(
-        this ClassValidator<Type> validator,
-        Type expected)
+    public static ValidationContinuation<Type> AssignableFrom(this ClassValidator<Type> validator, Type expected)
     {
         return validator.Validate(
             actual => actual.IsAssignableFrom(expected),
+            $"be assignable from [{expected.FullName}]");
+    }
+
+    [DebuggerStepThrough]
+    public static ValidationContinuation<Type> AssignableTo(this ClassValidator<Type> validator, Type expected)
+    {
+        return validator.Validate(
+            actual => actual.IsAssignableTo(expected),
             $"be assignable from [{expected.FullName}]");
     }
 
