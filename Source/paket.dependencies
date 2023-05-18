@@ -16,12 +16,12 @@ group _UI
     framework: net6.0-windows
     source https://api.nuget.org/v3/index.json
 
-    nuget Caliburn.Micro ~> 4.0.136-rc
+    nuget Caliburn.Micro
     nuget Humanizer.Core
     nuget MahApps.Metro
     nuget OxyPlot.Wpf
-    nuget ReactiveUI ~> 11.5.17.0
-    nuget ReactiveUI.WPF ~> 11.5.17.0
+    nuget ReactiveUI
+    nuget ReactiveUI.WPF
     nuget Splat ~> 9.0
     nuget System.Reactive ~> 4.4.1.0
 
