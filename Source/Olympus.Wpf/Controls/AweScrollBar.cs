@@ -68,7 +68,7 @@ public class AweScrollBar : ScrollBar
 
         if (this.Orientation == Orientation.Vertical)
         {
-            throw new NotImplementedException();
+            throw new NotSupportedException("Updating button states to vertical orientation is not allowed!");
         }
 
         if (this._leftButton == null || this._rightButton == null)
