@@ -34,7 +34,7 @@ public class MimeTests
             // Assert.
 
             action
-                .Should().Throw<CopPreConditionException>();
+                .Should().Throw<OlympusPreConditionException>();
         }
     }
 
@@ -70,7 +70,7 @@ public class MimeTests
             // Assert.
 
             action
-                .Should().Throw<CopPreConditionException>();
+                .Should().Throw<OlympusPreConditionException>();
         }
     }
 
@@ -121,7 +121,7 @@ public class MimeTests
             // Assert.
 
             action
-                .Should().Throw<CopPreConditionException>();
+                .Should().Throw<OlympusPreConditionException>();
         }
     }
 
@@ -261,7 +261,7 @@ public class MimeTests
         }
     }
 
-    public class MimeEquivalentTheory : CopTheory
+    public class MimeEquivalentTheory : OlympusTheory
     {
         public Mime LeftMime { get; private init; }
 

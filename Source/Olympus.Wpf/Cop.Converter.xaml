@@ -8,7 +8,9 @@
   <wpf:AnyToUpperCaseConverter x:Key="Cop.Converter.AnyToUpperCaseConverter" />
   <BooleanToVisibilityConverter x:Key="Cop.Converter.BooleanToVisibilityConverter" />
   <wpf:BooleanToLogicalNotConverter x:Key="Cop.Converter.BooleanToLogicalNotConverter" />
-  <wpf:ChartConfigToPlotModelConverter x:Key="Cop.Converter.ChartConfigToPlotModelConverter" ThemeManager="{DynamicResource Cop.ThemeManager}" />
+  <wpf:ChartConfigToPlotModelConverter
+    x:Key="Cop.Converter.ChartConfigToPlotModelConverter"
+    ThemeManager="{DynamicResource Cop.ThemeManager}" />
   <wpf:ColorToSolidBrushConverter x:Key="Cop.Converter.ColorToSolidBrushConverter" />
   <wpf:EnumerableToCountConverter x:Key="Cop.Converter.EnumerableToCountConverter" />
   <wpf:EnumToValuesConverter x:Key="Cop.Converter.EnumToValuesConverter" />

@@ -5,7 +5,9 @@
   <ResourceDictionary.MergedDictionaries>
     <olympus:SharedResourceDictionary Source="/MahApps.Metro;component/Styles/Controls.Buttons.xaml" />
   </ResourceDictionary.MergedDictionaries>
-  <Style BasedOn="{StaticResource MahApps.Styles.Button.Flat}" TargetType="{x:Type Button}">
+  <Style
+    BasedOn="{StaticResource MahApps.Styles.Button.Flat}"
+    TargetType="{x:Type Button}">
     <Setter Property="FontFamily" Value="Segoe UI Semilight" />
     <Setter Property="FontSize" Value="11pt" />
   </Style>

@@ -35,7 +35,7 @@ public class WeakValueDictionary<TKey, TValue> : IDictionary<TKey, TValue>
         {
             if (!this.TryGetValue(key, out var value))
             {
-                throw new CopException($"No entry with key [{key}] can be found in collection!");
+                throw new OlympusException($"No entry with key [{key}] can be found in collection!");
             }
 
             return value;
@@ -141,12 +141,12 @@ public class WeakValueDictionary<TKey, TValue> : IDictionary<TKey, TValue>
 
         if (index < 0 || index >= array.Length)
         {
-            throw new CopPreConditionException($"Variable [index] should be between 0 and ${array.Length - 1}!");
+            throw new OlympusPreConditionException($"Variable [index] should be between 0 and ${array.Length - 1}!");
         }
 
         if (index + this.Count > array.Length)
         {
-            throw new CopException("Entries in source collection cannot fit target collection!");
+            throw new OlympusException("Entries in source collection cannot fit target collection!");
         }
 
         this.ToArray()

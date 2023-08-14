@@ -16,6 +16,7 @@ using System;
 using System.IO;
 using FluentAssertions;
 using Moq;
+using nGratis.Cop.Olympus.Framework;
 using Xunit;
 
 public partial class GuardTests
@@ -67,7 +68,7 @@ public partial class GuardTests
         }
 
         [Fact]
-        public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+        public void WhenGettingInvalidPreCondition_ShouldThrowOlympusPreConditionException()
         {
             // Arrange.
 
@@ -85,7 +86,7 @@ public partial class GuardTests
             // Assert.
 
             action
-                .Should().Throw<CopPreConditionException>()
+                .Should().Throw<OlympusPreConditionException>()
                 .WithMessage("PRE-CONDITION: Variable [value] should be an URL!");
         }
 
@@ -134,7 +135,7 @@ public partial class GuardTests
         }
 
         [Fact]
-        public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+        public void WhenGettingInvalidPostCondition_ShouldThrowOlympusPostConditionException()
         {
             // Arrange.
 
@@ -152,7 +153,7 @@ public partial class GuardTests
             // Assert.
 
             action
-                .Should().Throw<CopPostConditionException>()
+                .Should().Throw<OlympusPostConditionException>()
                 .WithMessage("POST-CONDITION: Variable [value] should be an URL!");
         }
     }
@@ -185,7 +186,7 @@ public partial class GuardTests
         }
 
         [Fact]
-        public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+        public void WhenGettingInvalidPreCondition_ShouldThrowOlympusPreConditionException()
         {
             // Arrange.
 
@@ -205,7 +206,7 @@ public partial class GuardTests
             // Assert.
 
             action
-                .Should().Throw<CopPreConditionException>()
+                .Should().Throw<OlympusPreConditionException>()
                 .WithMessage("PRE-CONDITION: Variable [value] should be readable!");
         }
 
@@ -235,7 +236,7 @@ public partial class GuardTests
         }
 
         [Fact]
-        public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+        public void WhenGettingInvalidPostCondition_ShouldThrowOlympusPostConditionException()
         {
             // Arrange.
 
@@ -255,7 +256,7 @@ public partial class GuardTests
             // Assert.
 
             action
-                .Should().Throw<CopPostConditionException>()
+                .Should().Throw<OlympusPostConditionException>()
                 .WithMessage("POST-CONDITION: Variable [value] should be readable!");
         }
     }
@@ -288,7 +289,7 @@ public partial class GuardTests
         }
 
         [Fact]
-        public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+        public void WhenGettingInvalidPreCondition_ShouldThrowOlympusPreConditionException()
         {
             // Arrange.
 
@@ -308,7 +309,7 @@ public partial class GuardTests
             // Assert.
 
             action
-                .Should().Throw<CopPreConditionException>()
+                .Should().Throw<OlympusPreConditionException>()
                 .WithMessage("PRE-CONDITION: Variable [value] should be writable!");
         }
 
@@ -338,7 +339,7 @@ public partial class GuardTests
         }
 
         [Fact]
-        public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+        public void WhenGettingInvalidPostCondition_ShouldThrowOlympusPostConditionException()
         {
             // Arrange.
 
@@ -358,7 +359,7 @@ public partial class GuardTests
             // Assert.
 
             action
-                .Should().Throw<CopPostConditionException>()
+                .Should().Throw<OlympusPostConditionException>()
                 .WithMessage("POST-CONDITION: Variable [value] should be writable!");
         }
     }
@@ -391,7 +392,7 @@ public partial class GuardTests
         }
 
         [Fact]
-        public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+        public void WhenGettingInvalidPreCondition_ShouldThrowOlympusPreConditionException()
         {
             // Arrange.
 
@@ -412,7 +413,7 @@ public partial class GuardTests
             // Assert.
 
             action
-                .Should().Throw<CopPreConditionException>()
+                .Should().Throw<OlympusPreConditionException>()
                 .WithMessage("PRE-CONDITION: Variable [value] should be empty!");
         }
 
@@ -442,7 +443,7 @@ public partial class GuardTests
         }
 
         [Fact]
-        public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+        public void WhenGettingInvalidPostCondition_ShouldThrowOlympusPostConditionException()
         {
             // Arrange.
 
@@ -463,7 +464,7 @@ public partial class GuardTests
             // Assert.
 
             action
-                .Should().Throw<CopPostConditionException>()
+                .Should().Throw<OlympusPostConditionException>()
                 .WithMessage("POST-CONDITION: Variable [value] should be empty!");
         }
     }
@@ -493,7 +494,7 @@ public partial class GuardTests
         }
 
         [Fact]
-        public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+        public void WhenGettingInvalidPreCondition_ShouldThrowOlympusPreConditionException()
         {
             // Arrange.
 
@@ -511,7 +512,7 @@ public partial class GuardTests
             // Assert.
 
             action
-                .Should().Throw<CopPreConditionException>()
+                .Should().Throw<OlympusPreConditionException>()
                 .WithMessage("PRE-CONDITION: Variable [value] should have value!");
         }
 
@@ -538,7 +539,7 @@ public partial class GuardTests
         }
 
         [Fact]
-        public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+        public void WhenGettingInvalidPostCondition_ShouldThrowOlympusPostConditionException()
         {
             // Arrange.
 
@@ -556,7 +557,7 @@ public partial class GuardTests
             // Assert.
 
             action
-                .Should().Throw<CopPostConditionException>()
+                .Should().Throw<OlympusPostConditionException>()
                 .WithMessage("POST-CONDITION: Variable [value] should have value!");
         }
     }

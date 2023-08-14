@@ -1,10 +1,10 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="CopException.cs" company="nGratis">
+// <copyright file="OlympusMemoryLeakException.cs" company="nGratis">
 //  The MIT License — Copyright (c) Cahya Ong
 //  See the LICENSE file in the project root for more information.
 // </copyright>
 // <author>Cahya Ong — cahya.ong@gmail.com</author>
-// <creation_timestamp>Tuesday, 5 May 2015 2:15:19 PM UTC</creation_timestamp>
+// <creation_timestamp>Wednesday, November 24, 2021 5:45:42 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace nGratis.Cop.Olympus.Contract;
@@ -13,23 +13,23 @@ using System;
 using System.Runtime.Serialization;
 
 [Serializable]
-public class CopException : Exception
+public class OlympusMemoryLeakException : OlympusException
 {
-    public CopException()
+    public OlympusMemoryLeakException()
     {
     }
 
-    public CopException(string message)
+    public OlympusMemoryLeakException(string message)
         : base(message)
     {
     }
 
-    public CopException(string message, Exception exception)
+    public OlympusMemoryLeakException(string message, Exception exception)
         : base(message, exception)
     {
     }
 
-    protected CopException(SerializationInfo info, StreamingContext context)
+    protected OlympusMemoryLeakException(SerializationInfo info, StreamingContext context)
         : base(info, context)
     {
     }

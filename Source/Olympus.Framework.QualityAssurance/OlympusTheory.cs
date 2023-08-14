@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="CopTheory.cs" company="nGratis">
+// <copyright file="OlympusTheory.cs" company="nGratis">
 //  The MIT License — Copyright (c) Cahya Ong
 //  See the LICENSE file in the project root for more information.
 // </copyright>
@@ -11,11 +11,11 @@ namespace nGratis.Cop.Olympus.Framework;
 
 using nGratis.Cop.Olympus.Contract;
 
-public abstract class CopTheory
+public abstract class OlympusTheory
 {
     public string Label { get; private set; }
 
-    public CopTheory WithLabel(ushort caseNumber, string description)
+    public OlympusTheory WithLabel(ushort caseNumber, string description)
     {
         Guard
             .Require(description, nameof(description))

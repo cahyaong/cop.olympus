@@ -1,14 +1,17 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="MockExtensions.cs" company="nGratis">
+// <copyright file="OlympusMime.cs" company="nGratis">
 //  The MIT License — Copyright (c) Cahya Ong
 //  See the LICENSE file in the project root for more information.
 // </copyright>
 // <author>Cahya Ong — cahya.ong@gmail.com</author>
-// <creation_timestamp>Saturday, October 10, 2020 5:32:07 PM UTC</creation_timestamp>
+// <creation_timestamp>Monday, August 14, 2023 6:29:10 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Framework;
+namespace nGratis.Cop.Olympus.Contract;
 
-public static partial class MockExtensions
+public static class OlympusMime
 {
+    public static readonly Mime Cache = new("application/x-ng-olympus-cache", "ngocache");
+
+    public static readonly Mime Session = new("application/x-ng-olympus-session", "ngosession");
 }

@@ -7,9 +7,9 @@
 // <creation_timestamp>Saturday, 31 March 2018 5:14:34 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-// ReSharper disable once CheckNamespace
+namespace nGratis.Cop.Olympus.Framework;
 
-namespace Moq;
+using Moq;
 
 public class MockBuilder
 {

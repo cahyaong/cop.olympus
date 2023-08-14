@@ -1,9 +1,9 @@
-ï»¿// --------------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="Guard.All.Numerical.cs" company="nGratis">
-//  The MIT License â€” Copyright (c) Cahya Ong
+//  The MIT License — Copyright (c) Cahya Ong
 //  See the LICENSE file in the project root for more information.
 // </copyright>
-// <author>Cahya Ong â€” cahya.ong@gmail.com</author>
+// <author>Cahya Ong — cahya.ong@gmail.com</author>
 // <creation_timestamp>Sunday, 1 April 2018 1:05:37 AM UTC</creation_timestamp>
 // <remark>
 //
@@ -51,7 +51,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+            public void WhenGettingInvalidPreCondition_ShouldThrowOlympusPreConditionException()
             {
                 // Arrange.
 
@@ -69,7 +69,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPreConditionException>()
+                    .Should().Throw<OlympusPreConditionException>()
                     .WithMessage($"PRE-CONDITION: Variable [value] should be less than [{(int.MinValue + int.MaxValue) / 2}]!");
             }
 
@@ -96,7 +96,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+            public void WhenGettingInvalidPostCondition_ShouldThrowOlympusPostConditionException()
             {
                 // Arrange.
 
@@ -114,7 +114,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPostConditionException>()
+                    .Should().Throw<OlympusPostConditionException>()
                     .WithMessage($"POST-CONDITION: Variable [value] should be less than [{(int.MinValue + int.MaxValue) / 2}]!");
             }
         }
@@ -144,7 +144,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+            public void WhenGettingInvalidPreCondition_ShouldThrowOlympusPreConditionException()
             {
                 // Arrange.
 
@@ -162,7 +162,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPreConditionException>()
+                    .Should().Throw<OlympusPreConditionException>()
                     .WithMessage($"PRE-CONDITION: Variable [value] should be less than or equal to [{(int.MinValue + int.MaxValue) / 2}]!");
             }
 
@@ -189,7 +189,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+            public void WhenGettingInvalidPostCondition_ShouldThrowOlympusPostConditionException()
             {
                 // Arrange.
 
@@ -207,7 +207,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPostConditionException>()
+                    .Should().Throw<OlympusPostConditionException>()
                     .WithMessage($"POST-CONDITION: Variable [value] should be less than or equal to [{(int.MinValue + int.MaxValue) / 2}]!");
             }
         }
@@ -237,7 +237,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+            public void WhenGettingInvalidPreCondition_ShouldThrowOlympusPreConditionException()
             {
                 // Arrange.
 
@@ -255,7 +255,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPreConditionException>()
+                    .Should().Throw<OlympusPreConditionException>()
                     .WithMessage($"PRE-CONDITION: Variable [value] should be greater than [{(int.MinValue + int.MaxValue) / 2}]!");
             }
 
@@ -282,7 +282,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+            public void WhenGettingInvalidPostCondition_ShouldThrowOlympusPostConditionException()
             {
                 // Arrange.
 
@@ -300,7 +300,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPostConditionException>()
+                    .Should().Throw<OlympusPostConditionException>()
                     .WithMessage($"POST-CONDITION: Variable [value] should be greater than [{(int.MinValue + int.MaxValue) / 2}]!");
             }
         }
@@ -330,7 +330,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+            public void WhenGettingInvalidPreCondition_ShouldThrowOlympusPreConditionException()
             {
                 // Arrange.
 
@@ -348,7 +348,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPreConditionException>()
+                    .Should().Throw<OlympusPreConditionException>()
                     .WithMessage($"PRE-CONDITION: Variable [value] should be greater than or equal to [{(int.MinValue + int.MaxValue) / 2}]!");
             }
 
@@ -375,7 +375,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+            public void WhenGettingInvalidPostCondition_ShouldThrowOlympusPostConditionException()
             {
                 // Arrange.
 
@@ -393,7 +393,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPostConditionException>()
+                    .Should().Throw<OlympusPostConditionException>()
                     .WithMessage($"POST-CONDITION: Variable [value] should be greater than or equal to [{(int.MinValue + int.MaxValue) / 2}]!");
             }
         }
@@ -423,7 +423,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+            public void WhenGettingInvalidPreCondition_ShouldThrowOlympusPreConditionException()
             {
                 // Arrange.
 
@@ -441,7 +441,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPreConditionException>()
+                    .Should().Throw<OlympusPreConditionException>()
                     .WithMessage($"PRE-CONDITION: Variable [value] should be a positive number!");
             }
 
@@ -468,7 +468,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+            public void WhenGettingInvalidPostCondition_ShouldThrowOlympusPostConditionException()
             {
                 // Arrange.
 
@@ -486,7 +486,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPostConditionException>()
+                    .Should().Throw<OlympusPostConditionException>()
                     .WithMessage($"POST-CONDITION: Variable [value] should be a positive number!");
             }
         }
@@ -516,7 +516,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+            public void WhenGettingInvalidPreCondition_ShouldThrowOlympusPreConditionException()
             {
                 // Arrange.
 
@@ -534,7 +534,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPreConditionException>()
+                    .Should().Throw<OlympusPreConditionException>()
                     .WithMessage($"PRE-CONDITION: Variable [value] should be zero or a positive number!");
             }
 
@@ -561,7 +561,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+            public void WhenGettingInvalidPostCondition_ShouldThrowOlympusPostConditionException()
             {
                 // Arrange.
 
@@ -579,7 +579,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPostConditionException>()
+                    .Should().Throw<OlympusPostConditionException>()
                     .WithMessage($"POST-CONDITION: Variable [value] should be zero or a positive number!");
             }
         }
@@ -609,7 +609,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+            public void WhenGettingInvalidPreCondition_ShouldThrowOlympusPreConditionException()
             {
                 // Arrange.
 
@@ -627,7 +627,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPreConditionException>()
+                    .Should().Throw<OlympusPreConditionException>()
                     .WithMessage($"PRE-CONDITION: Variable [value] should be a negative number!");
             }
 
@@ -654,7 +654,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+            public void WhenGettingInvalidPostCondition_ShouldThrowOlympusPostConditionException()
             {
                 // Arrange.
 
@@ -672,7 +672,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPostConditionException>()
+                    .Should().Throw<OlympusPostConditionException>()
                     .WithMessage($"POST-CONDITION: Variable [value] should be a negative number!");
             }
         }
@@ -702,7 +702,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+            public void WhenGettingInvalidPreCondition_ShouldThrowOlympusPreConditionException()
             {
                 // Arrange.
 
@@ -720,7 +720,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPreConditionException>()
+                    .Should().Throw<OlympusPreConditionException>()
                     .WithMessage($"PRE-CONDITION: Variable [value] should be zero or a negative number!");
             }
 
@@ -747,7 +747,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+            public void WhenGettingInvalidPostCondition_ShouldThrowOlympusPostConditionException()
             {
                 // Arrange.
 
@@ -765,7 +765,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPostConditionException>()
+                    .Should().Throw<OlympusPostConditionException>()
                     .WithMessage($"POST-CONDITION: Variable [value] should be zero or a negative number!");
             }
         }
@@ -795,7 +795,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+            public void WhenGettingInvalidPreCondition_ShouldThrowOlympusPreConditionException()
             {
                 // Arrange.
 
@@ -813,7 +813,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPreConditionException>()
+                    .Should().Throw<OlympusPreConditionException>()
                     .WithMessage($"PRE-CONDITION: Variable [value] should be zero!");
             }
 
@@ -840,7 +840,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+            public void WhenGettingInvalidPostCondition_ShouldThrowOlympusPostConditionException()
             {
                 // Arrange.
 
@@ -858,7 +858,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPostConditionException>()
+                    .Should().Throw<OlympusPostConditionException>()
                     .WithMessage($"POST-CONDITION: Variable [value] should be zero!");
             }
         }
@@ -888,7 +888,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+            public void WhenGettingInvalidPreCondition_ShouldThrowOlympusPreConditionException()
             {
                 // Arrange.
 
@@ -906,7 +906,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPreConditionException>()
+                    .Should().Throw<OlympusPreConditionException>()
                     .WithMessage($"PRE-CONDITION: Variable [value] should be equal to [0]!");
             }
 
@@ -933,7 +933,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+            public void WhenGettingInvalidPostCondition_ShouldThrowOlympusPostConditionException()
             {
                 // Arrange.
 
@@ -951,7 +951,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPostConditionException>()
+                    .Should().Throw<OlympusPostConditionException>()
                     .WithMessage($"POST-CONDITION: Variable [value] should be equal to [0]!");
             }
         }
@@ -981,7 +981,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+            public void WhenGettingInvalidPreCondition_ShouldThrowOlympusPreConditionException()
             {
                 // Arrange.
 
@@ -999,7 +999,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPreConditionException>()
+                    .Should().Throw<OlympusPreConditionException>()
                     .WithMessage($"PRE-CONDITION: Variable [value] should be less than [{(long.MinValue + long.MaxValue) / 2}]!");
             }
 
@@ -1026,7 +1026,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+            public void WhenGettingInvalidPostCondition_ShouldThrowOlympusPostConditionException()
             {
                 // Arrange.
 
@@ -1044,7 +1044,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPostConditionException>()
+                    .Should().Throw<OlympusPostConditionException>()
                     .WithMessage($"POST-CONDITION: Variable [value] should be less than [{(long.MinValue + long.MaxValue) / 2}]!");
             }
         }
@@ -1074,7 +1074,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+            public void WhenGettingInvalidPreCondition_ShouldThrowOlympusPreConditionException()
             {
                 // Arrange.
 
@@ -1092,7 +1092,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPreConditionException>()
+                    .Should().Throw<OlympusPreConditionException>()
                     .WithMessage($"PRE-CONDITION: Variable [value] should be less than or equal to [{(long.MinValue + long.MaxValue) / 2}]!");
             }
 
@@ -1119,7 +1119,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+            public void WhenGettingInvalidPostCondition_ShouldThrowOlympusPostConditionException()
             {
                 // Arrange.
 
@@ -1137,7 +1137,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPostConditionException>()
+                    .Should().Throw<OlympusPostConditionException>()
                     .WithMessage($"POST-CONDITION: Variable [value] should be less than or equal to [{(long.MinValue + long.MaxValue) / 2}]!");
             }
         }
@@ -1167,7 +1167,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+            public void WhenGettingInvalidPreCondition_ShouldThrowOlympusPreConditionException()
             {
                 // Arrange.
 
@@ -1185,7 +1185,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPreConditionException>()
+                    .Should().Throw<OlympusPreConditionException>()
                     .WithMessage($"PRE-CONDITION: Variable [value] should be greater than [{(long.MinValue + long.MaxValue) / 2}]!");
             }
 
@@ -1212,7 +1212,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+            public void WhenGettingInvalidPostCondition_ShouldThrowOlympusPostConditionException()
             {
                 // Arrange.
 
@@ -1230,7 +1230,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPostConditionException>()
+                    .Should().Throw<OlympusPostConditionException>()
                     .WithMessage($"POST-CONDITION: Variable [value] should be greater than [{(long.MinValue + long.MaxValue) / 2}]!");
             }
         }
@@ -1260,7 +1260,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+            public void WhenGettingInvalidPreCondition_ShouldThrowOlympusPreConditionException()
             {
                 // Arrange.
 
@@ -1278,7 +1278,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPreConditionException>()
+                    .Should().Throw<OlympusPreConditionException>()
                     .WithMessage($"PRE-CONDITION: Variable [value] should be greater than or equal to [{(long.MinValue + long.MaxValue) / 2}]!");
             }
 
@@ -1305,7 +1305,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+            public void WhenGettingInvalidPostCondition_ShouldThrowOlympusPostConditionException()
             {
                 // Arrange.
 
@@ -1323,7 +1323,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPostConditionException>()
+                    .Should().Throw<OlympusPostConditionException>()
                     .WithMessage($"POST-CONDITION: Variable [value] should be greater than or equal to [{(long.MinValue + long.MaxValue) / 2}]!");
             }
         }
@@ -1353,7 +1353,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+            public void WhenGettingInvalidPreCondition_ShouldThrowOlympusPreConditionException()
             {
                 // Arrange.
 
@@ -1371,7 +1371,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPreConditionException>()
+                    .Should().Throw<OlympusPreConditionException>()
                     .WithMessage($"PRE-CONDITION: Variable [value] should be a positive number!");
             }
 
@@ -1398,7 +1398,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+            public void WhenGettingInvalidPostCondition_ShouldThrowOlympusPostConditionException()
             {
                 // Arrange.
 
@@ -1416,7 +1416,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPostConditionException>()
+                    .Should().Throw<OlympusPostConditionException>()
                     .WithMessage($"POST-CONDITION: Variable [value] should be a positive number!");
             }
         }
@@ -1446,7 +1446,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+            public void WhenGettingInvalidPreCondition_ShouldThrowOlympusPreConditionException()
             {
                 // Arrange.
 
@@ -1464,7 +1464,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPreConditionException>()
+                    .Should().Throw<OlympusPreConditionException>()
                     .WithMessage($"PRE-CONDITION: Variable [value] should be zero or a positive number!");
             }
 
@@ -1491,7 +1491,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+            public void WhenGettingInvalidPostCondition_ShouldThrowOlympusPostConditionException()
             {
                 // Arrange.
 
@@ -1509,7 +1509,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPostConditionException>()
+                    .Should().Throw<OlympusPostConditionException>()
                     .WithMessage($"POST-CONDITION: Variable [value] should be zero or a positive number!");
             }
         }
@@ -1539,7 +1539,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+            public void WhenGettingInvalidPreCondition_ShouldThrowOlympusPreConditionException()
             {
                 // Arrange.
 
@@ -1557,7 +1557,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPreConditionException>()
+                    .Should().Throw<OlympusPreConditionException>()
                     .WithMessage($"PRE-CONDITION: Variable [value] should be a negative number!");
             }
 
@@ -1584,7 +1584,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+            public void WhenGettingInvalidPostCondition_ShouldThrowOlympusPostConditionException()
             {
                 // Arrange.
 
@@ -1602,7 +1602,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPostConditionException>()
+                    .Should().Throw<OlympusPostConditionException>()
                     .WithMessage($"POST-CONDITION: Variable [value] should be a negative number!");
             }
         }
@@ -1632,7 +1632,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+            public void WhenGettingInvalidPreCondition_ShouldThrowOlympusPreConditionException()
             {
                 // Arrange.
 
@@ -1650,7 +1650,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPreConditionException>()
+                    .Should().Throw<OlympusPreConditionException>()
                     .WithMessage($"PRE-CONDITION: Variable [value] should be zero or a negative number!");
             }
 
@@ -1677,7 +1677,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+            public void WhenGettingInvalidPostCondition_ShouldThrowOlympusPostConditionException()
             {
                 // Arrange.
 
@@ -1695,7 +1695,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPostConditionException>()
+                    .Should().Throw<OlympusPostConditionException>()
                     .WithMessage($"POST-CONDITION: Variable [value] should be zero or a negative number!");
             }
         }
@@ -1725,7 +1725,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+            public void WhenGettingInvalidPreCondition_ShouldThrowOlympusPreConditionException()
             {
                 // Arrange.
 
@@ -1743,7 +1743,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPreConditionException>()
+                    .Should().Throw<OlympusPreConditionException>()
                     .WithMessage($"PRE-CONDITION: Variable [value] should be zero!");
             }
 
@@ -1770,7 +1770,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+            public void WhenGettingInvalidPostCondition_ShouldThrowOlympusPostConditionException()
             {
                 // Arrange.
 
@@ -1788,7 +1788,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPostConditionException>()
+                    .Should().Throw<OlympusPostConditionException>()
                     .WithMessage($"POST-CONDITION: Variable [value] should be zero!");
             }
         }
@@ -1818,7 +1818,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+            public void WhenGettingInvalidPreCondition_ShouldThrowOlympusPreConditionException()
             {
                 // Arrange.
 
@@ -1836,7 +1836,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPreConditionException>()
+                    .Should().Throw<OlympusPreConditionException>()
                     .WithMessage($"PRE-CONDITION: Variable [value] should be equal to [0]!");
             }
 
@@ -1863,7 +1863,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+            public void WhenGettingInvalidPostCondition_ShouldThrowOlympusPostConditionException()
             {
                 // Arrange.
 
@@ -1881,7 +1881,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPostConditionException>()
+                    .Should().Throw<OlympusPostConditionException>()
                     .WithMessage($"POST-CONDITION: Variable [value] should be equal to [0]!");
             }
         }
@@ -1911,7 +1911,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+            public void WhenGettingInvalidPreCondition_ShouldThrowOlympusPreConditionException()
             {
                 // Arrange.
 
@@ -1929,7 +1929,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPreConditionException>()
+                    .Should().Throw<OlympusPreConditionException>()
                     .WithMessage($"PRE-CONDITION: Variable [value] should be less than [{(float.MinValue + float.MaxValue) / 2}]!");
             }
 
@@ -1956,7 +1956,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+            public void WhenGettingInvalidPostCondition_ShouldThrowOlympusPostConditionException()
             {
                 // Arrange.
 
@@ -1974,7 +1974,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPostConditionException>()
+                    .Should().Throw<OlympusPostConditionException>()
                     .WithMessage($"POST-CONDITION: Variable [value] should be less than [{(float.MinValue + float.MaxValue) / 2}]!");
             }
         }
@@ -2004,7 +2004,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+            public void WhenGettingInvalidPreCondition_ShouldThrowOlympusPreConditionException()
             {
                 // Arrange.
 
@@ -2022,7 +2022,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPreConditionException>()
+                    .Should().Throw<OlympusPreConditionException>()
                     .WithMessage($"PRE-CONDITION: Variable [value] should be less than or equal to [{(float.MinValue + float.MaxValue) / 2}]!");
             }
 
@@ -2049,7 +2049,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+            public void WhenGettingInvalidPostCondition_ShouldThrowOlympusPostConditionException()
             {
                 // Arrange.
 
@@ -2067,7 +2067,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPostConditionException>()
+                    .Should().Throw<OlympusPostConditionException>()
                     .WithMessage($"POST-CONDITION: Variable [value] should be less than or equal to [{(float.MinValue + float.MaxValue) / 2}]!");
             }
         }
@@ -2097,7 +2097,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+            public void WhenGettingInvalidPreCondition_ShouldThrowOlympusPreConditionException()
             {
                 // Arrange.
 
@@ -2115,7 +2115,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPreConditionException>()
+                    .Should().Throw<OlympusPreConditionException>()
                     .WithMessage($"PRE-CONDITION: Variable [value] should be greater than [{(float.MinValue + float.MaxValue) / 2}]!");
             }
 
@@ -2142,7 +2142,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+            public void WhenGettingInvalidPostCondition_ShouldThrowOlympusPostConditionException()
             {
                 // Arrange.
 
@@ -2160,7 +2160,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPostConditionException>()
+                    .Should().Throw<OlympusPostConditionException>()
                     .WithMessage($"POST-CONDITION: Variable [value] should be greater than [{(float.MinValue + float.MaxValue) / 2}]!");
             }
         }
@@ -2190,7 +2190,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+            public void WhenGettingInvalidPreCondition_ShouldThrowOlympusPreConditionException()
             {
                 // Arrange.
 
@@ -2208,7 +2208,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPreConditionException>()
+                    .Should().Throw<OlympusPreConditionException>()
                     .WithMessage($"PRE-CONDITION: Variable [value] should be greater than or equal to [{(float.MinValue + float.MaxValue) / 2}]!");
             }
 
@@ -2235,7 +2235,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+            public void WhenGettingInvalidPostCondition_ShouldThrowOlympusPostConditionException()
             {
                 // Arrange.
 
@@ -2253,7 +2253,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPostConditionException>()
+                    .Should().Throw<OlympusPostConditionException>()
                     .WithMessage($"POST-CONDITION: Variable [value] should be greater than or equal to [{(float.MinValue + float.MaxValue) / 2}]!");
             }
         }
@@ -2283,7 +2283,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+            public void WhenGettingInvalidPreCondition_ShouldThrowOlympusPreConditionException()
             {
                 // Arrange.
 
@@ -2301,7 +2301,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPreConditionException>()
+                    .Should().Throw<OlympusPreConditionException>()
                     .WithMessage($"PRE-CONDITION: Variable [value] should be a positive number!");
             }
 
@@ -2328,7 +2328,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+            public void WhenGettingInvalidPostCondition_ShouldThrowOlympusPostConditionException()
             {
                 // Arrange.
 
@@ -2346,7 +2346,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPostConditionException>()
+                    .Should().Throw<OlympusPostConditionException>()
                     .WithMessage($"POST-CONDITION: Variable [value] should be a positive number!");
             }
         }
@@ -2376,7 +2376,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+            public void WhenGettingInvalidPreCondition_ShouldThrowOlympusPreConditionException()
             {
                 // Arrange.
 
@@ -2394,7 +2394,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPreConditionException>()
+                    .Should().Throw<OlympusPreConditionException>()
                     .WithMessage($"PRE-CONDITION: Variable [value] should be zero or a positive number!");
             }
 
@@ -2421,7 +2421,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+            public void WhenGettingInvalidPostCondition_ShouldThrowOlympusPostConditionException()
             {
                 // Arrange.
 
@@ -2439,7 +2439,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPostConditionException>()
+                    .Should().Throw<OlympusPostConditionException>()
                     .WithMessage($"POST-CONDITION: Variable [value] should be zero or a positive number!");
             }
         }
@@ -2469,7 +2469,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+            public void WhenGettingInvalidPreCondition_ShouldThrowOlympusPreConditionException()
             {
                 // Arrange.
 
@@ -2487,7 +2487,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPreConditionException>()
+                    .Should().Throw<OlympusPreConditionException>()
                     .WithMessage($"PRE-CONDITION: Variable [value] should be a negative number!");
             }
 
@@ -2514,7 +2514,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+            public void WhenGettingInvalidPostCondition_ShouldThrowOlympusPostConditionException()
             {
                 // Arrange.
 
@@ -2532,7 +2532,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPostConditionException>()
+                    .Should().Throw<OlympusPostConditionException>()
                     .WithMessage($"POST-CONDITION: Variable [value] should be a negative number!");
             }
         }
@@ -2562,7 +2562,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+            public void WhenGettingInvalidPreCondition_ShouldThrowOlympusPreConditionException()
             {
                 // Arrange.
 
@@ -2580,7 +2580,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPreConditionException>()
+                    .Should().Throw<OlympusPreConditionException>()
                     .WithMessage($"PRE-CONDITION: Variable [value] should be zero or a negative number!");
             }
 
@@ -2607,7 +2607,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+            public void WhenGettingInvalidPostCondition_ShouldThrowOlympusPostConditionException()
             {
                 // Arrange.
 
@@ -2625,7 +2625,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPostConditionException>()
+                    .Should().Throw<OlympusPostConditionException>()
                     .WithMessage($"POST-CONDITION: Variable [value] should be zero or a negative number!");
             }
         }
@@ -2655,7 +2655,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+            public void WhenGettingInvalidPreCondition_ShouldThrowOlympusPreConditionException()
             {
                 // Arrange.
 
@@ -2673,7 +2673,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPreConditionException>()
+                    .Should().Throw<OlympusPreConditionException>()
                     .WithMessage($"PRE-CONDITION: Variable [value] should be zero!");
             }
 
@@ -2700,7 +2700,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+            public void WhenGettingInvalidPostCondition_ShouldThrowOlympusPostConditionException()
             {
                 // Arrange.
 
@@ -2718,7 +2718,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPostConditionException>()
+                    .Should().Throw<OlympusPostConditionException>()
                     .WithMessage($"POST-CONDITION: Variable [value] should be zero!");
             }
         }
@@ -2748,7 +2748,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+            public void WhenGettingInvalidPreCondition_ShouldThrowOlympusPreConditionException()
             {
                 // Arrange.
 
@@ -2766,7 +2766,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPreConditionException>()
+                    .Should().Throw<OlympusPreConditionException>()
                     .WithMessage($"PRE-CONDITION: Variable [value] should be equal to [0]!");
             }
 
@@ -2793,7 +2793,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+            public void WhenGettingInvalidPostCondition_ShouldThrowOlympusPostConditionException()
             {
                 // Arrange.
 
@@ -2811,7 +2811,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPostConditionException>()
+                    .Should().Throw<OlympusPostConditionException>()
                     .WithMessage($"POST-CONDITION: Variable [value] should be equal to [0]!");
             }
         }
@@ -2841,7 +2841,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+            public void WhenGettingInvalidPreCondition_ShouldThrowOlympusPreConditionException()
             {
                 // Arrange.
 
@@ -2859,7 +2859,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPreConditionException>()
+                    .Should().Throw<OlympusPreConditionException>()
                     .WithMessage($"PRE-CONDITION: Variable [value] should be less than [{(double.MinValue + double.MaxValue) / 2}]!");
             }
 
@@ -2886,7 +2886,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+            public void WhenGettingInvalidPostCondition_ShouldThrowOlympusPostConditionException()
             {
                 // Arrange.
 
@@ -2904,7 +2904,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPostConditionException>()
+                    .Should().Throw<OlympusPostConditionException>()
                     .WithMessage($"POST-CONDITION: Variable [value] should be less than [{(double.MinValue + double.MaxValue) / 2}]!");
             }
         }
@@ -2934,7 +2934,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+            public void WhenGettingInvalidPreCondition_ShouldThrowOlympusPreConditionException()
             {
                 // Arrange.
 
@@ -2952,7 +2952,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPreConditionException>()
+                    .Should().Throw<OlympusPreConditionException>()
                     .WithMessage($"PRE-CONDITION: Variable [value] should be less than or equal to [{(double.MinValue + double.MaxValue) / 2}]!");
             }
 
@@ -2979,7 +2979,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+            public void WhenGettingInvalidPostCondition_ShouldThrowOlympusPostConditionException()
             {
                 // Arrange.
 
@@ -2997,7 +2997,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPostConditionException>()
+                    .Should().Throw<OlympusPostConditionException>()
                     .WithMessage($"POST-CONDITION: Variable [value] should be less than or equal to [{(double.MinValue + double.MaxValue) / 2}]!");
             }
         }
@@ -3027,7 +3027,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+            public void WhenGettingInvalidPreCondition_ShouldThrowOlympusPreConditionException()
             {
                 // Arrange.
 
@@ -3045,7 +3045,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPreConditionException>()
+                    .Should().Throw<OlympusPreConditionException>()
                     .WithMessage($"PRE-CONDITION: Variable [value] should be greater than [{(double.MinValue + double.MaxValue) / 2}]!");
             }
 
@@ -3072,7 +3072,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+            public void WhenGettingInvalidPostCondition_ShouldThrowOlympusPostConditionException()
             {
                 // Arrange.
 
@@ -3090,7 +3090,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPostConditionException>()
+                    .Should().Throw<OlympusPostConditionException>()
                     .WithMessage($"POST-CONDITION: Variable [value] should be greater than [{(double.MinValue + double.MaxValue) / 2}]!");
             }
         }
@@ -3120,7 +3120,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+            public void WhenGettingInvalidPreCondition_ShouldThrowOlympusPreConditionException()
             {
                 // Arrange.
 
@@ -3138,7 +3138,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPreConditionException>()
+                    .Should().Throw<OlympusPreConditionException>()
                     .WithMessage($"PRE-CONDITION: Variable [value] should be greater than or equal to [{(double.MinValue + double.MaxValue) / 2}]!");
             }
 
@@ -3165,7 +3165,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+            public void WhenGettingInvalidPostCondition_ShouldThrowOlympusPostConditionException()
             {
                 // Arrange.
 
@@ -3183,7 +3183,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPostConditionException>()
+                    .Should().Throw<OlympusPostConditionException>()
                     .WithMessage($"POST-CONDITION: Variable [value] should be greater than or equal to [{(double.MinValue + double.MaxValue) / 2}]!");
             }
         }
@@ -3213,7 +3213,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+            public void WhenGettingInvalidPreCondition_ShouldThrowOlympusPreConditionException()
             {
                 // Arrange.
 
@@ -3231,7 +3231,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPreConditionException>()
+                    .Should().Throw<OlympusPreConditionException>()
                     .WithMessage($"PRE-CONDITION: Variable [value] should be a positive number!");
             }
 
@@ -3258,7 +3258,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+            public void WhenGettingInvalidPostCondition_ShouldThrowOlympusPostConditionException()
             {
                 // Arrange.
 
@@ -3276,7 +3276,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPostConditionException>()
+                    .Should().Throw<OlympusPostConditionException>()
                     .WithMessage($"POST-CONDITION: Variable [value] should be a positive number!");
             }
         }
@@ -3306,7 +3306,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+            public void WhenGettingInvalidPreCondition_ShouldThrowOlympusPreConditionException()
             {
                 // Arrange.
 
@@ -3324,7 +3324,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPreConditionException>()
+                    .Should().Throw<OlympusPreConditionException>()
                     .WithMessage($"PRE-CONDITION: Variable [value] should be zero or a positive number!");
             }
 
@@ -3351,7 +3351,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+            public void WhenGettingInvalidPostCondition_ShouldThrowOlympusPostConditionException()
             {
                 // Arrange.
 
@@ -3369,7 +3369,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPostConditionException>()
+                    .Should().Throw<OlympusPostConditionException>()
                     .WithMessage($"POST-CONDITION: Variable [value] should be zero or a positive number!");
             }
         }
@@ -3399,7 +3399,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+            public void WhenGettingInvalidPreCondition_ShouldThrowOlympusPreConditionException()
             {
                 // Arrange.
 
@@ -3417,7 +3417,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPreConditionException>()
+                    .Should().Throw<OlympusPreConditionException>()
                     .WithMessage($"PRE-CONDITION: Variable [value] should be a negative number!");
             }
 
@@ -3444,7 +3444,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+            public void WhenGettingInvalidPostCondition_ShouldThrowOlympusPostConditionException()
             {
                 // Arrange.
 
@@ -3462,7 +3462,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPostConditionException>()
+                    .Should().Throw<OlympusPostConditionException>()
                     .WithMessage($"POST-CONDITION: Variable [value] should be a negative number!");
             }
         }
@@ -3492,7 +3492,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+            public void WhenGettingInvalidPreCondition_ShouldThrowOlympusPreConditionException()
             {
                 // Arrange.
 
@@ -3510,7 +3510,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPreConditionException>()
+                    .Should().Throw<OlympusPreConditionException>()
                     .WithMessage($"PRE-CONDITION: Variable [value] should be zero or a negative number!");
             }
 
@@ -3537,7 +3537,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+            public void WhenGettingInvalidPostCondition_ShouldThrowOlympusPostConditionException()
             {
                 // Arrange.
 
@@ -3555,7 +3555,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPostConditionException>()
+                    .Should().Throw<OlympusPostConditionException>()
                     .WithMessage($"POST-CONDITION: Variable [value] should be zero or a negative number!");
             }
         }
@@ -3585,7 +3585,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+            public void WhenGettingInvalidPreCondition_ShouldThrowOlympusPreConditionException()
             {
                 // Arrange.
 
@@ -3603,7 +3603,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPreConditionException>()
+                    .Should().Throw<OlympusPreConditionException>()
                     .WithMessage($"PRE-CONDITION: Variable [value] should be zero!");
             }
 
@@ -3630,7 +3630,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+            public void WhenGettingInvalidPostCondition_ShouldThrowOlympusPostConditionException()
             {
                 // Arrange.
 
@@ -3648,7 +3648,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPostConditionException>()
+                    .Should().Throw<OlympusPostConditionException>()
                     .WithMessage($"POST-CONDITION: Variable [value] should be zero!");
             }
         }
@@ -3678,7 +3678,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+            public void WhenGettingInvalidPreCondition_ShouldThrowOlympusPreConditionException()
             {
                 // Arrange.
 
@@ -3696,7 +3696,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPreConditionException>()
+                    .Should().Throw<OlympusPreConditionException>()
                     .WithMessage($"PRE-CONDITION: Variable [value] should be equal to [0]!");
             }
 
@@ -3723,7 +3723,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+            public void WhenGettingInvalidPostCondition_ShouldThrowOlympusPostConditionException()
             {
                 // Arrange.
 
@@ -3741,7 +3741,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPostConditionException>()
+                    .Should().Throw<OlympusPostConditionException>()
                     .WithMessage($"POST-CONDITION: Variable [value] should be equal to [0]!");
             }
         }
@@ -3771,7 +3771,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+            public void WhenGettingInvalidPreCondition_ShouldThrowOlympusPreConditionException()
             {
                 // Arrange.
 
@@ -3789,7 +3789,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPreConditionException>()
+                    .Should().Throw<OlympusPreConditionException>()
                     .WithMessage($"PRE-CONDITION: Variable [value] should be less than [{(ushort.MinValue + ushort.MaxValue) / 2}]!");
             }
 
@@ -3816,7 +3816,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+            public void WhenGettingInvalidPostCondition_ShouldThrowOlympusPostConditionException()
             {
                 // Arrange.
 
@@ -3834,7 +3834,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPostConditionException>()
+                    .Should().Throw<OlympusPostConditionException>()
                     .WithMessage($"POST-CONDITION: Variable [value] should be less than [{(ushort.MinValue + ushort.MaxValue) / 2}]!");
             }
         }
@@ -3864,7 +3864,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+            public void WhenGettingInvalidPreCondition_ShouldThrowOlympusPreConditionException()
             {
                 // Arrange.
 
@@ -3882,7 +3882,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPreConditionException>()
+                    .Should().Throw<OlympusPreConditionException>()
                     .WithMessage($"PRE-CONDITION: Variable [value] should be less than or equal to [{(ushort.MinValue + ushort.MaxValue) / 2}]!");
             }
 
@@ -3909,7 +3909,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+            public void WhenGettingInvalidPostCondition_ShouldThrowOlympusPostConditionException()
             {
                 // Arrange.
 
@@ -3927,7 +3927,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPostConditionException>()
+                    .Should().Throw<OlympusPostConditionException>()
                     .WithMessage($"POST-CONDITION: Variable [value] should be less than or equal to [{(ushort.MinValue + ushort.MaxValue) / 2}]!");
             }
         }
@@ -3957,7 +3957,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+            public void WhenGettingInvalidPreCondition_ShouldThrowOlympusPreConditionException()
             {
                 // Arrange.
 
@@ -3975,7 +3975,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPreConditionException>()
+                    .Should().Throw<OlympusPreConditionException>()
                     .WithMessage($"PRE-CONDITION: Variable [value] should be greater than [{(ushort.MinValue + ushort.MaxValue) / 2}]!");
             }
 
@@ -4002,7 +4002,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+            public void WhenGettingInvalidPostCondition_ShouldThrowOlympusPostConditionException()
             {
                 // Arrange.
 
@@ -4020,7 +4020,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPostConditionException>()
+                    .Should().Throw<OlympusPostConditionException>()
                     .WithMessage($"POST-CONDITION: Variable [value] should be greater than [{(ushort.MinValue + ushort.MaxValue) / 2}]!");
             }
         }
@@ -4050,7 +4050,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+            public void WhenGettingInvalidPreCondition_ShouldThrowOlympusPreConditionException()
             {
                 // Arrange.
 
@@ -4068,7 +4068,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPreConditionException>()
+                    .Should().Throw<OlympusPreConditionException>()
                     .WithMessage($"PRE-CONDITION: Variable [value] should be greater than or equal to [{(ushort.MinValue + ushort.MaxValue) / 2}]!");
             }
 
@@ -4095,7 +4095,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+            public void WhenGettingInvalidPostCondition_ShouldThrowOlympusPostConditionException()
             {
                 // Arrange.
 
@@ -4113,7 +4113,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPostConditionException>()
+                    .Should().Throw<OlympusPostConditionException>()
                     .WithMessage($"POST-CONDITION: Variable [value] should be greater than or equal to [{(ushort.MinValue + ushort.MaxValue) / 2}]!");
             }
         }
@@ -4143,7 +4143,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+            public void WhenGettingInvalidPreCondition_ShouldThrowOlympusPreConditionException()
             {
                 // Arrange.
 
@@ -4161,7 +4161,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPreConditionException>()
+                    .Should().Throw<OlympusPreConditionException>()
                     .WithMessage($"PRE-CONDITION: Variable [value] should be a positive number!");
             }
 
@@ -4188,7 +4188,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+            public void WhenGettingInvalidPostCondition_ShouldThrowOlympusPostConditionException()
             {
                 // Arrange.
 
@@ -4206,7 +4206,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPostConditionException>()
+                    .Should().Throw<OlympusPostConditionException>()
                     .WithMessage($"POST-CONDITION: Variable [value] should be a positive number!");
             }
         }
@@ -4236,7 +4236,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+            public void WhenGettingInvalidPreCondition_ShouldThrowOlympusPreConditionException()
             {
                 // Arrange.
 
@@ -4254,7 +4254,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPreConditionException>()
+                    .Should().Throw<OlympusPreConditionException>()
                     .WithMessage($"PRE-CONDITION: Variable [value] should be zero!");
             }
 
@@ -4281,7 +4281,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+            public void WhenGettingInvalidPostCondition_ShouldThrowOlympusPostConditionException()
             {
                 // Arrange.
 
@@ -4299,7 +4299,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPostConditionException>()
+                    .Should().Throw<OlympusPostConditionException>()
                     .WithMessage($"POST-CONDITION: Variable [value] should be zero!");
             }
         }
@@ -4329,7 +4329,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+            public void WhenGettingInvalidPreCondition_ShouldThrowOlympusPreConditionException()
             {
                 // Arrange.
 
@@ -4347,7 +4347,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPreConditionException>()
+                    .Should().Throw<OlympusPreConditionException>()
                     .WithMessage($"PRE-CONDITION: Variable [value] should be equal to [0]!");
             }
 
@@ -4374,7 +4374,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+            public void WhenGettingInvalidPostCondition_ShouldThrowOlympusPostConditionException()
             {
                 // Arrange.
 
@@ -4392,7 +4392,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 action
-                    .Should().Throw<CopPostConditionException>()
+                    .Should().Throw<OlympusPostConditionException>()
                     .WithMessage($"POST-CONDITION: Variable [value] should be equal to [0]!");
             }
         }

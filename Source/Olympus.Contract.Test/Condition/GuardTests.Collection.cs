@@ -7,8 +7,6 @@
 // <creation_timestamp>Monday, 9 April 2018 9:30:21 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-// ReSharper disable InconsistentNaming
-
 namespace nGratis.Cop.Olympus.Contract.Test;
 
 using System;
@@ -44,7 +42,7 @@ public partial class GuardTests
         }
 
         [Fact]
-        public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+        public void WhenGettingInvalidPreCondition_ShouldThrowOlympusPreConditionException()
         {
             // Arrange.
 
@@ -62,7 +60,7 @@ public partial class GuardTests
             // Assert.
 
             action
-                .Should().Throw<CopPreConditionException>()
+                .Should().Throw<OlympusPreConditionException>()
                 .WithMessage("PRE-CONDITION: Variable [values] should be empty!");
         }
 
@@ -89,7 +87,7 @@ public partial class GuardTests
         }
 
         [Fact]
-        public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+        public void WhenGettingInvalidPostCondition_ShouldThrowOlympusPostConditionException()
         {
             // Arrange.
 
@@ -107,7 +105,7 @@ public partial class GuardTests
             // Assert.
 
             action
-                .Should().Throw<CopPostConditionException>()
+                .Should().Throw<OlympusPostConditionException>()
                 .WithMessage("POST-CONDITION: Variable [values] should be empty!");
         }
     }
@@ -137,7 +135,7 @@ public partial class GuardTests
         }
 
         [Fact]
-        public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+        public void WhenGettingInvalidPreCondition_ShouldThrowOlympusPreConditionException()
         {
             // Arrange.
 
@@ -157,7 +155,7 @@ public partial class GuardTests
             // Assert.
 
             action
-                .Should().Throw<CopPreConditionException>()
+                .Should().Throw<OlympusPreConditionException>()
                 .WithMessage("PRE-CONDITION: Variable [values] should be empty!");
         }
 
@@ -184,7 +182,7 @@ public partial class GuardTests
         }
 
         [Fact]
-        public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+        public void WhenGettingInvalidPostCondition_ShouldThrowOlympusPostConditionException()
         {
             // Arrange.
 
@@ -204,7 +202,7 @@ public partial class GuardTests
             // Assert.
 
             action
-                .Should().Throw<CopPostConditionException>()
+                .Should().Throw<OlympusPostConditionException>()
                 .WithMessage("POST-CONDITION: Variable [values] should be empty!");
         }
     }
@@ -237,7 +235,7 @@ public partial class GuardTests
         }
 
         [Fact]
-        public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+        public void WhenGettingInvalidPreCondition_ShouldThrowOlympusPreConditionException()
         {
             // Arrange.
 
@@ -258,7 +256,7 @@ public partial class GuardTests
             // Assert.
 
             action
-                .Should().Throw<CopPreConditionException>()
+                .Should().Throw<OlympusPreConditionException>()
                 .WithMessage("PRE-CONDITION: Variable [value] should have key [[_MOCK_ANOTHER_KEY_]]!");
         }
 
@@ -288,7 +286,7 @@ public partial class GuardTests
         }
 
         [Fact]
-        public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+        public void WhenGettingInvalidPostCondition_ShouldThrowOlympusPostConditionException()
         {
             // Arrange.
 
@@ -309,7 +307,7 @@ public partial class GuardTests
             // Assert.
 
             action
-                .Should().Throw<CopPostConditionException>()
+                .Should().Throw<OlympusPostConditionException>()
                 .WithMessage("POST-CONDITION: Variable [value] should have key [[_MOCK_ANOTHER_KEY_]]!");
         }
     }

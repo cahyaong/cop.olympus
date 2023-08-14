@@ -40,7 +40,7 @@ public partial class GuardTests
         }
 
         [Fact]
-        public void WhenGettingInvalidPreCondition_ShouldThrowCopPreConditionException()
+        public void WhenGettingInvalidPreCondition_ShouldThrowOlympusPreConditionException()
         {
             // Arrange.
 
@@ -58,7 +58,7 @@ public partial class GuardTests
             // Assert.
 
             action
-                .Should().Throw<CopPreConditionException>()
+                .Should().Throw<OlympusPreConditionException>()
                 .WithMessage("PRE-CONDITION: Variable [value] should be empty!");
         }
 
@@ -85,7 +85,7 @@ public partial class GuardTests
         }
 
         [Fact]
-        public void WhenGettingInvalidPostCondition_ShouldThrowCopPostConditionException()
+        public void WhenGettingInvalidPostCondition_ShouldThrowOlympusPostConditionException()
         {
             // Arrange.
 
@@ -103,7 +103,7 @@ public partial class GuardTests
             // Assert.
 
             action
-                .Should().Throw<CopPostConditionException>()
+                .Should().Throw<OlympusPostConditionException>()
                 .WithMessage("POST-CONDITION: Variable [value] should be empty!");
         }
     }

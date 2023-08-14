@@ -35,7 +35,7 @@ public class FieldTemplateSelector : DataTemplateSelector
 
         if (field == null)
         {
-            throw new CopException($"This selector must be used within control type [{typeof(AweField)}].");
+            throw new OlympusException($"This selector must be used within control type [{typeof(AweField)}].");
         }
 
         var key = $"Cop.AweField.{field.Mode}.{field.Kind}";

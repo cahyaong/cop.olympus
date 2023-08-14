@@ -6,7 +6,9 @@
     <olympus:SharedResourceDictionary Source="/nGratis.Cop.Olympus.Wpf.Theme;component/Cop.Icon.MaterialDesignIcon.xaml" />
   </ResourceDictionary.MergedDictionaries>
 
-  <ControlTemplate x:Key="Cop.AweScrollBar.Template.Default" TargetType="{x:Type ScrollBar}">
+  <ControlTemplate
+    x:Key="Cop.AweScrollBar.Template.Default"
+    TargetType="{x:Type ScrollBar}">
     <Grid>
       <Grid.ColumnDefinitions>
         <ColumnDefinition Width="Auto" />

@@ -8,12 +8,16 @@
     <olympus:SharedResourceDictionary Source="/nGratis.Cop.Olympus.Wpf.Theme;component/Cop.Style.TextBlock.xaml" />
   </ResourceDictionary.MergedDictionaries>
 
-  <Style x:Key="{x:Type olympus:AweTile}" TargetType="{x:Type olympus:AweTile}">
+  <Style
+    x:Key="{x:Type olympus:AweTile}"
+    TargetType="{x:Type olympus:AweTile}">
     <Style.Setters>
       <Setter Property="Template">
         <Setter.Value>
           <ControlTemplate TargetType="{x:Type olympus:AweTile}">
-            <Border BorderBrush="{StaticResource Cop.Brush.Accent}" BorderThickness="0,0,4,0">
+            <Border
+              BorderBrush="{StaticResource Cop.Brush.Accent}"
+              BorderThickness="0,0,4,0">
               <StackPanel
                 Margin="0,0,10,0"
                 HorizontalAlignment="Right"

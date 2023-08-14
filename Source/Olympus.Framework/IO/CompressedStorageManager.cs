@@ -181,7 +181,7 @@ public class CompressedStorageManager : IStorageManager, IDisposable
 
         if (!canSave)
         {
-            throw new CopException($"Entry [{key}] found in archive, but overriding is not allowed!");
+            throw new OlympusException($"Entry [{key}] found in archive, but overriding is not allowed!");
         }
 
         dataStream.Position = 0;

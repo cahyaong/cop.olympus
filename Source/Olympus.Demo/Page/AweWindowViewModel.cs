@@ -80,7 +80,7 @@ internal class AweWindowViewModel : ReactiveScreen
         {
             await Task.Delay(TimeSpan.FromMilliseconds(500));
 
-            throw new CopException("Workers are on strike!");
+            throw new OlympusException("Workers are on strike!");
         });
     }
 
@@ -88,6 +88,6 @@ internal class AweWindowViewModel : ReactiveScreen
     {
         this._logger.LogInfo("Manager [Y]: Monitoring workers!");
 
-        throw new CopException("Workers are running away!");
+        throw new OlympusException("Workers are running away!");
     }
 }

@@ -1,4 +1,6 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+﻿<ResourceDictionary
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <Color x:Key="Cop.Color.Shade0">#FF000000</Color>
   <Color x:Key="Cop.Color.Shade1">#FF202020</Color>
   <Color x:Key="Cop.Color.Shade2">#FF404040</Color>

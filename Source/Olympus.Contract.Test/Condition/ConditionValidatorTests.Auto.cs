@@ -1,9 +1,9 @@
-ï»¿// --------------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="Guard.All.Numerical.cs" company="nGratis">
-//  The MIT License â€” Copyright (c) Cahya Ong
+//  The MIT License — Copyright (c) Cahya Ong
 //  See the LICENSE file in the project root for more information.
 // </copyright>
-// <author>Cahya Ong â€” cahya.ong@gmail.com</author>
+// <author>Cahya Ong — cahya.ong@gmail.com</author>
 // <creation_timestamp>Saturday, 31 March 2018 5:14:34 AM UTC</creation_timestamp>
 // <remark>
 //
@@ -49,7 +49,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPreConditionValue_ShouldThrowCopPreConditionException()
+            public void WhenGettingInvalidPreConditionValue_ShouldThrowOlympusPreConditionException()
             {
                 // Arrange.
 
@@ -69,7 +69,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 validate
-                    .Should().Throw<CopPreConditionException>()
+                    .Should().Throw<OlympusPreConditionException>()
                     .WithMessage("PRE-CONDITION: Variable [[_MOCK_NAME_]] should NOT [_MOCK_REASON_]!");
             }
 
@@ -97,7 +97,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPostConditionValue_ShouldThrowCopPostConditionException()
+            public void WhenGettingInvalidPostConditionValue_ShouldThrowOlympusPostConditionException()
             {
                 // Arrange.
 
@@ -117,7 +117,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 validate
-                    .Should().Throw<CopPostConditionException>()
+                    .Should().Throw<OlympusPostConditionException>()
                     .WithMessage("POST-CONDITION: Variable [[_MOCK_NAME_]] should NOT [_MOCK_REASON_]!");
             }
         }
@@ -151,7 +151,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPreConditionValue_ShouldThrowCopPreConditionException()
+            public void WhenGettingInvalidPreConditionValue_ShouldThrowOlympusPreConditionException()
             {
                 // Arrange.
 
@@ -171,7 +171,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 validate
-                    .Should().Throw<CopPreConditionException>()
+                    .Should().Throw<OlympusPreConditionException>()
                     .WithMessage("PRE-CONDITION: Variable [[_MOCK_NAME_]] should NOT [_MOCK_REASON_]!");
             }
 
@@ -199,7 +199,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
             }
 
             [Fact]
-            public void WhenGettingInvalidPostConditionValue_ShouldThrowCopPostConditionException()
+            public void WhenGettingInvalidPostConditionValue_ShouldThrowOlympusPostConditionException()
             {
                 // Arrange.
 
@@ -219,7 +219,7 @@ namespace nGratis.Cop.Olympus.Contract.Test
                 // Assert.
 
                 validate
-                    .Should().Throw<CopPostConditionException>()
+                    .Should().Throw<OlympusPostConditionException>()
                     .WithMessage("POST-CONDITION: Variable [[_MOCK_NAME_]] should NOT [_MOCK_REASON_]!");
             }
         }

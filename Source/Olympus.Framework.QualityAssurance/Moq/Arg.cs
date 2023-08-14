@@ -7,14 +7,13 @@
 // <creation_timestamp>Wednesday, 14 February 2018 11:13:08 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-// ReSharper disable once CheckNamespace
-
-namespace Moq;
+namespace nGratis.Cop.Olympus.Framework;
 
 using System.Text.RegularExpressions;
+using Moq;
 using nGratis.Cop.Olympus.Contract;
 
-using Contract = nGratis.Cop.Olympus.Contract;
+using Match = Moq.Match;
 
 public class Arg
 {
@@ -23,17 +22,13 @@ public class Arg
         return It.IsAny<TValue>();
     }
 
-    public class DataSpec
+    public static class DataSpec
     {
         public static Contract.DataSpec Is(string name, Mime mime)
         {
             Guard
                 .Require(name, nameof(name))
                 .Is.Not.Empty();
-
-            Guard
-                .Require(mime, nameof(mime))
-                .Is.Not.Null();
 
             return Match.Create<Contract.DataSpec>(spec =>
                 spec.Name == name &&
@@ -44,9 +39,20 @@ public class Arg
         {
             return Match.Create<Contract.DataSpec>(spec => spec.Mime == Mime.Html);
         }
+
+        public static Contract.DataSpec IsCache(string name)
+        {
+            Guard
+                .Require(name, nameof(name))
+                .Is.Not.Empty();
+
+            return Match.Create<Contract.DataSpec>(spec =>
+                spec.Name == name &&
+                spec.Mime == OlympusMime.Cache);
+        }
     }
 
-    public class Stream
+    public static class Stream
     {
         public static System.IO.Stream IsHtml()
         {

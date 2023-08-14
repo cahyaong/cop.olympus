@@ -154,7 +154,7 @@ public class CompressedStorageManagerTests
         }
 
         [Fact]
-        public void WhenFindingExistingEntryButOverrideNotAllowed_ShouldThrowCopException()
+        public void WhenFindingExistingEntryButOverrideNotAllowed_ShouldThrowOlympusException()
         {
             // Arrange.
 
@@ -182,7 +182,7 @@ public class CompressedStorageManagerTests
             var entryKey = $"{entrySpec.Name}{entrySpec.Mime.FileExtension}";
 
             action
-                .Should().Throw<CopException>()
+                .Should().Throw<OlympusException>()
                 .WithMessage($"Entry [{entryKey}] found in archive, but overriding is not allowed!");
         }
     }

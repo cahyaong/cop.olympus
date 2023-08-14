@@ -1,4 +1,6 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:olympus="http://schemas.ngratis.com/2014/olympus">
+﻿<ResourceDictionary
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:olympus="http://schemas.ngratis.com/2014/olympus">
   <ResourceDictionary.MergedDictionaries>
     <olympus:SharedResourceDictionary Source="/MahApps.Metro;component/Styles/Controls.xaml" />
     <olympus:SharedResourceDictionary Source="/MahApps.Metro;component/Styles/Fonts.xaml" />

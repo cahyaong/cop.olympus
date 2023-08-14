@@ -7,7 +7,9 @@
     <olympus:SharedResourceDictionary Source="/nGratis.Cop.Olympus.Wpf.Theme;component/Cop.Style.TextBlock.xaml" />
   </ResourceDictionary.MergedDictionaries>
 
-  <Style x:Key="{x:Type olympus:AweTileGroup}" TargetType="{x:Type olympus:AweTileGroup}">
+  <Style
+    x:Key="{x:Type olympus:AweTileGroup}"
+    TargetType="{x:Type olympus:AweTileGroup}">
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type olympus:AweTileGroup}">
@@ -27,7 +29,9 @@
               Grid.Row="1"
               BorderBrush="{DynamicResource Cop.Brush.Shade2}"
               BorderThickness="1,1,0,0">
-              <ContentControl Margin="8,8,0,0" Content="{TemplateBinding Content}" />
+              <ContentControl
+                Margin="8,8,0,0"
+                Content="{TemplateBinding Content}" />
             </Border>
           </Grid>
         </ControlTemplate>

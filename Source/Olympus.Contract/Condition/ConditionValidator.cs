@@ -48,8 +48,8 @@ public abstract class ConditionValidator<T>
 
             throw this.Kind switch
             {
-                ValidatorKind.PreCondition => new CopPreConditionException(message),
-                ValidatorKind.PostCondition => new CopPostConditionException(message),
+                ValidatorKind.PreCondition => new OlympusPreConditionException(message),
+                ValidatorKind.PostCondition => new OlympusPostConditionException(message),
                 _ => new NotSupportedException($"Validator kind [{this.Kind}] is not supported!")
             };
         }

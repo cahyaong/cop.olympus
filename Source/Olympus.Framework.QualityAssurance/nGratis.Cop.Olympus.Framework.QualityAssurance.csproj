@@ -15,6 +15,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Olympus.Contract\nGratis.Cop.Olympus.Contract.csproj" />
+    <ProjectReference Include="..\Olympus.Framework\nGratis.Cop.Olympus.Framework.csproj" />
   </ItemGroup>
   <Import Project="..\.paket\Paket.Restore.targets" />
 </Project>

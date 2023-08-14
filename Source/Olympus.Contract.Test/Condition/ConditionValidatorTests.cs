@@ -36,7 +36,7 @@ public class ConditionValidatorTests
         }
 
         [Fact]
-        public void WhenGettingInvalidPreConditionValue_ShouldThrowCopPreConditionException()
+        public void WhenGettingInvalidPreConditionValue_ShouldThrowOlympusPreConditionException()
         {
             // Arrange.
 
@@ -51,7 +51,7 @@ public class ConditionValidatorTests
             // Assert.
 
             validate
-                .Should().Throw<CopPreConditionException>()
+                .Should().Throw<OlympusPreConditionException>()
                 .WithMessage("PRE-CONDITION: Variable [[_MOCK_NAME_]] should [_MOCK_REASON_]!");
         }
 
@@ -74,7 +74,7 @@ public class ConditionValidatorTests
         }
 
         [Fact]
-        public void WhenGettingInvalidPostConditionValue_ShouldThrowCopPostConditionException()
+        public void WhenGettingInvalidPostConditionValue_ShouldThrowOlympusPostConditionException()
         {
             // Arrange.
 
@@ -89,7 +89,7 @@ public class ConditionValidatorTests
             // Assert.
 
             validate
-                .Should().Throw<CopPostConditionException>()
+                .Should().Throw<OlympusPostConditionException>()
                 .WithMessage("POST-CONDITION: Variable [[_MOCK_NAME_]] should [_MOCK_REASON_]!");
         }
 
