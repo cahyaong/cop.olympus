@@ -11,7 +11,7 @@ namespace nGratis.Cop.Olympus.Demo;
 
 using System.Collections.Generic;
 using System.Linq;
-using nGratis.Cop.Olympus.Wpf.Glue;
+using nGratis.Cop.Olympus.UI.Wpf.Glue;
 using ReactiveUI;
 
 internal class AweFieldViewModel : ReactiveScreen

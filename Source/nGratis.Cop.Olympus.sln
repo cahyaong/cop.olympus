@@ -17,9 +17,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "nGratis.Cop.Olympus.Contrac
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "nGratis.Cop.Olympus.Framework.QualityAssurance", "Olympus.Framework.QualityAssurance\nGratis.Cop.Olympus.Framework.QualityAssurance.csproj", "{F3E71997-BEF8-4724-97E1-C38286950725}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "nGratis.Cop.Olympus.Wpf", "Olympus.Wpf\nGratis.Cop.Olympus.Wpf.csproj", "{744AA92F-008E-41FD-B562-12E1C485126B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "nGratis.Cop.Olympus.UI.Wpf", "Olympus.UI.Wpf\nGratis.Cop.Olympus.UI.Wpf.csproj", "{744AA92F-008E-41FD-B562-12E1C485126B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "nGratis.Cop.Olympus.Wpf.Theme", "Olympus.Wpf.Theme\nGratis.Cop.Olympus.Wpf.Theme.csproj", "{F73C70A2-FE84-4ED4-8606-B1559FEBEE69}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "nGratis.Cop.Olympus.UI.Wpf.Theme", "Olympus.UI.Wpf.Theme\nGratis.Cop.Olympus.UI.Wpf.Theme.csproj", "{F73C70A2-FE84-4ED4-8606-B1559FEBEE69}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "nGratis.Cop.Olympus.Contract.Test", "Olympus.Contract.Test\nGratis.Cop.Olympus.Contract.Test.csproj", "{7BAC4A8C-E920-4860-B1E4-D4525AA64314}"
 EndProject
@@ -27,7 +27,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "nGratis.Cop.Olympus.Framewo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "nGratis.Cop.Olympus.Framework", "Olympus.Framework\nGratis.Cop.Olympus.Framework.csproj", "{D0FD9A30-D021-4091-AA93-8A0D569D46E9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "nGratis.Cop.Olympus.Wpf.Glue", "Olympus.Wpf.Glue\nGratis.Cop.Olympus.Wpf.Glue.csproj", "{EC6FBB73-2A32-4189-86F3-4E2D325C07C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "nGratis.Cop.Olympus.UI.Wpf.Glue", "Olympus.UI.Wpf.Glue\nGratis.Cop.Olympus.UI.Wpf.Glue.csproj", "{EC6FBB73-2A32-4189-86F3-4E2D325C07C3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

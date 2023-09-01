@@ -12,7 +12,7 @@ namespace nGratis.Cop.Olympus.Demo;
 using System.Threading;
 using System.Threading.Tasks;
 using nGratis.Cop.Olympus.Contract;
-using nGratis.Cop.Olympus.Wpf.Glue;
+using nGratis.Cop.Olympus.UI.Wpf.Glue;
 
 public class ReactiveCaliburnViewModel : ReactiveScreen
 {

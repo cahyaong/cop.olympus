@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
   <PropertyGroup>
-    <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -9,19 +8,9 @@
     <Authors>Cahya Ong</Authors>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="nGratis.Cop.Olympus.Demo.csproj.DotSettings" />
-  </ItemGroup>
-  <ItemGroup>
-    <!-- NOTE: This is temporary workaround with broken XAML compiler caused by Xamarin.Forms 4.7+, see -->
-    <!-- https://github.com/xamarin/Xamarin.Forms/issues/11101 for more details. -->
-    <EmbeddedResource Remove="**/*.xaml" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="..\Olympus.Shared\GlobalAssemblyInfo.cs" Link="Properties\GlobalAssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Olympus.UI.Wpf.Glue\nGratis.Cop.Olympus.UI.Wpf.Glue.csproj" />
-    <ProjectReference Include="..\Olympus.UI.Wpf.Theme\nGratis.Cop.Olympus.UI.Wpf.Theme.csproj" />
     <ProjectReference Include="..\Olympus.UI.Wpf\nGratis.Cop.Olympus.UI.Wpf.csproj" />
   </ItemGroup>
   <Import Project="..\.paket\Paket.Restore.targets" />

@@ -10,7 +10,7 @@
 namespace nGratis.Cop.Olympus.Demo;
 
 using System.Windows;
-using nGratis.Cop.Olympus.Wpf;
+using nGratis.Cop.Olympus.UI.Wpf;
 
 public class AppBootstrapper : CopBootstrapper
 {

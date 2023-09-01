@@ -1,0 +1,80 @@
+<ResourceDictionary
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:olympus="http://schemas.ngratis.com/2014/olympus"
+  xmlns:system="clr-namespace:System;assembly=mscorlib">
+  <ResourceDictionary.MergedDictionaries>
+    <olympus:SharedResourceDictionary Source="/nGratis.Cop.Olympus.UI.Wpf.Theme;component/Cop.Style.TextBlock.xaml" />
+  </ResourceDictionary.MergedDictionaries>
+
+  <system:Double x:Key="Cop.StatusBar.Height">24</system:Double>
+  <system:Double x:Key="Cop.StatusBar.Indicator.Diameter">20</system:Double>
+
+  <Style x:Key="{x:Type olympus:AweStatusBar}" TargetType="{x:Type olympus:AweStatusBar}">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type olympus:AweStatusBar}">
+          <Border
+            x:Name="PART_Container"
+            Height="{StaticResource Cop.StatusBar.Height}"
+            Background="{DynamicResource Cop.Brush.Accent}">
+            <Grid>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+              </Grid.ColumnDefinitions>
+              <!-- TODO: Add progress indicator! -->
+              <TextBlock
+                Grid.Column="0"
+                Margin="8,0"
+                Foreground="{DynamicResource Cop.Brush.Shade7}"
+                Style="{StaticResource Cop.TextBlock.Base}"
+                Text="{TemplateBinding Message}" />
+              <Grid
+                x:Name="PART_ResponsivenessIndicator"
+                Grid.Column="1"
+                Margin="8,0"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                SnapsToDevicePixels="True">
+                <Ellipse
+                  Width="{StaticResource Cop.StatusBar.Indicator.Diameter}"
+                  Height="{StaticResource Cop.StatusBar.Indicator.Diameter}"
+                  Fill="{DynamicResource Cop.Brush.Shade7}"
+                  Stroke="{DynamicResource Cop.Brush.Application.Background}"
+                  StrokeThickness="1">
+                  <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Loaded">
+                      <BeginStoryboard>
+                        <Storyboard>
+                          <DoubleAnimation
+                            AutoReverse="True"
+                            RepeatBehavior="Forever"
+                            Storyboard.TargetProperty="Fill.(SolidColorBrush.Opacity)"
+                            From="1.0"
+                            To="0.0"
+                            Duration="0:0:1.00" />
+                        </Storyboard>
+                      </BeginStoryboard>
+                    </EventTrigger>
+                  </Ellipse.Triggers>
+                </Ellipse>
+                <TextBlock
+                  HorizontalAlignment="Center"
+                  FontSize="9pt"
+                  Foreground="{DynamicResource Cop.Brush.Application.Background}"
+                  Style="{StaticResource Cop.TextBlock.Base}"
+                  Text="UI" />
+              </Grid>
+            </Grid>
+          </Border>
+          <ControlTemplate.Triggers>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=IsActive}" Value="False">
+              <Setter TargetName="PART_Container" Property="Background" Value="{DynamicResource Cop.Brush.Application.Border.Inactive}" />
+            </DataTrigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+</ResourceDictionary>

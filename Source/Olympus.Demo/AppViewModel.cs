@@ -10,7 +10,7 @@
 namespace nGratis.Cop.Olympus.Demo;
 
 using Caliburn.Micro;
-using nGratis.Cop.Olympus.Wpf.Glue;
+using nGratis.Cop.Olympus.UI.Wpf.Glue;
 
 internal class AppViewModel : ReactiveConductor<IScreen>.Collection.OneActive
 {

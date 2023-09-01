@@ -14,8 +14,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using nGratis.Cop.Olympus.Contract;
-using nGratis.Cop.Olympus.Wpf;
-using nGratis.Cop.Olympus.Wpf.Glue;
+using nGratis.Cop.Olympus.UI.Wpf;
+using nGratis.Cop.Olympus.UI.Wpf.Glue;
 using ReactiveUI;
 
 internal class AweWindowViewModel : ReactiveScreen
