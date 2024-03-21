@@ -9,7 +9,7 @@
 
 namespace nGratis.Cop.Olympus.Contract;
 
-public static class DefinedText
+public class DefinedText
 {
     public const string Null = "<null>";
 
