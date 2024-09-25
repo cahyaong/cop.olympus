@@ -7,9 +7,11 @@
 // <creation_timestamp>Saturday, May 1, 2021 7:03:50 PM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Contract;
+// ReSharper disable once CheckNamespace
 
-using System.Threading.Tasks;
+namespace System.Threading.Tasks;
+
+using nGratis.Cop.Olympus.Contract;
 
 public static class TaskExtensions
 {

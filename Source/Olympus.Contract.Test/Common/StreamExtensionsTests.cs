@@ -7,7 +7,7 @@
 // <creation_timestamp>Wednesday, 19 December 2018 11:24:59 AM UTC</creation_timestamp>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace nGratis.Cop.Olympus.Framework.Test;
+namespace nGratis.Cop.Olympus.Contract.Test;
 
 using System.IO;
 using System.Text;

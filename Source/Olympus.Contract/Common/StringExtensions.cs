@@ -34,7 +34,7 @@ public static class StringExtensions
     {
         if (string.IsNullOrEmpty(text))
         {
-            return StringExtensions.DefaultHash;
+            return DefaultHash;
         }
 
         using var md5 = MD5.Create();
