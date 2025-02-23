@@ -1,4 +1,4 @@
-﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	<s:String x:Key="/Default/CodeInspection/GeneratedCode/GeneratedFileMasks/=_002A_002EAuto_002Ecs/@EntryIndexedValue">*.Auto.cs</s:String>
 	<s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=AccessToStaticMemberViaDerivedType/@EntryIndexedValue">HINT</s:String>
 	<s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=ArrangeAccessorOwnerBody/@EntryIndexedValue">HINT</s:String>
@@ -120,6 +120,35 @@ $END$</s:String>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=3823B819036E884FA9A918BD2184782D/Text/@EntryValue">Guard&#xD;
     .Require($ARG$, nameof($ARG$))&#xD;
     .Is$END$;</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9DB9394C3533D64583131B42E3AE9DEA/@KeyIndexDefined">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9DB9394C3533D64583131B42E3AE9DEA/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9DB9394C3533D64583131B42E3AE9DEA/Description/@EntryValue">Insert file header with copyright notice.</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9DB9394C3533D64583131B42E3AE9DEA/Field/=CREATION_005FTIMESTAMP/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9DB9394C3533D64583131B42E3AE9DEA/Field/=CREATION_005FTIMESTAMP/Expression/@EntryValue">getCreationTime("U")</s:String>
+	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9DB9394C3533D64583131B42E3AE9DEA/Field/=CREATION_005FTIMESTAMP/InitialRange/@EntryValue">-1</s:Int64>
+	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9DB9394C3533D64583131B42E3AE9DEA/Field/=CREATION_005FTIMESTAMP/Order/@EntryValue">1</s:Int64>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9DB9394C3533D64583131B42E3AE9DEA/Field/=FILENAME/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9DB9394C3533D64583131B42E3AE9DEA/Field/=FILENAME/Expression/@EntryValue">getFileName()</s:String>
+	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9DB9394C3533D64583131B42E3AE9DEA/Field/=FILENAME/InitialRange/@EntryValue">-1</s:Int64>
+	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9DB9394C3533D64583131B42E3AE9DEA/Field/=FILENAME/Order/@EntryValue">0</s:Int64>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9DB9394C3533D64583131B42E3AE9DEA/Reformat/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9DB9394C3533D64583131B42E3AE9DEA/Scope/=4B847A5ED8F7574F925C66209222DF71/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9DB9394C3533D64583131B42E3AE9DEA/Scope/=4B847A5ED8F7574F925C66209222DF71/Type/@EntryValue">AtLineStart</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9DB9394C3533D64583131B42E3AE9DEA/Scope/=C3001E7C0DA78E4487072B7E050D86C5/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9DB9394C3533D64583131B42E3AE9DEA/Scope/=C3001E7C0DA78E4487072B7E050D86C5/CustomProperties/=minimumLanguageVersion/@EntryIndexedValue">2.0</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9DB9394C3533D64583131B42E3AE9DEA/Scope/=C3001E7C0DA78E4487072B7E050D86C5/Type/@EntryValue">InCSharpFile</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9DB9394C3533D64583131B42E3AE9DEA/Shortcut/@EntryValue">header_godot</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9DB9394C3533D64583131B42E3AE9DEA/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=9DB9394C3533D64583131B42E3AE9DEA/Text/@EntryValue">// --------------------------------------------------------------------------------------------------------------------&#xD;
+// &lt;copyright file="$FILENAME$" company="nGratis"&gt;&#xD;
+//  The MIT License -- Copyright (c) Cahya Ong&#xD;
+//  See the LICENSE file in the project root for more information.&#xD;
+// &lt;/copyright&gt;&#xD;
+// &lt;author&gt;Cahya Ong -- cahya.ong@gmail.com&lt;/author&gt;&#xD;
+// &lt;creation_timestamp&gt;$CREATION_TIMESTAMP$ UTC&lt;/creation_timestamp&gt;&#xD;
+// --------------------------------------------------------------------------------------------------------------------&#xD;
+&#xD;
+$END$</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=D9331EFD999D1B409CC616590D343138/@KeyIndexDefined">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=D9331EFD999D1B409CC616590D343138/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=D9331EFD999D1B409CC616590D343138/Description/@EntryValue">Insert Guard.Ensure(...) check.</s:String>
